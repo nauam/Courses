@@ -3,14 +3,19 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+
 import net.miginfocom.swing.*;
 
-public class AtividadeView extends JFrame{
+public class AtividadeView extends JFrame {
 
     private static JButton iniciarButton;
     private final JLabel duracaoLabel;
+    private final JLabel alvoLabel;
+    private final JLabel faltaLabel;
     private final Icon iniciarIcon;
     private final Icon pausarIcon;
+
+    private final AtividadeEditView atividadeEditView = new AtividadeEditView();
 
     public AtividadeView(String atividade, int horas, int minutos, int segundos) {
         setTitle("Pomodoro - Nauam");
@@ -36,12 +41,20 @@ public class AtividadeView extends JFrame{
 
         JLabel atividadeLabel = new JLabel(atividade);
         atividadeLabel.setForeground(Color.white);
-        atividadeLabel.setFont(new Font("MonoAlphabet",Font.BOLD, 38));
+        atividadeLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 38));
 
         duracaoLabel = new JLabel(String.format("%02d : %02d : %02d", horas, minutos, segundos));
         duracaoLabel.setForeground(Color.white);
-        duracaoLabel.setFont(new Font("MonoAlphabet",Font.BOLD, 38));
+        duracaoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 38));
         duracaoLabel.setVisible(false);
+
+        alvoLabel = new JLabel(String.format("%02d : %02d : %02d", horas, minutos, segundos));
+        alvoLabel.setForeground(Color.white);
+        alvoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 10));
+
+        faltaLabel = new JLabel(String.format("%02d : %02d : %02d", horas, minutos, segundos));
+        faltaLabel.setForeground(Color.white);
+        faltaLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 10));
 
         iniciarIcon = new ImageIcon("src/icon/play.png");
         pausarIcon = new ImageIcon("src/icon/pause.png");
@@ -53,10 +66,12 @@ public class AtividadeView extends JFrame{
         JButton editarButton = new JButton(editarIcon);
         editarButton.setContentAreaFilled(false);
 
-        panel.add(atividadeLabel,"cell 0 0 1 0, alignX left");
-        panel.add(editarButton,"cell 2 0, alignX right");
-        panel.add(iniciarButton,"cell 0 1, alignX left");
-        panel.add(duracaoLabel,"cell 1 1 2 1, alignX right");
+        panel.add(atividadeLabel, "cell 0 0 1 0, alignX left");
+        panel.add(editarButton, "cell 2 0, alignX right");
+        panel.add(iniciarButton, "cell 0 1, alignX left");
+        panel.add(duracaoLabel, "cell 1 1 2 1, alignX right");
+        panel.add(alvoLabel, "cell 2 2, alignX right");
+        panel.add(faltaLabel, "cell 2 3, alignX right");
 
         iniciarButton.addActionListener((ActionEvent e) -> {
             switch (e.getActionCommand()) {
@@ -77,6 +92,10 @@ public class AtividadeView extends JFrame{
             }
         });
         editarButton.addActionListener((ActionEvent e) -> {
+            atividadeEditView.pack();
+            atividadeEditView.setVisible(true);
+            atividadeEditView.setResizable(false);
+            atividadeEditView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             //editarController();
         });
 
