@@ -1,5 +1,6 @@
 package view;
 
+import controller.Exception;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -8,23 +9,39 @@ import java.awt.event.ActionEvent;
 
 public class AtividadeEditView extends JFrame {
 
+    private String atividade = "Atividade";
+    private Integer horas = 0;
+    private Integer minutos = 30;
+    private Integer segundos = 0;
+
+    private final JFrame panels = new JFrame("Pomodoro - Nauam");
+    private JButton gravarButton;
+    private JButton excluirButton;
+    private JTextField atividadeField;
+    private JTextField horasField;
+    private JTextField minutosField;
+    private JTextField segundosField;
+
     public AtividadeEditView() {
-        setTitle("Pomodoro - Nauam");
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ignored) {
-
-        }
-        JPanel panels = new JPanel();
-        panels.setPreferredSize(new Dimension(310, 250));
+        Exception.getException();
         panels.setLayout(new BorderLayout());
-        getContentPane().add(panels, BorderLayout.CENTER);
+        panels.add(PanelView());
+        panels.setSize(310, 300);
+        panels.setVisible(true);
+        panels.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        gravarButton.addActionListener((ActionEvent e) -> {
+            atividade = String.valueOf(atividadeField.getText());
+            horas = Integer.valueOf(horasField.getText());
+            minutos = Integer.valueOf(minutosField.getText());
+            segundos = Integer.valueOf(segundosField.getText());
+            new AtividadeView(atividade, horas, minutos, segundos);
+            panels.dispose();
+        });
+        excluirButton.addActionListener((ActionEvent e) -> panels.dispose());
+    }
+
+    public JPanel PanelView() {
         MigLayout layout = new MigLayout("insets 50 30 10 10");
 
         JPanel panel = new JPanel(layout);
@@ -34,13 +51,13 @@ public class AtividadeEditView extends JFrame {
         alvoEditLabel.setForeground(Color.white);
         alvoEditLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 38));
 
-        JLabel alvoLabel = new JLabel("Alvo: ");
-        alvoLabel.setForeground(Color.white);
-        alvoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 16));
-
         JLabel atividadeLabel = new JLabel("Atividade: ");
         atividadeLabel.setForeground(Color.white);
         atividadeLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 16));
+
+        JLabel alvoLabel = new JLabel("Alvo: ");
+        alvoLabel.setForeground(Color.white);
+        alvoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 16));
 
         JLabel pontoPrimeiroLabel = new JLabel(":");
         pontoPrimeiroLabel.setForeground(Color.white);
@@ -50,17 +67,17 @@ public class AtividadeEditView extends JFrame {
         pontoSegundoLabel.setForeground(Color.white);
         pontoSegundoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 12));
 
-        JTextField atividadeField = new JTextField("Atividade", 11);
-        JTextField horasField = new JTextField("02", 2);
-        JTextField minutosField = new JTextField("45", 2);
-        JTextField segundosField = new JTextField("00", 2);
+        atividadeField = new JTextField("Atividade", 11);
+        horasField = new JTextField(String.format("%02d", horas), 2);
+        minutosField = new JTextField(String.format("%02d", minutos), 2);
+        segundosField = new JTextField(String.format("%02d", segundos), 2);
 
         Icon gravarIcon = new ImageIcon("src/icon/play.png");
-        JButton gravarButton = new JButton(gravarIcon);
+        gravarButton = new JButton(gravarIcon);
         gravarButton.setContentAreaFilled(false);
 
         Icon excluirIcon = new ImageIcon("src/icon/remove.png");
-        JButton excluirButton = new JButton(excluirIcon);
+        excluirButton = new JButton(excluirIcon);
         excluirButton.setContentAreaFilled(false);
 
         panel.add(alvoEditLabel, "cell 0 0 7 0, alignX left");
@@ -76,16 +93,7 @@ public class AtividadeEditView extends JFrame {
         panel.add(gravarButton, "cell 0 3 1 3 2 3, alignX center");
         panel.add(excluirButton, "cell 3 3 4 3 5 3, alignX center");
 
-        gravarButton.addActionListener((ActionEvent e) -> {
-            JOptionPane.showMessageDialog(null,"Gravado\n", null,JOptionPane.INFORMATION_MESSAGE);
-            //gravarController();
-        });
-        excluirButton.addActionListener((ActionEvent e) -> {
-            JOptionPane.showMessageDialog(null,"Excluido\n", null,JOptionPane.INFORMATION_MESSAGE);
-            //excluirController();
-        });
-
-        //atividadeController();
-        panels.add(panel);
+        return panel;
     }
+
 }
