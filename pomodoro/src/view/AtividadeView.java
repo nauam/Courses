@@ -6,15 +6,17 @@ import java.awt.event.ActionEvent;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.List;
 
 import controller.ExceptionController;
 import controller.RegistroController;
+
 import model.Registro;
 import net.miginfocom.swing.*;
 
 public class AtividadeView extends JFrame {
+
+    private List<Registro> registros;
 
     private final String atividade;
     private final Integer horas;
@@ -22,6 +24,7 @@ public class AtividadeView extends JFrame {
     private final Integer segundos;
 
     private static JButton iniciarButton;
+    private static JButton voltarButton;
     private static JButton editarButton;
     private JLabel duracaoLabel;
     private JLabel faltaLabel;
@@ -33,11 +36,13 @@ public class AtividadeView extends JFrame {
 
     private final JFrame panels = new JFrame("Pomodoro - Nauam");
 
-    public AtividadeView(String atividade, Integer horas, Integer minutos, Integer segundos) {
+    public AtividadeView(String atividade, Integer horas, Integer minutos, Integer segundos, java.util.List<Registro> registros) {
         this.atividade = atividade;
         this.horas = horas;
         this.minutos = minutos;
         this.segundos = segundos;
+        this.registros = registros;
+        RegistroController.carregar(registros);
         View();
     }
 
@@ -45,25 +50,29 @@ public class AtividadeView extends JFrame {
         ExceptionController.getException();
         panels.setLayout(new BorderLayout());
         panels.add(PanelView());
-        panels.setSize(550, 300);
+        panels.setSize(470, 280);
         panels.setVisible(true);
         panels.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         iniciarButton.addActionListener((ActionEvent e) -> iniciarController(e.getActionCommand()));
-
+        voltarButton.addActionListener((ActionEvent e) -> {
+            registros = RegistroController.read();
+            SwingUtilities.invokeLater(() -> new PomodoroView(atividade, horas, minutos, segundos, registros));
+            cont.stop();
+            panels.dispose();
+        });
         editarButton.addActionListener((ActionEvent e) -> {
-            SwingUtilities.invokeLater(() -> new AtividadeEditView(atividade, horas, minutos, segundos));
+            SwingUtilities.invokeLater(() -> new AtividadeEditView(atividade, horas, minutos, segundos, registros));
+            cont.stop();
             panels.dispose();
         });
     }
 
-    public RegistroController controller;
     private void iniciarController(String action) {
         int segundosAlvo = horas * 60 * 60 + minutos * 60 + segundos;
         switch (action) {
             case "Iniciar":
                 inicio = LocalTime.now();
-                duracaoLabel.setVisible(true);
                 iniciarButton.setIcon(pausarIcon);
                 iniciarButton.setActionCommand("Pausar");
                 cont = new Timer(1000, (ActionEvent event) -> {
@@ -81,14 +90,12 @@ public class AtividadeView extends JFrame {
                 break;
             case "Pausar":
                 LocalTime fim = LocalTime.now();
-                duracaoLabel.setVisible(false);
                 iniciarButton.setIcon(iniciarIcon);
                 iniciarButton.setActionCommand("Iniciar");
                 duracaoLabel.setText(RegistroController.toString(0));
                 faltaLabel.setText(RegistroController.toString(segundosAlvo));
                 cont.stop();
                 RegistroController.create(atividade, inicio, fim);
-                System.out.println(new ArrayList<>(RegistroController.read()));
                 break;
             default:
                 break;
@@ -96,7 +103,7 @@ public class AtividadeView extends JFrame {
     }
 
     private JPanel PanelView() {
-        JPanel panel = new JPanel(new MigLayout("insets 50 30 10 10"));
+        JPanel panel = new JPanel(new MigLayout("insets 10 30 10 10"));
         panel.setBackground(Color.darkGray);
 
         JLabel atividadeLabel = new JLabel(atividade);
@@ -106,7 +113,6 @@ public class AtividadeView extends JFrame {
         duracaoLabel = new JLabel(String.format("%02d : %02d : %02d", 0, 0, 0));
         duracaoLabel.setForeground(Color.white);
         duracaoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 38));
-        duracaoLabel.setVisible(false);
 
         JLabel alvoLabel = new JLabel(String.format("%02d : %02d : %02d", horas, minutos, segundos));
         alvoLabel.setForeground(Color.white);
@@ -126,12 +132,17 @@ public class AtividadeView extends JFrame {
         editarButton = new JButton(editarIcon);
         editarButton.setContentAreaFilled(false);
 
-        panel.add(atividadeLabel, "cell 0 0 1 0, alignX left");
-        panel.add(editarButton, "cell 2 0, alignX right");
-        panel.add(iniciarButton, "cell 0 1, alignX left");
-        panel.add(duracaoLabel, "cell 1 1 2 1, alignX right");
-        panel.add(alvoLabel, "cell 2 2, alignX right");
-        panel.add(faltaLabel, "cell 2 3, alignX right");
+        Icon voltarIcon = new ImageIcon("src/icon/seta-esquerda.png");
+        voltarButton = new JButton(voltarIcon);
+        voltarButton.setContentAreaFilled(false);
+
+        panel.add(voltarButton, "cell 0 0, alignX left");
+        panel.add(atividadeLabel, "cell 1 1, alignX center");
+        panel.add(editarButton, "cell 3 0, alignX right");
+        panel.add(iniciarButton, "cell 0 2 0 5 , alignX left");
+        panel.add(duracaoLabel, "cell 1 2 2 2, alignX right");
+        panel.add(alvoLabel, "cell 2 4, alignX right");
+        panel.add(faltaLabel, "cell 2 5, alignX right");
 
         return panel;
     }

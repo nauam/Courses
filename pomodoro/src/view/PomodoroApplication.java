@@ -4,6 +4,6 @@ import javax.swing.*;
 
 public class PomodoroApplication {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(AtividadeEditView::new);
+        SwingUtilities.invokeLater(PomodoroView::new);
     }
 }

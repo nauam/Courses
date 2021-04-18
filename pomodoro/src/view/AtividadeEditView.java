@@ -2,18 +2,22 @@ package view;
 
 import controller.ExceptionController;
 
+import model.Registro;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class AtividadeEditView extends JFrame {
 
-    private String atividade = "Atividade";
-    private Integer horas = 0;
-    private Integer minutos = 30;
-    private Integer segundos = 0;
+    private final List<Registro> registros;
+
+    private String atividade;
+    private Integer horas;
+    private Integer minutos;
+    private Integer segundos;
 
     private JButton gravarButton;
     private JButton excluirButton;
@@ -24,15 +28,12 @@ public class AtividadeEditView extends JFrame {
 
     private final JFrame panels = new JFrame("Pomodoro - Nauam");
 
-    public AtividadeEditView() {
-        View();
-    }
-
-    public AtividadeEditView(String atividade, Integer horas, Integer minutos, Integer segundos) {
+    public AtividadeEditView(String atividade, Integer horas, Integer minutos, Integer segundos, List<Registro> registros) {
         this.atividade = atividade;
         this.horas = horas;
         this.minutos = minutos;
         this.segundos = segundos;
+        this.registros = registros;
         View();
     }
 
@@ -49,10 +50,14 @@ public class AtividadeEditView extends JFrame {
             horas = Integer.valueOf(horasField.getText());
             minutos = Integer.valueOf(minutosField.getText());
             segundos = Integer.valueOf(segundosField.getText());
-            new AtividadeView(atividade, horas, minutos, segundos);
+            new AtividadeView(atividade, horas, minutos, segundos, registros);
             panels.dispose();
         });
-        excluirButton.addActionListener((ActionEvent e) -> panels.dispose());
+
+        excluirButton.addActionListener((ActionEvent e) -> {
+            SwingUtilities.invokeLater(() -> new PomodoroView(atividade, horas, minutos, segundos, registros));
+            panels.dispose();
+        });
     }
 
     private JPanel PanelView() {
@@ -86,7 +91,7 @@ public class AtividadeEditView extends JFrame {
         minutosField = new JTextField(String.format("%02d", minutos), 2);
         segundosField = new JTextField(String.format("%02d", segundos), 2);
 
-        Icon gravarIcon = new ImageIcon("src/icon/play.png");
+        Icon gravarIcon = new ImageIcon("src/icon/verifica.png");
         gravarButton = new JButton(gravarIcon);
         gravarButton.setContentAreaFilled(false);
 

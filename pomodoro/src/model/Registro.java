@@ -5,39 +5,15 @@ import controller.RegistroController;
 import java.time.Duration;
 import java.time.LocalTime;
 
-public class Registro{
+public class Registro {
 
-    private String atividade;
-    private LocalTime inicio;
-    private LocalTime fim;
+    private final String atividade;
+    private final LocalTime inicio;
+    private final LocalTime fim;
 
     public Registro(String atividade, LocalTime inicio, LocalTime fim) {
         this.atividade = atividade;
         this.inicio = inicio;
-        this.fim = fim;
-    }
-
-    public String getAtividade() {
-        return atividade;
-    }
-
-    public void setAtividade(String atividade) {
-        this.atividade = atividade;
-    }
-
-    public LocalTime getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(LocalTime inicio) {
-        this.inicio = inicio;
-    }
-
-    public LocalTime getFim() {
-        return fim;
-    }
-
-    public void setFim(LocalTime fim) {
         this.fim = fim;
     }
 
