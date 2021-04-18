@@ -3,8 +3,12 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.time.Duration;
+import java.time.LocalTime;
 
 import controller.Exception;
+import controller.RegistroController;
+import model.Registro;
 import net.miginfocom.swing.*;
 
 public class AtividadeView extends JFrame {
@@ -13,11 +17,13 @@ public class AtividadeView extends JFrame {
     private final Integer horas;
     private final Integer minutos;
     private final Integer segundos;
+    private Timer cont;
 
     private final JFrame panels = new JFrame("Pomodoro - Nauam");
     private static JButton iniciarButton;
     private static JButton editarButton;
     private JLabel duracaoLabel;
+    private JLabel faltaLabel;
     private Icon iniciarIcon;
     private Icon pausarIcon;
 
@@ -40,16 +46,10 @@ public class AtividadeView extends JFrame {
         iniciarButton.addActionListener((ActionEvent e) -> {
             switch (e.getActionCommand()) {
                 case "Iniciar":
-                    duracaoLabel.setVisible(true);
-                    iniciarButton.setIcon(pausarIcon);
-                    iniciarButton.setActionCommand("Pausar");
-                    //iniciarController();
+                    iniciarController();
                     break;
                 case "Pausar":
-                    duracaoLabel.setVisible(false);
-                    iniciarButton.setIcon(iniciarIcon);
-                    iniciarButton.setActionCommand("Iniciar");
-                    //pauseController();
+                    pauseController();
                     break;
                 default:
                     break;
@@ -71,7 +71,7 @@ public class AtividadeView extends JFrame {
         atividadeLabel.setForeground(Color.white);
         atividadeLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 38));
 
-        duracaoLabel = new JLabel(String.format("%02d : %02d : %02d", horas, minutos, segundos));
+        duracaoLabel = new JLabel(String.format("%02d : %02d : %02d", 0, 0, 0));
         duracaoLabel.setForeground(Color.white);
         duracaoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 38));
         duracaoLabel.setVisible(false);
@@ -80,7 +80,7 @@ public class AtividadeView extends JFrame {
         alvoLabel.setForeground(Color.white);
         alvoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 10));
 
-        JLabel faltaLabel = new JLabel(String.format("%02d : %02d : %02d", horas, minutos, segundos));
+        faltaLabel = new JLabel(String.format("%02d : %02d : %02d", horas, minutos, segundos));
         faltaLabel.setForeground(Color.white);
         faltaLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 10));
 
@@ -103,4 +103,47 @@ public class AtividadeView extends JFrame {
 
         return panel;
     }
+
+    private LocalTime inicio;
+    private Duration duracao;
+
+    private void iniciarController() {
+        duracaoLabel.setVisible(true);
+        iniciarButton.setIcon(pausarIcon);
+        iniciarButton.setActionCommand("Pausar");
+        int segundosAlvo = horas * 60 * 60 + minutos * 60 + segundos;
+        inicio = LocalTime.now();
+        cont = new Timer(1000, (ActionEvent event) -> {
+            LocalTime agora = LocalTime.now();
+            duracao = Duration.between(inicio, agora);
+            int segundosCont = Math.toIntExact(duracao.getSeconds());
+            duracaoLabel.setText(String.format("%02d : %02d : %02d"
+                    , segundosCont / (60 * 60)
+                    , (segundosCont % (60 * 60)) / 60
+                    , (segundosCont % (60 * 60)) % 60));
+
+            int segundosFalta = segundosAlvo - segundosCont;
+            if (segundosFalta >= 0) {
+                faltaLabel.setText(String.format("%02d : %02d : %02d"
+                        , segundosFalta / (60 * 60)
+                        , (segundosFalta % (60 * 60)) / 60
+                        , (segundosFalta % (60 * 60)) % 60));
+            }
+            if (segundosFalta == 0) {
+                JOptionPane.showMessageDialog(null, "Alvo Alcançado!", "Pomodoro - Nauam", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        cont.start();
+    }
+    private RegistroController registroController;
+
+    private RegistroController pauseController() {
+        duracaoLabel.setVisible(false);
+        iniciarButton.setIcon(iniciarIcon);
+        iniciarButton.setActionCommand("Iniciar");
+        cont.stop();
+        LocalTime fim = LocalTime.now();
+        return registroController.insert(atividade, inicio, fim, duracao);
+    }
+
 }

@@ -1,17 +1,19 @@
 package model;
 
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Objects;
 
 public class Registro {
 
     private Integer id;
-    private Atividade atividade;
-    private Date inicio;
-    private Date fim;
-    private Date duracao;
+    private String atividade;
+    private LocalTime inicio;
+    private LocalTime fim;
+    private Duration duracao;
 
-    public Registro(Atividade atividade, Date inicio, Date fim, Date duracao) {
+    public Registro(String atividade, LocalTime inicio, LocalTime fim, Duration duracao) {
         this.atividade = atividade;
         this.inicio = inicio;
         this.fim = fim;
