@@ -1,67 +1,57 @@
 package model;
 
+import controller.RegistroController;
+
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.Objects;
 
-public class Registro {
+public class Registro{
 
-    private Integer id;
     private String atividade;
     private LocalTime inicio;
     private LocalTime fim;
-    private Duration duracao;
 
-    public Registro(String atividade, LocalTime inicio, LocalTime fim, Duration duracao) {
+    public Registro(String atividade, LocalTime inicio, LocalTime fim) {
         this.atividade = atividade;
         this.inicio = inicio;
         this.fim = fim;
-        this.duracao = duracao;
     }
 
-    public Atividade getAtividade() {
+    public String getAtividade() {
         return atividade;
     }
 
-    public void setAtividade(Atividade atividade) {
+    public void setAtividade(String atividade) {
         this.atividade = atividade;
     }
 
-    public Date getInicio() {
+    public LocalTime getInicio() {
         return inicio;
     }
 
-    public void setInicio(Date inicio) {
+    public void setInicio(LocalTime inicio) {
         this.inicio = inicio;
     }
 
-    public Date getFim() {
+    public LocalTime getFim() {
         return fim;
     }
 
-    public void setFim(Date fim) {
+    public void setFim(LocalTime fim) {
         this.fim = fim;
     }
 
-    public Date getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Date duracao) {
-        this.duracao = duracao;
+    public Duration getDuracao(LocalTime inicio, LocalTime fim) {
+        return Duration.between(inicio, fim);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Registro)) return false;
-        Registro registro = (Registro) o;
-        return Objects.equals(id, registro.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public String toString() {
+        return "Registro{" +
+                "atividade = '" + atividade + '\'' +
+                ", inicio = " + inicio +
+                ", fim = " + fim +
+                ", duração = " + RegistroController.toString(Math.toIntExact(getDuracao(inicio, fim).getSeconds())) +
+                '}';
     }
 }

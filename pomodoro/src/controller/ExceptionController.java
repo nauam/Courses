@@ -2,7 +2,7 @@ package controller;
 
 import javax.swing.*;
 
-public class Exception {
+public class ExceptionController {
     public static void getException() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

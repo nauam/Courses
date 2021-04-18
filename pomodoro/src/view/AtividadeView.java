@@ -5,8 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
-import controller.Exception;
+import controller.ExceptionController;
 import controller.RegistroController;
 import model.Registro;
 import net.miginfocom.swing.*;
@@ -17,15 +20,18 @@ public class AtividadeView extends JFrame {
     private final Integer horas;
     private final Integer minutos;
     private final Integer segundos;
-    private Timer cont;
 
-    private final JFrame panels = new JFrame("Pomodoro - Nauam");
     private static JButton iniciarButton;
     private static JButton editarButton;
     private JLabel duracaoLabel;
     private JLabel faltaLabel;
     private Icon iniciarIcon;
     private Icon pausarIcon;
+
+    private LocalTime inicio;
+    private Timer cont;
+
+    private final JFrame panels = new JFrame("Pomodoro - Nauam");
 
     public AtividadeView(String atividade, Integer horas, Integer minutos, Integer segundos) {
         this.atividade = atividade;
@@ -35,36 +41,62 @@ public class AtividadeView extends JFrame {
         View();
     }
 
-    public void View() {
-        Exception.getException();
+    private void View() {
+        ExceptionController.getException();
         panels.setLayout(new BorderLayout());
         panels.add(PanelView());
         panels.setSize(550, 300);
         panels.setVisible(true);
         panels.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        iniciarButton.addActionListener((ActionEvent e) -> {
-            switch (e.getActionCommand()) {
-                case "Iniciar":
-                    iniciarController();
-                    break;
-                case "Pausar":
-                    pauseController();
-                    break;
-                default:
-                    break;
-            }
-        });
+        iniciarButton.addActionListener((ActionEvent e) -> iniciarController(e.getActionCommand()));
 
         editarButton.addActionListener((ActionEvent e) -> {
-            //editarController();
+            SwingUtilities.invokeLater(() -> new AtividadeEditView(atividade, horas, minutos, segundos));
+            panels.dispose();
         });
     }
 
-    public JPanel PanelView() {
-        MigLayout layout = new MigLayout("insets 50 30 10 10");
+    public RegistroController controller;
+    private void iniciarController(String action) {
+        int segundosAlvo = horas * 60 * 60 + minutos * 60 + segundos;
+        switch (action) {
+            case "Iniciar":
+                inicio = LocalTime.now();
+                duracaoLabel.setVisible(true);
+                iniciarButton.setIcon(pausarIcon);
+                iniciarButton.setActionCommand("Pausar");
+                cont = new Timer(1000, (ActionEvent event) -> {
+                    LocalTime agora = LocalTime.now();
+                    Duration duracao = Duration.between(inicio, agora);
+                    int segundosCont = Math.toIntExact(duracao.getSeconds());
+                    duracaoLabel.setText(RegistroController.toString(segundosCont));
+                    int segundosFalta = segundosAlvo - segundosCont;
+                    if (segundosFalta >= 0)
+                        faltaLabel.setText(RegistroController.toString(segundosFalta));
+                    if (segundosFalta == 0)
+                        JOptionPane.showMessageDialog(null, "Alvo Alcançado!", "Pomodoro - Nauam", JOptionPane.INFORMATION_MESSAGE);
+                });
+                cont.start();
+                break;
+            case "Pausar":
+                LocalTime fim = LocalTime.now();
+                duracaoLabel.setVisible(false);
+                iniciarButton.setIcon(iniciarIcon);
+                iniciarButton.setActionCommand("Iniciar");
+                duracaoLabel.setText(RegistroController.toString(0));
+                faltaLabel.setText(RegistroController.toString(segundosAlvo));
+                cont.stop();
+                RegistroController.create(atividade, inicio, fim);
+                System.out.println(new ArrayList<>(RegistroController.read()));
+                break;
+            default:
+                break;
+        }
+    }
 
-        JPanel panel = new JPanel(layout);
+    private JPanel PanelView() {
+        JPanel panel = new JPanel(new MigLayout("insets 50 30 10 10"));
         panel.setBackground(Color.darkGray);
 
         JLabel atividadeLabel = new JLabel(atividade);
@@ -102,48 +134,6 @@ public class AtividadeView extends JFrame {
         panel.add(faltaLabel, "cell 2 3, alignX right");
 
         return panel;
-    }
-
-    private LocalTime inicio;
-    private Duration duracao;
-
-    private void iniciarController() {
-        duracaoLabel.setVisible(true);
-        iniciarButton.setIcon(pausarIcon);
-        iniciarButton.setActionCommand("Pausar");
-        int segundosAlvo = horas * 60 * 60 + minutos * 60 + segundos;
-        inicio = LocalTime.now();
-        cont = new Timer(1000, (ActionEvent event) -> {
-            LocalTime agora = LocalTime.now();
-            duracao = Duration.between(inicio, agora);
-            int segundosCont = Math.toIntExact(duracao.getSeconds());
-            duracaoLabel.setText(String.format("%02d : %02d : %02d"
-                    , segundosCont / (60 * 60)
-                    , (segundosCont % (60 * 60)) / 60
-                    , (segundosCont % (60 * 60)) % 60));
-
-            int segundosFalta = segundosAlvo - segundosCont;
-            if (segundosFalta >= 0) {
-                faltaLabel.setText(String.format("%02d : %02d : %02d"
-                        , segundosFalta / (60 * 60)
-                        , (segundosFalta % (60 * 60)) / 60
-                        , (segundosFalta % (60 * 60)) % 60));
-            }
-            if (segundosFalta == 0) {
-                JOptionPane.showMessageDialog(null, "Alvo Alcançado!", "Pomodoro - Nauam", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-        cont.start();
-    }
-    private RegistroController registroController;
-
-    private RegistroController pauseController() {
-        duracaoLabel.setVisible(false);
-        iniciarButton.setIcon(iniciarIcon);
-        iniciarButton.setActionCommand("Iniciar");
-        cont.stop();
-        LocalTime fim = LocalTime.now();
-        return registroController.insert(atividade, inicio, fim, duracao);
     }
 
 }

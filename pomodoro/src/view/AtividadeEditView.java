@@ -1,6 +1,7 @@
 package view;
 
-import controller.Exception;
+import controller.ExceptionController;
+
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -14,7 +15,6 @@ public class AtividadeEditView extends JFrame {
     private Integer minutos = 30;
     private Integer segundos = 0;
 
-    private final JFrame panels = new JFrame("Pomodoro - Nauam");
     private JButton gravarButton;
     private JButton excluirButton;
     private JTextField atividadeField;
@@ -22,8 +22,22 @@ public class AtividadeEditView extends JFrame {
     private JTextField minutosField;
     private JTextField segundosField;
 
+    private final JFrame panels = new JFrame("Pomodoro - Nauam");
+
     public AtividadeEditView() {
-        Exception.getException();
+        View();
+    }
+
+    public AtividadeEditView(String atividade, Integer horas, Integer minutos, Integer segundos) {
+        this.atividade = atividade;
+        this.horas = horas;
+        this.minutos = minutos;
+        this.segundos = segundos;
+        View();
+    }
+
+    private void View() {
+        ExceptionController.getException();
         panels.setLayout(new BorderLayout());
         panels.add(PanelView());
         panels.setSize(310, 300);
@@ -41,7 +55,7 @@ public class AtividadeEditView extends JFrame {
         excluirButton.addActionListener((ActionEvent e) -> panels.dispose());
     }
 
-    public JPanel PanelView() {
+    private JPanel PanelView() {
         MigLayout layout = new MigLayout("insets 50 30 10 10");
 
         JPanel panel = new JPanel(layout);
@@ -67,7 +81,7 @@ public class AtividadeEditView extends JFrame {
         pontoSegundoLabel.setForeground(Color.white);
         pontoSegundoLabel.setFont(new Font("MonoAlphabet", Font.BOLD, 12));
 
-        atividadeField = new JTextField("Atividade", 11);
+        atividadeField = new JTextField(atividade, 11);
         horasField = new JTextField(String.format("%02d", horas), 2);
         minutosField = new JTextField(String.format("%02d", minutos), 2);
         segundosField = new JTextField(String.format("%02d", segundos), 2);
@@ -95,5 +109,4 @@ public class AtividadeEditView extends JFrame {
 
         return panel;
     }
-
 }
