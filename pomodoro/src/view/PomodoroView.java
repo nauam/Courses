@@ -16,8 +16,8 @@ public class PomodoroView extends JFrame {
 
     private String atividade = "Atividade";
     private Integer horas = 0;
-    private Integer minutos = 30;
-    private Integer segundos = 0;
+    private Integer minutos = 0;
+    private Integer segundos = 30;
 
     private static JButton registrosButton;
     private static JButton novoButton;
