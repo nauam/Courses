@@ -1,4 +1,4 @@
-package collectionsStreams5.comparators;
+package comparators;
 
 public class Estudante implements Comparable<Estudante> {
 

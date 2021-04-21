@@ -1,4 +1,4 @@
-package collectionsStreams5.comparators;
+package comparators;
 
 import java.util.ArrayList;
 import java.util.Collections;
