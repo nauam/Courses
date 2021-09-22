@@ -23,11 +23,17 @@ npm start
 ```
 npm run api
 ```
+### Or
+
+* Install application [nodemon](https://www.npmjs.com/package/nodemon) in directory [http](http)
+```
+npm i
+```
 
 * Run Server and Api
 ```
 npm start && npm run api
 ```
 
-##Upgrade server.js
-Delet, Insert...
+## Upgrade server.js
+* Delete and create using server
