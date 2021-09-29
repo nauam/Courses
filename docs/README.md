@@ -2,13 +2,8 @@
 home: true
 title: Documentação do QW Controle
 heroImage: /images/qwcontrollogo-black-big.png
-actions:
-  - text: Introdução
-    link: /introduction/introduction.html
-    type: primary
-  - text: Aprendendo
-    link: /learning/index.md
-    type: secondary
+actionsText: Introdução
+actionsLink: /introduction/introduction.html
 features:
   - title: Simplicity First
     details: Minimal setup with markdown-centered project structure helps you focus on writing.
