@@ -1,18 +1,18 @@
 ---
-sidebar: false
-title: Rundeck Documentation
+home: true
+title: Documentação do QW Controle
+heroImage: /images/qwcontrollogo-black-big.png
+actions:
+  - text: Introdução
+    link: /introduction/introduction.html
+    type: primary
+  - text: Aprendendo
+    link: /learning/index.md
+    type: secondary
+features:
+  - title: Simplicity First
+    details: Minimal setup with markdown-centered project structure helps you focus on writing.
+  - title: Vue-Powered
+    details: Enjoy the dev experience of Vue, use Vue components in markdown, and develop custom themes with Vue.
+footer: © QW Software | 2020-2021 | Todos os direitos reservados.
 ---
-
-# Rundeck {{{rundeckVersion}}} Documentation    
-Welcome to Rundeck Documentation Site.  
-
-If you haven't used Rundeck before and are looking to see what it can do, start with the **[Learning Section](/learning/index.md)**.
-
-If you're ready to get started installing Rundeck check out the **[Installation Instructions](/administration/install/installing-rundeck.md)**.
-
-These are some other common starting points.
-* [API Documentation](/api/rundeck-api.md)
-* [Release History](/history/)
-* [List of Plugins](/plugins/)
-* [Old Version of Docs](/manual/old-docs.md)
-* [Sign up for Release Notes](https://www.rundeck.com/release-notes-signup)
