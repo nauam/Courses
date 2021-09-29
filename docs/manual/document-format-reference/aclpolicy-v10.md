@@ -10,7 +10,7 @@ Multiple aclpolicy files can be stored in the
 same directory, helping the management of each set of rules. This
 reduces the complexity of each file. The default path is
 
-- RPM install: `/etc/qwcontrol`
+- RPM install: `/etc/rundeck`
 - Launcher install: `$RDECK_BASE/etc`
 
 Policy files are parsed using YAML and while the structure is rigid,
@@ -19,8 +19,8 @@ elements for documentation or organizational purposes is gracefully parsed.
 The resulting file must be a valid yaml file.
 
 For more information about the exact resources and actions you need to
-authorize for the QW Control application, see the
-[Administration Guide - Authorization](/administration/security/authorization.md#qwcontrol-resource-authorization).
+authorize for the Rundeck application, see the
+[Administration Guide - Authorization](/administration/security/authorization.md#rundeck-resource-authorization).
 
 ## Authorizing a certain action on a resource
 
@@ -54,7 +54,7 @@ The YAML format has changed since version 1.2 to address several issues:
 3. "Deny" rules can now be declared
 4. Application level access control is also supported, replacing the Role mapping
 
-The QW Control server no longer uses role-mapping and instead defers to the aclpolicy for all authorizations.
+The Rundeck server no longer uses role-mapping and instead defers to the aclpolicy for all authorizations.
 
 ### In version 1.5
 
@@ -72,10 +72,10 @@ The QW Control server no longer uses role-mapping and instead defers to the aclp
 
 ## Upgrading
 
-Note: The XML format from QW Control 1.3 and earlier is no longer supported. As
+Note: The XML format from Rundeck 1.3 and earlier is no longer supported. As
 well, the YAML format from 1.2 is now only partially supported.
 
-If you are upgrading from QW Control 1.3 or earlier, you will have to modify
+If you are upgrading from Rundeck 1.3 or earlier, you will have to modify
 your *.aclpolicy files.
 
 If you have XML formatted files, you will need to remove and replace them with
@@ -129,10 +129,10 @@ Declaring a `project:` declares the name of the project(s) for which the policy
 applies. Its value is a String, and can be a regular expression, for which
 the project name must match to apply.
 
-If you declare an `application` section, its only supported value is `qwcontrol`,
+If you declare an `application` section, its only supported value is `rundeck`,
 as:
 context:
-application: 'qwcontrol'
+application: 'rundeck'
 
 This declares that the policy document describes access control at the
 application level, rather than for at a project level. You can then declare
@@ -155,7 +155,7 @@ Resource types declare the type of a specific resource for the match, and the ge
 
 Inside `for` is an entry for any of these resource types:
 
-- `job` - a QW Control Job
+- `job` - a Rundeck Job
 - `node` - a Node resource
 - `adhoc` - an Ad-hoc execution
 - `project` - a Project
@@ -339,7 +339,7 @@ specification.
 
 Possible values are limitless so it requires an understanding of the
 job definition you're trying to run. The best way to understand what
-the actions are is to look at the qwcontrol-audit.log.
+the actions are is to look at the rundeck-audit.log.
 This will show all the options as they're being evaluated.
 
 ## Example Admin policy
@@ -374,7 +374,7 @@ by:
 
 description: Admin Application level access control, applies to creating/deleting projects, admin of user profiles, viewing projects and reading system information.
 context:
-  application: 'qwcontrol'
+  application: 'rundeck'
 for:
   resource:
     - equals:

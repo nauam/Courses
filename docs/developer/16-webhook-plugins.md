@@ -2,11 +2,11 @@
 
 ## About
 
-Webhook event plugins allow you to process a webhook event received by QW Control.
+Webhook event plugins allow you to process a webhook event received by Rundeck.
 
 ## Use
 
-Create a webhook event plugin and install it like other QW Control plugins.
+Create a webhook event plugin and install it like other Rundeck plugins.
 Go to the webhook administration page and create a new webhook. You will see your
 plugin in the list of Webhook Event Plugins. Choose your plugin and if your plugin
 specified plugin properties they will be presented to the user.
@@ -31,7 +31,7 @@ _Project scope property definition in `project.properties`_
 At this time only Java plugins are supported.
 
 Your Java plugin will receive a `WebhookEventContext` object and a `WebhookData` object.
-The event context supplies QW Control services that you might need in your plugin processing code, such as
+The event context supplies Rundeck services that you might need in your plugin processing code, such as
 the job runner service.
 
 The `WebhookData` object contains the event payload itself as an InputStream plus contextual information
@@ -44,13 +44,13 @@ You can control the response sent back to the service that called the webhook by
 A WebhookResponder class must be returned from the plugin's onEvent method. If you return a `null` the DefaultWebhookResponder will be used, which sends a plain text `ok` message to the webhook caller. 
 
 ```java
-import com.dtolabs.qwcontrol.core.plugins.Plugin;
-import com.dtolabs.qwcontrol.core.webhook.WebhookEventException;
-import com.dtolabs.qwcontrol.plugins.ServiceNameConstants;
-import com.dtolabs.qwcontrol.plugins.descriptions.PluginDescription;
-import com.dtolabs.qwcontrol.plugins.webhook.WebhookData;
-import com.dtolabs.qwcontrol.plugins.webhook.WebhookEventContext;
-import com.dtolabs.qwcontrol.plugins.webhook.WebhookEventPlugin;
+import com.dtolabs.rundeck.core.plugins.Plugin;
+import com.dtolabs.rundeck.core.webhook.WebhookEventException;
+import com.dtolabs.rundeck.plugins.ServiceNameConstants;
+import com.dtolabs.rundeck.plugins.descriptions.PluginDescription;
+import com.dtolabs.rundeck.plugins.webhook.WebhookData;
+import com.dtolabs.rundeck.plugins.webhook.WebhookEventContext;
+import com.dtolabs.rundeck.plugins.webhook.WebhookEventPlugin;
 import org.apache.log4j.Logger;
 import java.util.stream.Collectors;
 import java.io.BufferedReader;
@@ -58,9 +58,9 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 @Plugin(name = "log-webhook-event",service= ServiceNameConstants.WebhookEvent)
-@PluginDescription(title="Log Webhook Events",description = "Can be used to log any incoming webhook events to log4j logger 'org.qwcontrol.webhook.events'")
+@PluginDescription(title="Log Webhook Events",description = "Can be used to log any incoming webhook events to log4j logger 'org.rundeck.webhook.events'")
 class LogWebhookEventPlugin implements WebhookEventPlugin {
-    private static final Logger LOG = Logger.getLogger("org.qwcontrol.webhook.events");
+    private static final Logger LOG = Logger.getLogger("org.rundeck.webhook.events");
 
     @Override
     List<String> getRequestHeadersToCopy() {

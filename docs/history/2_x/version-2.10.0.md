@@ -44,16 +44,16 @@ Plus: bug fixes, documentation typo fixes
 
 ## Issues
 
-[Milestone 2.10.0](https://github.com/qwcontrol/qwcontrol/milestone/62)
+[Milestone 2.10.0](https://github.com/rundeck/rundeck/milestone/62)
 
-* [Fix typo in tutorials/project-setup](https://github.com/qwcontrol/qwcontrol/pull/2847)
-* [Execution log storage partial checkpointing](https://github.com/qwcontrol/qwcontrol/pull/2790)
-* [Key Storage Selector doesn't work on Config Page](https://github.com/qwcontrol/qwcontrol/issues/2785)
-* [List Future Schedule on jobsAjax](https://github.com/qwcontrol/qwcontrol/pull/2778)
-* [ACL File editor](https://github.com/qwcontrol/qwcontrol/pull/2772)
-* [Feature: GUI editable File resource model sources](https://github.com/qwcontrol/qwcontrol/pull/2753)
-* [Api endpoint to modify user profile.](https://github.com/qwcontrol/qwcontrol/pull/2741)
-* [Jobs filter enhancement](https://github.com/qwcontrol/qwcontrol/pull/2733)
-* [Named pattern log filter](https://github.com/qwcontrol/qwcontrol/pull/2720)
-* [Job Notification for jobs exceeding average duration](https://github.com/qwcontrol/qwcontrol/pull/2665)
-* [API acl system level bug](https://github.com/qwcontrol/qwcontrol/issues/2569)
+* [Fix typo in tutorials/project-setup](https://github.com/rundeck/rundeck/pull/2847)
+* [Execution log storage partial checkpointing](https://github.com/rundeck/rundeck/pull/2790)
+* [Key Storage Selector doesn't work on Config Page](https://github.com/rundeck/rundeck/issues/2785)
+* [List Future Schedule on jobsAjax](https://github.com/rundeck/rundeck/pull/2778)
+* [ACL File editor](https://github.com/rundeck/rundeck/pull/2772)
+* [Feature: GUI editable File resource model sources](https://github.com/rundeck/rundeck/pull/2753)
+* [Api endpoint to modify user profile.](https://github.com/rundeck/rundeck/pull/2741)
+* [Jobs filter enhancement](https://github.com/rundeck/rundeck/pull/2733)
+* [Named pattern log filter](https://github.com/rundeck/rundeck/pull/2720)
+* [Job Notification for jobs exceeding average duration](https://github.com/rundeck/rundeck/pull/2665)
+* [API acl system level bug](https://github.com/rundeck/rundeck/issues/2569)

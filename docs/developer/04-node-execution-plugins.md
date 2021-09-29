@@ -8,7 +8,7 @@ local node.
 ## Java Plugin Type
 
 Your provider class must implement the interface
-[NodeExecutor]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/service/NodeExecutor.html):
+[NodeExecutor]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/service/NodeExecutor.html):
 
 ```java
 public interface NodeExecutor {
@@ -25,7 +25,7 @@ to learn how to create configuration properties for your plugin.
 ## Script Plugin Type
 
 See the [Script Plugin Development](/developer/01-plugin-development.md#script-plugin-development)
-for the basics of developing script-based plugins for QW Control.
+for the basics of developing script-based plugins for Rundeck.
 
 ### Additional data context properties
 

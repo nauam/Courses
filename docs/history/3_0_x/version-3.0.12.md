@@ -14,7 +14,7 @@ Name: <span style="color: indianred"><span class="glyphicon glyphicon-grain"></s
 This release addresses unhandled concurrency exceptions(lock timeouts and deadlocks) that may occur
 when running multiple instances of referenced jobs.
 
-Using `qwcontrol.disable.ref.stats=true` in framework.properties to disable referenced job statistics updates
+Using `rundeck.disable.ref.stats=true` in framework.properties to disable referenced job statistics updates
 can further reduce waits and retry `WARN` log entries.
 
 Increasing the connection pool size may still be required if many referenced jobs are being run conccurently
@@ -35,7 +35,7 @@ dataSource.properties.maxActive=200
 
 ## Issues
 
-[Milestone 3.0.12](https://github.com/qwcontrol/qwcontrol/milestone/96)
+[Milestone 3.0.12](https://github.com/rundeck/rundeck/milestone/96)
 
-* [Fix #4302 deadlock and allow disabling jobref stats ](https://github.com/qwcontrol/qwcontrol/pull/4388)
-* [Could not roll back Hibernate transaction / Unable to rollback against JDBC Connection](https://github.com/qwcontrol/qwcontrol/issues/4302)
+* [Fix #4302 deadlock and allow disabling jobref stats ](https://github.com/rundeck/rundeck/pull/4388)
+* [Could not roll back Hibernate transaction / Unable to rollback against JDBC Connection](https://github.com/rundeck/rundeck/issues/4302)

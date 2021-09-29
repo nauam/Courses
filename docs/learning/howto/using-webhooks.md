@@ -1,4 +1,4 @@
-# Using QW Control Webhooks
+# Using Rundeck Webhooks
 
 ## Overview
 
@@ -8,9 +8,9 @@ Webhooks are messages sent from applications or systems when something happens. 
 
 ### How would I use them?
 
-QW Control can be configured to receive webhook events from external systems and to run job(s) based on the information sent in the Webhook.
+Rundeck can be configured to receive webhook events from external systems and to run job(s) based on the information sent in the Webhook.
 
-## Webhooks in QW Control
+## Webhooks in Rundeck
 
 Webhooks are configured within a project. The [Welcome Projects](/learning/index.md#welcome-projects) have default Webhooks included in their build.  Below are highlights for the Enterprise and Community versions.
 
@@ -40,9 +40,9 @@ Webhooks are configured within a project. The [Welcome Projects](/learning/index
 ## Webhook Handlers
 
 In the previous step we noted the _Advanced Run Job_ (Enterprise)/_Run Job_ (Community) Webhook Handlers.
-Webhook Event Handlers are custom handlers that can be developed as [QW Control Plugins](/developer/16-webhook-plugins.md) to interact with external systems.
+Webhook Event Handlers are custom handlers that can be developed as [Rundeck Plugins](/developer/16-webhook-plugins.md) to interact with external systems.
 They can respond to authentication calls, pre-process inputs, and provide configuration defaults for specific systems.
-QW Control Enterprise includes Webhook Handlers for [PagerDuty](/manual/webhooks/pagerduty-run-job.md), [GitHub](/manual/webhooks/github-webhook.md), [AWS SNS](/manual/webhooks/aws-sns-webhook.md), [DataDog](/manual/webhooks/datadog-run-job.md) and many more.
+Rundeck Enterprise includes Webhook Handlers for [PagerDuty](/manual/webhooks/pagerduty-run-job.md), [GitHub](/manual/webhooks/github-webhook.md), [AWS SNS](/manual/webhooks/aws-sns-webhook.md), [DataDog](/manual/webhooks/datadog-run-job.md) and many more.
 
 ## Enterprise Features
 
@@ -52,7 +52,7 @@ Below is a highlight of some of the features of Advanced Rule Processing.
 
 Actions and conditions target jobs based on webhook event contents. Often-times webhook payloads from 3rd party systems can’t be edited or updated. If something is sending a lot of events that logic would trigger the job with every event and result in messy Activity logs. Performing logic at the Webhook step, whether the job should run, helps streamline event processing.
 
-Run Multiple Jobs within a single Webhook. Having a single URL to set in a 3rd party solution simplifies the efforts on that side and keeps the customization within QW Control to manage their Automation workflows.
+Run Multiple Jobs within a single Webhook. Having a single URL to set in a 3rd party solution simplifies the efforts on that side and keeps the customization within Rundeck to manage their Automation workflows.
 
 Process batched webhook payloads. Many 3rd party webhook senders will send messages in a “batch”. This feature allows processing each entry in the batch as its own event against the rule set.
 
@@ -62,7 +62,7 @@ All of the solution specific Enterprise Webhook Handlers (PagerDuty, GitHub, AWS
 
 >_“Why didn’t my webhook do X?!”_
 
-QW Control Enterprise includes a Webhook Debugger integrated with the Webhook builder. The Debugger makes troubleshooting incoming webhooks and why they did (or did not) trigger certain rules in the Advanced Rule Processing Handlers.
+Rundeck Enterprise includes a Webhook Debugger integrated with the Webhook builder. The Debugger makes troubleshooting incoming webhooks and why they did (or did not) trigger certain rules in the Advanced Rule Processing Handlers.
 
 There is a Debug tab, but likely at this stage there are no events that have been logged to see debug information for. We will show the Debugger during the Exercise later.
 

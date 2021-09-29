@@ -6,11 +6,11 @@ Name: <span style="color: blueviolet"><span class="glyphicon grain"></span> "cap
 
 ## Upgrading from Earlier versions
 
-* See the [Upgrading Guide](http://qwcontrol.org/docs/upgrading/index.html)
+* See the [Upgrading Guide](http://rundeck.org/docs/upgrading/index.html)
 
 ## Bug Fixes
 
-* Fixed multi-value option delimiter variable not available within a job reference. [#5027](https://github.com/qwcontrol/qwcontrol/pull/5027)
+* Fixed multi-value option delimiter variable not available within a job reference. [#5027](https://github.com/rundeck/rundeck/pull/5027)
 
 ## Contributors
 
@@ -23,6 +23,6 @@ Name: <span style="color: blueviolet"><span class="glyphicon grain"></span> "cap
 
 ## Issues
 
-[Milestone 2.11.12](https://github.com/qwcontrol/qwcontrol/milestone/112)
+[Milestone 2.11.12](https://github.com/rundeck/rundeck/milestone/112)
 
-* [\[Backport 4071\] Fix Multi-value option delimiter variable not available within a Job Reference](https://github.com/qwcontrol/qwcontrol/pull/5027)
+* [\[Backport 4071\] Fix Multi-value option delimiter variable not available within a Job Reference](https://github.com/rundeck/rundeck/pull/5027)

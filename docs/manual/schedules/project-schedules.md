@@ -169,10 +169,10 @@ Schedules can be defined in YAML format as shown below. Multiple schedules can b
 
   ## Feature Flag
 
-  To disabled the Project Schedules feature, add the following settings to qwcontrol-config.properties
+  To disabled the Project Schedules feature, add the following settings to rundeck-config.properties
 
   ```properties
-  qwcontrol.feature.projectSchedules.enabled=false
+  rundeck.feature.projectSchedules.enabled=false
   ```
 
 [crontab]: http://www.quartz-scheduler.org/documentation/quartz-2.2.2/tutorials/tutorial-lesson-06.html

@@ -1,3 +1,3 @@
-# RD: QW Control Client CLI Tool
+# RD: Rundeck Client CLI Tool
 
-QW Control has a separately installable CLI client tool called [rd](https://qwcontrol.github.io/qwcontrol-cli).
+Rundeck has a separately installable CLI client tool called [rd](https://rundeck.github.io/rundeck-cli).

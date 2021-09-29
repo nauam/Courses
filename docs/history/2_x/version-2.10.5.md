@@ -27,6 +27,6 @@ This is a bugfix release.
 
 ## Issues
 
-[Milestone 2.10.5](https://github.com/qwcontrol/qwcontrol/milestone/69)
+[Milestone 2.10.5](https://github.com/rundeck/rundeck/milestone/69)
 
-* [com.dtolabs.qwcontrol.core.NodesetEmptyException: No matched nodes: NodeSet{includes={name=hadoop39, dominant=false, }}](https://github.com/qwcontrol/qwcontrol/issues/2942)
+* [com.dtolabs.rundeck.core.NodesetEmptyException: No matched nodes: NodeSet{includes={name=hadoop39, dominant=false, }}](https://github.com/rundeck/rundeck/issues/2942)

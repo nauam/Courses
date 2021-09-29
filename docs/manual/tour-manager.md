@@ -5,7 +5,7 @@
 
 ## Overview
 
-QW Control **Guided Tours** provide interactive walk-throughs to end users to help demonstrate QW Control processes.  They can be used to help first time users get familiar with the system, or provide step-by-step instructions for how to execute complicated processes.  Managed in product with a new UI manager tour definitions can be configured as System Tours and are available to all projects or Project Tours and tied to that individual project.  Tours are stored in the QW Control database so they are easily shared to all members in clustered environments.
+Rundeck **Guided Tours** provide interactive walk-throughs to end users to help demonstrate Rundeck processes.  They can be used to help first time users get familiar with the system, or provide step-by-step instructions for how to execute complicated processes.  Managed in product with a new UI manager tour definitions can be configured as System Tours and are available to all projects or Project Tours and tied to that individual project.  Tours are stored in the Rundeck database so they are easily shared to all members in clustered environments.
 
 The System level **Tour Manager** can be found under the Settings menu:
 
@@ -37,7 +37,7 @@ After creating the Group Name this dialog will be presented to start creating to
 3. Fill out the Add Step details for this step:
 
     - Title: Serves as the Name of that particular step.  The value is not shown in the display.
-    - Current URL: This value can be a relative url from the root of your QW Control server, or a
+    - Current URL: This value can be a relative url from the root of your Rundeck server, or a
     - Next Step URL (optional): This is included to support previous versions of http-tours.  ([See Details below](#current-vs-next-url))
     - Indicator: To draw attention to somewhere a user should click the **Indicator** can be set to an HTML tag `id` value.
     - Indicator Position: Allows the choice of showing the indicator on the top/bottom/right of the selected tag entry from above.  (ignored if Indicator is empty)

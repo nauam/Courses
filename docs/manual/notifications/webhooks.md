@@ -5,11 +5,11 @@ The Webhooks notification plugin is a builtin plugin that sends POST data to a U
 - For more info about configuring jobs to use webhook notifications, see the chapter [Job Notifications](#job-notifications).
 - For more info about webhooks in general see: <https://webhooks.pbworks.com/w/page/13385124/FrontPage>
 
-When a QW Control Job webhook notification is triggered, the server will send a POST request to one or more configured URLs. The request will contain JSON or XML content containing information about the Execution that has finished. The request will also contain special HTTP Headers to include some information about the notification and the Execution. You can also configure your URLs to have property tokens that will be replaced with specific details about the Job, Execution or Notification prior to the webhook request being submitted.
+When a Rundeck Job webhook notification is triggered, the server will send a POST request to one or more configured URLs. The request will contain JSON or XML content containing information about the Execution that has finished. The request will also contain special HTTP Headers to include some information about the notification and the Execution. You can also configure your URLs to have property tokens that will be replaced with specific details about the Job, Execution or Notification prior to the webhook request being submitted.
 
 #### Execution Notification Content
 
-The default content of the POST request will be XML, with a single `<notification>` root element. This element will contain `<executions..><execution>...</execution></executions>` content. This inner content is of the same format as the XML returned from the Web API for Execution information. See the chapter [API - Listing Running Executions](/api/qwcontrol-api.md#listing-running-executions) for more information.
+The default content of the POST request will be XML, with a single `<notification>` root element. This element will contain `<executions..><execution>...</execution></executions>` content. This inner content is of the same format as the XML returned from the Web API for Execution information. See the chapter [API - Listing Running Executions](/api/rundeck-api.md#listing-running-executions) for more information.
 
 Attributes of the `notification` element will include:
 
@@ -52,24 +52,24 @@ If you have chosen JSON as the payload type the same information described previ
 
 The POST request will also contain several custom HTTP headers, providing another way to receive some of the webhook information:
 
-`X-QW Control-Notification-Trigger`
+`X-Rundeck-Notification-Trigger`
 
 : The notification trigger type, either "success" or "failure".
 
-`X-QW Control-Notification-Execution-ID`
+`X-Rundeck-Notification-Execution-ID`
 
 : The Execution ID
 
-`X-QW Control-Notification-Execution-Status`
+`X-Rundeck-Notification-Execution-Status`
 
 : The status of the execution, either "succeeded", "failed", or "aborted".
 
 (Optional)
 
-`X-QWControl-Notification-SHA256-Digest`
+`X-RunDeck-Notification-SHA256-Digest`
 
 : A SHA-256 Digest of a combination of the webhook url, the trigger, and the execution id along with a server secret.
-This digest allows a receiver to verify that the webhook was sent from QW Control rather than an unauthorized sender.  
+This digest allows a receiver to verify that the webhook was sent from Rundeck rather than an unauthorized sender.  
 To create a digest on the receiver create a SHA-256 digest of the webhook url, the notification trigger type, the execution type and a secret key you wish to use,
 then convert the digest into a string hex representation of the value.
 
@@ -82,8 +82,8 @@ digest.update(id.bytes)
 new String(Hex.encodeHex(digest.digest(secretKey.bytes)))
 ```
 
-The server secret is set using the qwcontrol property: `qwcontrol.notification.webhookSecurityKey`
-Once this property is set the `X-QWControl-Notification-SHA256-Digest` header will be sent along with all webhook notifications.
+The server secret is set using the rundeck property: `rundeck.notification.webhookSecurityKey`
+Once this property is set the `X-RunDeck-Notification-SHA256-Digest` header will be sent along with all webhook notifications.
 
 #### Execution Notification URL Token Expansion
 

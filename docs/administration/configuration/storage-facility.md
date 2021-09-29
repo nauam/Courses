@@ -1,6 +1,6 @@
 # Storage Facility
 
-This document describes the QW Control Storage Facility which is used both for Key Storage, and for Project Definition Storage.
+This document describes the Rundeck Storage Facility which is used both for Key Storage, and for Project Definition Storage.
 
 ## Storage Facility
 
@@ -18,51 +18,51 @@ and have different APIs for modification.
 
 The Key Storage container allows storing public keys, private keys, and passwords securely. The
 contents of these files can be accessed by Node Execution plugins for authenticating to remote nodes.
-The contents can be written via the QW Control API, but only public keys can be read via the API.
+The contents can be written via the Rundeck API, but only public keys can be read via the API.
 
 See the chapter: [Key Storage](/administration/security/key-storage.md).
 
-When configuring Key Storage providers, the configuration entries in `qwcontrol-config.properties` start with:
+When configuring Key Storage providers, the configuration entries in `rundeck-config.properties` start with:
 
-    qwcontrol.storage.provider.[index]
+    rundeck.storage.provider.[index]
 
 And converter plugins start with:
 
-    qwcontrol.storage.converter.[index]
+    rundeck.storage.converter.[index]
 
 ## Project Storage
 
-Similar to Key Storage, the Project Storage container keeps files related to QW Control Projects:
+Similar to Key Storage, the Project Storage container keeps files related to Rundeck Projects:
 
 - contents of `etc/project.properties` - the Project configuration
 - contents of `readme.md` and `motd.md` - Readme and MOTD files
 
-Access to these contents can be made via the QW Control API.
+Access to these contents can be made via the Rundeck API.
 
 See the chapter: [Project Setup](/administration/projects/configuration.md)
 
-When configuring Project Storage providers, the configuration entries in `qwcontrol-config.properties` start with:
+When configuring Project Storage providers, the configuration entries in `rundeck-config.properties` start with:
 
-    qwcontrol.config.storage.provider.[index]
+    rundeck.config.storage.provider.[index]
 
 And converter plugins start with:
 
-    qwcontrol.config.storage.converter.[index]
+    rundeck.config.storage.converter.[index]
 
 ## Storage backends
 
 The location of stored data can be either on the filesystem, the database, or some external system via usage of a **Storage Plugin**.
 
-QW Control provides these built-in implementations:
+Rundeck provides these built-in implementations:
 
 - `filesystem` - stores files locally on the filesystem
 - `db` - stores file data as BLOBs in the database
 
-It is highly recommended that you configure QW Control to use a relational database instead of the default file-based data storage.
+It is highly recommended that you configure Rundeck to use a relational database instead of the default file-based data storage.
 
-For information on configuring QW Control to use specific Databases, see:
+For information on configuring Rundeck to use specific Databases, see:
 
-- [Administor Guide > QW Control Configuration > Database](/administration/configuration/database/index.md)
+- [Administor Guide > Rundeck Configuration > Database](/administration/configuration/database/index.md)
 
 To develop your own storage plugin, see:
 
@@ -82,6 +82,6 @@ To develop your own storage converter plugin, see:
 
 ### Using Encryption
 
-QW Control provides a bundled Storage Converter plugin implementation:
+Rundeck provides a bundled Storage Converter plugin implementation:
 
 - `jasypt-encryption` - encrypts the storage contents: [Configuring Plugins - Bundled Plugins - Jasypt Encryption Plugin](/administration/configuration/plugins/bundled-plugins.md#jasypt-encryption-plugin)

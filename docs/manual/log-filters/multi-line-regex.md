@@ -1,6 +1,6 @@
 # Multiline Regex Capture
 
-This log filter creates a QW Control data variable and fills the contents of that variable via a regular expression.
+This log filter creates a Rundeck data variable and fills the contents of that variable via a regular expression.
 
 Provide a regex match with a pattern, and the filter will match against every line in the log returns for that pattern. Every matching value for that pattern will be added to a variable in the data context ( $data.key ) for later steps in the job.
 

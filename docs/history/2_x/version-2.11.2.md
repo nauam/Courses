@@ -35,13 +35,13 @@ Bug fixes and one API addition (retry job from execution and failed nodes).
 
 ## Issues
 
-[Milestone 2.11.2](https://github.com/qwcontrol/qwcontrol/milestone/75)
+[Milestone 2.11.2](https://github.com/rundeck/rundeck/milestone/75)
 
-* [API: Run job based on execution (retryExecId)](https://github.com/qwcontrol/qwcontrol/pull/3372)
-* [Updating py-winrm plugin to 1.0.4 on 2.11.x](https://github.com/qwcontrol/qwcontrol/pull/3370)
-* [i18n Forgotten Buttons](https://github.com/qwcontrol/qwcontrol/pull/3355)
-* [i18n Update French](https://github.com/qwcontrol/qwcontrol/pull/3354)
-* [Update guava version](https://github.com/qwcontrol/qwcontrol/pull/3352)
-* [Open a project with lots of jobs very slowly when upgrade to 2.11](https://github.com/qwcontrol/qwcontrol/issues/3345)
-* [API: Run execution with just failed nodes (retryExecId)](https://github.com/qwcontrol/qwcontrol/pull/3341)
-* [Project automatically added to jobs](https://github.com/qwcontrol/qwcontrol/issues/2976)
+* [API: Run job based on execution (retryExecId)](https://github.com/rundeck/rundeck/pull/3372)
+* [Updating py-winrm plugin to 1.0.4 on 2.11.x](https://github.com/rundeck/rundeck/pull/3370)
+* [i18n Forgotten Buttons](https://github.com/rundeck/rundeck/pull/3355)
+* [i18n Update French](https://github.com/rundeck/rundeck/pull/3354)
+* [Update guava version](https://github.com/rundeck/rundeck/pull/3352)
+* [Open a project with lots of jobs very slowly when upgrade to 2.11](https://github.com/rundeck/rundeck/issues/3345)
+* [API: Run execution with just failed nodes (retryExecId)](https://github.com/rundeck/rundeck/pull/3341)
+* [Project automatically added to jobs](https://github.com/rundeck/rundeck/issues/2976)

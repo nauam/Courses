@@ -248,7 +248,7 @@ If the the webhook is configured with a batch key, and the path does not exist, 
 #### Executions Disabled
 ![](~@assets/img/wh-debug-error-executions-disabled.png)
 
-Encountered if the job could not be run due to QW Control executions being disabled.
+Encountered if the job could not be run due to Rundeck executions being disabled.
 
 ## FAQ
 ### How do I pass the raw event data to a job?

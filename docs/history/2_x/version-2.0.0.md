@@ -7,17 +7,17 @@
 
 Date: 2014-01-31
 
-QW Control 2.0.0 introduces a large number of major changes. We have revamped the
+Rundeck 2.0.0 introduces a large number of major changes. We have revamped the
 entire UI and overhauled the underpinnings. Our goals were to improve the user
 experience and cut down some of the technical debt which had accrued.
 
-Note that the documentation is still being updated. We will update it as it improves at <http://qwcontrol.org/2.0.0>
+Note that the documentation is still being updated. We will update it as it improves at <http://rundeck.org/2.0.0>
 
-Before you upgrade to QW Control 2.0, please be sure to read the Upgrading Guide
+Before you upgrade to Rundeck 2.0, please be sure to read the Upgrading Guide
 located in the documentation.
 
 Many thanks to everyone who was able to contribute ideas, feedback, code, time
-or money in helping us to improve QW Control.
+or money in helping us to improve Rundeck.
 
 ## Notable Changes
 
@@ -42,7 +42,7 @@ or money in helping us to improve QW Control.
 * Step descriptions for workflow steps. Give your step a brief description, which will be displayed during execution.
 * Improved Activity views with tabbed views for common queries
     * Tabs for Now running, recent, errors and executions by you.
-* Box score metrics for executions. Use QW Control as an information radiator.
+* Box score metrics for executions. Use Rundeck as an information radiator.
     * Percent completed and Success/Failure metrics displayed for each execution
 
 ## Enhancements
@@ -52,7 +52,7 @@ or money in helping us to improve QW Control.
 * Execution model API and json representation stored with log output
 * Optimized internals to reduce service loading time
 * Cruft removal (legacy formats and syntaxes), upgraded frameworks
-* Copy file step plugin copies files from qwcontrol server to remote nodes.
+* Copy file step plugin copies files from rundeck server to remote nodes.
 * API
     * Better REST-ful behavior
     * removed use of 302 redirects between requests and some responses
@@ -60,27 +60,27 @@ or money in helping us to improve QW Control.
 
 ## Related projects
 
-The QW Control organization on github is the new location for the QW Control application source code as well as other associated projects:
+The Rundeck organization on github is the new location for the Rundeck application source code as well as other associated projects:
 
-* [QW Control source](https://github.com/qwcontrol/qwcontrol)
-* [QW Control api-java-client library](https://github.com/qwcontrol/qwcontrol-api-java-client)
+* [Rundeck source](https://github.com/rundeck/rundeck)
+* [Rundeck api-java-client library](https://github.com/rundeck/rundeck-api-java-client)
     - New version 9.3 recently released.
 
-Additionally, the QW Control-plugin for Jenkins is now maintained by the core QW Control project maintainers.
+Additionally, the Rundeck-plugin for Jenkins is now maintained by the core Rundeck project maintainers.
 
-* [QW Control-plugin for Jenkins](https://github.com/jenkinsci/qwcontrol-plugin)
+* [Rundeck-plugin for Jenkins](https://github.com/jenkinsci/rundeck-plugin)
     - New version 3.0 recently released
 
-(Special thanks to Vincent Behar who originally created both the qwcontrol-api-java-client and qwcontrol-plugin projects.)
+(Special thanks to Vincent Behar who originally created both the rundeck-api-java-client and rundeck-plugin projects.)
 
 ## Get in touch
 
 Please let us know about any issues you find, or just if you like the new look:
 
-* Github Issues: <https://github.com/dtolabs/qwcontrol/issues>
-* Mailing list: <qwcontrol-discuss@googlegroups.com>
-* IRC: #qwcontrol on freenode.net ([webchat link](http://webchat.freenode.net/?nick=qwcontroluser.&channels=qwcontrol&prompt=1))
-* Twitter: [@qwcontrol](https://twitter.com/qwcontrol)
+* Github Issues: <https://github.com/dtolabs/rundeck/issues>
+* Mailing list: <rundeck-discuss@googlegroups.com>
+* IRC: #rundeck on freenode.net ([webchat link](http://webchat.freenode.net/?nick=rundeckuser.&channels=rundeck&prompt=1))
+* Twitter: [@rundeck](https://twitter.com/rundeck)
 
 ## Acknowledgements
 
@@ -99,34 +99,34 @@ Please let us know about any issues you find, or just if you like the new look:
 
 ## Issues
 
-* [Update docs for Upgrading to 2.0](https://github.com/qwcontrol/qwcontrol/issues/629)
-* [Multiple node sources should merge the attributes for a node](https://github.com/qwcontrol/qwcontrol/issues/628)
-* [Running QW Control in Tomcat and integrating with Jenkins ](https://github.com/qwcontrol/qwcontrol/issues/626)
-* [[2.0-beta1] Execution log could not be found after renaming the job](https://github.com/qwcontrol/qwcontrol/issues/622)
-* [2.0-beta1: LDAP authentication is broken for RPM install](https://github.com/qwcontrol/qwcontrol/issues/621)
-* ["Change the Target Nodes" option not work in QW Control 2.0beta1](https://github.com/qwcontrol/qwcontrol/issues/619)
-* [NPE parsing YAML with empty tag](https://github.com/qwcontrol/qwcontrol/issues/613)
-* [named steps](https://github.com/qwcontrol/qwcontrol/issues/567)
-* [Emit execution status logs via Log4j](https://github.com/qwcontrol/qwcontrol/issues/553)
-* [SSH authentication in a workflow node step plugin](https://github.com/qwcontrol/qwcontrol/issues/527)
-* [update qwcontrol page URLs to include project context](https://github.com/qwcontrol/qwcontrol/issues/149)
+* [Update docs for Upgrading to 2.0](https://github.com/rundeck/rundeck/issues/629)
+* [Multiple node sources should merge the attributes for a node](https://github.com/rundeck/rundeck/issues/628)
+* [Running Rundeck in Tomcat and integrating with Jenkins ](https://github.com/rundeck/rundeck/issues/626)
+* [[2.0-beta1] Execution log could not be found after renaming the job](https://github.com/rundeck/rundeck/issues/622)
+* [2.0-beta1: LDAP authentication is broken for RPM install](https://github.com/rundeck/rundeck/issues/621)
+* ["Change the Target Nodes" option not work in Rundeck 2.0beta1](https://github.com/rundeck/rundeck/issues/619)
+* [NPE parsing YAML with empty tag](https://github.com/rundeck/rundeck/issues/613)
+* [named steps](https://github.com/rundeck/rundeck/issues/567)
+* [Emit execution status logs via Log4j](https://github.com/rundeck/rundeck/issues/553)
+* [SSH authentication in a workflow node step plugin](https://github.com/rundeck/rundeck/issues/527)
+* [update rundeck page URLs to include project context](https://github.com/rundeck/rundeck/issues/149)
 
 ## Fixed in beta1
 
-* [QW Control should catch errors and cache node data from Resource Model Source providers](https://github.com/dtolabs/qwcontrol/issues/609)
-* [MS IE / QW Control Nodes Page: "Enter a shell command" caption not visible](https://github.com/dtolabs/qwcontrol/issues/607)
-* [Refactor some execution finalization code for #511](https://github.com/dtolabs/qwcontrol/pull/604)
-* [Node attributes with ":" character breaks XML serialization.](https://github.com/dtolabs/qwcontrol/issues/603)
-* [Remove rpm java dependency](https://github.com/dtolabs/qwcontrol/issues/601)
-* [qwcontrol does not output spaces/tabs properly](https://github.com/dtolabs/qwcontrol/issues/600)
-* [edit job and duplicate to a new job buttons not-clickable in 2.0.0-1-alpha1](https://github.com/dtolabs/qwcontrol/issues/598)
-* [Send Notification not saved](https://github.com/dtolabs/qwcontrol/issues/594)
-* [Delete job](https://github.com/dtolabs/qwcontrol/issues/592)
-* [Missing username causes failure with "Execution failed: X: null", even if project.ssh.user is set](https://github.com/dtolabs/qwcontrol/issues/589)
-* [Default Option values are ignored when a jobs is referenced from another job..](https://github.com/dtolabs/qwcontrol/issues/577)
-* [Remove dead/unused keys from framework.properties](https://github.com/dtolabs/qwcontrol/issues/575)
-* [Remove auto-project creation from Setup](https://github.com/dtolabs/qwcontrol/issues/574)
-* [The quick 'Run' page should allow for thread count adjustment as well as 'on failure' behavior changes.](https://github.com/dtolabs/qwcontrol/issues/510)
-* [obsolete RDECK_HOME and rdeck.home](https://github.com/dtolabs/qwcontrol/issues/508)
-* ['group' and 'user' field should be wildcard-able in the aclpolicy files](https://github.com/dtolabs/qwcontrol/issues/359)
-* [upgrade grails to 2.x](https://github.com/dtolabs/qwcontrol/issues/219)
+* [Rundeck should catch errors and cache node data from Resource Model Source providers](https://github.com/dtolabs/rundeck/issues/609)
+* [MS IE / Rundeck Nodes Page: "Enter a shell command" caption not visible](https://github.com/dtolabs/rundeck/issues/607)
+* [Refactor some execution finalization code for #511](https://github.com/dtolabs/rundeck/pull/604)
+* [Node attributes with ":" character breaks XML serialization.](https://github.com/dtolabs/rundeck/issues/603)
+* [Remove rpm java dependency](https://github.com/dtolabs/rundeck/issues/601)
+* [rundeck does not output spaces/tabs properly](https://github.com/dtolabs/rundeck/issues/600)
+* [edit job and duplicate to a new job buttons not-clickable in 2.0.0-1-alpha1](https://github.com/dtolabs/rundeck/issues/598)
+* [Send Notification not saved](https://github.com/dtolabs/rundeck/issues/594)
+* [Delete job](https://github.com/dtolabs/rundeck/issues/592)
+* [Missing username causes failure with "Execution failed: X: null", even if project.ssh.user is set](https://github.com/dtolabs/rundeck/issues/589)
+* [Default Option values are ignored when a jobs is referenced from another job..](https://github.com/dtolabs/rundeck/issues/577)
+* [Remove dead/unused keys from framework.properties](https://github.com/dtolabs/rundeck/issues/575)
+* [Remove auto-project creation from Setup](https://github.com/dtolabs/rundeck/issues/574)
+* [The quick 'Run' page should allow for thread count adjustment as well as 'on failure' behavior changes.](https://github.com/dtolabs/rundeck/issues/510)
+* [obsolete RDECK_HOME and rdeck.home](https://github.com/dtolabs/rundeck/issues/508)
+* ['group' and 'user' field should be wildcard-able in the aclpolicy files](https://github.com/dtolabs/rundeck/issues/359)
+* [upgrade grails to 2.x](https://github.com/dtolabs/rundeck/issues/219)

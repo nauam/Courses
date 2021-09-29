@@ -1,16 +1,16 @@
 # How to Get the Welcome Project Up and Running
 
-The QW Control Welcome Projects are sample projects that show how to configure and use QW Control. In this guide we show you how to set up, start and run the key parts of the Welcome Projects.
+The Rundeck Welcome Projects are sample projects that show how to configure and use Rundeck. In this guide we show you how to set up, start and run the key parts of the Welcome Projects.
 
-There are two Welcome Projects, a Community Welcome Project focused on the QW Control Open Source and a Welcome Project focused on QW Control Enterprise. Once you have the environment set up, you will want to follow the steps in the [Getting Started Tutorial](/learning/tutorial/preparing.md).
+There are two Welcome Projects, a Community Welcome Project focused on the Rundeck Open Source and a Welcome Project focused on Rundeck Enterprise. Once you have the environment set up, you will want to follow the steps in the [Getting Started Tutorial](/learning/tutorial/preparing.md).
 
 ### Disclaimer
 
-The Welcome Projects are meant to show users how QW Control works and are not designed to be used in production. Some of the setup/installation methods used in this environment are not recommended for production deployments. Do not run this environment for production purposes or with sensitive data. For installation best practices follow our documentation ([https://docs.qwcontrol.com/docs/](https://docs.qwcontrol.com/docs/)) site and guidance from our world-class Support team.
+The Welcome Projects are meant to show users how Rundeck works and are not designed to be used in production. Some of the setup/installation methods used in this environment are not recommended for production deployments. Do not run this environment for production purposes or with sensitive data. For installation best practices follow our documentation ([https://docs.rundeck.com/docs/](https://docs.rundeck.com/docs/)) site and guidance from our world-class Support team.
 
-## QW Control Basic Terminology
+## Rundeck Basic Terminology
 
-Before starting, knowing basic QW Control terminology is useful. All basic concepts are summarized [here](/learning/tutorial/terminology.md).
+Before starting, knowing basic Rundeck terminology is useful. All basic concepts are summarized [here](/learning/tutorial/terminology.md).
 
 ### Pre-requisites
 
@@ -24,7 +24,7 @@ To install the Welcome Project you need to download the latest release:
 :::: tabs
 ::: tab Community Welcome Project
 
-Navigate to: [https://github.com/qwcontrol/welcome-project-community](https://github.com/qwcontrol/welcome-project-community)
+Navigate to: [https://github.com/rundeck/welcome-project-community](https://github.com/rundeck/welcome-project-community)
 
 1. Click on the “latest” release in the right,
 1. Download the Source Code (.zip) file.
@@ -33,13 +33,13 @@ Navigate to: [https://github.com/qwcontrol/welcome-project-community](https://gi
 :::
 ::: tab Enterprise Welcome Project
 
-Navigate to: [https://github.com/qwcontrolpro/welcome-project](https://github.com/qwcontrolpro/welcome-project)
+Navigate to: [https://github.com/rundeckpro/welcome-project](https://github.com/rundeckpro/welcome-project)
 
 1. Click on the “latest” release in the right,
 1. Download the Source Code (.zip) file.
 1. Extract the contents to a folder on your local hard drive.
 
-_WARNING_: A license is required for the QW Control Enterprise Welcome Project. A QW Control Enterprise Trial license can be requested from here [https://www.qwcontrol.com/see-demo](https://www.qwcontrol.com/see-demo).
+_WARNING_: A license is required for the Rundeck Enterprise Welcome Project. A Rundeck Enterprise Trial license can be requested from here [https://www.rundeck.com/see-demo](https://www.rundeck.com/see-demo).
 
 :::
 ::::
@@ -66,21 +66,21 @@ Start the environment with the following command. Running this command starts al
 docker-compose up -d
 ```
 
-This process can take some time.  To check if QW Control is ready to use, follow the logs using the commands in the next section.
+This process can take some time.  To check if Rundeck is ready to use, follow the logs using the commands in the next section.
 
-## Monitoring QW Control
+## Monitoring Rundeck
 
-If you want to see QW Control logs in real-time, open a new terminal window and execute the following command:
+If you want to see Rundeck logs in real-time, open a new terminal window and execute the following command:
 
 ```
-docker logs -f qwcontrol
+docker logs -f rundeck
 ```
 
 > Alternatively leave off the `-d` from the `docker-compose up` command above and all the logs will be printed on screen.
 
 ## Accessing Welcome Project (note the images are for the Enterprise Welcome Project)
 
-To access QW Control, head to[ http://localhost:4440](http://localhost:4440) in your web browser.
+To access Rundeck, head to[ http://localhost:4440](http://localhost:4440) in your web browser.
 
 Log in using the following credentials: username: `admin` and password: `admin`
 
@@ -98,24 +98,24 @@ Click the project name.
 
 In the left nav bar the options available are:
 
-*   Dashboard, to view the project description, Readme, and executions summary. QW Control Enterprise users may see additional visualizations for schedules and execution history.
+*   Dashboard, to view the project description, Readme, and executions summary. Rundeck Enterprise users may see additional visualizations for schedules and execution history.
 *   Jobs, the welcome project available jobs.
 
 ![alt_text](@assets/img/howto-welcome-joblist.png)
 
-*   Nodes: where qwcontrol displays all nodes
+*   Nodes: where rundeck displays all nodes
 *   Commands: dispatch individual commands to available nodes
 *   Activity: see all job executions
-*   Webhooks: define and view all QW Control webhooks
+*   Webhooks: define and view all Rundeck webhooks
 *   Schedule (Enterprise-exclusive): define and see specific schedules for jobs
 *   More:
     *   Calendars (Enterprise-exclusive): define and see specific calendars for jobs
     *   Health Checks (Enterprise-exclusive): define the node’s health checks
-    *   Tour Manager (Enterprise-exclusive): define and see the QW Control guided tours
+    *   Tour Manager (Enterprise-exclusive): define and see the Rundeck guided tours
 *   Project Settings
     *   Edit Configuration: all current project configurations
-    *   Key Storage: where QW Control stores keys and passwords
-    *   Edit Nodes: define and configure QW Control node sources
+    *   Key Storage: where Rundeck stores keys and passwords
+    *   Edit Nodes: define and configure Rundeck node sources
     *   Access Control: define Project-specific ACL rules
     *   Edit Readme: define the readme project content
     *   Edit Message of the Day: craft the Project “message of the day”
@@ -125,9 +125,9 @@ In the left nav bar the options available are:
     *   Delete Project: delete the current project
     *   Plugins Control (Enterprise-exclusive): enable or disable installed plugins
 
-## Familiarize Yourself with QW Control!
+## Familiarize Yourself with Rundeck!
 
-Once your environment is fully operational, [start the Tutorial here](https://docs.qwcontrol.com/docs/learning/tutorial/preparing.html).
+Once your environment is fully operational, [start the Tutorial here](https://docs.rundeck.com/docs/learning/tutorial/preparing.html).
 
 ## Stop the Environment
 

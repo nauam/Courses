@@ -1,8 +1,8 @@
-# Tuning QW Control
+# Tuning Rundeck
 
 ### File descriptors
 
-The QW Control server process opens a number of files during normal operation. These
+The Rundeck server process opens a number of files during normal operation. These
 include system and java libraries, logs, and sockets.
 Your system restricts the number of open file handles per process
 but these limitations can be adjusted.
@@ -23,20 +23,20 @@ ulimit -n
 If the limit is low (eg `1024`) it should be raised.
 
 You can get the current number of open file descriptors used by the
-QW Control server process with [lsof](https://linux.die.net/man/8/lsof):
+Rundeck server process with [lsof](https://linux.die.net/man/8/lsof):
 
 ```bash
-lsof -p <qwcontrol pid> | wc -l
+lsof -p <rundeck pid> | wc -l
 ```
 
 Increase the limit for a wide margin.
 Edit [/etc/security/limits.conf](https://ss64.com/bash/limits.conf.html) file
 to raise the hard and soft limits. Here they are raised to `65535` for
-the "qwcontrol" system account:
+the "rundeck" system account:
 
 ```bash
-qwcontrol hard nofile 65535
-qwcontrol soft nofile 65535
+rundeck hard nofile 65535
+rundeck soft nofile 65535
 ```
 
 The system file descriptor limit is set in /proc/sys/fs/file-max.
@@ -52,24 +52,24 @@ In a new shell, run the ulimit command to set the new level:
 ulimit -n 65535
 ```
 
-The ulimit setting can be set in the [qwcontrold](/administration/maintenance/startup.md#launcher)
+The ulimit setting can be set in the [rundeckd](/administration/maintenance/startup.md#launcher)
 startup script, or [profile](/administration/configuration/config-file-reference.md#profile).
 
-Restart QW Control.
+Restart Rundeck.
 
 ### Java heap size
 
-The `qwcontrold` startup script sets initial and maximum heap sizes
+The `rundeckd` startup script sets initial and maximum heap sizes
 for the server process. For many installations it will be sufficient.
 
-If the QW Control JVM runs out of memory, the following error occurs:
+If the Rundeck JVM runs out of memory, the following error occurs:
 
     Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
 
 Heap size is governed by the following startup parameters:
 `-Xms<initial heap size>` and `-Xmx<maximum heap size>`
 
-You can increase these by updating the QW Control [profile](/administration/configuration/config-file-reference.md#profile).
+You can increase these by updating the Rundeck [profile](/administration/configuration/config-file-reference.md#profile).
 To see the current values, grep the `profile` for
 the Xmx and Xms patterns:
 
@@ -82,14 +82,14 @@ egrep '(Xmx|Xms)' $RDECK_BASE/etc/profile
 **RPM and DEB installs:**
 
 ```bash
-egrep '(Xmx|Xms)' /etc/qwcontrol/profile
+egrep '(Xmx|Xms)' /etc/rundeck/profile
 ```
 
 The default settings initialized by the installer sets these to 1024 megabytes maximum and 256 megabytes initial.
 
 _Sizing advice_
 
-Several factors drive memory usage in QW Control:
+Several factors drive memory usage in Rundeck:
 
 - User sessions
 - Concurrent threads
@@ -100,13 +100,13 @@ For example, if your installation has dozens of active users that manage a large
 
 In the **Launcher Install** you can edit the `$RDECK_BASE/etc/profile` file.
 
-In **RPM** create/edit `/etc/sysconfig/qwcontrold` and add below line.
+In **RPM** create/edit `/etc/sysconfig/rundeckd` and add below line.
 
 ```bash
 RDECK_JVM_SETTINGS="$RDECK_JVM_SETTINGS -Xmx4096m -Xms1024m"
 ```
 
-In **DEB** create/edit `/etc/default/qwcontrold` and add below line.
+In **DEB** create/edit `/etc/default/rundeckd` and add below line.
 
 ```bash
 RDECK_JVM_SETTINGS="$RDECK_JVM_SETTINGS -Xmx4096m -Xms1024m"
@@ -114,22 +114,22 @@ RDECK_JVM_SETTINGS="$RDECK_JVM_SETTINGS -Xmx4096m -Xms1024m"
 
 ### Quartz job threadCount
 
-The maximum number of threads used by QW Control for concurrent jobs
+The maximum number of threads used by Rundeck for concurrent jobs
 by default is set to `10`.
 
 You can change this value, by updating the
-`qwcontrol-config.properties` file.
+`rundeck-config.properties` file.
 
 Please refer to the Quartz site for detailed information:
 [Quartz - Configure ThreadPool Settings][1].
 
 [1]: http://www.quartz-scheduler.org/documentation/2.3.1-SNAPSHOT/configuration.html#configuration-of-threadpool-tune-resources-for-job-execution
 
-#### Update qwcontrol-config
+#### Update rundeck-config
 
 Use the properties mentioned in the Quartz documentation, but **replace** the `org.quartz` prefix, with the prefix `quartz`.
 
-e.g. in `qwcontrol-config.properties` :
+e.g. in `rundeck-config.properties` :
 
 ```properties
 quartz.threadPool.threadCount = 20
@@ -140,7 +140,7 @@ Set the threadCount value to the max number of threads you want to run concurren
 
 As an example, an environment which has 200 scheduled jobs that will trigger all at the same time, while using a threadPool size of 50.
 
-When these jobs are triggered, only 50 will run (sometimes less due to QW Control using some threads for a temporary background process at that specific time). The other 150 jobs are queued, waiting for more threads to be released so more jobs can be triggered. So jobs will trigger at a delayed time but will trigger. This delay always depends on how much time the active jobs take to finish and free up the next thread.
+When these jobs are triggered, only 50 will run (sometimes less due to Rundeck using some threads for a temporary background process at that specific time). The other 150 jobs are queued, waiting for more threads to be released so more jobs can be triggered. So jobs will trigger at a delayed time but will trigger. This delay always depends on how much time the active jobs take to finish and free up the next thread.
 
 The relation between the Java heap size allocated and threadPool size is, the more threads you set, the more memory size will be needed.
 
@@ -150,7 +150,7 @@ This threads size does not affect only to scheduled jobs but ad-hoc commands, ma
 
 ### JMX instrumentation
 
-You may wish to monitor the internal operation of your QW Control server via JMX.
+You may wish to monitor the internal operation of your Rundeck server via JMX.
 
 JMX provides introspection on the JVM, the application server,
 and classes all through a consistent interface.
@@ -167,13 +167,13 @@ flag to the startup parameters in the [profile](/administration/configuration/co
 export RDECK_JVM="$RDECK_JVM -Dcom.sun.management.jmxremote"
 ```
 
-For **RPM** create/edit `/etc/sysconfig/qwcontrold` and add below line.
+For **RPM** create/edit `/etc/sysconfig/rundeckd` and add below line.
 
 ```bash
 RDECK_JVM_SETTINGS="$RDECK_JVM_SETTINGS -Dcom.sun.management.jmxremote"
 ```
 
-For **DEB** create/edit `/etc/default/qwcontrold` and add below line.
+For **DEB** create/edit `/etc/default/rundeckd` and add below line.
 
 ```bash
 RDECK_JVM_SETTINGS="$RDECK_JVM_SETTINGS -Dcom.sun.management.jmxremote"
@@ -182,18 +182,18 @@ RDECK_JVM_SETTINGS="$RDECK_JVM_SETTINGS -Dcom.sun.management.jmxremote"
 You use a JMX client to monitor JMX agents.
 This can be a desktop GUI like JConsole run locally.
 
-    jconsole <qwcontrol pid>
+    jconsole <rundeck pid>
 
 For instructions on remote JMX monitoring for Grails, Spring and log4j see:
 [Grails in the enterprise](https://public.dhe.ibm.com/software/dw/java/j-grails12168-pdf.pdf).
 
 ### Node execution
 
-If you are executing commands across many hundreds or thousands of hosts, the bundled SSH node executor may not meet your performance requirements. Each SSH connection uses multiple threads and the encryption/decryption of messages uses CPU cycles and memory. Depending on your environment, you might choose another Node executor like MCollective, Salt or something similar. This essentially delegates remote execution to another tool designed for asynchronous fan out and thus relieving QW Control of managing remote task execution.
+If you are executing commands across many hundreds or thousands of hosts, the bundled SSH node executor may not meet your performance requirements. Each SSH connection uses multiple threads and the encryption/decryption of messages uses CPU cycles and memory. Depending on your environment, you might choose another Node executor like MCollective, Salt or something similar. This essentially delegates remote execution to another tool designed for asynchronous fan out and thus relieving Rundeck of managing remote task execution.
 
 ### Built in SSH plugins
 
-If you are interested in using the built in [SSH plugins](/administration/projects/node-execution/ssh.md), here are some details about how it performs when executing commands across very large numbers of nodes. For these tests, QW Control was running on an 8 core, 32GB RAM m2.4xlarge AWS EC2 instance.
+If you are interested in using the built in [SSH plugins](/administration/projects/node-execution/ssh.md), here are some details about how it performs when executing commands across very large numbers of nodes. For these tests, Rundeck was running on an 8 core, 32GB RAM m2.4xlarge AWS EC2 instance.
 
 We chose the `rpm -q` command which checks against the rpm database to see if a particular package was installed. For 1000 nodes we saw an average execution of 52 seconds. A 4000 node cluster took roughly 3.5 minutes, and 8000 node cluster about 7 minutes.
 
@@ -201,10 +201,10 @@ The main limitation appears to be memory of the JVM instance relative to the num
 
 ### SSL and HTTPS performance
 
-It is possible to offload SSL connection processing by using an SSL termination proxy. This can be accomplished by setting up Apache httpd or [Nginx](https://en.wikipedia.org/wiki/Nginx) as a frontend to your QW Control instances.
+It is possible to offload SSL connection processing by using an SSL termination proxy. This can be accomplished by setting up Apache httpd or [Nginx](https://en.wikipedia.org/wiki/Nginx) as a frontend to your Rundeck instances.
 
 ### Resource provider
 
-QW Control projects obtain information about nodes via a
-[resource provider](/administration/projects/resource-model-sources/index.md). If your resource provider is a long blocking process (due to slow responses from a backend service), it can slow down or even hang up QW Control. Be sure to make your resource provider work asynchronously.
+Rundeck projects obtain information about nodes via a
+[resource provider](/administration/projects/resource-model-sources/index.md). If your resource provider is a long blocking process (due to slow responses from a backend service), it can slow down or even hang up Rundeck. Be sure to make your resource provider work asynchronously.
 Also, consider using caching when possible.

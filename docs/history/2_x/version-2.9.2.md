@@ -17,11 +17,11 @@ Name: <span style="color: Fuchsia"><span class="glyphicon glyphicon-bell"></span
 
 Bugfix release.
 
-Previous changes in 2.9.0: [Relese 2.9.0](https://github.com/qwcontrol/qwcontrol/blob/v2.9.0/RELEASE.md)
+Previous changes in 2.9.0: [Relese 2.9.0](https://github.com/rundeck/rundeck/blob/v2.9.0/RELEASE.md)
 
-For more detail see [2.9.0 Changes](https://github.com/qwcontrol/qwcontrol/issues/2577)
+For more detail see [2.9.0 Changes](https://github.com/rundeck/rundeck/issues/2577)
 
-Stay tuned! We are also adding many new features to [QW Control Pro](http://qwcontrol.com).
+Stay tuned! We are also adding many new features to [Rundeck Pro](http://rundeck.com).
 
 ## Contributors
 
@@ -33,6 +33,6 @@ Stay tuned! We are also adding many new features to [QW Control Pro](http://qwco
 
 ## Issues
 
-[Milestone 2.9.2](https://github.com/qwcontrol/qwcontrol/milestone/60)
+[Milestone 2.9.2](https://github.com/rundeck/rundeck/milestone/60)
 
-* [Running an ad-hoc command with ansible plugin results in java.lang.NoSuchMethodError: com.dtolabs.qwcontrol.core.execution.ExecutionContext.getDataContext()Ljava/util/Map;](https://github.com/qwcontrol/qwcontrol/issues/2675)
+* [Running an ad-hoc command with ansible plugin results in java.lang.NoSuchMethodError: com.dtolabs.rundeck.core.execution.ExecutionContext.getDataContext()Ljava/util/Map;](https://github.com/rundeck/rundeck/issues/2675)

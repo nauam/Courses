@@ -1,10 +1,10 @@
 # Installing on Ubuntu or Debian Linux distributions
 
-## Installing QW Control
+## Installing Rundeck
 
 :::warning 
-QW Control depends on **Java 11** or **Java 8**. The **Java 14**
-packages will satisfy this dependency however QW Control will not function properly
+Rundeck depends on **Java 11** or **Java 8**. The **Java 14**
+packages will satisfy this dependency however Rundeck will not function properly
 with them. It is recommended to install the `openjdk-11-jre-headless` package manually.
 :::
 
@@ -18,47 +18,47 @@ sudo apt-get install openjdk-11-jre-headless
 
 ### Quick install with apt
 ```bash
-curl https://raw.githubusercontent.com/qwcontrol/packaging/main/scripts/deb-setup.sh 2> /dev/null | sudo bash -s qwcontrolpro
+curl https://raw.githubusercontent.com/rundeck/packaging/main/scripts/deb-setup.sh 2> /dev/null | sudo bash -s rundeckpro
 ```
 
 ### Manual install with apt
 
 Import the repo signing key:
 ```bash
-curl -L https://packages.qwcontrol.com/pagerduty/qwcontrolpro/gpgkey | sudo apt-key add -
+curl -L https://packages.rundeck.com/pagerduty/rundeckpro/gpgkey | sudo apt-key add -
 ```
 
-Add the following to `/etc/apt/sources.list.d/qwcontrol.list` replacing existing entries:
+Add the following to `/etc/apt/sources.list.d/rundeck.list` replacing existing entries:
 ```bash
-deb https://packages.qwcontrol.com/pagerduty/qwcontrolpro/any/ any main
-deb-src https://packages.qwcontrol.com/pagerduty/qwcontrolpro/any/ any main
+deb https://packages.rundeck.com/pagerduty/rundeckpro/any/ any main
+deb-src https://packages.rundeck.com/pagerduty/rundeckpro/any/ any main
 ```
 
 Update apt cache and install:
 ```bash
 sudo apt-get update
-sudo apt-get install qwcontrolpro-enterprise
+sudo apt-get install rundeckpro-enterprise
 ```
 
 ### Clean Install from deb repository when existing version is present
 1. First, Check for existing versions installed
 
 ```bash
-dpkg --list | grep -i qwcontrol
+dpkg --list | grep -i rundeck
 ```
 2. Then, remove existing version to perform a clean install.
 
 ```bash
-apt remove qwcontrol
-dpkg --purge qwcontrol && apt install qwcontrol
+apt remove rundeck
+dpkg --purge rundeck && apt install rundeck
 ```
 
 ### Install deb package directly
 
-Download `deb` package from [the download page](https://download.qwcontrol.com/eval/) and run:
+Download `deb` package from [the download page](https://download.rundeck.com/eval/) and run:
 
 ```bash
-sudo dpkg -i qwcontrolpro-enterprise_{{{qwcontrolVersionFull}}}-1_all.deb
+sudo dpkg -i rundeckpro-enterprise_{{{rundeckVersionFull}}}-1_all.deb
 ```
 :::
 
@@ -66,49 +66,49 @@ sudo dpkg -i qwcontrolpro-enterprise_{{{qwcontrolVersionFull}}}-1_all.deb
 ### Quick install with apt
 
 ```bash
-curl https://raw.githubusercontent.com/qwcontrol/packaging/main/scripts/deb-setup.sh 2> /dev/null | sudo bash -s qwcontrol
+curl https://raw.githubusercontent.com/rundeck/packaging/main/scripts/deb-setup.sh 2> /dev/null | sudo bash -s rundeck
 ```
 
 ### Manual install with apt
 
 Import the repo signing key:
 ```bash
-curl -L https://packages.qwcontrol.com/pagerduty/qwcontrol/gpgkey | sudo apt-key add -
+curl -L https://packages.rundeck.com/pagerduty/rundeck/gpgkey | sudo apt-key add -
 ```
 
-Add the following to `/etc/apt/sources.list.d/qwcontrol.list` replacing existing entries:
+Add the following to `/etc/apt/sources.list.d/rundeck.list` replacing existing entries:
 ```bash
-deb https://packages.qwcontrol.com/pagerduty/qwcontrol/any/ any main
-deb-src https://packages.qwcontrol.com/pagerduty/qwcontrol/any/ any main
+deb https://packages.rundeck.com/pagerduty/rundeck/any/ any main
+deb-src https://packages.rundeck.com/pagerduty/rundeck/any/ any main
 ```
 
 Update apt cache and install:
 ```bash
 sudo apt-get update
-sudo apt-get install qwcontrol
+sudo apt-get install rundeck
 ```
 ### Install deb package directly
 
-Download deb package from [the download page](https://docs.qwcontrol.com/downloads.html) and run:
+Download deb package from [the download page](https://docs.rundeck.com/downloads.html) and run:
 
 ```bash
-sudo dpkg -i qwcontrol_{{{qwcontrolVersionFull}}}-1_all.deb
+sudo dpkg -i rundeck_{{{rundeckVersionFull}}}-1_all.deb
 ```
 :::
 
 ::::
-## Starting QW Control
+## Starting Rundeck
 
-To start QW Control:
+To start Rundeck:
 
 ```bash
-sudo service qwcontrold start
+sudo service rundeckd start
 ```
 
 To verify that the service started correctly, tail the logs:
 
 ```bash
-tail -f /var/log/qwcontrol/service.log
+tail -f /var/log/rundeck/service.log
 ```
 
 The service is ready once you see something similar to:
@@ -122,6 +122,6 @@ Grails application running at http://localhost:4440 in environment: production
 1. Navigate to [http://localhost:4440/](http://localhost:4440) in a browser.
 2. Log in with the username **admin** and password **admin**
 
-QW Control is now up and running!
+Rundeck is now up and running!
 
-Next, learn how to [create your first QW Control Enterprise project](/manual/03-getting-started.md#project-setup)
+Next, learn how to [create your first Rundeck Enterprise project](/manual/03-getting-started.md#project-setup)

@@ -5,7 +5,7 @@
 
 ## Description
 
-You can use Amazon SNS  to send notification messages to one or more HTTP or HTTPS endpoints.  This Webhook plugin streamlines the setup for sending Amazon SNS messages to QW Control.  Along with establishing the webhook endpoint, the plugin also handles the Subscription Confirmation required to start sending messages to the endpoint from SNS.  The confirmation message will not trigger any associated jobs on QW Control Webhook entry.
+You can use Amazon SNS  to send notification messages to one or more HTTP or HTTPS endpoints.  This Webhook plugin streamlines the setup for sending Amazon SNS messages to Rundeck.  Along with establishing the webhook endpoint, the plugin also handles the Subscription Confirmation required to start sending messages to the endpoint from SNS.  The confirmation message will not trigger any associated jobs on Rundeck Webhook entry.
 
 This plugin expects the data coming from AWS to be a JSON object.
 The http content type does not have to be `application/json` because
@@ -14,7 +14,7 @@ as the data is JSON it will be handled correctly.
 
 ## Configuration
 
-Create a webhook in QW Control and choose `AWS SNS Webhook Plugin` as the event plugin.
+Create a webhook in Rundeck and choose `AWS SNS Webhook Plugin` as the event plugin.
 
 The job is the only required property.
 
@@ -70,7 +70,7 @@ by receiving the first payload AWS sends, then using the confirmation url and to
 to confirm the subscription.
 
 You could do all of this manually by looking at the payload received from AWS
-in the `qwcontrol.webhooks.log` and pulling out the token and putting it in the AWS console
+in the `rundeck.webhooks.log` and pulling out the token and putting it in the AWS console
 for that subscription.
 
 If you check the `Auto Subscribe` property this plugin will do the subscription confirmation

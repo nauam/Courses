@@ -3,26 +3,26 @@
 Depending on the installer used, the log files will be under a base
 directory:
 
-- RPM: `/var/log/qwcontrol`
+- RPM: `/var/log/rundeck`
 - Launcher: `$RDECK_BASE/server/logs`
 
 The following files will be found in the log directory:
 
      .
      |-- command.log
-     |-- qwcontrol.audit.log
-     |-- qwcontrol.jobs.log
-     |-- qwcontrol.options.log
-     |-- qwcontrol.log
+     |-- rundeck.audit.log
+     |-- rundeck.jobs.log
+     |-- rundeck.options.log
+     |-- rundeck.log
      `-- service.log
 
 Different facilities log to their own files:
 
 - `command.log`: Shell tools log their activity to the command.log
-- `qwcontrol.audit.log`: Authorization messages pertaining to aclpolicy
-- `qwcontrol.job.log`: Log of all job definition changes
-- `qwcontrol.options.log`: Logs remote HTTP requests for Options JSON data
-- `qwcontrol.log`: General QW Control application messages
+- `rundeck.audit.log`: Authorization messages pertaining to aclpolicy
+- `rundeck.job.log`: Log of all job definition changes
+- `rundeck.options.log`: Logs remote HTTP requests for Options JSON data
+- `rundeck.log`: General Rundeck application messages
 - `service.log`: Standard input and output generated during runtime
 
 See the [#log4j-properties](/administration/configuration/config-file-reference.md#log4j-properties) section for information
@@ -33,10 +33,10 @@ about customizing log message formats and location.
 Streaming log plugins have two forms:
 
 Streaming Log Writers
-: can write log data to another system (e.g. a search or log storage system) as the log data is received. Multiple Log Writers can be configured for a server, and QW Control's filesystem-based log writer is used by default.
+: can write log data to another system (e.g. a search or log storage system) as the log data is received. Multiple Log Writers can be configured for a server, and Rundeck's filesystem-based log writer is used by default.
 
 Streaming Log Readers
-: can load the log data from another system, rather than from the local file system. Only a single Log Reader can be configured for the a server, and QW Control's filesystem-based log reader is used by default.
+: can load the log data from another system, rather than from the local file system. Only a single Log Reader can be configured for the a server, and Rundeck's filesystem-based log reader is used by default.
 
 To learn how to develop your own Logging plugin
 see [Plugin Developer Guide - Logging Plugin](/developer/06-logging-plugins.md).
@@ -47,8 +47,8 @@ see [Plugin Developer Guide - Logging Plugin](/developer/06-logging-plugins.md).
 
 #### Create logrotate configuration file
 
-     cat << EOF > /etc/logrotate.d/theQW ControlLog
-     /var/log/qwcontrol/service.log {
+     cat << EOF > /etc/logrotate.d/theRundeckLog
+     /var/log/rundeck/service.log {
       su root root
       copytruncate
       daily
@@ -65,20 +65,20 @@ see [Plugin Developer Guide - Logging Plugin](/developer/06-logging-plugins.md).
 
 #### Create cron schedule as needed, i.e monthly rotation
 
-     echo "@monthly root logrotate /etc/logrotate.d/theQW ControlLog" >> /etc/crontab
+     echo "@monthly root logrotate /etc/logrotate.d/theRundeckLog" >> /etc/crontab
 
 #### Test rotation rules and configurations
 
-     logrotate --debug --force /etc/logrotate.d/theQW ControlLog
+     logrotate --debug --force /etc/logrotate.d/theRundeckLog
 
 **Output should be seen as**
 
-     reading config file theQW ControlLog
+     reading config file theRundeckLog
 	Allocating hash table for state file, size 15360 B
 	Handling 1 logs
-	rotating pattern: /var/log/qwcontrol/service.log after 1 days (7 rotations)
+	rotating pattern: /var/log/rundeck/service.log after 1 days (7 rotations)
 	empty log files are not rotated, old logs are removed
-	considering log /var/log/qwcontrol/service.log
+	considering log /var/log/rundeck/service.log
 	...
 
 **New service.log backups should be created within service.log directory**
@@ -97,15 +97,15 @@ $MaxSize = 2MB # limit of file size to rotate
 $LogPath = ".\var\logs"
 $LogFile = "service.log"
 $RotationFile = "rotation.log"
-$QW ControlBat = "qwcontrold.bat"
-$QW ControlService = "qwcontrold"
+$RundeckBat = "rundeckd.bat"
+$RundeckService = "rundeckd"
 ########################################################
 
 $ServiceLog = "$LogPath\$LogFile"
 $RotationLog = "$LogPath\$RotationFile"
 $WorkingDir = (Get-Location).Path
 $DateNow = Get-Date -Format yyyyMMddhhmmss
-$Launcher = "$Launcher -jar $QW ControlWar"
+$Launcher = "$Launcher -jar $RundeckWar"
 $ZipLogs = Get-ChildItem -Path $LogPath -Filter "*.zip"
 
 Function RotateLog($Log) {
@@ -160,14 +160,14 @@ Function DoRotation {
   if ($Every.ToLower() -EQ "size") { RotateBySize }
 }
 
-# IMPORTANT: Windows will lock service.log file while in use by QW Control. Must be done when service is down.
+# IMPORTANT: Windows will lock service.log file while in use by Rundeck. Must be done when service is down.
 
-# before starting qwcontrol service
+# before starting rundeck service
 DoRotation
-Start-Service -Name $QW ControlService
+Start-Service -Name $RundeckService
 
-# after terminating qwcontrol service
-Stop-Service -Name $QW ControlService
+# after terminating rundeck service
+Stop-Service -Name $RundeckService
 DoRotation
 ```
 
@@ -177,7 +177,7 @@ DoRotation
 
 #### Create logrotate configuration file
 
-     C:\QW Control\var\log\service.log {
+     C:\Rundeck\var\log\service.log {
       copytruncate
       daily
       missingok
@@ -192,20 +192,20 @@ DoRotation
 
 #### Create task schedule as needed, i.e
 
-     C:\> SCHTASKS /TN QW ControlRotation /SC DAILY /ST 00:00 /TR "logrotate C:\LogRotateConfigs\QW Control.conf"
+     C:\> SCHTASKS /TN RundeckRotation /SC DAILY /ST 00:00 /TR "logrotate C:\LogRotateConfigs\Rundeck.conf"
 
 #### Test rotation rules and configurations
 
-     C:\> logrotate --debug --force C:\LogRotateConfigs\QW Control.conf
+     C:\> logrotate --debug --force C:\LogRotateConfigs\Rundeck.conf
 
 **Output should be seen as**
 
-     reading config file C:\LogRotateConfigs\QW Control.conf
+     reading config file C:\LogRotateConfigs\Rundeck.conf
 	Allocating hash table for state file, size 15360 B
 	Handling 1 logs
-	rotating pattern: C:\QW Control\var\log\service.log after 1 days (7 rotations)
+	rotating pattern: C:\Rundeck\var\log\service.log after 1 days (7 rotations)
 	empty log files are not rotated, old logs are removed
-	considering log C:\QW Control\var\log\service.log
+	considering log C:\Rundeck\var\log\service.log
 	...
 
 **New service.log backups should be created within service.log directory**

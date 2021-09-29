@@ -5,7 +5,7 @@
 
 A Node is a resource that is either a physical or virtual instance of a network accessible host. Nodes have a few basic attributes, but a Node's attributes can be extended to include arbitrary named key/value pairs. Attributes typically describe the properties of a node or reflect the state of the node. _(e.g. OSVersion: Ubuntu 18.04)._ Tags can also be assigned to a node for easy searching (e.g. `prod` or `dev`).
 
-If this is the first run through of the tutorial there will be a single node in your Welcome Project (the QW Control Server).
+If this is the first run through of the tutorial there will be a single node in your Welcome Project (the Rundeck Server).
 
 ### Enterprise/Community Exercise
 
@@ -18,7 +18,7 @@ If this is the first run through of the tutorial there will be a single node in 
 
 ### Node Sources
 
-There are multiple ways to add Nodes to QW Control. Using the Node Wizard Resource Model is the simplest way to add a node to the project.
+There are multiple ways to add Nodes to Rundeck. Using the Node Wizard Resource Model is the simplest way to add a node to the project.
 
 :::: tabs
 ::: tab Enterprise Exercise:
@@ -41,7 +41,7 @@ Included in Enterprise is the Node Wizard Node Source.  Use that to add a new no
 ::: tab Community Exercise
 
 1. Click **Project Settings | Edit Nodes**
-1. Click the Modify button under the `File /home/qwcontrol/resources.yml` entry.
+1. Click the Modify button under the `File /home/rundeck/resources.yml` entry.
 1. Copy and paste the code below into the edit window:
     ```yml
     node1:

@@ -6,7 +6,7 @@ User Group Source plugins allow you to add roles to a user when the user logs in
 
 ## Use
 
-Create a user group source plugin and install it like other QW Control plugins.
+Create a user group source plugin and install it like other Rundeck plugins.
 When a user logs in, your plugin will be called with the user\'s username and will add any roles
 you have designated to the user.
 
@@ -26,9 +26,9 @@ before any project information is applicable.
 ```java
 package example;
 
-import com.dtolabs.qwcontrol.core.plugins.Plugin;
-import com.dtolabs.qwcontrol.plugins.ServiceNameConstants;
-import com.dtolabs.qwcontrol.plugins.user.groups.UserGroupSourcePlugin;
+import com.dtolabs.rundeck.core.plugins.Plugin;
+import com.dtolabs.rundeck.plugins.ServiceNameConstants;
+import com.dtolabs.rundeck.plugins.user.groups.UserGroupSourcePlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class ExampleUserGroupSourcePlugin implements UserGroupSourcePlugin {
     List<String> groups = new ArrayList<>();
 
     public ExampleUserGroupSourcePlugin() {
-        groups.add("QWCONTROL_USER"); //This group would get added to all users
+        groups.add("RUNDECK_USER"); //This group would get added to all users
     }
 
     @Override

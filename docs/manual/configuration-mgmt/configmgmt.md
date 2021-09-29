@@ -7,7 +7,7 @@
 This Enterprise feature was released as Beta in version 3.4.0.  Please be sure to read the "BETA Notes" below.
 :::
 
-QW Control Enterprise includes a Configuration Management module to set configuration settings via the GUI and store them in the QW Control database.  Database storage shares configuration options with all your cluster members and centralizes configuration.  This can significantly streamline configuration of new QW Control servers.
+Rundeck Enterprise includes a Configuration Management module to set configuration settings via the GUI and store them in the Rundeck database.  Database storage shares configuration options with all your cluster members and centralizes configuration.  This can significantly streamline configuration of new Rundeck servers.
 
 ![Configuration Management](~@assets/img/configmgmt-list.png)
 
@@ -31,7 +31,7 @@ If the setting should be applied globally (all servers in a cluster) choose _Glo
 
 ## BETA Notes
 
-On initial QW Control build/boot all configuration items are still written to the traditional file based configuration files. In order to use this feature configuration settings must be written in this Configuration Management GUI, then removed from the file based configurations.  File based configurations will take precedence over database configuration.
+On initial Rundeck build/boot all configuration items are still written to the traditional file based configuration files. In order to use this feature configuration settings must be written in this Configuration Management GUI, then removed from the file based configurations.  File based configurations will take precedence over database configuration.
 
 All setting values are done in String format for this release.  If a setting is expecting a Boolean value please use `true` or `false`.
 
@@ -51,4 +51,4 @@ Enhancements:
 - Allow for nesting Categories listing.
 - Deleting entries will be “staged” and committed after “Save” rather than immediate removal.
 
-To provide feedback please email [product@qwcontrol.com](mailto:product@qwcontrol.com)
+To provide feedback please email [product@rundeck.com](mailto:product@rundeck.com)

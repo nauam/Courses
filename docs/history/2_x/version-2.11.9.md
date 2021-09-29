@@ -6,7 +6,7 @@ Name: <span style="color: silver"><span class="glyphicon glyphicon-plane"></span
 
 ## Upgrading from Earlier versions
 
-* See the [Upgrading Guide](http://qwcontrol.org/docs/upgrading/index.html)
+* See the [Upgrading Guide](http://rundeck.org/docs/upgrading/index.html)
 
 ## Notes
 
@@ -22,6 +22,6 @@ bug fixes
 
 ## Issues
 
-[Milestone 2.11.9](https://github.com/qwcontrol/qwcontrol/milestone/97)
+[Milestone 2.11.9](https://github.com/rundeck/rundeck/milestone/97)
 
-* [(2.11) Fix #4406: stored xss vulnerability](https://github.com/qwcontrol/qwcontrol/pull/4409)
+* [(2.11) Fix #4406: stored xss vulnerability](https://github.com/rundeck/rundeck/pull/4409)

@@ -1,6 +1,6 @@
 # Open Source Resource Model Source Plugins
 
-QW Control includes these Built-in plugins in the core installation:
+Rundeck includes these Built-in plugins in the core installation:
 
 `file`
 
@@ -27,7 +27,7 @@ The `file` Resource Model Source provider reads a file in one of the supported
 Resource Model Document Formats.
 
 | Name                        | Value       | Notes                                                                                                         |
-| --------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------- |
+|-----------------------------|-------------|---------------------------------------------------------------------------------------------------------------|
 | `file`                      | file path   | Path to a file on disk.                                                                                       |
 | `format`                    | format name | Can be used to declare the format explicitly. Otherwise the format is determined from the `file`'s extension. |
 | `requireFileExists`         | true/false  | If true and the file is missing, causes a failure to load the nodes. (Default: false)                         |
@@ -88,7 +88,7 @@ The "flavor" attribute is defined as a separate XML element:
 
 
     resources.source.1.type=file
-    resources.source.1.config.file=/home/qwcontrol/projects/example/etc/resources2.xml
+    resources.source.1.config.file=/home/rundeck/projects/example/etc/resources2.xml
     resources.source.1.config.format=resourcexml
     resources.source.1.config.requireFileExists=true
     resources.source.1.config.includeServerNode=true
@@ -101,7 +101,7 @@ The `url` Resource Model Source provider performs a HTTP GET request to retrieve
 Configuration properties:
 
 | Name      | Value      | Notes                                                                                                                                                              |
-| --------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|-----------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `url`     | URL        | A valid URL, either `http:`, `https:` or `file:` protocol.                                                                                                         |
 | `cache`   | true/false | If true, use ETag/Last-Modified information from the server to only download new content if it has changed. If false, always download the content. (Default: true) |
 | `timeout` | seconds    | Number of seconds before request fails due to timeout. `0` means no timeout. (Default: 30)                                                                         |
@@ -114,7 +114,7 @@ sent by the remote server. The built-in formats accept "\*/xml" and "\*/yaml" an
 _Example:_
 
     resources.source.1.type=url
-    resources.source.1.url=file:/home/qwcontrol/projects/example/etc/resources2.xml
+    resources.source.1.url=file:/home/rundeck/projects/example/etc/resources2.xml
     resources.source.1.cache=true
     resources.source.1.timeout=0
 
@@ -124,25 +124,25 @@ The `directory` Resource Model Source provider lists all files in a directory, a
 as File Resource Model Source with all default configuration options.
 
 | Name        | Value          | Notes                                                                          |
-| ----------- | -------------- | ------------------------------------------------------------------------------ |
+|-------------|----------------|--------------------------------------------------------------------------------|
 | `directory` | directory path | All files in the directory that have a supported file extension will be loaded |
 
 _Example:_
 
     resources.source.2.type=directory
-    resources.source.2.directory=/home/qwcontrol/projects/example/resources
+    resources.source.2.directory=/home/rundeck/projects/example/resources
 
 ### Script Source
 
 The `script` Resource Model Source provider executes a script file and reads
 the output of the script as one of the supported [Resource Model Document Formats](#resource-model-document-formats).
 
-| Name          | Value                         | Notes                                                                              |
-| ------------- | ----------------------------- | ---------------------------------------------------------------------------------- |
-| `file`        | Script file path              | If required by the `interpreter`, the file should be executable                    |
-| `interpreter` | Command or interpreter to use | e.g. "bash -c"                                                                     |
-| `args`        | Additional arguments to pass  | The arguments will be added after the script file name to the executed commandline |
-| `format`      | Format name                   | Must be used to declare the format explicitly.                                     |
+| Name           |  Value                          | Notes |
+| -----          |  ------                         | ------ |
+| `file`         |  Script file path               | If required by the `interpreter`, the file should be executable |
+| `interpreter`  |  Command or interpreter to use  | e.g. "bash -c" |
+| `args`         |  Additional arguments to pass   | The arguments will be added after the script file name to the executed commandline |
+| `format`       |  Format name                    | Must be used to declare the format explicitly. |
 
 Table: Configuration properties for `script` Resource Model Source provider
 
@@ -156,7 +156,7 @@ format specified must be available.
 _Example:_
 
     resources.source.2.type=script
-    resources.source.2.file=/home/qwcontrol/projects/example/etc/generate.sh
+    resources.source.2.file=/home/rundeck/projects/example/etc/generate.sh
     resources.source.2.interpreter=bash -c
     resources.source.2.args=-project example
     resources.source.2.format=resourceyaml
@@ -169,7 +169,7 @@ pairs, with both a parser and generator for the same format name.
 
 ### Resource Format Plugins
 
-QW Control includes three built-in plugins in the core installation:
+Rundeck includes three built-in plugins in the core installation:
 
 `resourcexml`
 

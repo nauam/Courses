@@ -1,7 +1,7 @@
 # Health Checks
 
 ### Health Checks(3.3.4+)
-The web load balancer serving traffic to the QW Control instance should be configured with a health check.
+The web load balancer serving traffic to the Rundeck instance should be configured with a health check.
 
 The default path for unauthenticated health checks is /health.
 

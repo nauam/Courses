@@ -1,28 +1,28 @@
-# Upgrading to QW Control 3.2
+# Upgrading to Rundeck 3.2
 
 
 ::: tip
 See other [Upgrading](/upgrading/) Documents if you are upgrading from 3.0 or earlier.
 :::
 
-## Upgrading from QW Control 3.0 Using Debian/RPM packaging
+## Upgrading from Rundeck 3.0 Using Debian/RPM packaging
 
 
-The value of `framework.projects.dir` in the default install of QW Control 3.2 in the config file `framework.properties` has changed to:
+The value of `framework.projects.dir` in the default install of Rundeck 3.2 in the config file `framework.properties` has changed to:
 
-	framework.projects.dir=/var/lib/qwcontrol/projects
+	framework.projects.dir=/var/lib/rundeck/projects
 
-QW Control 3.0.x has this :
+Rundeck 3.0.x has this :
 
-	framework.projects.dir=/var/qwcontrol/projects
+	framework.projects.dir=/var/rundeck/projects
 
 
-If before the upgrade the `/var/qwcontrol/projects` is NOT empty, 3.2 will start properly, but if `/var/qwcontrol/projects` is empty, it will be deleted and 3.2 won't start until you modify the proper line in `framework.properties` to be `/var/lib/qwcontrol/projects`.
+If before the upgrade the `/var/rundeck/projects` is NOT empty, 3.2 will start properly, but if `/var/rundeck/projects` is empty, it will be deleted and 3.2 won't start until you modify the proper line in `framework.properties` to be `/var/lib/rundeck/projects`.
 
-An error with this message may occur in the QW Control console at startup:
+An error with this message may occur in the Rundeck console at startup:
 
 ```
-... nested exception is java.lang.IllegalArgumentException: project base directory could not be created. /var/qwcontrol/projects
+... nested exception is java.lang.IllegalArgumentException: project base directory could not be created. /var/rundeck/projects
 
 ```
 
@@ -38,4 +38,4 @@ The [condition](/manual/webhooks/advanced-run-job.html#conditions) type `matches
 
    **OR**
 
-- Updating the webhooks configuration through the [API](/api/qwcontrol-api.html#webhooks-incubating)
+- Updating the webhooks configuration through the [API](/api/rundeck-api.html#webhooks-incubating)

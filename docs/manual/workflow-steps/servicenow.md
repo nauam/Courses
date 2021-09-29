@@ -1,10 +1,10 @@
 # ServiceNow&reg; Workflow Steps
 
-The built in ServiceNow&reg; plugins are built to help customers automate the creation of incidents and change records within ServiceNow&reg;. The various job steps give you total control over your workflow, allowing you to create and edit ServiceNow&reg; incidents and change records within your QW Control jobs.
+The built in ServiceNow&reg; plugins are built to help customers automate the creation of incidents and change records within ServiceNow&reg;. The various job steps give you total control over your workflow, allowing you to create and edit ServiceNow&reg; incidents and change records within your Rundeck jobs.
 
 <!---
 Original:
-http://support.qwcontrol.com/customer/en/portal/articles/2915300-servicenow-plugins)
+http://support.rundeck.com/customer/en/portal/articles/2915300-servicenow-plugins)
 --->
 
 For all of the following job steps, you will need to have set the connection credentials. In order to do so, add the following lines of code to your `framework.properties` file:
@@ -17,7 +17,7 @@ servicenow.password-key-storage-path=keys/servicenow/pass
 
 ## ServiceNow / Incident / Update State
 
-QW Control workflow step that changes an incident state
+Rundeck workflow step that changes an incident state
 
 ![ServiceNow / Incident / Update State](~@assets/img/servicenow-incident-updatestate.png)
 
@@ -39,7 +39,7 @@ project.plugin.WorkflowStep.Service-Now-Incident-Change-State.password-key-stora
 
 ## ServiceNow / Incident / Check Assigned
 
-QW Control workflow step that checks assigned incidents
+Rundeck workflow step that checks assigned incidents
 
 ![ServiceNow / Incident / Check Assigned](~@assets/img/servicenow-incident-checkassigned.png)
 
@@ -51,7 +51,7 @@ QW Control workflow step that checks assigned incidents
 
 ## ServiceNow / Incident / Check State
 
-QW Control workflow step that checks an incident state
+Rundeck workflow step that checks an incident state
 
 ![ServiceNow / Incident / Check State](~@assets/img/servicenow-incident-checkstate.png)
 
@@ -73,7 +73,7 @@ project.plugin.WorkflowStep.Service-Now-Incident-Check-State.url=https://server.
 
 ## ServiceNow / Incident / Comment
 
-QW Control workflow step that comments an incident
+Rundeck workflow step that comments an incident
 
 ![ServiceNow / Incident / Comment](~@assets/img/servicenow-incident-comment.png)
 
@@ -84,7 +84,7 @@ QW Control workflow step that comments an incident
 
 ## ServiceNow / Incident / Create
 
-QW Control workflow step that creates an incident
+Rundeck workflow step that creates an incident
 
 ![ServiceNow / Incident / Create](~@assets/img/servicenow-incident-create.png)
 
@@ -123,7 +123,7 @@ For `Assignment Group` the list is loaded with an SN API call.
 
 ## ServiceNow / Incident / Edit
 
-QW Control workflow step that edits an incident
+Rundeck workflow step that edits an incident
 
 ![ServiceNow / Incident / Edit](~@assets/img/servicenow-incident-edit.png)
 
@@ -162,7 +162,7 @@ For `Assignment Group` and `state` the list is loaded with SN API call.
 
 ## ServiceNow / Incident / View
 
-QW Control workflow step that views an incident
+Rundeck workflow step that views an incident
 
 ![ServiceNow / Incident / View](~@assets/img/servicenow-incident-view.png)
 
@@ -171,7 +171,7 @@ QW Control workflow step that views an incident
 
 ## ServiceNow / Change / Check State
 
-QW Control workflow step that checks the state of a change request
+Rundeck workflow step that checks the state of a change request
 
 ![ServiceNow / Change / Check State](~@assets/img/servicenow-change-checkstate.png)
 
@@ -182,7 +182,7 @@ QW Control workflow step that checks the state of a change request
 
 ## ServiceNow / Change / Update State
 
-QW Control workflow step that updates the state of a change request
+Rundeck workflow step that updates the state of a change request
 
 ![ServiceNow / Change / Update State](~@assets/img/servicenow-change-updatestate.png)
 
@@ -193,7 +193,7 @@ QW Control workflow step that updates the state of a change request
 
 ## ServiceNow / Change / Create
 
-QW Control workflow step that creates a change on ServiceNow
+Rundeck workflow step that creates a change on ServiceNow
 
 ![ServiceNow / Change / Create](~@assets/img/servicenow-change-create.png)
 

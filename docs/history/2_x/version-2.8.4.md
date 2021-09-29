@@ -12,7 +12,7 @@ Name: <span style="color: Purple"><span class="glyphicon glyphicon-gift"></span>
 ## Upgrading from 2.8.0
 
 **Important Note**: please see the [Upgrading Guide](/upgrading/upgrading.md) if you are using Mysql or H2 database,
-and are upgrading from QW Control 2.8.0.
+and are upgrading from Rundeck 2.8.0.
 
 A DB schema change requires a manual fix before upgrading.
 
@@ -38,8 +38,8 @@ This release is primarily bug fixes.
 
 ## Issues
 
-[Milestone 2.8.4](https://github.com/qwcontrol/qwcontrol/milestone/57)
+[Milestone 2.8.4](https://github.com/rundeck/rundeck/milestone/57)
 
-* [Mysql syntax error after login](https://github.com/qwcontrol/qwcontrol/issues/2609)
-* [Move to Gradle 3.5](https://github.com/qwcontrol/qwcontrol/pull/2600)
-* [Node List - Fails to display greater than 100 nodes per page](https://github.com/qwcontrol/qwcontrol/issues/2514)
+* [Mysql syntax error after login](https://github.com/rundeck/rundeck/issues/2609)
+* [Move to Gradle 3.5](https://github.com/rundeck/rundeck/pull/2600)
+* [Node List - Fails to display greater than 100 nodes per page](https://github.com/rundeck/rundeck/issues/2514)

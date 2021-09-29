@@ -17,7 +17,7 @@ Name: <span style="color: CadetBlue"><span class="glyphicon glyphicon-lamp"></sp
 
 This is a bug fix release.
 
-Note:  If you use MSSQL database, see the comments on this issue [PR3080](https://github.com/qwcontrol/qwcontrol/pull/3080).
+Note:  If you use MSSQL database, see the comments on this issue [PR3080](https://github.com/rundeck/rundeck/pull/3080).
 
 ## Contributors
 
@@ -32,9 +32,9 @@ Note:  If you use MSSQL database, see the comments on this issue [PR3080](https:
 
 ## Issues
 
-[Milestone 2.10.4](https://github.com/qwcontrol/qwcontrol/milestone/68)
+[Milestone 2.10.4](https://github.com/rundeck/rundeck/milestone/68)
 
-* [Low isolation level as property](https://github.com/qwcontrol/qwcontrol/pull/3080)
-* [Could not rollback with auto-commit set on](https://github.com/qwcontrol/qwcontrol/issues/3079)
-* [ERROR READ_COMMITTED and SERIALIZABLE are the only valid transaction levels ](https://github.com/qwcontrol/qwcontrol/issues/3078)
-* [v2.10.2 does not work with Oracle due to incompatible transaction isolation](https://github.com/qwcontrol/qwcontrol/issues/3074)
+* [Low isolation level as property](https://github.com/rundeck/rundeck/pull/3080)
+* [Could not rollback with auto-commit set on](https://github.com/rundeck/rundeck/issues/3079)
+* [ERROR READ_COMMITTED and SERIALIZABLE are the only valid transaction levels ](https://github.com/rundeck/rundeck/issues/3078)
+* [v2.10.2 does not work with Oracle due to incompatible transaction isolation](https://github.com/rundeck/rundeck/issues/3074)

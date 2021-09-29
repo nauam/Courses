@@ -8,7 +8,7 @@ detail from a Job listing or within the Job editor form.
 
 ## Workflow definition
 
-Workflows can be defined within the QW Control graphical console or as an
+Workflows can be defined within the Rundeck graphical console or as an
 XML or YAML document that is loaded to the server.
 
 The graphical console provides an authoring environment where steps
@@ -107,7 +107,7 @@ New steps are always added to the end of the sequence. See
 [Reordering steps](#reordering-steps)
 for directions on moving steps into a new order.
 
-Each step can have a "Description" to give it a more logical name or description to be displayed in the QW Control GUI.
+Each step can have a "Description" to give it a more logical name or description to be displayed in the Rundeck GUI.
 
 The next several sections describe the specification of each kind of
 workflow step.
@@ -376,7 +376,7 @@ The Workflow Strategy used in the Workflow governs when steps execute: A sequent
 
 ### Data Capture Log Filter Plugins
 
-QW Control offers two different data capture Log Filter plugins. The first, Key Value Data, captures simple Key/Value data using a simple text format. The second, Multiline Regex Data Capture, captures multiline regex key/value data using a simple text format. The data capture Log Filter plugins allow users to define and utilize data variables across numerous job steps.
+Rundeck offers two different data capture Log Filter plugins. The first, Key Value Data, captures simple Key/Value data using a simple text format. The second, Multiline Regex Data Capture, captures multiline regex key/value data using a simple text format. The data capture Log Filter plugins allow users to define and utilize data variables across numerous job steps.
 
 For more information on Key Value data, see [Key Value Data](/manual/log-filters/key-value-data.md).
 
@@ -386,10 +386,10 @@ For more information on Key Value data, see [Multiline Regex Capture](/manual/lo
 
 Jobs can be exported or imported in XML or Yaml format using the API or the `rd` CLI tool.
 
-- [Exporting Jobs](/api/qwcontrol-api.md#exporting-jobs)
-- [Importing Jobs](/api/qwcontrol-api.md#importing-jobs)
+- [Exporting Jobs](/api/rundeck-api.md#exporting-jobs)
+- [Importing Jobs](/api/rundeck-api.md#importing-jobs)
 - [RD CLI Tool][rd]
 
 [quartz scheduler crontrigger]: http://www.quartz-scheduler.org/api/2.2.1/org/quartz/CronTrigger.html
-[rd]: https://qwcontrol.github.io/qwcontrol-cli/
+[rd]: https://rundeck.github.io/rundeck-cli/
 

@@ -19,7 +19,7 @@ This can be useful when defining the configuration properties.
 
 If the node is configured with the `ssh-key-storage-path` attribute, the ssh connection will use that to connect to the remote node.
 
-- ssh-key-storage-path: Set to location in QW Control Keystore
+- ssh-key-storage-path: Set to location in Rundeck Keystore
 
 ## Configuration
 
@@ -73,7 +73,7 @@ Using Dry run, you might see output similar to this:
 
 # Docker Example
 
-You can test the plugin on a docker environment on the plugin [repo](https://github.com/qwcontrol-plugins/openssh-bastion-node-execution)
+You can test the plugin on a docker environment on the plugin [repo](https://github.com/rundeck-plugins/openssh-bastion-node-execution)
 
 - Run `./start-docker-example.sh`
 - Got to `http://localhost:8080`
@@ -81,7 +81,7 @@ You can test the plugin on a docker environment on the plugin [repo](https://git
 
 The example has two networks:
 
-- Network1: qwcontrol, bastion
+- Network1: rundeck, bastion
 - Network2: bastion, linux-1, linux-2
 
-The goal of this example is that QW Control connects to the nodes linux-1 and linux-2 through the bastion container (QW Control cannot see linux-X nodes)
+The goal of this example is that Rundeck connects to the nodes linux-1 and linux-2 through the bastion container (Rundeck cannot see linux-X nodes)

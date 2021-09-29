@@ -1,7 +1,7 @@
         (Node Execution Services)     (Providers)
 
 +-----------+    +--------------\      /----------\
-| QW Control   |-+->| NodeExecutor |---+->| jsch-ssh |
+| Rundeck   |-+->| NodeExecutor |---+->| jsch-ssh |
 |  Core cFDD| |  | Service cEEE |   |  \----------/
 +-----------+ |  \--------------+   |  /----------\
               |                     +->| local    |

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Most of what QW Control does is via one of its plugins.
+Most of what Rundeck does is via one of its plugins.
 Several [plugin types](/administration/configuration/plugins/plugin-types.md) exist
 to [execute commands on nodes](/administration/configuration/plugins/configuring.md#node-execution),
 perform a step in a workflow,

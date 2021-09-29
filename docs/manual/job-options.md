@@ -1,6 +1,6 @@
 # Job Options
 
-QW Control Jobs can be configured to prompt a user for input by defining
+Rundeck Jobs can be configured to prompt a user for input by defining
 one or more named _options_. An _option_ models a named parameter that
 can be required or optional and include a range of choices that will
 be presented to the user when the Job is run.
@@ -15,7 +15,7 @@ source. Static choices can be modeled as a comma separated list in the
 job definition. When option values must be
 dynamic, the Job can be defined to use a URL to retrieve option data
 from an external source. Enabling Jobs to access external sources via
-URL opens the door to integrating QW Control with other tools and
+URL opens the door to integrating Rundeck with other tools and
 incorporating their data into Job workflows.
 
 ## Prompting the user
@@ -82,8 +82,8 @@ Clicking the "edit" link opens a new form that lets you modify all
 aspects of that option.
 
 Options can also be defined as part of a job definition and later
-loaded to the QW Control server. See [job-xml](/manual/document-format-reference/job-v20.md) and [job-yaml](/manual/document-format-reference/job-yaml-v12.md) and
-[rd jobs](https://qwcontrol.github.io/qwcontrol-cli/commands/#jobs) pages if you prefer using an textual Job definition.
+loaded to the Rundeck server. See [job-xml](/manual/document-format-reference/job-v20.md) and [job-yaml](/manual/document-format-reference/job-yaml-v12.md) and
+[rd jobs](https://rundeck.github.io/rundeck-cli/commands/#jobs) pages if you prefer using an textual Job definition.
 
 ## Defining an option
 
@@ -131,7 +131,7 @@ Restrictions
 
 : Defines criteria on which input to accept or present. Option
 choices can be controlled using the "Enforced from values"
-restriction. When set "true", QW Control will only present a
+restriction. When set "true", Rundeck will only present a
 popup menu. If set "false", a text field will also be presented.
 Enter a regular expression in the "Match Regular Expression"
 field the Job will evaluate when run.
@@ -383,7 +383,7 @@ Secure Options cannot be used as authentication input to Node Executors, you mus
 
 **Important Note**
 
-"Secure" option values are not stored in the QW Control database when the Job is executed, but the value that is entered
+"Secure" option values are not stored in the Rundeck database when the Job is executed, but the value that is entered
 is exposed to use in scripts and commands. Make sure you acknowledge these security implications before using them. Secure options are available for use in scripts and command like any other option value:
 
 - as plaintext arguments using `${option.name}`
@@ -411,7 +411,7 @@ When you [define a Job Reference step in a workflow](/manual/node-steps/builtin.
 
 This constraint is to maintain the security design of these options:
 
-1. Secure options should not to be stored in the QW Control execution database, so must not be used as plain option values.
+1. Secure options should not to be stored in the Rundeck execution database, so must not be used as plain option values.
 2. Secure Remote Authentication options should not be used in scripts/commands, so must not be used as Secure or Plain option values.
 
 As an example, here is are two jobs, Job A and Job B, which define some options:
@@ -453,7 +453,7 @@ called an _option model provider_.
 When the `valuesUrl` is specified for an Option, then the model of
 allowed values is retrieved from the specified URL.
 
-This is useful in a couple of scenarios when QW Control is used to
+This is useful in a couple of scenarios when Rundeck is used to
 coordinate process that depend on other systems:
 
 - Deploying packages or artifacts produced by a build or CI server, e.g. Jenkins.
@@ -470,7 +470,7 @@ Option model providers are configured on a per-Option basis (where a Job may hav
 ### Requirements
 
 1. Options model data must be [JSON formatted](http://www.json.org).
-2. It must be accessible via HTTP(S) or on the local disk for the QW Control server.
+2. It must be accessible via HTTP(S) or on the local disk for the Rundeck server.
 3. It must be in one of two JSON structures, _either_:
    - An array of string values
    - OR, an array of Maps, each with two entries, `name` and `value`.
@@ -479,7 +479,7 @@ Option model providers are configured on a per-Option basis (where a Job may hav
 
 ### Configuration
 
-Each Option entry for a Job can be configured to get the set of possible values from a remote URL. If you are authoring the Jobs via [job.xml file format](/manual/document-format-reference/job-v20.md#option), simply add a `valuesUrl` attribute for the `<option>`. If you are modifying the Job in the QW Control web GUI, you can entry a URL in the "Remote URL" field for the Option.
+Each Option entry for a Job can be configured to get the set of possible values from a remote URL. If you are authoring the Jobs via [job.xml file format](/manual/document-format-reference/job-v20.md#option), simply add a `valuesUrl` attribute for the `<option>`. If you are modifying the Job in the Rundeck web GUI, you can entry a URL in the "Remote URL" field for the Option.
 
 e.g.:
 
@@ -540,7 +540,7 @@ Name Value List with default selections:
 
 ### URL connection parameters
 
-You can configure timeouts globally as described in [Configuration - Job Remote Option URL connection parameters](/administration/configuration/config-file-reference.md#qwcontrol-config.properties).
+You can configure timeouts globally as described in [Configuration - Job Remote Option URL connection parameters](/administration/configuration/config-file-reference.md#rundeck-config.properties).
 
 You can also specify these connection parameters on a per-URL basis:
 
@@ -573,7 +573,7 @@ E.g. if you wanted one option to choose a "repository", and another option to
 select a specific "branch" within that repository. Define your option provider
 to respond correctly based on the selected "repository" value, and define your
 Remote option URL to include a reference to the "repository" option value. The
-QW Control GUI will then reload the JSON values from the remote URL and insert the
+Rundeck GUI will then reload the JSON values from the remote URL and insert the
 correct value of the "repository" option when loading the "branch" option
 values. If the user changes the selected repository, then the branch values will
 be automatically refreshed.
@@ -627,11 +627,11 @@ Properties available for Job context:
 - `description`: Job description
 - `project`: Project name
 - `user.name`: User executing the job
-- `qwcontrol.nodename`: Name of the QW Control server node
-- `qwcontrol.serverUUID`: UUID of the QW Control server node (cluster mode)
-- `qwcontrol.basedir`: File path of the QW Control base dir (`file://` URLs only)
+- `rundeck.nodename`: Name of the Rundeck server node
+- `rundeck.serverUUID`: UUID of the Rundeck server node (cluster mode)
+- `rundeck.basedir`: File path of the Rundeck base dir (`file://` URLs only)
 
-Additionally the `qwcontrol.*` properties can be specified without the `job.` prefix, e.g. `${qwcontrol.basedir}`.
+Additionally the `rundeck.*` properties can be specified without the `job.` prefix, e.g. `${rundeck.basedir}`.
 
 To include Option information in the URL, specify a variable of the
 form \${option._property_}:
@@ -680,7 +680,7 @@ Query Parameters format for options:
 
 For example, if the URL for the Job is:
 
-    http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0
+    http://rundeck:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0
 
 Then you can pre-fill the values for `myopt1` and `myotheropt` by appending this to the URL:
 
@@ -688,6 +688,6 @@ Then you can pre-fill the values for `myopt1` and `myotheropt` by appending this
 
 The result would be:
 
-    http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0?opt.myopt1=some+value&opt.myotheropt=another+value
+    http://rundeck:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0?opt.myopt1=some+value&opt.myotheropt=another+value
 
 Note: be sure to properly escape the strings for option values, and if necessary for the option names as well.

@@ -1,6 +1,6 @@
 # Configure ServiceNow CMDB Node Source
 
-The ServiceNow&reg; Node Source brings CMDB entries into QW Control as Nodes.  This exercise shows how to configure and use some key features of that Node Source.
+The ServiceNow&reg; Node Source brings CMDB entries into Rundeck as Nodes.  This exercise shows how to configure and use some key features of that Node Source.
 
 ## PreRequisites
 
@@ -22,7 +22,7 @@ This exercise configures the [ServiceNow&reg; Node Source](/administration/proje
 1. In the filter bar right click the last entry in the filter breadcrumbs list and choose **Copy Query**
     <br><br>![Copy CMDB Query](@assets/img/howto-sn-copyquery.png)<br><br>
 
-**QW Control Steps**
+**Rundeck Steps**
 
 1. Open **Welcome Project > Project Settings > Edit Nodes**
 1. Click **Add a new Node Source +** button

@@ -13,7 +13,7 @@ This release has bug fixes.
 
 ## Compatibility notes
 
-See the [release notes for v2.4.0](http://qwcontrol.org/2.4.0/history/version-2.4.0.html)
+See the [release notes for v2.4.0](http://rundeck.org/2.4.0/history/version-2.4.0.html)
 
 ## Contributors
 
@@ -25,4 +25,4 @@ See the [release notes for v2.4.0](http://qwcontrol.org/2.4.0/history/version-2.
 
 ## Issues
 
-* [Bug: options url ampersand symbol replaced with "amp;"](https://github.com/qwcontrol/qwcontrol/issues/1101)
+* [Bug: options url ampersand symbol replaced with "amp;"](https://github.com/rundeck/rundeck/issues/1101)

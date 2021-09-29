@@ -28,10 +28,10 @@ Bug fixes
 
 ## Issues
 
-[Milestone 3.0.1](https://github.com/qwcontrol/qwcontrol/milestone/81)
+[Milestone 3.0.1](https://github.com/rundeck/rundeck/milestone/81)
 
-* [Add jetty password encoding compatibility to spring security password validation](https://github.com/qwcontrol/qwcontrol/pull/3779)
-* [Allow runtime i18n message substitutes.](https://github.com/qwcontrol/qwcontrol/pull/3772)
-* [Authentification with a encrypted password don't work](https://github.com/qwcontrol/qwcontrol/issues/3768)
-* [QW Control 3 Date format i18n](https://github.com/qwcontrol/qwcontrol/issues/3764)
-* [Restore JAAS config compatibility with 2.x configuration and current docs.](https://github.com/qwcontrol/qwcontrol/pull/3758)
+* [Add jetty password encoding compatibility to spring security password validation](https://github.com/rundeck/rundeck/pull/3779)
+* [Allow runtime i18n message substitutes.](https://github.com/rundeck/rundeck/pull/3772)
+* [Authentification with a encrypted password don't work](https://github.com/rundeck/rundeck/issues/3768)
+* [Rundeck 3 Date format i18n](https://github.com/rundeck/rundeck/issues/3764)
+* [Restore JAAS config compatibility with 2.x configuration and current docs.](https://github.com/rundeck/rundeck/pull/3758)

@@ -15,7 +15,7 @@ New features:
 
 Some bug fixes are included, as well as some pull requests to enhance the LDAP login module:
 
-* Support nested LDAP group membership (see [Added support for nested groups in JettyCachingLdapLoginModule.](https://github.com/qwcontrol/qwcontrol/pull/829))
+* Support nested LDAP group membership (see [Added support for nested groups in JettyCachingLdapLoginModule.](https://github.com/rundeck/rundeck/pull/829))
 * Support a "supplementalRoles" setting, which can help avoid the `!role` issue. See [Login Module Configuration](/administration/security/authentication.md#login-module-configuration).
 
 *Upgrade notes:*
@@ -33,14 +33,14 @@ Several domain fields were added. Mysql and H2 should upgrade in place without i
 
 ## Issues
 
-* [Server listening port number defined in profile instead of service start script](https://github.com/qwcontrol/qwcontrol/pull/845)
-* [Install fails when /etc/qwcontrol is a symlink](https://github.com/qwcontrol/qwcontrol/pull/842)
-* [Multiple Recepient E-mail Notification](https://github.com/qwcontrol/qwcontrol/issues/834)
-* [Added support for nested groups in JettyCachingLdapLoginModule.](https://github.com/qwcontrol/qwcontrol/pull/829)
-* [Add Job retry behavior](https://github.com/qwcontrol/qwcontrol/pull/825)
-* [Job's references are reported as Killed](https://github.com/qwcontrol/qwcontrol/issues/821)
-* [Ace editor cursor position bug on mac retina display](https://github.com/qwcontrol/qwcontrol/issues/820)
-* [add a Job Timeout behavior](https://github.com/qwcontrol/qwcontrol/issues/815)
-* [Added support for the supplementalRoles option to the LDAP Module](https://github.com/qwcontrol/qwcontrol/pull/803)
-* [Ansi 256 color support doesn't work](https://github.com/qwcontrol/qwcontrol/issues/797)
-* [Delete executions](https://github.com/qwcontrol/qwcontrol/pull/767)
+* [Server listening port number defined in profile instead of service start script](https://github.com/rundeck/rundeck/pull/845)
+* [Install fails when /etc/rundeck is a symlink](https://github.com/rundeck/rundeck/pull/842)
+* [Multiple Recepient E-mail Notification](https://github.com/rundeck/rundeck/issues/834)
+* [Added support for nested groups in JettyCachingLdapLoginModule.](https://github.com/rundeck/rundeck/pull/829)
+* [Add Job retry behavior](https://github.com/rundeck/rundeck/pull/825)
+* [Job's references are reported as Killed](https://github.com/rundeck/rundeck/issues/821)
+* [Ace editor cursor position bug on mac retina display](https://github.com/rundeck/rundeck/issues/820)
+* [add a Job Timeout behavior](https://github.com/rundeck/rundeck/issues/815)
+* [Added support for the supplementalRoles option to the LDAP Module](https://github.com/rundeck/rundeck/pull/803)
+* [Ansi 256 color support doesn't work](https://github.com/rundeck/rundeck/issues/797)
+* [Delete executions](https://github.com/rundeck/rundeck/pull/767)

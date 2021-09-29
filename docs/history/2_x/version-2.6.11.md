@@ -26,6 +26,6 @@ Refer to the [2.6.10 release notes for more changes since 2.6.9](/history/versio
 
 ## Issues
 
-* [Project list links to project homepage and does not respect `qwcontrol.gui.startpage` setting](https://github.com/qwcontrol/qwcontrol/issues/2168)
-* [QW Control 2.6.10 upgrade breaks qwcontrol on CentOS](https://github.com/qwcontrol/qwcontrol/issues/2164)
+* [Project list links to project homepage and does not respect `rundeck.gui.startpage` setting](https://github.com/rundeck/rundeck/issues/2168)
+* [Rundeck 2.6.10 upgrade breaks rundeck on CentOS](https://github.com/rundeck/rundeck/issues/2164)
 

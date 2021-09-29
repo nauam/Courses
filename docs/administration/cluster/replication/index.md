@@ -1,10 +1,10 @@
 # Replication
 
-In order to keep a QW Control Enterprise Cluster in sync, we provide plugins to replicate QW Control state across instances.
+In order to keep a Rundeck Enterprise Cluster in sync, we provide plugins to replicate Rundeck state across instances.
 
 ## Job Replication Plugin
 
-The Job replication plugin is a SCM Export plugin included with QW Control Enterprise. It automatically replicates Job definitions to a secondary QW Control instance whenever a Job is modified within a project.
+The Job replication plugin is a SCM Export plugin included with Rundeck Enterprise. It automatically replicates Job definitions to a secondary Rundeck instance whenever a Job is modified within a project.
 
 Enable the plugin in the SCM section of the Configuration page for a project.
 
@@ -12,11 +12,11 @@ Enable the plugin in the SCM section of the Configuration page for a project.
 
 Endpoint URL
 
-: Remote QW Control API URL
+: Remote Rundeck API URL
 
 API Token
 
-: API Token for authentication to the remote QW Control
+: API Token for authentication to the remote Rundeck
 
 Project
 
@@ -24,19 +24,19 @@ Project
 
 ## Execution Replication File Storage Plugin
 
-The Execution Replication File Storage Plugin included with QW Control Enterprise creates a QW Control formatted Project Archive for each execution, and uploads it to a remote
-QW Control server, to replicate the execution data
+The Execution Replication File Storage Plugin included with Rundeck Enterprise creates a Rundeck formatted Project Archive for each execution, and uploads it to a remote
+Rundeck server, to replicate the execution data
 
-Enable the plugin in qwcontrol-config.properties:
+Enable the plugin in rundeck-config.properties:
 
 ```properties
-qwcontrol.execution.logs.fileStoragePlugin=ExecutionReplicationPlugin
+rundeck.execution.logs.fileStoragePlugin=ExecutionReplicationPlugin
 ```
 
 Configuration will be defined in framework.properties/project.properties:
 
 ```properties
-framework.plugin.ExecutionFileStorage.ExecutionReplicationPlugin.qwcontrolUrl=http://host
+framework.plugin.ExecutionFileStorage.ExecutionReplicationPlugin.rundeckUrl=http://host
 framework.plugin.ExecutionFileStorage.ExecutionReplicationPlugin.apiToken=...
 framework.plugin.ExecutionFileStorage.ExecutionReplicationPlugin.project=${execution.project}
 framework.plugin.ExecutionFileStorage.ExecutionReplicationPlugin.timeout=30

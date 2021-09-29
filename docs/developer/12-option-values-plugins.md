@@ -8,13 +8,13 @@ of options, you can use an option values plugin to provide valid values for an o
 If you configure an option values plugin for your job, the plugin will run
 and provide the values to the UI when you are preparing the job for execution.
 
-To enable this plugin type in your QW Control installation add the following to your `qwcontrol-config.properties`:
+To enable this plugin type in your Rundeck installation add the following to your `rundeck-config.properties`:
 
-    qwcontrol.feature.option-values-plugin.enabled=true
+    rundeck.feature.option-values-plugin.enabled=true
 
 ## Use
 
-Create an option values plugin and install it like other QW Control plugins.
+Create an option values plugin and install it like other Rundeck plugins.
 When you are creating a job, create a new option with the option type: Text.
 Scroll down to the **Allowed Values** section and you will see your option values plugin listed.
 
@@ -46,10 +46,10 @@ _Project scope property definition in `project.properties`_
 ```java
 package com.plugin.optionvalue;
 
-import com.dtolabs.qwcontrol.core.plugins.Plugin;
-import com.dtolabs.qwcontrol.plugins.descriptions.PluginDescription;
-import com.dtolabs.qwcontrol.plugins.option.OptionValue;
-import com.dtolabs.qwcontrol.plugins.option.OptionValuesPlugin;
+import com.dtolabs.rundeck.core.plugins.Plugin;
+import com.dtolabs.rundeck.plugins.descriptions.PluginDescription;
+import com.dtolabs.rundeck.plugins.option.OptionValue;
+import com.dtolabs.rundeck.plugins.option.OptionValuesPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,9 +91,9 @@ public class FooOptionValues implements OptionValuesPlugin {
 ## Groovy Plugin Type
 
 ```groovy
-import com.dtolabs.qwcontrol.plugins.option.OptionValuesPlugin
+import com.dtolabs.rundeck.plugins.option.OptionValuesPlugin
 
-qwcontrolPlugin(OptionValuesPlugin) {
+rundeckPlugin(OptionValuesPlugin) {
     title="Foo Option Values Plugin"
     description="Option Values Plugin"
 

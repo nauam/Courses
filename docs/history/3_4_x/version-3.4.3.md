@@ -2,17 +2,17 @@
 
 Name: <span style="color: burlywood"><span class="glyphicon glyphicon-camera"></span> "Papadum burlywood camera"</span>
 
-- [Download QW Control](https://download.qwcontrol.com/)
-- [Sign up for Release Notes](https://www.qwcontrol.com/release-notes-signup)
+- [Download Rundeck](https://download.rundeck.com/)
+- [Sign up for Release Notes](https://www.rundeck.com/release-notes-signup)
 
 ## Overview
 
-Check out the new features and enhancements for QW Control Enterprise and QW Control Community included in this release. This is a smaller release, with two important security fixes. Look out for new enhancements and a significant release in the coming months.
+Check out the new features and enhancements for Rundeck Enterprise and Rundeck Community included in this release. This is a smaller release, with two important security fixes. Look out for new enhancements and a significant release in the coming months.
 
 ## Security Fixes
 
 * [CVE-2021-39132: YAML deserialization can run untrusted code.](/history/CVEs/CVE-2021-39132.md)
-* [CVE-2021-39133: Cross-Site Request Forgery (CSRF) can run untrusted code on QW Control server](/history/CVEs/CVE-2021-39133.md)
+* [CVE-2021-39133: Cross-Site Request Forgery (CSRF) can run untrusted code on Rundeck server](/history/CVEs/CVE-2021-39133.md)
 
 
 ## Enterprise Updates
@@ -24,16 +24,16 @@ Check out the new features and enhancements for QW Control Enterprise and QW Con
 
 ## Core Product Updates
 
-* [Fix: unable to upload an ACL policy file with the GUI](https://github.com/qwcontrol/qwcontrol/pull/7220)
-* [Add plugin security feature check to installPlugin endpoint](https://github.com/qwcontrol/qwcontrol/pull/7213)
-* [Job tags not copied when duplicating job ](https://github.com/qwcontrol/qwcontrol/pull/7205)
-* [Fix/issue 1899 Wrong value after changing option type](https://github.com/qwcontrol/qwcontrol/pull/7201)
-* [Fix issue when scheduled jobs runs twice in a cluster](https://github.com/qwcontrol/qwcontrol/pull/7192)
-* [Add pluginSecurity feature to disable plugin uploads](https://github.com/qwcontrol/qwcontrol/pull/7185)
+* [Fix: unable to upload an ACL policy file with the GUI](https://github.com/rundeck/rundeck/pull/7220)
+* [Add plugin security feature check to installPlugin endpoint](https://github.com/rundeck/rundeck/pull/7213)
+* [Job tags not copied when duplicating job ](https://github.com/rundeck/rundeck/pull/7205)
+* [Fix/issue 1899 Wrong value after changing option type](https://github.com/rundeck/rundeck/pull/7201)
+* [Fix issue when scheduled jobs runs twice in a cluster](https://github.com/rundeck/rundeck/pull/7192)
+* [Add pluginSecurity feature to disable plugin uploads](https://github.com/rundeck/rundeck/pull/7185)
 
 
 
-[Here is a link to the full list of public PRs](https://github.com/qwcontrol/qwcontrol/pulls?q=is%3Apr+milestone%3A3.4.3+is%3Aclosed)
+[Here is a link to the full list of public PRs](https://github.com/rundeck/rundeck/pulls?q=is%3Apr+milestone%3A3.4.3+is%3Aclosed)
 
 ## Contributors
 

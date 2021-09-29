@@ -2,9 +2,9 @@
 ::: enterprise
 :::
 
-The Azure Resource Model Source Plugin provides the Azure VMs as nodes on a QW Control Server.
+The Azure Resource Model Source Plugin provides the Azure VMs as nodes on a Rundeck Server.
 
-The source code lives at [https://github.com/qwcontrol-plugins/qwcontrol-azure-plugin](https://github.com/qwcontrol-plugins/qwcontrol-azure-plugin).
+The source code lives at [https://github.com/rundeck-plugins/rundeck-azure-plugin](https://github.com/rundeck-plugins/rundeck-azure-plugin).
 
 ### Credentials Settings
 
@@ -27,7 +27,7 @@ Mapping and filter settings
 
 ### Mapping
 
-Map the Azure VM properties to QW Control Node definition
+Map the Azure VM properties to Rundeck Node definition
 
 #### Default Mapping
 
@@ -76,13 +76,13 @@ provisioningState:time.selector                 =    azure_provisioningState_tim
 
 ### Adding Tags from Azure VM Tags
 
-You can add QW Control's node tags using Azure VM tags.
+You can add Rundeck's node tags using Azure VM tags.
 
 For example, create an Azure VM tags like:
 
-- QW Control-Tags=sometag1,sometag2
+- Rundeck-Tags=sometag1,sometag2
 
-`sometag1` and `sometag2` will be added as tags on QW Control nodes
+`sometag1` and `sometag2` will be added as tags on Rundeck nodes
 
 ### Adding custom tags from Azure VM files
 
@@ -98,13 +98,13 @@ tags.selector=azure_resourceGroup,azure_status;
 
 Also, you can add extra nodes attributes using Azure VM tags.
 
-For example, creating the following tags on the Azure VM, you can map those tags to a qwcontrol node attribute:
+For example, creating the following tags on the Azure VM, you can map those tags to a rundeck node attribute:
 
-- QW Control-node-executor=winrm-exe
-- QW Control-file-copier=winrm-filecopier
-- QW Control-winrm-password-storage-path=keys/node/windows.password
+- Rundeck-node-executor=winrm-exe
+- Rundeck-file-copier=winrm-filecopier
+- Rundeck-winrm-password-storage-path=keys/node/windows.password
 
-As you see, the Azure VM tags must start with **QW Control-**
+As you see, the Azure VM tags must start with **Rundeck-**
 
 Then to map those tags to nodes attribute use:
 

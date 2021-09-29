@@ -1,17 +1,17 @@
 # Commands
 
 A _command_ is a single executable string executed on a Node.
-QW Control invokes commands on nodes via a _node executor_
+Rundeck invokes commands on nodes via a _node executor_
 which evaluates the command string and executes it.
 Node executors evaluate the command string in a data context
 containing information about the Node resource. Command strings
 can reference this data and thus avoid hard coding node or environment
 specific values.
 
-The QW Control graphical console provides the ability to execute
+The Rundeck graphical console provides the ability to execute
 commands to a set of filtered Node resources.
 The Command page can accept any command string you might run
-via an SSH command or via the [rd adhoc](https://qwcontrol.github.io/qwcontrol-cli/commands/#adhoc) shell tool.
+via an SSH command or via the [rd adhoc](https://rundeck.github.io/rundeck-cli/commands/#adhoc) shell tool.
 
 ::: tip
 Your ability to view Nodes and execute commands on them
@@ -111,7 +111,7 @@ Notice the URL in the location bar of your browser. This URL can
 be shared to others interested in the progress of execution. The URL
 contains the execution ID (EID) and has a form like:
 
-     http://qwcontrolserver/project/prod/execution/show/{EID}
+     http://rundeckserver/project/prod/execution/show/{EID}
 
 After execution completes, the command will have a status:
 
@@ -123,8 +123,8 @@ After execution completes, the command will have a status:
 
 ## Related Command line tools
 
-[rd adhoc](https://qwcontrol.github.io/qwcontrol-cli/commands/#adhoc)
+[rd adhoc](https://rundeck.github.io/rundeck-cli/commands/#adhoc)
 ~ Execute ad hoc commands and scripts to matching nodes.
 
-[rd executions](https://qwcontrol.github.io/qwcontrol-cli/commands/#executions)
+[rd executions](https://rundeck.github.io/rundeck-cli/commands/#executions)
 ~ List running executions, attach and follow their output, or kill them.

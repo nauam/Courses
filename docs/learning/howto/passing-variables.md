@@ -1,7 +1,7 @@
 # Passing Data Between Steps
 
 ## Overview
-QW Control offers powerful Runbook Automation. Most Runbooks are complicated, multi-step processes.
+Rundeck offers powerful Runbook Automation. Most Runbooks are complicated, multi-step processes.
 
 This guide will show various examples of how to share data from one step to another through the use of Log Filters.
 
@@ -25,10 +25,10 @@ Log Filters use Regular Expression syntax (RegEx) to collect information from th
 ## Exercises Intro
 As part of the Welcome Projects we have built some example jobs to highlight how variables can be passed from one job step to another.  For more information about the Welcome Projects check out the [Learning Overview](/learning/index.md).
 
-It's important to note that Node Steps (steps run against nodes) and Workflow Steps (steps run from the QW Control server) store variables differently. The examples will also show how to use the variables from different types of steps and highlight common trouble spots.
+It's important to note that Node Steps (steps run against nodes) and Workflow Steps (steps run from the Rundeck server) store variables differently. The examples will also show how to use the variables from different types of steps and highlight common trouble spots.
 
 ::: tip Important Exercise Prerequisite
-If you are new to QW Control, we recommend finishing the exercises in the [Getting Started Tutorial](/learning/tutorial/preparing.md) first. Terminology and actions in the following exercise will assume you have completed that Tutorial.
+If you are new to Rundeck, we recommend finishing the exercises in the [Getting Started Tutorial](/learning/tutorial/preparing.md) first. Terminology and actions in the following exercise will assume you have completed that Tutorial.
 :::
 
 ## Using Input Option Variables
@@ -67,7 +67,7 @@ How Step Data variables are referenced in Jobs depend on a few things:
 ### Job Step Types
 There are two types of Job Steps.
 - **Node Steps**: These are steps that are run against every node associated with this job.
-- **Workflow Steps**: These steps are run from the QW Control server without being associated to a specific node.
+- **Workflow Steps**: These steps are run from the Rundeck server without being associated to a specific node.
 
 This is important to keep in mind because when a job is run against more than one node a variable may have multiple entries, one for each node it was run against.
 
@@ -96,7 +96,7 @@ In this Exercise we'll highlight the dynamics between all of these scenarios.
 ::::
 
 ### Node vs Workflow Steps (Multi-Node Example)
-The **Using Step Data Variables** job in the previous section was configured to only execute against the QW Control Server.
+The **Using Step Data Variables** job in the previous section was configured to only execute against the Rundeck Server.
 To highlight the difference when running against multiple nodes, let's run the **Multi-Node Example** job and explore its output and configuration.
 >Note: It is recommended to configure multiple Nodes as detailed in the Getting Started Tutorial.
 

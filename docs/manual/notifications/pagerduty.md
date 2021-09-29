@@ -1,6 +1,6 @@
 # PagerDuty Notifications Plugins (Enterprise)
 
-PagerDuty notification plugins can be added to jobs within QW Control so alerts go to PagerDuty. When one of the following conditions is met, it will create an event in PagerDuty:
+PagerDuty notification plugins can be added to jobs within Rundeck so alerts go to PagerDuty. When one of the following conditions is met, it will create an event in PagerDuty:
 
 - **On Start**: the job was started
 - **On Success**: the job completed successfully
@@ -15,7 +15,7 @@ PagerDuty notification plugins can be added to jobs within QW Control so alerts 
 The example photo above is for a notification following a job completing successfully. Select the PagerDuty plugin in a different section to have a different condition trigger the notification.
 
 - **Dedupe Key**: This is the incident key
-- **Integration Key**: In order to generate a new integration key, you need to add a new QW Control integration into the service you wish to get notifications for
+- **Integration Key**: In order to generate a new integration key, you need to add a new Rundeck integration into the service you wish to get notifications for
 - **Action**: The action can be trigger, acknowledge or resolve based on the status of the event
 - **Payload Severity**: Specify the severity
 - **Images**: Provide the list of image URLs to include, separated by a comma

@@ -23,7 +23,7 @@ This setting can be configured using _System Configuration_ using `oracle.user_i
 This setting can be configured using _System Configuration_ using `oracle.fingerprint` or project specific using `project.oracle.fingerprint`
 
 **Private Key Path**
-: The private key in the RSA key pair should be stored in the QW Control Key Storage. The RSA key pair is generated from OCI in PEM format (minimum 2048 bits).  This "path" is the path to the key in Key Storage.  Example: `keys/project/oracle-test/connection.pem`
+: The private key in the RSA key pair should be stored in the Rundeck Key Storage. The RSA key pair is generated from OCI in PEM format (minimum 2048 bits).  This "path" is the path to the key in Key Storage.  Example: `keys/project/oracle-test/connection.pem`
 
 **Region**
 : Specify the region for the node.  If using the OCI Node Source it's possible to use `${node.region}` and the region will be dynamically populated with the region for that node.

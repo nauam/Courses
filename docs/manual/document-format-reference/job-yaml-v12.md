@@ -4,11 +4,11 @@ Updated February 25, 2011
 
 # NAME
 
-job-yaml-v13 - The 'job' YAML file declares job entries for QW Control.
+job-yaml-v13 - The 'job' YAML file declares job entries for Rundeck.
 
 ## Loading and unloading
 
-QW Control job definitions can be dumped and saved to a file via
+Rundeck job definitions can be dumped and saved to a file via
 rd jobs list command:
 
 ```bash
@@ -21,7 +21,7 @@ This file can be batch loaded via [rd] jobs load command:
 rd jobs load -p project --file /path/to/jobs.yaml -F yaml
 ```
 
-[rd]: https://qwcontrol.github.io/qwcontrol-cli/
+[rd]: https://rundeck.github.io/rundeck-cli/
 
 ## Structure
 
@@ -58,7 +58,7 @@ Each Job definition requires these values:
     * `WARN`
     * `ERROR`
 
-If the description contains more than one line of text, then the first line is used as the "short description" of the job, and rendered exactly as text. The remaining lines are the "extended description", rendered using Markdown format as HTML in the QW Control GUI. Markdown can also embed HTML directly if you like. See [Wikipedia - Markdown](https://en.wikipedia.org/wiki/Markdown#Example).
+If the description contains more than one line of text, then the first line is used as the "short description" of the job, and rendered exactly as text. The remaining lines are the "extended description", rendered using Markdown format as HTML in the Rundeck GUI. Markdown can also embed HTML directly if you like. See [Wikipedia - Markdown](https://en.wikipedia.org/wiki/Markdown#Example).
 
 The HTML is sanitized to remove disallowed tags before rendering to the browser (such as `<script>`, etc.).
 You can disable all extended description HTML rendering
@@ -212,10 +212,10 @@ value of `failed`. Allowed values:
 
 _Note:_ The UUID can be set manually (if
 you are writing the job definition from scratch), or will be assigned at job
-creation time by the QW Control server using a random UUID. This string should be
+creation time by the Rundeck server using a random UUID. This string should be
 as unique as possible if you set it manually.
 
-This identifier is used to uniquely identify jobs when ported between QW Control
+This identifier is used to uniquely identify jobs when ported between Rundeck
 instances.
 
 ### Sequence
@@ -255,7 +255,7 @@ The sequence has these required entries:
 
 `strategy`
 
-: "node-first" or "step-first". Determines the strategy for executing the sequence across a set of nodes. See the [QW Control User Manual](/manual/04-jobs.md#workflow-control-settings) for more info.
+: "node-first" or "step-first". Determines the strategy for executing the sequence across a set of nodes. See the [Rundeck User Manual](/manual/04-jobs.md#workflow-control-settings) for more info.
 
 `commands`
 
@@ -407,7 +407,7 @@ If `interpreterArgsQuoted` is `true`, then the script will then be executed as:
 
 ### Job Reference Entry
 
-This [Command](#command) executes another QW Control Job.
+This [Command](#command) executes another Rundeck Job.
 
 `jobref`
 
@@ -786,7 +786,7 @@ Example:
     filter: 'tags: web name: web-.* !os-family: windows'
 ```
 
-**Note:** The `include` and `exclude` map entries are deprecated and will be removed in a later version of QW Control.
+**Note:** The `include` and `exclude` map entries are deprecated and will be removed in a later version of Rundeck.
 
 The `nodefilters` must also contain ONE of `include` or `exclude` filter specifiers.
 

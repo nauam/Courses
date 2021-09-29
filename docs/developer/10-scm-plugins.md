@@ -16,25 +16,25 @@ The two types can be combined or used separately.
 
 Each Project can enable a single `ScmImport` and/or `ScmExport` plugin.
 
-This is done in the SCM Configuration page in the QW Control GUI.
+This is done in the SCM Configuration page in the Rundeck GUI.
 
-Alternately, you can use the [QW Control API - SCM](/api/qwcontrol-api.md#scm).
+Alternately, you can use the [Rundeck API - SCM](/api/rundeck-api.md#scm).
 
 SCM Configuration for a project is _not_ stored in the `project.properties`
 configuration contents.
 
 ## Java Plugin Type
 
-- _Note_: Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for QW Control.
+- _Note_: Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for Rundeck.
 
-The plugin interface is [ScmExportPluginFactory]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/scm/ScmExportPluginFactory.html).
+The plugin interface is [ScmExportPluginFactory]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/scm/ScmExportPluginFactory.html).
 This factory type should produce a [ScmExportPlugin][] object.
 
-The plugin interface is [ScmImportPluginFactory]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/scm/ScmImportPluginFactory.html).
+The plugin interface is [ScmImportPluginFactory]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/scm/ScmImportPluginFactory.html).
 This factory type should produce a [ScmImportPlugin][] object.
 
-[scmexportplugin]: {{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/scm/ScmExportPlugin.html
-[scmimportplugin]: {{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/scm/ScmImportPlugin.html
+[scmexportplugin]: {{{javaDocBase}}}/com/dtolabs/rundeck/plugins/scm/ScmExportPlugin.html
+[scmimportplugin]: {{{javaDocBase}}}/com/dtolabs/rundeck/plugins/scm/ScmImportPlugin.html
 
 ## Localization
 
@@ -57,6 +57,6 @@ file using the following patterns:
 
 ## Example
 
-The Git Plugin bundled with qwcontrol provides an example.
+The Git Plugin bundled with rundeck provides an example.
 
-View: [Git Plugin Source](https://github.com/qwcontrol/qwcontrol/tree/master/plugins/git-plugin).
+View: [Git Plugin Source](https://github.com/rundeck/rundeck/tree/master/plugins/git-plugin).

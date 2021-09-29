@@ -2,7 +2,7 @@
 
 ## Installing from Source
 
-Checkout the sources from [GitHub](https://github.com/qwcontrol/qwcontrol)
+Checkout the sources from [GitHub](https://github.com/rundeck/rundeck)
 
 You can build either the executable war (self-running archive), or a RPM/Deb.
 
@@ -10,7 +10,7 @@ You can build either the executable war (self-running archive), or a RPM/Deb.
 
 Creates artifacts:
 
-- `qwcontrolapp/build/libs/qwcontrol-X.Y.war`
+- `rundeckapp/build/libs/rundeck-X.Y.war`
 
 Build the RPM (requires `rpm` command):
 
@@ -26,7 +26,7 @@ To build clean:
 
 ## Documentation
 
-The documentation is in a separate repo: <https://github.com/qwcontrol/docs>.
+The documentation is in a separate repo: <https://github.com/rundeck/docs>.
 
 Once you check out the documentation source, documentation can be built using: `make`.
 

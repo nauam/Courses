@@ -2,7 +2,7 @@
 
 ## Custom command and script execution with the script-plugin
 
-QW Control comes with a pre-installed plugin called `script-plugin` that includes two providers that may be useful to customize how to execute commands and script files on remote nodes.
+Rundeck comes with a pre-installed plugin called `script-plugin` that includes two providers that may be useful to customize how to execute commands and script files on remote nodes.
 
 The `script-plugin` includes these providers:
 
@@ -10,7 +10,7 @@ The `script-plugin` includes these providers:
 - `script-copy` for the FileCopier service
 
 This plugin provides the ability to specify an external script or command
-to perform a remote or local execution of a QW Control command, and remote or local file copies.
+to perform a remote or local execution of a Rundeck command, and remote or local file copies.
 
 It can be a replacement for the built-in SSH-based remote execution and SCP-based file-copy mechanism to
 allow you to user whatever external mechanism you wish.
@@ -83,7 +83,7 @@ For node-specific add an attribute named `script-exec-shell` to the node.
 The value of this property or attribute should be the complete commandline
 string to execute in an external system process.
 
-You can use _Data context properties_ as you can in normal QW Control command
+You can use _Data context properties_ as you can in normal Rundeck command
 execution, such as `${node.name}` or `${job.name}`.
 
 In addition, the plugin provides these new data context properties:
@@ -135,7 +135,7 @@ The command run by by the script plugin is expected to behave in the following m
 - Exit with a system exit code of "0" in case of success.
 - Any other exit code indicates failure
 
-Note: all output from STDOUT and STDERR will be captured as part of the QW Control job execution.
+Note: all output from STDOUT and STDERR will be captured as part of the Rundeck job execution.
 
 ### Configuring script-copy
 
@@ -220,7 +220,7 @@ what to specify for this property.
 The value of this property or attribute should be the complete commandline
 string to execute in an external system process.
 
-You can use _Data context properties_ as you can in normal QW Control command
+You can use _Data context properties_ as you can in normal Rundeck command
 execution, such as `${node.name}` or `${job.name}`.
 
 In addition, the plugin provides these new data context properties:
@@ -276,7 +276,7 @@ the target node where copied script files are to be placed.
 
 You can do this in _two_ ways, either as a configuration property as described here, or via output from your script, as described under [Requirements of script-copy command](#requirements-of-script-copy-command).
 
-You can use _Data context properties_ as you can in normal QW Control command
+You can use _Data context properties_ as you can in normal Rundeck command
 execution, such as `${node.name}` or `${job.name}`.
 
 In addition, the plugin provides these new data context properties:

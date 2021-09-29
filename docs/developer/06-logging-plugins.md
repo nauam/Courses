@@ -4,9 +4,9 @@
 
 A Logging provider stores or forwards execution log data.
 
-### About QW Control Logging
+### About Rundeck Logging
 
-When QW Control executes a Job or adhoc execution, it runs workflow steps across multiple nodes and channels all output from these steps into a log for the execution. This log contains the output from each step, as well as metadata about the context that the event occurred in, such as the node name, date stamp, and contextual data about the step being executed.
+When Rundeck executes a Job or adhoc execution, it runs workflow steps across multiple nodes and channels all output from these steps into a log for the execution. This log contains the output from each step, as well as metadata about the context that the event occurred in, such as the node name, date stamp, and contextual data about the step being executed.
 
 This logging system consists of these components:
 
@@ -14,19 +14,19 @@ This logging system consists of these components:
 - _Streaming Log Reader_ - One input for reading the log data
 
 When an execution starts, it writes log events to all outputs until it is done.
-When a user views the execution log in the QW Control GUI, or accesses it via the API, the input component is used to read the log events for the specific Execution.
+When a user views the execution log in the Rundeck GUI, or accesses it via the API, the input component is used to read the log events for the specific Execution.
 
-QW Control provides a built-in Reader and Writer, by writing the log output to a formatted file on disk, stored in the `var/logs` directory. This is the _Local File Log_.
+Rundeck provides a built-in Reader and Writer, by writing the log output to a formatted file on disk, stored in the `var/logs` directory. This is the _Local File Log_.
 
-In addition, in QW Control 2.0+, each execution generates a _state_ file, which contains information about how each step and node executed. This file is also stored on disk.
+In addition, in Rundeck 2.0+, each execution generates a _state_ file, which contains information about how each step and node executed. This file is also stored on disk.
 
-However local storage of log files is not always ideal, such as when deploying of QW Control in a cloud environment where local disk storage could be ephemeral, or when clustering multiple QW Control servers. In those cases, it would be useful to have a way to store the log file and state file somewhere else, and retrieve them when necessary.
+However local storage of log files is not always ideal, such as when deploying of Rundeck in a cloud environment where local disk storage could be ephemeral, or when clustering multiple Rundeck servers. In those cases, it would be useful to have a way to store the log file and state file somewhere else, and retrieve them when necessary.
 
-QW Control has another component:
+Rundeck has another component:
 
 - _Execution File Storage_ - A way of storing and retrieving file data in an external system
 
-QW Control has a plugin mechanism for all three of these components, allowing the logging system and file storage system to be adapted to different needs.
+Rundeck has a plugin mechanism for all three of these components, allowing the logging system and file storage system to be adapted to different needs.
 
 Log Events are written to all configured Writer plugins, as well as the **Local File Log** if not disabled:
 
@@ -46,13 +46,13 @@ Here are some examples of how it can be used:
 - duplicate all log output somewhere, in addition to using the **Local File Log**
 - Supplement the **Local File Log** with a secondary log file storage system, so that local files can be removed and restored as needed
 
-## Changes since QW Control 1.6
+## Changes since Rundeck 1.6
 
-In QW Control 1.6, there was an `LogFileStorage` service and plugin system. In QW Control 2.0+, this has been replaced by the `ExecutionFileStorage` service and plugin system.
+In Rundeck 1.6, there was an `LogFileStorage` service and plugin system. In Rundeck 2.0+, this has been replaced by the `ExecutionFileStorage` service and plugin system.
 
-Any plugins written for QW Control 1.6 will _not_ work in QW Control 2.0, and need to be updated to use the new mechanism.
+Any plugins written for Rundeck 1.6 will _not_ work in Rundeck 2.0, and need to be updated to use the new mechanism.
 
-## Changes in QW Control 2.6
+## Changes in Rundeck 2.6
 
 The `ExecutionFileStorage` behavior has been extended to allow use of two new optional interfaces:
 
@@ -67,9 +67,9 @@ Previous plugin implementations will work without modification.
 
 There are three types of plugins that can be created:
 
-- [StreamingLogWriter](#streaminglogwriter) - provides a stream-like mechanism for writing log events ([javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/StreamingLogWriter.html)).
-- [StreamingLogReader](#streaminglogreader) - provides a stream-like mechanism for reading log events ([javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/StreamingLogReader.html)).
-- [ExecutionFileStorage](#executionfilestorage) - provides a way to both store and retrieve entire log files and execution state files ([javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/ExecutionFileStorage.html)).
+- [StreamingLogWriter](#streaminglogwriter) - provides a stream-like mechanism for writing log events ([javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/StreamingLogWriter.html)).
+- [StreamingLogReader](#streaminglogreader) - provides a stream-like mechanism for reading log events ([javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/StreamingLogReader.html)).
+- [ExecutionFileStorage](#executionfilestorage) - provides a way to both store and retrieve entire log files and execution state files ([javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/ExecutionFileStorage.html)).
 
 ## Configuration
 
@@ -77,7 +77,7 @@ See the chapter [Plugins User Guide - Configuring - Logging](/administration/con
 
 ## Plugin Development
 
-QW Control supports two development modes for Logging plugins:
+Rundeck supports two development modes for Logging plugins:
 
 1. Java-based development deployed as a Jar file.
 2. Groovy-based deployed as a single `.groovy` script.
@@ -88,7 +88,7 @@ QW Control supports two development modes for Logging plugins:
 
 ### Java plugin type
 
-Java-based plugins can be developed just as any other QW Control plugin, as described in the chapter [Plugin Development - Java Plugin Development](/developer/01-plugin-development.md#java-plugin-development).
+Java-based plugins can be developed just as any other Rundeck plugin, as described in the chapter [Plugin Development - Java Plugin Development](/developer/01-plugin-development.md#java-plugin-development).
 
 Your plugin class should implement the appropriate Java interface as described in the section for that plugin:
 
@@ -104,11 +104,11 @@ The simplest way to do this is to use [Plugin Annotations - Plugin Properties](/
 
 For info about the Groovy plugin development method see the [Plugin Development - Groovy Plugin Development](/developer/01-plugin-development.md#groovy-plugin-development) chapter.
 
-Create a Groovy script, and define your plugin by calling the `qwcontrolPlugin` method, and pass it both the Class of the type of plugin, and a Closure used to build the plugin object.
+Create a Groovy script, and define your plugin by calling the `rundeckPlugin` method, and pass it both the Class of the type of plugin, and a Closure used to build the plugin object.
 
 ```java
-import com.dtolabs.qwcontrol.plugins.logging.StreamingLogWriterPlugin
-qwcontrolPlugin(StreamingLogWriterPlugin){
+import com.dtolabs.rundeck.plugins.logging.StreamingLogWriterPlugin
+rundeckPlugin(StreamingLogWriterPlugin){
     //plugin definition goes here...
 }
 ```
@@ -118,12 +118,12 @@ qwcontrolPlugin(StreamingLogWriterPlugin){
 See the source directory `examples/example-groovy-log-plugins` for
 examples of all three provider types written in Groovy.
 
-- On github: [example-groovy-log-plugins](https://github.com/qwcontrol/qwcontrol/tree/development/examples/example-groovy-log-plugins)
+- On github: [example-groovy-log-plugins](https://github.com/rundeck/rundeck/tree/development/examples/example-groovy-log-plugins)
 
 See the source directory `examples/example-java-logging-plugins` for
 Java examples.
 
-- On github: [example-java-logging-plugins](https://github.com/qwcontrol/qwcontrol/tree/development/examples/example-java-logging-plugins)
+- On github: [example-java-logging-plugins](https://github.com/rundeck/rundeck/tree/development/examples/example-java-logging-plugins)
 
 ## Execution Context Data
 
@@ -137,11 +137,11 @@ In addition, for ExecutionFileStorage plugins, another map entry named `filetype
 
 ## StreamingLogWriter
 
-The `StreamingLogWriter` ([javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/StreamingLogWriter.html)) system receives log events from an execution and writes them somewhere.
+The `StreamingLogWriter` ([javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/StreamingLogWriter.html)) system receives log events from an execution and writes them somewhere.
 
 ### Java StreamingLogWriter
 
-Create a Java class that implements the interface [StreamingLogWriterPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/logging/StreamingLogWriterPlugin.html):
+Create a Java class that implements the interface [StreamingLogWriterPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/logging/StreamingLogWriterPlugin.html):
 
 ```java
 /**
@@ -194,11 +194,11 @@ The plugin is used in this manner:
 
 ### Groovy StreamingLogWriter
 
-Create a groovy script that calls the `qwcontrolPlugin` method and passes the `StreamingLogWriterPlugin` as the type of plugin:
+Create a groovy script that calls the `rundeckPlugin` method and passes the `StreamingLogWriterPlugin` as the type of plugin:
 
 ```java
-import com.dtolabs.qwcontrol.plugins.logging.StreamingLogWriterPlugin
-qwcontrolPlugin(StreamingLogWriterPlugin){
+import com.dtolabs.rundeck.plugins.logging.StreamingLogWriterPlugin
+rundeckPlugin(StreamingLogWriterPlugin){
     //plugin definition
 }
 ```
@@ -260,13 +260,13 @@ The plugin is used in this manner:
 
 ## StreamingLogReader
 
-The `StreamingLogReader` system reads log events from somewhere for a specific execution and returns them in an iterator-like fashion. Readers must also support an "offset", allowing the event stream to resume from some index within the stream. These offset indices can be opaque to QW Control (they could correspond to bytes, or event number, it is up to the plugin). The plugin is expected to report an offset value when reading events, and be able to resume from a previously reported offset value.
+The `StreamingLogReader` system reads log events from somewhere for a specific execution and returns them in an iterator-like fashion. Readers must also support an "offset", allowing the event stream to resume from some index within the stream. These offset indices can be opaque to Rundeck (they could correspond to bytes, or event number, it is up to the plugin). The plugin is expected to report an offset value when reading events, and be able to resume from a previously reported offset value.
 
 Additionally, these plugins should be able to report a `totalSize` (in an opaque manner), and a `lastModified` timestamp, indicating the last log event timestamp that was received.
 
 ### Java StreamingLogReader
 
-Create a Java class that implements the interface [StreamingLogReaderPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/logging/StreamingLogReaderPlugin.html):
+Create a Java class that implements the interface [StreamingLogReaderPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/logging/StreamingLogReaderPlugin.html):
 
 ```java
 /**
@@ -286,7 +286,7 @@ public interface StreamingLogReaderPlugin extends StreamingLogReader {
 }
 ```
 
-This extends the interface [StreamingLogReader]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/StreamingLogReader.html):
+This extends the interface [StreamingLogReader]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/StreamingLogReader.html):
 
 ```java
 /**
@@ -358,19 +358,19 @@ The plugin is used in this manner:
 7. The `getOffset` method will be called to record the last offset read.
 8. Finally, `close` is called.
 
-QW Control uses this interface to read the log events to display in the GUI, or send out via its API. It uses the `offset`, as well as `lastModified`, to resume reading the log from a certain point, and to check whether there is more data since the last time it was read.
+Rundeck uses this interface to read the log events to display in the GUI, or send out via its API. It uses the `offset`, as well as `lastModified`, to resume reading the log from a certain point, and to check whether there is more data since the last time it was read.
 
-The implementation of the `isComplete` method is important, because it signals to QW Control that all log events for the stream have been read and no more are expected to be available. To be clear, this differs from the `java.util.Iterator#hasNext()` method, which returns true if any events are actually available. `isComplete` should return false until no more events will ever be available.
+The implementation of the `isComplete` method is important, because it signals to Rundeck that all log events for the stream have been read and no more are expected to be available. To be clear, this differs from the `java.util.Iterator#hasNext()` method, which returns true if any events are actually available. `isComplete` should return false until no more events will ever be available.
 
 If you are developing a `StreamingLogWriter` in conjunction with a `StreamingLogReader`, keep in mind that the writer's `close` method will be called to indicate the end of the stream, which would be reflected on the reader side by `isComplete` returning true.
 
 ### Groovy StreamingLogReader
 
-Create a groovy script that calls the `qwcontrolPlugin` method and passes the `StreamingLogReaderPlugin` as the type of plugin:
+Create a groovy script that calls the `rundeckPlugin` method and passes the `StreamingLogReaderPlugin` as the type of plugin:
 
 ```java
-import com.dtolabs.qwcontrol.plugins.logging.StreamingLogReaderPlugin
-qwcontrolPlugin(StreamingLogReaderPlugin){
+import com.dtolabs.rundeck.plugins.logging.StreamingLogReaderPlugin
+rundeckPlugin(StreamingLogReaderPlugin){
     //plugin definition
 }
 ```
@@ -475,36 +475,36 @@ The plugin is used in this manner:
 
 The `ExecutionFileStorage` system is asked to store and retrieve entire log files and state files for a specific execution.
 
-The Java interface for these plugins is [ExecutionFileStoragePlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/logging/ExecutionFileStoragePlugin.html).
+The Java interface for these plugins is [ExecutionFileStoragePlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/logging/ExecutionFileStoragePlugin.html).
 
 Additional optional interfaces provide extended behaviors that your plugin can adopt:
 
-- [ExecutionMultiFileStorage](#executionmultifilestorage) - adds a method to store all available files in one method call ([javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/ExecutionMultiFileStorage.html)).
-- [ExecutionFileStorageOptions](#executionfilestorageoptions) - define whether both retrieve and store are supported ([javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/ExecutionFileStorageOptions.html)).
+- [ExecutionMultiFileStorage](#executionmultifilestorage) - adds a method to store all available files in one method call ([javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/ExecutionMultiFileStorage.html)).
+- [ExecutionFileStorageOptions](#executionfilestorageoptions) - define whether both retrieve and store are supported ([javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/ExecutionFileStorageOptions.html)).
 
-Execution file storage allows QW Control to store the files elsewhere, in case local file storage is not suitable for long-term retention.
+Execution file storage allows Rundeck to store the files elsewhere, in case local file storage is not suitable for long-term retention.
 
-The ExecutionFileStorage service is used by two aspects of the QW Control server currently.
+The ExecutionFileStorage service is used by two aspects of the Rundeck server currently.
 
 1. Execution Log file - a data file containing all of the output for an execution
 2. Execution state files - a data file containing all of the workflow step and node state information for an execution
 
 ### Storage behavior
 
-If an ExecutionFileStoragePlugin is installed and configured to be enabled, and supports `store`, QW Control will use it in this way after an Execution completes:
+If an ExecutionFileStoragePlugin is installed and configured to be enabled, and supports `store`, Rundeck will use it in this way after an Execution completes:
 
-QW Control will place a _Storage Request_ in an asynchronous queue for that Execution to store the Log file and the State file.
+Rundeck will place a _Storage Request_ in an asynchronous queue for that Execution to store the Log file and the State file.
 
 When triggered, the _Storage Request_ will use the configured ExecutionFileStorage plugin and invoke `store`:
 
-- If it is unsuccessful, QW Control may re-queue the request to retry it after a delay (configurable)
+- If it is unsuccessful, Rundeck may re-queue the request to retry it after a delay (configurable)
 - The `store` method will be invoked for each file to store.
 - (Optional) if your plugin implements [ExecutionMultiFileStorage](#executionmultifilestorage), then only a single method `storeMultiple` will be called. This is useful if you want access to all files for an execution at once.
 - (Optional) you can delete the files saved on the storage calling the method `deleteFile`
 
 ### Retrieval behavior
 
-When a client requests a log stream to read via the **Local File Log**, or requests to read the **Execution Workflow State**, QW Control determines if the file(s) are available locally. If they are not available, it will start a _Retrieval Request_ asynchronously for each missing file, and tell the client that the file is in a "pending" state. (If an ExecutionFileStorage plugin is configured and it supports `retrieve`.
+When a client requests a log stream to read via the **Local File Log**, or requests to read the **Execution Workflow State**, Rundeck determines if the file(s) are available locally. If they are not available, it will start a _Retrieval Request_ asynchronously for each missing file, and tell the client that the file is in a "pending" state. (If an ExecutionFileStorage plugin is configured and it supports `retrieve`.
 If your plugin does not support `retrieve`, implement [ExecutionMultiFileStorage](#executionmultifilestorage) to
 declare available methods.)
 
@@ -527,7 +527,7 @@ If there is an error discovering availability, your plugin should throw an Excep
 
 This optional interface for you Java plugin indicates that `store` requests should all be made at once via the `storeMultiple` method.
 
-- [ExecutionMultiFileStorage javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/ExecutionMultiFileStorage.html)
+- [ExecutionMultiFileStorage javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/ExecutionMultiFileStorage.html)
 
 `storeMultiple` will be passed a [MultiFileStorageRequest][] allowing access to the available file data, and a callback method for
 your plugin to use to indicate the success/failure for storage of each file type. Your plugin must call `storageResultForFiletype(filetype, boolean)`
@@ -545,15 +545,15 @@ will be given access to a `execution.xml` filetype. This file is the XML seriali
 This optional interface allows your plugin to indicate whether both `store` and `retrieve` operations are available.
 The default if you do not implement this is that both operations are available.
 
-- [ExecutionFileStorageOptions javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/ExecutionFileStorageOptions.html)
+- [ExecutionFileStorageOptions javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/ExecutionFileStorageOptions.html)
 
 ### Java ExecutionFileStorage
 
-Create a Java class that implements the interface [ExecutionFileStoragePlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/logging/ExecutionFileStoragePlugin.html):
+Create a Java class that implements the interface [ExecutionFileStoragePlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/logging/ExecutionFileStoragePlugin.html):
 
 ```java
 /**
- * Plugin to implement {@link com.dtolabs.qwcontrol.core.logging.ExecutionFileStorage}
+ * Plugin to implement {@link com.dtolabs.rundeck.core.logging.ExecutionFileStorage}
  */
 public interface ExecutionFileStoragePlugin extends ExecutionFileStorage {
     /**
@@ -572,14 +572,14 @@ public interface ExecutionFileStoragePlugin extends ExecutionFileStorage {
      * @return true if a file with the given filetype is available
      * for the context
      *
-     * @throws com.dtolabs.qwcontrol.core.logging.ExecutionFileStorageException
+     * @throws com.dtolabs.rundeck.core.logging.ExecutionFileStorageException
      *          if there is an error determining the availability
      */
     public boolean isAvailable(String filetype) throws ExecutionFileStorageException;
 }
 ```
 
-This extends the interface [ExecutionFileStorage]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/ExecutionFileStorage.html):
+This extends the interface [ExecutionFileStorage]({{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/ExecutionFileStorage.html):
 
 ```java
 /**
@@ -626,7 +626,7 @@ public interface ExecutionFileStorage {
      * @return true if successful
      *
      * @throws IOException                                                    if an IO error occurs
-     * @throws com.dtolabs.qwcontrol.core.logging.ExecutionFileStorageException if other errors occur
+     * @throws com.dtolabs.rundeck.core.logging.ExecutionFileStorageException if other errors occur
      */
     default boolean partialRetrieve(String filetype, OutputStream stream)
             throws IOException, ExecutionFileStorageException
@@ -642,7 +642,7 @@ public interface ExecutionFileStorage {
      * @return true if successful
      *
      * @throws IOException                                                    if an IO error occurs
-     * @throws com.dtolabs.qwcontrol.core.logging.ExecutionFileStorageException if other errors occur
+     * @throws com.dtolabs.rundeck.core.logging.ExecutionFileStorageException if other errors occur
      */
     default boolean deleteFile(String filetype)
             throws IOException, ExecutionFileStorageException
@@ -677,11 +677,11 @@ When `delete` is needed:
 
 ### Groovy ExecutionFileStorage
 
-Create a groovy script that calls the `qwcontrolPlugin` method and passes the `ExecutionFileStoragePlugin` as the type of plugin:
+Create a groovy script that calls the `rundeckPlugin` method and passes the `ExecutionFileStoragePlugin` as the type of plugin:
 
 ```java
-import com.dtolabs.qwcontrol.plugins.logging.ExecutionFileStoragePlugin
-qwcontrolPlugin(ExecutionFileStoragePlugin){
+import com.dtolabs.rundeck.plugins.logging.ExecutionFileStoragePlugin
+rundeckPlugin(ExecutionFileStoragePlugin){
     //plugin definition
 }
 ```
@@ -711,7 +711,7 @@ store { String filetype, Map execution, Map configuration, InputStream source->
 `storeMultiple` is an alternative to `store`, see [ExecutionMultiFileStorage](#executionmultifilestorage).
 
 ```java
-import com.dtolabs.qwcontrol.plugins.logging.MultiFileStorageRequest
+import com.dtolabs.rundeck.plugins.logging.MultiFileStorageRequest
 ...
 /**
  * Called to store multiple files, called with a MultiFileStorageRequest, the execution data, and configuration properties
@@ -771,4 +771,4 @@ The plugin is used in this manner:
 3. Else if `store` is defined:
    - The `store` closure is called when a file needs to be stored, with the filetype, the [contextual data](#execution-context-data), configuration Map, and InputStream which will produce the log data. Additionally `length` and `lastModified` properties are in the closure binding, providing the file length, and last modification Date.
 
-[multifilestoragerequest]: {{{javaDocBase}}}/com/dtolabs/qwcontrol/core/logging/MultiFileStorageRequest.html
+[multifilestoragerequest]: {{{javaDocBase}}}/com/dtolabs/rundeck/core/logging/MultiFileStorageRequest.html

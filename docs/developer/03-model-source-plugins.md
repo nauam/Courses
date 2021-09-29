@@ -9,7 +9,7 @@ or a [Script Plugin Type](#script-plugin-type).
 ## Plugin configuration
 
 The `ResourceModelSource`
-[(javadoc)]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/resources/ResourceModelSource.html) service allows the plugins to be configured via the QW Control Web GUI. You are thus able to declare configuration properties for
+[(javadoc)]({{{javaDocBase}}}/com/dtolabs/rundeck/core/resources/ResourceModelSource.html) service allows the plugins to be configured via the Rundeck Web GUI. You are thus able to declare configuration properties for
 your plugin, which will be displayed as a web form when the Project is configured, or can be manually configured in the `project.properties` file.
 
 ## Java Plugin Type
@@ -20,7 +20,7 @@ re-used, so each time a new ResourceModelSource with a new configuration is requ
 your Factory class will be invoked to produce it.
 
 Your provider class must implement the interface
-[ResourceModelSourceFactory]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/resources/ResourceModelSourceFactory.html):
+[ResourceModelSourceFactory]({{{javaDocBase}}}/com/dtolabs/rundeck/core/resources/ResourceModelSourceFactory.html):
 
 ```java
 public interface ResourceModelSourceFactory {
@@ -40,7 +40,7 @@ to learn how to create configuration properties for your ResourceModelSource plu
 ## Script Plugin Type
 
 See the [Script Plugin Development](/developer/01-plugin-development.md#script-plugin-development)
-for the basics of developing script-based plugins for QW Control.
+for the basics of developing script-based plugins for Rundeck.
 
 ### Instance scope properties
 
@@ -59,7 +59,7 @@ Example: plugin.yaml
 ```yaml .numberLines
 name: My Resource Model Source
 version: 1.0
-qwcontrolPluginVersion: 1.0
+rundeckPluginVersion: 1.0
 author: alexh
 date: 05/10/12
 providers:

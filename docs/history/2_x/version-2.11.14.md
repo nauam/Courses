@@ -6,17 +6,17 @@ Name: <span style="color: chocolate"><span class="glyphicon bell"></span> "cappu
 
 ## Upgrading from Earlier versions
 
-* See the [Upgrading Guide](http://qwcontrol.org/docs/upgrading/index.html)
+* See the [Upgrading Guide](http://rundeck.org/docs/upgrading/index.html)
 
 ## Bug Fixes
 
-* Fix NPE when executing job references with required secure options [#5245](https://github.com/qwcontrol/qwcontrol/pull/5245)
+* Fix NPE when executing job references with required secure options [#5245](https://github.com/rundeck/rundeck/pull/5245)
 
 ## Issues
 
-[Milestone 2.11.14](https://github.com/qwcontrol/qwcontrol/milestone/120)
+[Milestone 2.11.14](https://github.com/rundeck/rundeck/milestone/120)
 
-* [Backport of #4107 for rd2](https://github.com/qwcontrol/qwcontrol/pull/5245)
+* [Backport of #4107 for rd2](https://github.com/rundeck/rundeck/pull/5245)
 
 ## Contributors
 

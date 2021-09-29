@@ -3,7 +3,7 @@
 :::
 
 ::: incubating
-Join us in the [QW Control Community Forums](https://community.pagerduty.com/forum/c/qwcontrol) to talk more about it.
+Join us in the [Rundeck Community Forums](https://community.pagerduty.com/forum/c/rundeck) to talk more about it.
 :::
 
 This plugin allows Jobs to export a JSON file as the result of an execution, which will be stored alongside the output log file.
@@ -20,11 +20,11 @@ There are currently two different Plugins that can be used to produce JSON data 
 ## Requirements
 
 ::: tip
-Enable the incubating feature by adding the following configuration to Configuration Management or `qwcontrol-config.properties`
+Enable the incubating feature by adding the following configuration to Configuration Management or `rundeck-config.properties`
 :::
 
 ```
-qwcontrol.feature.incubator.jobdata.enabled=true
+rundeck.feature.incubator.jobdata.enabled=true
 ```
 
 ## Plugin: Export Result Data
@@ -145,14 +145,14 @@ After execution, get the JSON data produced by either of the plugins by sending 
 
 Here is a sample job provided in our [Welcome Projects](/learning/howto/welcome-project-starter.md), that captures a set of values and uses the "JSON Template" plugin to export the JSON:
 
->Note: This requires installation of Fortune and the QW Control CLI.  Be sure to enable the feature prior to importing the job definition.
+>Note: This requires installation of Fortune and the Rundeck CLI.  Be sure to enable the feature prior to importing the job definition.
 
 ```yaml
 - defaultTab: nodes
   description: |-
     Returns some fun feedback as data output.
 
-    Requires QW Control CLI and Fortune to be installed.  Find the installation jobs under Demo/Configuration
+    Requires Rundeck CLI and Fortune to be installed.  Find the installation jobs under Demo/Configuration
   executionEnabled: true
   group: Demo
   loglevel: INFO

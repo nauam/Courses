@@ -1,12 +1,12 @@
 # SQLRunner Plugin (Enterprise)
 
-The SQLRunner plugin is a node step plugin included with QW Control Enterprise that executes a .sql script against a JDBC URL.
+The SQLRunner plugin is a node step plugin included with Rundeck Enterprise that executes a .sql script against a JDBC URL.
 
 ## Usage
 
 Add "SQLRunner Plugin" as a step in a workflow.
 
-Provider name: `org.qwcontrol.sqlrunner.SQLRunnerNodeStepPlugin`
+Provider name: `org.rundeck.sqlrunner.SQLRunnerNodeStepPlugin`
 
 ## Configuration
 
@@ -37,7 +37,7 @@ If you omit the type, it's going to be passed as generic object to the JDBC conn
     <scheduleEnabled>true</scheduleEnabled>
     <sequence keepgoing='false' strategy='node-first'>
       <command>
-        <node-step-plugin type='org.qwcontrol.sqlrunner.SQLRunnerNodeStepPlugin'>
+        <node-step-plugin type='org.rundeck.sqlrunner.SQLRunnerNodeStepPlugin'>
           <configuration>
             <entry key='commit' value='true' />
             <entry key='jdbcDriver' value='com.mysql.jdbc.Driver' />
@@ -72,14 +72,14 @@ If you omit the type, it's going to be passed as generic object to the JDBC conn
       <scheduleEnabled>true</scheduleEnabled>
       <sequence keepgoing="false" strategy="node-first">
          <command>
-            <node-step-plugin type="org.qwcontrol.sqlrunner.SQLRunnerNodeStepPlugin">
+            <node-step-plugin type="org.rundeck.sqlrunner.SQLRunnerNodeStepPlugin">
                <configuration>
                   <entry key="commit" value="true" />
                   <entry key="jdbcDriver" value="org.postgresql.Driver" />
-                  <entry key="jdbcUrl" value="jdbc:postgresql://wintermute/qwcontrol" />
-                  <entry key="password" value="qwcontrol" />
+                  <entry key="jdbcUrl" value="jdbc:postgresql://wintermute/rundeck" />
+                  <entry key="password" value="rundeck" />
                   <entry key="scriptBody" value="INSERT INTO test (id, version, args, date) VALUES(0, ?, ?, now());" />
-                  <entry key="user" value="qwcontrol" />
+                  <entry key="user" value="rundeck" />
                   <entry key="variables" value="int:0,string:${option.name}" />
                </configuration>
             </node-step-plugin>

@@ -49,7 +49,7 @@
 
 ## Notifications
 
-Notification plugins allow QW Control to communicate changes in job execution state and notify other users of successful or failed runs. For a general explanation on how job notifications work, see [Job Notifications](/manual/creating-jobs.md#job-notifications).
+Notification plugins allow Rundeck to communicate changes in job execution state and notify other users of successful or failed runs. For a general explanation on how job notifications work, see [Job Notifications](/manual/creating-jobs.md#job-notifications).
 
 - [Jira Notification Plugins (Enterprise)](/manual/notifications/jira.md)
 - [Jenkins Notification Plugin (Enterprise)](/manual/notifications/jenkins.md)
@@ -78,7 +78,7 @@ The Workflow Strategy determines how the steps are processed within a Job's Work
 
 ## Node Orchestrator
 
-Typically, QW Control processes nodes in the exact order that they are specified within a Job definition. An *Orchestrator Plugin* allows this run order to be modified by selecting a subset of nodes. This would be useful in order to limit concurrent executions during a deployment or gradually role out a new job to allow for testing.
+Typically, Rundeck processes nodes in the exact order that they are specified within a Job definition. An *Orchestrator Plugin* allows this run order to be modified by selecting a subset of nodes. This would be useful in order to limit concurrent executions during a deployment or gradually role out a new job to allow for testing.
 
 The Bundled plugins support random selection, ordering by ranked tier, or specifying a percentage of nodes to target. If more logic or specificity is required, the Enterprise edition supports the selection of a single node based upon the value of an attribute.
 
@@ -98,7 +98,7 @@ Log Filters can transform or aggregate output from one or more Workflow states.
 
 ## Content Converters
 
-Content Converters are not added directly to Jobs, but can be used by Log Filters and Step plugins to render log output as HTML or Markdown within the QW Control User Interface.
+Content Converters are not added directly to Jobs, but can be used by Log Filters and Step plugins to render log output as HTML or Markdown within the Rundeck User Interface.
 
 See [Content Converter Plugins](/manual/content-converters/index.md).
 

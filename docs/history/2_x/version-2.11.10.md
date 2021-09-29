@@ -6,7 +6,7 @@ Name: <span style="color: tomato"><span class="glyphicon glyphicon-lamp"></span>
 
 ## Upgrading from Earlier versions
 
-* See the [Upgrading Guide](http://qwcontrol.org/docs/upgrading/index.html)
+* See the [Upgrading Guide](http://rundeck.org/docs/upgrading/index.html)
 
 ## Notes
 
@@ -23,6 +23,6 @@ Bug fix
 
 ## Issues
 
-[Milestone 2.11.10](https://github.com/qwcontrol/qwcontrol/milestone/99)
+[Milestone 2.11.10](https://github.com/rundeck/rundeck/milestone/99)
 
-* [Fix #3443 ensure new builder used for workflow system](https://github.com/qwcontrol/qwcontrol/pull/4462)
+* [Fix #3443 ensure new builder used for workflow system](https://github.com/rundeck/rundeck/pull/4462)

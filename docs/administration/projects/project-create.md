@@ -4,7 +4,7 @@ A project can be created either from the graphical console or using the [rd] she
 
 ## Graphical Interface
 
-In the graphical console, you will notice a Project Picker in the top navigation bar.  This is the primary access to the different projects.  To see the full Project Menu click on _View All Projects_ or click the QW Control logo in the upper left of the screen.
+In the graphical console, you will notice a Project Picker in the top navigation bar.  This is the primary access to the different projects.  To see the full Project Menu click on _View All Projects_ or click the Rundeck logo in the upper left of the screen.
 
 ![Project Picker](~@assets/img/project-picker.png)
 
@@ -41,7 +41,7 @@ Description
 _Execution History Clean_
 
 When you enable Execution History Clean, you can control the frequency
-which QW Control removes your execution history.
+which Rundeck removes your execution history.
 
 _Execution Mode_
 
@@ -77,14 +77,14 @@ The File Copier is responsible for copying scripts as files to remote nodes befo
 
 _Create_
 
-After filling in the project create form, QW Control initializes it and returns
+After filling in the project create form, Rundeck initializes it and returns
 you to the default page (eg, "Jobs").
 
 Projects can be created at any time by going back to the Project menu
 and clicking on the "New Project" link in the navigation menu or by going to the home page and pressing the "New Project" button.
 
 The project setup process generates Project configuration in the server, and
-a local resource model containing information about the qwcontrol server node.
+a local resource model containing information about the rundeck server node.
 
 ## Automating
 
@@ -106,7 +106,7 @@ Here a project label and the default SSH key properties are declared as command 
 ```bash
 rd projects create -p MyProject -- \
    --project.label="My Project" \
-   --project.ssh-keypath=/home/qwcontrol/.ssh/id_rsa
+   --project.ssh-keypath=/home/rundeck/.ssh/id_rsa
 ```
 
 You can specify a resource model source by specifying keys as command line options, too.
@@ -115,18 +115,18 @@ Here a Directory model source is also defined.
 ```bash
 rd projects create -p MyProject -- \
   --project.label="My Project" \
-  --project.ssh-keypath=/home/qwcontrol/.ssh/id_rsa \
+  --project.ssh-keypath=/home/rundeck/.ssh/id_rsa \
   --resources.source.2.type=directory \
-  --resources.source.2.config.directory=/home/qwcontrol/projects/MyProject/resources.d
+  --resources.source.2.config.directory=/home/rundeck/projects/MyProject/resources.d
 ```
 
-[rd]: https://qwcontrol.github.io/qwcontrol-cli/
+[rd]: https://rundeck.github.io/rundeck-cli/
 
 ### API Usage
 
-Project creation can be achieved via the [API](/api/qwcontrol-api.md).
+Project creation can be achieved via the [API](/api/rundeck-api.md).
 
-[Create projects](/api/qwcontrol-api.md#project-creation):
+[Create projects](/api/rundeck-api.md#project-creation):
 
 ```
 POST /api/13/projects

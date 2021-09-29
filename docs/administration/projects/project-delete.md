@@ -15,8 +15,8 @@ rd projects delete -p MyProject --confirm
 
 ## API Usage
 
-Project deletion can be achieved via the [API](/api/qwcontrol-api.md).
+Project deletion can be achieved via the [API](/api/rundeck-api.md).
 
-[Delete projects](/api/qwcontrol-api.md#project-deletion):
+[Delete projects](/api/rundeck-api.md#project-deletion):
 
     DELETE /api/13/project/MyProject

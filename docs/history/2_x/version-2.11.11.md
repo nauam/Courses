@@ -6,7 +6,7 @@ Name: <span style="color: violet"><span class="glyphicon piggy-bank"></span> "ca
 
 ## Upgrading from Earlier versions
 
-* See the [Upgrading Guide](http://qwcontrol.org/docs/upgrading/index.html)
+* See the [Upgrading Guide](http://rundeck.org/docs/upgrading/index.html)
 
 ## Notes
 
@@ -25,8 +25,8 @@ backport fixes
 
 ## Issues
 
-[Milestone 2.11.11](https://github.com/qwcontrol/qwcontrol/milestone/110)
+[Milestone 2.11.11](https://github.com/rundeck/rundeck/milestone/110)
 
-* [\[2.11.x\] Update commons-fileupload dep to 1.3.3](https://github.com/qwcontrol/qwcontrol/pull/4941)
-* [Backport of Fixes flow control status handling](https://github.com/qwcontrol/qwcontrol/pull/4909)
-* [Log the enable/disable execution or scheduled of a Job](https://github.com/qwcontrol/qwcontrol/pull/4889)
+* [\[2.11.x\] Update commons-fileupload dep to 1.3.3](https://github.com/rundeck/rundeck/pull/4941)
+* [Backport of Fixes flow control status handling](https://github.com/rundeck/rundeck/pull/4909)
+* [Log the enable/disable execution or scheduled of a Job](https://github.com/rundeck/rundeck/pull/4889)

@@ -15,11 +15,11 @@ Notable Changes:
 
 Issues:
 
-* [maint-1.4.5: dispatch -s scriptfile is broken](https://github.com/dtolabs/qwcontrol/issues/266)
-* [maint-1.4.5: API: Now running execution project filter is not exact](https://github.com/dtolabs/qwcontrol/issues/265)
-* [Bulk delete of jobs via GUI](https://github.com/dtolabs/qwcontrol/issues/245)
-* [Node dispatch threadcount can be set to blank. export+import fails.](https://github.com/dtolabs/qwcontrol/issues/244)
-* [Allow group path in URL of jobs page to filter groups](https://github.com/dtolabs/qwcontrol/issues/243)
-* [History project filter is not exact](https://github.com/dtolabs/qwcontrol/issues/242)
-* [History views default to recentFilter=1d, should be all events](https://github.com/dtolabs/qwcontrol/issues/240)
-* [Now running and History views don't use Job view filter](https://github.com/dtolabs/qwcontrol/issues/239)
+* [maint-1.4.5: dispatch -s scriptfile is broken](https://github.com/dtolabs/rundeck/issues/266)
+* [maint-1.4.5: API: Now running execution project filter is not exact](https://github.com/dtolabs/rundeck/issues/265)
+* [Bulk delete of jobs via GUI](https://github.com/dtolabs/rundeck/issues/245)
+* [Node dispatch threadcount can be set to blank. export+import fails.](https://github.com/dtolabs/rundeck/issues/244)
+* [Allow group path in URL of jobs page to filter groups](https://github.com/dtolabs/rundeck/issues/243)
+* [History project filter is not exact](https://github.com/dtolabs/rundeck/issues/242)
+* [History views default to recentFilter=1d, should be all events](https://github.com/dtolabs/rundeck/issues/240)
+* [Now running and History views don't use Job view filter](https://github.com/dtolabs/rundeck/issues/239)

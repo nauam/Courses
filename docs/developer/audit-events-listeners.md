@@ -17,21 +17,21 @@ After installation, audit event plugins will be automatically loaded on startup 
 
 ## Service Configuration
 
-The following service configuration options are available at `qwcontrol-config.properties file:
+The following service configuration options are available at `rundeck-config.properties file:
 
-- `qwcontrol.audit.projectNotificationPeriod=1800` Defines the minimum period of seconds to wait between triggering repetitive events for a single project within the current session. Default 1800 (30 minutes)
-- `qwcontrol.audit.minCacheRetentionPeriod=1800` Defines the minimum period of seconds to keep session tracking data in cache. Default 1800 (30 minutes).
+- `rundeck.audit.projectNotificationPeriod=1800` Defines the minimum period of seconds to wait between triggering repetitive events for a single project within the current session. Default 1800 (30 minutes)
+- `rundeck.audit.minCacheRetentionPeriod=1800` Defines the minimum period of seconds to keep session tracking data in cache. Default 1800 (30 minutes).
 
 
 ## Java Plugin
 
 ::: tip
-Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for QW Control.
+Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for Rundeck.
 :::
 
 #### Implement the `AuditEventListenerPlugin` interface:
 
-* [AuditEventListenerPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/audit/AuditEventListenerPlugin.html)
+* [AuditEventListenerPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/core/audit/AuditEventListenerPlugin.html)
 
 Define your class with the `@Plugin` annotation, with a service name of `AuditEventListener`
 
@@ -113,7 +113,7 @@ public void init() {
 
 #### Capturing event info
 
-When an event is triggered, you will receive an event through the onEvent() method. The event object contains all the information related to the event. You can also access properties defined at the qwcontrol configuration file:
+When an event is triggered, you will receive an event through the onEvent() method. The event object contains all the information related to the event. You can also access properties defined at the rundeck configuration file:
 
 ```java
 

@@ -4,10 +4,10 @@ Updated November 20, 2010
 
 # NAME
 
-resource-v13 - describes the QW Control resource model document
+resource-v13 - describes the Rundeck resource model document
 
 The Resource Model XML document declares a resource model that can also be
-uploaded to a project hosted on the QW Control server. This document describes the
+uploaded to a project hosted on the Rundeck server. This document describes the
 format and necessary elements.
 
 # Elements

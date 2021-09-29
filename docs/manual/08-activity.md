@@ -1,6 +1,6 @@
 # Activity
 
-Execution history for commands and Jobs is stored by the QW Control server. Execution history can be filtered and viewed inside the "Activity" page.
+Execution history for commands and Jobs is stored by the Rundeck server. Execution history can be filtered and viewed inside the "Activity" page.
 
 ![Activity page](~@assets/img/fig0211.png)
 

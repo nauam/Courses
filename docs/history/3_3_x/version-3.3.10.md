@@ -2,8 +2,8 @@
 
 Name: <span style="color: skyblue"><span class="glyphicon glyphicon-paperclip"></span> "Onion ring skyblue paperclip"</span>
 
-- [Download QW Control](https://download.qwcontrol.com/)
-- [Sign up for Release Notes](https://www.qwcontrol.com/release-notes-signup)
+- [Download Rundeck](https://download.rundeck.com/)
+- [Sign up for Release Notes](https://www.rundeck.com/release-notes-signup)
 
 ## Overview
 This is a small release to address minor bugs and issues.  We are working some awesome new enhancements and a significant release around the end of March.
@@ -17,7 +17,7 @@ This is a small release to address minor bugs and issues.  We are working some a
 
 ## Core Product Updates
 
-* [Fix 1369: duplicate secure option doesn't work correctly](https://github.com/qwcontrol/qwcontrol/pull/6784)
+* [Fix 1369: duplicate secure option doesn't work correctly](https://github.com/rundeck/rundeck/pull/6784)
 
 
 ## Contributors
@@ -31,7 +31,7 @@ This is a small release to address minor bugs and issues.  We are working some a
 Released: March 1st, 2021
 
 :::danger Remember!!
-**For MySQL users**: Starting with QW Control `3.3.4` the MySQL JDBC driver is no longer be
-bundled with the distributions. See the [Upgrade Guide](/upgrading/upgrading-to-qwcontrol-3.3.4.md)
-for instructions to ensure your QW Control installation can still connect to MySQL after upgrading.
+**For MySQL users**: Starting with Rundeck `3.3.4` the MySQL JDBC driver is no longer be
+bundled with the distributions. See the [Upgrade Guide](/upgrading/upgrading-to-rundeck-3.3.4.md)
+for instructions to ensure your Rundeck installation can still connect to MySQL after upgrading.
 :::

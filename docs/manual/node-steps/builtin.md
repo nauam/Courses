@@ -100,7 +100,7 @@ Copy a file to a destination on a remote node.
 #### Configuration
 
 Source Path
-: Path on the qwcontrol server for the file or base directory (recursive/wildcard search).
+: Path on the rundeck server for the file or base directory (recursive/wildcard search).
 
 Destination Path
 : Path on the remote node for the file destination. If the path ends with a /, the same filename as the source will be used.

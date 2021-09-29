@@ -3,15 +3,15 @@
 :::enterprise
 :::
 
-QW Control Enterprise users have the ability to use this plugin to import their host list in Sensu by creating nodes matching all the hosts. This makes it easy to import nodes from Sensu.
+Rundeck Enterprise users have the ability to use this plugin to import their host list in Sensu by creating nodes matching all the hosts. This makes it easy to import nodes from Sensu.
 
 Before creating the job step, have the API key and URL for the account ready. To find them, see [here](https://docs.sensu.io/sensu-go/latest/api/apikeys/#create-a-new-api-key).
 
 ## Setup
 
-Before using the Sensu plugins, add the API key and URL to the framework settings To do this, add the API key to QW Control's key storage and specify the path and the URL value in the framework.
+Before using the Sensu plugins, add the API key and URL to the framework settings To do this, add the API key to Rundeck's key storage and specify the path and the URL value in the framework.
 
-1. In the top right-hand corner of QW Control, click on the gear icon and select "Key Storage."
+1. In the top right-hand corner of Rundeck, click on the gear icon and select "Key Storage."
 2. Select "Add or Upload a Key."
 3. For key type, select "Password."
 4. Where it says enter text, copy and paste the API key.

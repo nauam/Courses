@@ -26,8 +26,8 @@ Bug fix release.
 
 ## Issues
 
-[Milestone 3.0.11](https://github.com/qwcontrol/qwcontrol/milestone/94)
+[Milestone 3.0.11](https://github.com/rundeck/rundeck/milestone/94)
 
-* [H2 warnings UI and startup](https://github.com/qwcontrol/qwcontrol/pull/4333)
-* [job.schedule info on notification plugin context](https://github.com/qwcontrol/qwcontrol/pull/4311)
-* [Changing context variable names for step script ](https://github.com/qwcontrol/qwcontrol/pull/4303)
+* [H2 warnings UI and startup](https://github.com/rundeck/rundeck/pull/4333)
+* [job.schedule info on notification plugin context](https://github.com/rundeck/rundeck/pull/4311)
+* [Changing context variable names for step script ](https://github.com/rundeck/rundeck/pull/4303)

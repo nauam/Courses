@@ -2,12 +2,12 @@
 
 ## Logins
 
-QW Control supports a number of user directory configurations. By
+Rundeck supports a number of user directory configurations. By
 default, the installation uses a file based directory, but connectivity to
 LDAP is also available.
 See [Authentication](/administration/security/authentication.md).
 
-The QW Control installation process will have defined a set of temporary
+The Rundeck installation process will have defined a set of temporary
 logins useful during the getting started phase.
 
 - `user`: Has access to run commands and jobs but unable to modify job
@@ -17,12 +17,12 @@ logins useful during the getting started phase.
 
 ## Group membership
 
-If you installed QW Control using the RPM installation method, it will
-have created a unix group called "qwcontrol".
+If you installed Rundeck using the RPM installation method, it will
+have created a unix group called "rundeck".
 
 ```
-$ groups qwcontrol
-qwcontrol : qwcontrol
+$ groups rundeck
+rundeck : rundeck
 ```
 
 Consult the [usermod] command to modify a user account.

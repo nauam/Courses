@@ -33,14 +33,14 @@ There are several reasons to create a Step Plugin:
 
 Refer to the [Plugin Development - Java Plugins](/developer/01-plugin-development.md#java-plugin-development)
 section for information about correct
-definition of a [Plugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/plugins/Plugin.html) class, including packaging as a Jar and annotation.
+definition of a [Plugin]({{{javaDocBase}}}/com/dtolabs/rundeck/core/plugins/Plugin.html) class, including packaging as a Jar and annotation.
 
 Be sure to use the `@Plugin` annotation on your provider implementation class
-to let it be recognized by QW Control (See [Plugin Annotations](/developer/02-plugin-annotations.md)).
+to let it be recognized by Rundeck (See [Plugin Annotations](/developer/02-plugin-annotations.md)).
 
 Your `service` name should be one of the
 three listed below. The class
-[ServiceNameConstants]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/ServiceNameConstants.html) contains static definitions of all QW Control Service names.
+[ServiceNameConstants]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/ServiceNameConstants.html) contains static definitions of all Rundeck Service names.
 
 ## Workflow Step Types
 
@@ -61,7 +61,7 @@ to learn how to create configuration properties for your plugin using Java annot
 
 Annotate your class with `@Plugin` and use the service name `WorkflowStep`.
 
-Implement the interface [StepPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/step/StepPlugin.html):
+Implement the interface [StepPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/step/StepPlugin.html):
 
 ```java
 /**
@@ -76,13 +76,13 @@ public void executeStep(final PluginStepContext context, final Map<String, Objec
     throws StepException;
 ```
 
-Your implementation should throw a [StepException]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/workflow/steps/node/NodeStepException.html) if an error occurs.
+Your implementation should throw a [StepException]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/workflow/steps/node/NodeStepException.html) if an error occurs.
 
 ### WorkflowNodeStep Plugin
 
 Annotate your class with `@Plugin` and use the service name `WorkflowNodeStep`.
 
-Implement the interface [NodeStepPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/step/NodeStepPlugin.html):
+Implement the interface [NodeStepPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/step/NodeStepPlugin.html):
 
 ```java
 /**
@@ -100,18 +100,18 @@ public void executeNodeStep(final PluginStepContext context,
     throws NodeStepException;
 ```
 
-Your implementation should throw a [StepException]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/workflow/steps/node/NodeStepException.html) if an error occurs.
+Your implementation should throw a [StepException]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/workflow/steps/node/NodeStepException.html) if an error occurs.
 
 ### RemoteScriptNodeStep Plugin
 
 These are a specialized use-case of the Node Step
 plugin. They allow you to simply define a command or a script that should be
-executed on the remote nodes, and QW Control will handle the remote execution of the
+executed on the remote nodes, and Rundeck will handle the remote execution of the
 command/script via the appropriate services.
 
 Annotate your class with `@Plugin` and use the service name `RemoteScriptNodeStep`
 
-Implement the interface [RemoteScriptNodeStepPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/step/RemoteScriptNodeStepPlugin.html):
+Implement the interface [RemoteScriptNodeStepPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/step/RemoteScriptNodeStepPlugin.html):
 
 ```java
 /**
@@ -129,8 +129,8 @@ public GeneratedScript generateScript(final PluginStepContext context,
     throws NodeStepException;
 ```
 
-Your implementation should return a [GeneratedScript]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/step/GeneratedScript.html) object. You can make use of the
-[GeneratedScriptBuilder]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/step/GeneratedScriptBuilder.html) class to generate the appropriate return type using these
+Your implementation should return a [GeneratedScript]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/step/GeneratedScript.html) object. You can make use of the
+[GeneratedScriptBuilder]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/step/GeneratedScriptBuilder.html) class to generate the appropriate return type using these
 two factory methods:
 
 ```java
@@ -152,7 +152,7 @@ public static GeneratedScript command(final String... command);
 
 ### Step context information
 
-Each plugin is passed a [PluginStepContext]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/step/PluginStepContext.html) instance that provides access to
+Each plugin is passed a [PluginStepContext]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/step/PluginStepContext.html) instance that provides access to
 details about the step and its configuration:
 
 ```java
@@ -190,17 +190,17 @@ public interface PluginStepContext {
 See the source directory `examples/example-java-step-plugin` for
 examples of all three provider types.
 
-- On github: [example-java-step-plugin](https://github.com/qwcontrol/qwcontrol/tree/development/examples/example-java-step-plugin)
+- On github: [example-java-step-plugin](https://github.com/rundeck/rundeck/tree/development/examples/example-java-step-plugin)
 
 ## Script Plugin Type
 
 _Note:_ Currently these type of plugins can be implemented as script-based plugins:
 
-- Node Steps - the plugin will execute the script _locally_ on the QW Control server for each node
+- Node Steps - the plugin will execute the script _locally_ on the Rundeck server for each node
 - Remote Script Node Steps - the plugin will execute the script _remotely_ on each node
 
 See the [Script Plugin Development](/developer/01-plugin-development.md#script-plugin-development)
-for the basics of developing script-based plugins for QW Control.
+for the basics of developing script-based plugins for Rundeck.
 
 Use the service name for the plugin type:
 

@@ -27,8 +27,8 @@ Bug fixes.
 
 ## Issues
 
-* [SCM initialization can cause slow startup with many projects](https://github.com/qwcontrol/qwcontrol/issues/1721)
-* [java.lang.NullPointerException QW Control 2.6.3](https://github.com/qwcontrol/qwcontrol/issues/1717)
-* [After 2.6.3 upgrade, node page doesn't display nodes correctly.](https://github.com/qwcontrol/qwcontrol/issues/1716)
-* [After 2.6.3 upgrade, ACL that does not allow job create/delete always shows Bulk edit checkboxes](https://github.com/qwcontrol/qwcontrol/issues/1714)
-* [Error after Upgrade to 2.6.3: Failed loading resource model source, java.lang.IllegalStateException: Recursive load](https://github.com/qwcontrol/qwcontrol/issues/1713)
+* [SCM initialization can cause slow startup with many projects](https://github.com/rundeck/rundeck/issues/1721)
+* [java.lang.NullPointerException Rundeck 2.6.3](https://github.com/rundeck/rundeck/issues/1717)
+* [After 2.6.3 upgrade, node page doesn't display nodes correctly.](https://github.com/rundeck/rundeck/issues/1716)
+* [After 2.6.3 upgrade, ACL that does not allow job create/delete always shows Bulk edit checkboxes](https://github.com/rundeck/rundeck/issues/1714)
+* [Error after Upgrade to 2.6.3: Failed loading resource model source, java.lang.IllegalStateException: Recursive load](https://github.com/rundeck/rundeck/issues/1713)

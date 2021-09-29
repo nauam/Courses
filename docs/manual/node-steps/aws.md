@@ -6,7 +6,7 @@
 It is helpful to configure the AWS EC2 resource model plugin before using these steps: [AWS EC2 Resource Model](/administration/projects/resource-model-sources/aws.md)
 :::
 
-[Amazon's EC2](https://aws.amazon.com/ec2/) (Elastic Cloud Compute) is a cloud service in wide use for dynamic infrastructure; it is easy to start up and shut down Node "Instances" in the cloud.  Use these QW Control steps to automate common EC2 actions.
+[Amazon's EC2](https://aws.amazon.com/ec2/) (Elastic Cloud Compute) is a cloud service in wide use for dynamic infrastructure; it is easy to start up and shut down Node "Instances" in the cloud.  Use these Rundeck steps to automate common EC2 actions.
 
 **Access Key ID**
 : Specify your AWS Access key.

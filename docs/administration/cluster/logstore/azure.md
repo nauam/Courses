@@ -2,13 +2,13 @@
 
 The Azure Storage plugin uses Azure Storage to store execution log files, for backup or for a cluster environment behavior.
 
-The source code lives at [https://github.com/qwcontrol-plugins/qwcontrol-azure-plugin](https://github.com/qwcontrol-plugins/qwcontrol-azure-plugin).
+The source code lives at [https://github.com/rundeck-plugins/rundeck-azure-plugin](https://github.com/rundeck-plugins/rundeck-azure-plugin).
 
 ### Enable the plugin
 
-Enable the ExecutionFileStorage provider named azure-storage in your `qwcontrol-config.properties` file:
+Enable the ExecutionFileStorage provider named azure-storage in your `rundeck-config.properties` file:
 
-`qwcontrol.execution.logs.fileStoragePlugin=azure-storage`
+`rundeck.execution.logs.fileStoragePlugin=azure-storage`
 
 ### Configuration
 

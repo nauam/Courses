@@ -17,8 +17,8 @@ if (TAG) {
     maint = capture[3]
 
     env = {
-        QWCONTROL_VERSION: version,
-        QWCONTROL_VERSION_FULL: `${version}-${date}`
+        RUNDECK_VERSION: version,
+        RUNDECK_VERSION_FULL: `${version}-${date}`
     }
 
     console.log(version, date, maint)
@@ -48,7 +48,7 @@ if (version && !maint) {
 
 function build(env) {
     console.log('Building with env:', env)
-    CP.execSync('npm run docs:build', { stdio: "inherit", env: { ...process.env, ...env } })
+    CP.execSync('npm run docs:build', {stdio: "inherit", env: {...process.env, ...env}})
 }
 
 function syncS3(base) {
@@ -58,5 +58,5 @@ function syncS3(base) {
     }
 
     console.log('Syncing to s3 base:', base)
-    CP.execSync(`aws s3 sync --acl public-read docs/.vuepress/dist/ s3://docs.qwcontrol.com/${base}/`, { stdio: "inherit" })
+    CP.execSync(`aws s3 sync --acl public-read docs/.vuepress/dist/ s3://docs.rundeck.com/${base}/`, {stdio: "inherit"})
 }

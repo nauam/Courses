@@ -1,16 +1,16 @@
-# Developing a Custom QW Control Script Plugin
+# Developing a Custom Rundeck Script Plugin
 
 This tutorial covers:
 
-- The benefits of a custom QW Control script plugin
+- The benefits of a custom Rundeck script plugin
 - How to create a basic script plugin
-- How to deploy the necessary QW Control configuration to use it
+- How to deploy the necessary Rundeck configuration to use it
 
-The end result of this tutorial as well as a Docker environment to run it in can be found on [GitHub](https://github.com/clofresh/qwcontrol-playground).
+The end result of this tutorial as well as a Docker environment to run it in can be found on [GitHub](https://github.com/clofresh/rundeck-playground).
 
 ## Why create your own script plugin?
 
-QW Control Community is an open source runbook automation platform that comes with a lot of functionality out of the box, like running script commands on your nodes with a command step. If you can already run commands with the default functionality, why would you want to write a new plugin to do that?
+Rundeck Community is an open source runbook automation platform that comes with a lot of functionality out of the box, like running script commands on your nodes with a command step. If you can already run commands with the default functionality, why would you want to write a new plugin to do that?
 
 Several reasons:
 
@@ -28,13 +28,13 @@ Using a custom plugin encapsulates the script so that job writers across any pro
 
 Command line scripts can come with many parameters. When running them from command line, if you're lucky, you are able to get the help text from them. Some scripts may not have help on their parameters. When creating a custom script plugin, you can define, document and provide default values that make sense in the context of your organization for the parameters of your script. Conversely, you can also leave out parameters to a script that you don't want job authors to have access to.
 
-All the parameters defined in the plugin will show up in the QW Control job editing UI, providing the job authors with affordances to guide them in using the script.
+All the parameters defined in the plugin will show up in the Rundeck job editing UI, providing the job authors with affordances to guide them in using the script.
 
 ### Securely access secrets stored in Key Storage
 
 Many scripts require some type of secret to authorize the script to do its work so the job user needs to know the secret to use the script. This increases the risk of that secret getting exposed depending how secrets are shared in your organization.
 
-A more secure solution would be to authorize the job user to use the secret without having them know its value. Plugins can access secrets by referring to paths in the QW Control Key Storage. QW Control will evaluate the value of the secret into the execution without the job user ever knowing the value. This reduces the scope of who needs to know the secret to the QW Control administrator populating the Key Storage. It also lets the administrator rotate the secrets transparent to the job user.
+A more secure solution would be to authorize the job user to use the secret without having them know its value. Plugins can access secrets by referring to paths in the Rundeck Key Storage. Rundeck will evaluate the value of the secret into the execution without the job user ever knowing the value. This reduces the scope of who needs to know the secret to the Rundeck administrator populating the Key Storage. It also lets the administrator rotate the secrets transparent to the job user.
 
 ## How to create a simple workflow step script plugin
 
@@ -53,7 +53,7 @@ It prints the hostname it's called on and the first and second parameters passed
 
 ### Basic plugin structure
 
-A QW Control plugin is a zipped directory with the following structure:
+A Rundeck plugin is a zipped directory with the following structure:
 
 ```
 helloworld-plugin.zip
@@ -68,10 +68,10 @@ helloworld-plugin      -- root directory of zip contents, same name as zip file
 ```yaml
 name: Hello World
 version: 1
-qwcontrolPluginVersion: 1.2
+rundeckPluginVersion: 1.2
 author: Carlo Cabanilla
 date: 2018-07-20
-url: http://qwcontrol.org/
+url: http://rundeck.org/
 providers:
   - name: HelloBash
     service: RemoteScriptNodeStep
@@ -94,7 +94,7 @@ providers:
           valueConversion: "STORAGE_PATH_AUTOMATIC_READ"
 ```
 
-The significant section is the item in the `providers` array. It says we're creating a RemoteScriptNodeStep named HelloBash. A RemoteScriptNodeStep means the script will run on the remote nodes, as opposed to a WorkflowNodeStep, which runs on the QW Control server itself and receives the nodes as parameters.
+The significant section is the item in the `providers` array. It says we're creating a RemoteScriptNodeStep named HelloBash. A RemoteScriptNodeStep means the script will run on the remote nodes, as opposed to a WorkflowNodeStep, which runs on the Rundeck server itself and receives the nodes as parameters.
 
 #### Script invocation
 
@@ -104,9 +104,9 @@ The values for `script-interpreter`, `script-file`, and `script-args` are invoke
 /bin/bash helloworld.sh ${job.name}
 ```
 
-`helloworld.sh` only needs to be bundled in the plugin zip contents directory and QW Control takes care of copying it to the remote nodes that it runs on.
+`helloworld.sh` only needs to be bundled in the plugin zip contents directory and Rundeck takes care of copying it to the remote nodes that it runs on.
 
-The `script-args` value we pass to the script, `${job.name}` is one of many context variables that QW Control sets.
+The `script-args` value we pass to the script, `${job.name}` is one of many context variables that Rundeck sets.
 
 #### Script parameters
 
@@ -123,7 +123,7 @@ The `who_i_am` item describes a select box with predefined values of `machine` o
   default: machine
 ```
 
-The `secret_secret` item is a string value but the `valueConversion: "STORAGE_PATH_AUTOMATIC_READ"` tells QW Control to interpret that string as a path in Key Storage and pass the value of that key to the script. This is how we can securely reference secrets without exposing them to the job users.
+The `secret_secret` item is a string value but the `valueConversion: "STORAGE_PATH_AUTOMATIC_READ"` tells Rundeck to interpret that string as a path in Key Storage and pass the value of that key to the script. This is how we can securely reference secrets without exposing them to the job users.
 
 ```yaml
 - name: secret_secret
@@ -136,9 +136,9 @@ The `secret_secret` item is a string value but the `valueConversion: "STORAGE_PA
 
 ### Setting up the plugin environment
 
-How can we actually see this plugin in action? QW Control is designed for real world multi-node environments but we don't want the hassle of actually spinning one up, so we use Docker to simulate a multi-node environment right on our workstation.
+How can we actually see this plugin in action? Rundeck is designed for real world multi-node environments but we don't want the hassle of actually spinning one up, so we use Docker to simulate a multi-node environment right on our workstation.
 
-The environment setup can be downloaded at [https://github.com/clofresh/qwcontrol-playground](https://github.com/clofresh/qwcontrol-playground)
+The environment setup can be downloaded at [https://github.com/clofresh/rundeck-playground](https://github.com/clofresh/rundeck-playground)
 
 To build and start the Docker environment, run:
 
@@ -148,18 +148,18 @@ make compose
 
 This make command is specific to this tutorial. It will do several things:
 
-1. Zip the plugin source files into the proper zip structure and save it in the QW Control image's build directory
+1. Zip the plugin source files into the proper zip structure and save it in the Rundeck image's build directory
 2. Run Docker Compose to build all the images specified in `docker-compose.yml` and run containers from those images. Docker Compose will run the containers in the foreground, outputting all their logs to your terminal.
 
 The containers in our environment are:
 
-- qwcontrol: The QW Control server. The Dockerfile copies the zipped plugin into the image's `libext` directory where QW Control will watch for new plugins.
-- qwcontrol-cli: The QW Control command line client. This image doesn't run as a service but instead we invoke it from the command line to push configuration and invoke jobs on the QW Control server.
-- web_1 & web_2: Containers that simulate your application nodes. They run both an ssh daemon and a sample web app. These are the nodes that QW Control will execute our plugin on.
+- rundeck: The Rundeck server. The Dockerfile copies the zipped plugin into the image's `libext` directory where Rundeck will watch for new plugins.
+- rundeck-cli: The Rundeck command line client. This image doesn't run as a service but instead we invoke it from the command line to push configuration and invoke jobs on the Rundeck server.
+- web_1 & web_2: Containers that simulate your application nodes. They run both an ssh daemon and a sample web app. These are the nodes that Rundeck will execute our plugin on.
 
-### Pushing configuration to QW Control
+### Pushing configuration to Rundeck
 
-Once our Docker environment is up and the QW Control server is listening for requests, we can push a sample project and job that will use our plugin. We do that from a separate terminal than our `make compose` command:
+Once our Docker environment is up and the Rundeck server is listening for requests, we can push a sample project and job that will use our plugin. We do that from a separate terminal than our `make compose` command:
 
 ```bash
 make rd-config
@@ -167,9 +167,9 @@ make rd-config
 
 This will:
 
-- Check for changes in our plugin source files, and if so, copy a new plugin zip into the running QW Control container.
-- Push all the QW Control yaml config in `qwcontrol-project` to the running QW Control server.
-- Push the keys in `qwcontrol-project/key-storage` to the Key Storage.
+- Check for changes in our plugin source files, and if so, copy a new plugin zip into the running Rundeck container.
+- Push all the Rundeck yaml config in `rundeck-project` to the running Rundeck server.
+- Push the keys in `rundeck-project/key-storage` to the Key Storage.
 
 With this command, you can iterate on your plugin or job configuration without having to stop and start the Docker environment. Additionally, it will only push the config that has changed.
 
@@ -179,7 +179,7 @@ If you just want to run the job, you can skip ahead to _Running the Hello World 
 
 #### Nodes
 
-In order for QW Control to know which nodes exist in your environment and how to connect to them, we provide a resource source yaml file:
+In order for Rundeck to know which nodes exist in your environment and how to connect to them, we provide a resource source yaml file:
 
 ```yaml
 web_1:
@@ -197,8 +197,8 @@ To use the above defined resource source file, we set the following properties o
 
 ```properties
 project.ssh.user=root
-project.ssh-keypath=/home/qwcontrol/.ssh/qwcontrol-playground
-resources.source.1.config.file=/home/qwcontrol/nodes.yaml
+project.ssh-keypath=/home/rundeck/.ssh/rundeck-playground
+resources.source.1.config.file=/home/rundeck/nodes.yaml
 resources.source.1.config.generateFileAutomatically=false
 resources.source.1.config.includeServerNode=true
 resources.source.1.type=file
@@ -208,11 +208,11 @@ resources.source.1.type=file
 
 `resources.source.1.config.file` points to the `nodes.yaml` file we created previously.
 
-Both the ssh private key and the `nodes.yaml` file need to be deployed to the QW Control server and be readable by the qwcontrol user.
+Both the ssh private key and the `nodes.yaml` file need to be deployed to the Rundeck server and be readable by the rundeck user.
 
 #### Job
 
-To define our job, we create another yaml file, `qwcontrol-project/hello_test_job.yaml`:
+To define our job, we create another yaml file, `rundeck-project/hello_test_job.yaml`:
 
 ```yaml
 - name: Hello Test Job
@@ -235,7 +235,7 @@ Some values to note:
 
 ### Running the Hello World job
 
-Now that we've spun up a QW Control environment and defined a job that uses our plugin, we can run it using the `rd` command line client. If you had the `rd` client installed natively, it would be as simple as:
+Now that we've spun up a Rundeck environment and defined a job that uses our plugin, we can run it using the `rd` command line client. If you had the `rd` client installed natively, it would be as simple as:
 
 ```bash
 export RD_PROJECT=hello-project
@@ -245,7 +245,7 @@ rd run -f --job 'Hello Test Job'
 But since we're running `rd` from a Docker container, we need some extra commands to get it to run:
 
 ```bash
-alias rd='docker run --network qwcontrol-playground_default --mount type=bind,source="$(pwd)",target=/root -e RD_PROJECT=hello-project playground-qwcontrol-cli '
+alias rd='docker run --network rundeck-playground_default --mount type=bind,source="$(pwd)",target=/root -e RD_PROJECT=hello-project playground-rundeck-cli '
 
 rd run -f --job 'Hello Test Job'
 ```
@@ -263,10 +263,10 @@ Hello world from abee114adea5! Don't tell anyone that the secret is "I'm Kilroy!
 Hello world from 9964ad40468a! Don't tell anyone that the secret is "I'm Kilroy!"
 ```
 
-The script outputs the hostnames it's running on, which will most likely be different but similar to the above, as well as the secret "I'm Kilroy!". Remember that we passed in a Key Storage path value `keys/projects/hello-project/mysecret` for that parameter. To double check that that's the correct value, you can cat the value on disk that we pushed to the QW Control server:
+The script outputs the hostnames it's running on, which will most likely be different but similar to the above, as well as the secret "I'm Kilroy!". Remember that we passed in a Key Storage path value `keys/projects/hello-project/mysecret` for that parameter. To double check that that's the correct value, you can cat the value on disk that we pushed to the Rundeck server:
 
 ```bash
-cat qwcontrol-project/key-storage/keys/projects/hello-project/mysecret
+cat rundeck-project/key-storage/keys/projects/hello-project/mysecret
 I'm Kilroy!
 ```
 

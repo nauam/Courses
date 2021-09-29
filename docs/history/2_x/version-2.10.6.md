@@ -28,8 +28,8 @@ Bugfix release with one enhancement.
 
 ## Issues
 
-[Milestone 2.10.6](https://github.com/qwcontrol/qwcontrol/milestone/70)
+[Milestone 2.10.6](https://github.com/rundeck/rundeck/milestone/70)
 
-* [${config.*} plugin variables not resolving after upgrade to 2.1.1](https://github.com/qwcontrol/qwcontrol/issues/3112)
-* [Fix issue: stacktrace if missing input params to acl delete](https://github.com/qwcontrol/qwcontrol/pull/3099)
-* [Select job xml/yaml format based on selected file name in upload form](https://github.com/qwcontrol/qwcontrol/pull/3093)
+* [${config.*} plugin variables not resolving after upgrade to 2.1.1](https://github.com/rundeck/rundeck/issues/3112)
+* [Fix issue: stacktrace if missing input params to acl delete](https://github.com/rundeck/rundeck/pull/3099)
+* [Select job xml/yaml format based on selected file name in upload form](https://github.com/rundeck/rundeck/pull/3093)

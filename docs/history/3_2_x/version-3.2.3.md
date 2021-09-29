@@ -3,14 +3,14 @@
 Name: <span style="color: burlywood"><span class="glyphicon glyphicon-music"></span> "nacho burlywood music"</span>
 
 ## Upgrading
-See [Upgrading to QW Control 3.2](/upgrading/upgrading-to-qwcontrol-3.2.html).
+See [Upgrading to Rundeck 3.2](/upgrading/upgrading-to-rundeck-3.2.html).
 
 ## Issues
 
-[Milestone 3.2.3](https://github.com/qwcontrol/qwcontrol/milestone/135)
+[Milestone 3.2.3](https://github.com/rundeck/rundeck/milestone/135)
 
-* [Fix regression in plugin service causing plugin names to return prefixed with type](https://github.com/qwcontrol/qwcontrol/pull/5807)
-* [Global Log Filters (Unable to edit)](https://github.com/qwcontrol/qwcontrol/issues/5784)
+* [Fix regression in plugin service causing plugin names to return prefixed with type](https://github.com/rundeck/rundeck/pull/5807)
+* [Global Log Filters (Unable to edit)](https://github.com/rundeck/rundeck/issues/5784)
 
 ## Contributors
 

@@ -1,10 +1,10 @@
 # OpenSSH Node Execution Plugins
 
-This plugin provides a node-executor and file-copier using OpenSSH. Use this plugin if you want to access remote servers using SSH/SCP commands (as an alternative to the default SSH plugin of QW Control, which is a Java Plugin based on JSCH library).
+This plugin provides a node-executor and file-copier using OpenSSH. Use this plugin if you want to access remote servers using SSH/SCP commands (as an alternative to the default SSH plugin of Rundeck, which is a Java Plugin based on JSCH library).
 
 ## Requirements
 
-- Password Authentication and Passphrase need `sshpass` installed on the qwcontrol server.
+- Password Authentication and Passphrase need `sshpass` installed on the rundeck server.
 - For passing passphrase `sshpass` version 1.0.6+ is needed
 
 ## Dry run mode

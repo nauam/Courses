@@ -40,12 +40,12 @@ _Project scope property definition in `project.properties`_
 
 
 ::: tip
-Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for QW Control.
+Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for Rundeck.
 :::
 
 Implement the `ExecutionLifecyclePlugin` interface:
 
-* [ExecutionLifecyclePlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/jobs/ExecutionLifecyclePlugin.html)
+* [ExecutionLifecyclePlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/jobs/ExecutionLifecyclePlugin.html)
 
 Define your class with the `@Plugin` annotation, with a service name of `ExecutionLifecycle`
 
@@ -53,11 +53,11 @@ Define your class with the `@Plugin` annotation, with a service name of `Executi
 Your class can implement two optional methods: `beforeJobStarts` and `afterJobEnds`:
 
 ```java
-import com.dtolabs.qwcontrol.core.jobs.ExecutionLifecycleStatus;
-import com.dtolabs.qwcontrol.core.jobs.JobExecutionEvent;
-import com.dtolabs.qwcontrol.core.plugins.Plugin;
-import com.dtolabs.qwcontrol.plugins.ServiceNameConstants;
-import com.dtolabs.qwcontrol.plugins.jobs.ExecutionLifecyclePlugin;
+import com.dtolabs.rundeck.core.jobs.ExecutionLifecycleStatus;
+import com.dtolabs.rundeck.core.jobs.JobExecutionEvent;
+import com.dtolabs.rundeck.core.plugins.Plugin;
+import com.dtolabs.rundeck.plugins.ServiceNameConstants;
+import com.dtolabs.rundeck.plugins.jobs.ExecutionLifecyclePlugin;
 
 @Plugin(service = ServiceNameConstants.ExecutionLifecycle, name = "MyPlugin")
 class MyPlugin implements ExecutionLifecyclePlugin{
@@ -75,7 +75,7 @@ class MyPlugin implements ExecutionLifecyclePlugin{
 }
 ```
 
-The [JobExecutionEvent]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/jobs/JobExecutionEvent.html) type allows access to the ExecutionContext,
+The [JobExecutionEvent]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/jobs/JobExecutionEvent.html) type allows access to the ExecutionContext,
 and other information about the Job and Execution.
 
 To modify the ExecutionContext within the `beforeJobStarts` method, you should create a new StepExecutionContext object, by building from the original available from the JobExecutionEvent object, and returning the new context object within the ExecutionLifecycleStatus object.
@@ -94,7 +94,7 @@ Map<String, String> mapData = ...;
 newContext.getSharedDataContext().merge(ContextView.global(), DataContextUtils.context("myplugin", mapData));
 ```
 
-Your method should return a [ExecutionLifecycleStatus]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/jobs/ExecutionLifecycleStatus.html) object, which indicates
+Your method should return a [ExecutionLifecycleStatus]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/jobs/ExecutionLifecycleStatus.html) object, which indicates
 whether your plugin was successful or not, and can include new execution context data to use for the remaining execution.
 
 This example returns a new ExecutionLifecycleStatus with the newly constructed StepExecutionContext:
@@ -147,5 +147,5 @@ If `use*` is called, then any components retrieved that are "single-use" will al
 
 ## Example Code
 
-A full example is available on Github: <https://github.com/qwcontrol/qwcontrol/tree/master/examples/example-java-execution-lifecyle-plugin>
+A full example is available on Github: <https://github.com/rundeck/rundeck/tree/master/examples/example-java-execution-lifecyle-plugin>
 

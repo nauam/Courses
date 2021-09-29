@@ -1,14 +1,14 @@
-# QW Control PagerDuty Notification Plugin
+# Rundeck PagerDuty Notification Plugin
 
-QW Control integrates with PagerDuty’s incident management platform, which provides notifications, automatic escalations, on-call scheduling, and other functionality to help teams detect and fix problems quickly.
+Rundeck integrates with PagerDuty’s incident management platform, which provides notifications, automatic escalations, on-call scheduling, and other functionality to help teams detect and fix problems quickly.
 
-In this guide we will show you how to trigger an event in PagerDuty after executing a job in QW Control. This functionality is available in both QW Control Community and Enterprise.   
+In this guide we will show you how to trigger an event in PagerDuty after executing a job in Rundeck. This functionality is available in both Rundeck Community and Enterprise.   
 
 :::tip
-Note, there are many more [PagerDuty plugins](https://docs.qwcontrol.com/docs/manual/webhooks/pagerduty-run-job.html.) available for QW Control Enterprise users
+Note, there are many more [PagerDuty plugins](https://docs.rundeck.com/docs/manual/webhooks/pagerduty-run-job.html.) available for Rundeck Enterprise users
 :::
 
-QW Control Notifications are actions triggered based on the result of a Job that was executed.  There are five conditions that can trigger QW Control notifications, those conditions are:
+Rundeck Notifications are actions triggered based on the result of a Job that was executed.  There are five conditions that can trigger Rundeck notifications, those conditions are:
 
 - `onstart` - Triggers an action when the Job **started**
 - `onsuccess` - Triggers an action when the Job **completed without any errors**
@@ -16,7 +16,7 @@ QW Control Notifications are actions triggered based on the result of a Job that
 - `onavgduration` - Triggers an action when the execution **exceeds the average duration of the Job.**
 - `onretryablefailure` - Triggers an action when the Job **failed after a retry.**
 
-The [QW Control PagerDuty Notification Plugin](https://github.com/qwcontrol-plugins/pagerduty-notification) lets you send trigger events to your PagerDuty service. This plugin is available for the Community version and bundled with the Enterprise version of QW Control.
+The [Rundeck PagerDuty Notification Plugin](https://github.com/rundeck-plugins/pagerduty-notification) lets you send trigger events to your PagerDuty service. This plugin is available for the Community version and bundled with the Enterprise version of Rundeck.
 
 
 ## Installing the plugin
@@ -28,7 +28,7 @@ The [QW Control PagerDuty Notification Plugin](https://github.com/qwcontrol-plug
 1. On the Plugin Repository search, type "pagerduty" and enter.
 1. On the PagerDuty Notification block press the "Install" button.
     <br><br>![alt_text](@assets/img/howto-pdnotif-installplugin.png)<br><br>
-4. After a few seconds the plugins are installed on your QW Control Instance.
+4. After a few seconds the plugins are installed on your Rundeck Instance.
 
 :::
 ::: tab Enterprise Install
@@ -41,7 +41,7 @@ The PagerDuty Notification plugin is bundled with Enterprise builds.  No need to
 ## Configuring PagerDuty
 >(Same Steps for Community and Enterprise)
 
-A fundamental requirement is the PagerDuty integration key, which connects the QW Control integration with a PagerDuty Service. To locate and copy it follow these steps:
+A fundamental requirement is the PagerDuty integration key, which connects the Rundeck integration with a PagerDuty Service. To locate and copy it follow these steps:
 
 1. Log in to PagerDuty.
 1. Go to the Services menu click the button to create a New Service.
@@ -50,25 +50,25 @@ A fundamental requirement is the PagerDuty integration key, which connects the Q
 1. When the Service is created you’ll be shown the Integrations tab. Inside that tab copy the value for the Integration Key and save it for later on in your setup.
     <br><br>![Integration Key](@assets/img/howto-pdnotif-integrationkey.png)<br><br>
 
-## Configuring the QW Control PagerDuty Notification
+## Configuring the Rundeck PagerDuty Notification
 
-These steps will configure the Notification plugin globally (across all QW Control projects). There are options to configure the plugin per project covered in the [main documentation](https://github.com/qwcontrol-plugins/pagerduty-notification#configuration).
+These steps will configure the Notification plugin globally (across all Rundeck projects). There are options to configure the plugin per project covered in the [main documentation](https://github.com/rundeck-plugins/pagerduty-notification#configuration).
 
 :::: tabs
 ::: tab Community Steps
 
-1. Stop the QW Control service: `systemctl stop qwcontrold`.
-1. With any text editor open the `framework.properties` file (located at `/etc/qwcontrol` path).
+1. Stop the Rundeck service: `systemctl stop rundeckd`.
+1. With any text editor open the `framework.properties` file (located at `/etc/rundeck` path).
 1. Add the following line to the `framework.properties` file (replace “your-service-key” with the PagerDuty service key you copied earlier):
 ```
 framework.plugin.Notification.PagerDutyNotification.service_key=your-service-key
 ```
 1. Save the file.
-1. Start the QW Control service: `systemctl start qwcontrold.`
+1. Start the Rundeck service: `systemctl start rundeckd.`
 :::
 ::: tab Enterprise Steps
 
-QW Control Enterprise includes a Configuration Management module to set configuration settings via the GUI and store them in the QW Control database. Database storage shares configuration options with all your cluster members and centralizes configuration.
+Rundeck Enterprise includes a Configuration Management module to set configuration settings via the GUI and store them in the Rundeck database. Database storage shares configuration options with all your cluster members and centralizes configuration.
 
 1. Click on the **System Menu > System Configuration**.
     <br><br>![System Configuration](@assets/img/howto-pdnotif-systemconf.png)<br><br>
@@ -79,7 +79,7 @@ QW Control Enterprise includes a Configuration Management module to set configur
 4. Press the **Save** button in the top right to save the Config changes.
     <br><br>![Save Configuration](@assets/img/howto-pdnotif-saveconf.png)<br><br>
 
-Now, QW Control Enterprise is configured to use PagerDuty notifications, no restart is required.
+Now, Rundeck Enterprise is configured to use PagerDuty notifications, no restart is required.
 :::
 ::::
 

@@ -2,14 +2,14 @@
 
 <!---
 Original:
-http://support.qwcontrol.com/customer/en/portal/articles/1939728-powershell-plugins)
+http://support.rundeck.com/customer/en/portal/articles/1939728-powershell-plugins)
 --->
 
-These plugins are only applicable to QW Control Enterprise deployments on Windows Servers.
+These plugins are only applicable to Rundeck Enterprise deployments on Windows Servers.
 
 There are two plugins:
 
-- **File Copier**: Copies files to the remote node for execution by the Node Executor. This plugin would be used to execute any Script steps in your workflows, or to copy your own files stored on the QW Control Enterprise host.
+- **File Copier**: Copies files to the remote node for execution by the Node Executor. This plugin would be used to execute any Script steps in your workflows, or to copy your own files stored on the Rundeck Enterprise host.
 - **Node Executor**: Executes the command and script steps.
 
 The plugins can be enabled in the Project Configuration page by selecting the PowerShell Node Executor and PowerShell File Copier as the default Node Executor and File Copiers.
@@ -20,7 +20,7 @@ Authentication can happen in two ways, via trusted domain account or by username
 
 ### Hosts in Trusted Domain
 
-When all hosts are in a trusted domain, remote execution requires just the username to access the remote hosts. Authentication will be made to the remote nodes as the domain user account that is executing the QW Control server process.
+When all hosts are in a trusted domain, remote execution requires just the username to access the remote hosts. Authentication will be made to the remote nodes as the domain user account that is executing the Rundeck server process.
 
 ### Username and Password
 
@@ -38,7 +38,7 @@ You can either configure the password or password storage path at a project-wide
 
 ### Password Storage
 
-Passwords can be stored securely in the QW Control Enterprise Keystore facility. These passwords can be stored in a tree like structure to help you organize them any way you wish. The passwords can be referenced using an attribute named "password-storage-path". When QW Control needs the password, it looks up the file as referenced by the storage path, reads, decrypts, and passes the value to the plugins.
+Passwords can be stored securely in the Rundeck Enterprise Keystore facility. These passwords can be stored in a tree like structure to help you organize them any way you wish. The passwords can be referenced using an attribute named "password-storage-path". When Rundeck needs the password, it looks up the file as referenced by the storage path, reads, decrypts, and passes the value to the plugins.
 
 ## Node Configuration
 
@@ -46,7 +46,7 @@ Each host is configurable via "nodes" in the project resource model. Nodes are d
 
 Attributes
 
-- hostname: The hostname of the remote node accessible to the QW Control server host.
+- hostname: The hostname of the remote node accessible to the Rundeck server host.
 - username: The login account name to the remote host.
 - password-storage-path: The path to the file containing the password in the keystore. This path will start with "keys/".
 - connectionUri: Alternate connection parameters as a URI. e.g. "https://hostname:port"
@@ -80,9 +80,9 @@ keys/users/${job.username}.password
 
 ## WinRM Setting to use PowerShell Plugin
 
-In order to connect QW Control with remote Windows nodes, it is necessary to set WinRM in both, the server and the remote nodes. 
+In order to connect Rundeck with remote Windows nodes, it is necessary to set WinRM in both, the server and the remote nodes. 
 
-### On the qwcontrol server
+### On the rundeck server
 
 ```
 winrm quickconfig
@@ -120,7 +120,7 @@ set-item wsman:\localhost\shell\maxshellsperuser 50
 
 ## Enable CredSSP Authentication On Windows Domain
 
-### On the QW Control server
+### On the Rundeck server
 
 #### Enable CredSSP
 
@@ -138,7 +138,7 @@ or
 Enable-WSManCredSSP -Role "Client" -DelegateComputer "*"
 ```
 
-To enable unencrypted access for the purpose of establishing a connection, run this command on both the QW Control server and the remote nodes:
+To enable unencrypted access for the purpose of establishing a connection, run this command on both the Rundeck server and the remote nodes:
 
 ```
 winrm/config/service @{AllowUnencrypted="true"}
@@ -192,7 +192,7 @@ To enable the CredSSP:
 winrm set winrm/config/service/auth @{CredSSP="true"}
 ```
 
-To enable unencrypted access for the purpose of establishing a connection, run this command on the QW Control server and the remote nodes:
+To enable unencrypted access for the purpose of establishing a connection, run this command on the Rundeck server and the remote nodes:
 
 ```
 winrm/config/service @{AllowUnencrypted="true"}
@@ -226,7 +226,7 @@ Then, you can define the authentication type like:
       osFamily="windows"
       osName="Windows Server 2012"
       osVersion="6.3"
-      username="qwcontroluser@Domain.Local" password-storage-path="keys/xxxxx"
+      username="rundeckuser@Domain.Local" password-storage-path="keys/xxxxx"
       ps-authentication-type="CredSSP" />
 ```
 

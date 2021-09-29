@@ -1,7 +1,7 @@
 # MySQL Migration Guide
 
-Use this guide to migrate a set of QW Control projects from the built-in H2 database, to use MySQL.  
-The instructions assume QW Control and MySQL are running on Linux/Unix server.
+Use this guide to migrate a set of Rundeck projects from the built-in H2 database, to use MySQL.  
+The instructions assume Rundeck and MySQL are running on Linux/Unix server.
 
 ## Project Export All Projects
 
@@ -19,23 +19,23 @@ For each project that needs to be migrated export the archive via the GUI:
 Save each project archive file (named "[project name]-XXXX.rdproject.jar")
 in a safe place.  They will be needed in a future step.
 
-## Backup QW Control Data
+## Backup Rundeck Data
 
 - Make a backup of the H2 database to use in case of error,
-  - RPM/Debian install location: `/var/lib/qwcontrol/data`
+  - RPM/Debian install location: `/var/lib/rundeck/data`
   - Launcher location: `$RDECK_BASE/server/data`
 
 Older versions may also backup file based project definitions.
 
 - Make a backup of all Projects
-  - RPM/Debian install location: `/var/qwcontrol/projects`
+  - RPM/Debian install location: `/var/rundeck/projects`
   - Launcher location: `$RDECK_BASE/projects`
 
-## Stop QW Control
+## Stop Rundeck
 
 Linux/Unix:
 
-    sudo service qwcontrold stop
+    sudo service rundeckd stop
 
 ## Setup MySQL
 
@@ -49,15 +49,15 @@ Perform this command to log in as root:
 
 Then execute this sql:
 
-    > create database qwcontrol
-    > grant ALL on qwcontrol.* to 'qwcontroluser'@'localhost' identified by 'qwcontrolpassword'
+    > create database rundeck
+    > grant ALL on rundeck.* to 'rundeckuser'@'localhost' identified by 'rundeckpassword'
 
-## Configure qwcontrol-config.properties
+## Configure rundeck-config.properties
 
 Set the datasource URL to point to the Mysql host, with appropriate database name,
 username and password.
 
-See [Configuring QW Control](/administration/configuration/database/mysql.html#configuringqwcontrol) for details.
+See [Configuring Rundeck](/administration/configuration/database/mysql.html#configuring-rundeck) for details.
 
 ## Configure Project Config in DB
 
@@ -69,15 +69,15 @@ For more info refer to:
 - [Configuring Plugins - Bundled Plugins - Jasypt Encryption Plugin](/administration/configuration/plugins/bundled-plugins.md#jasypt-encryption-plugin)
 - [Storage Facility](/administration/configuration/storage-facility.md)
 
-## Start QW Control
+## Start Rundeck
 
-Start the QW Control server again.
+Start the Rundeck server again.
 
 Linux/Unix:
 
-    sudo service qwcontrold start
+    sudo service rundeckd start
 
-View the "/var/log/qwcontrol/service.log" file for any error messages.
+View the "/var/log/rundeck/service.log" file for any error messages.
 
 - Project definitions/configs will be imported to DB automatically
 - Resources.xml remain in the same location

@@ -34,8 +34,8 @@ Bug fixes
 
 ## Issues
 
-[Milestone 2.11.3](https://github.com/qwcontrol/qwcontrol/milestone/77)
+[Milestone 2.11.3](https://github.com/rundeck/rundeck/milestone/77)
 
-* [Documentation: fixed list not being correctly rendered](https://github.com/qwcontrol/qwcontrol/pull/3386)
-* [i18n Fix: default messages and 'by.you'](https://github.com/qwcontrol/qwcontrol/pull/3385)
-* [i18n Update: node filter help](https://github.com/qwcontrol/qwcontrol/pull/3383)
+* [Documentation: fixed list not being correctly rendered](https://github.com/rundeck/rundeck/pull/3386)
+* [i18n Fix: default messages and 'by.you'](https://github.com/rundeck/rundeck/pull/3385)
+* [i18n Update: node filter help](https://github.com/rundeck/rundeck/pull/3383)

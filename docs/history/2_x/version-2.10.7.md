@@ -23,7 +23,7 @@ Some bugfixes, and some improvements to Git SCM plugin:
 * Import: automatic Tracking init during Setup, if you use a regular expression
 	* API improvement: does not require a second step after setup to initialize Git Import
 * Export: Push Remotely is checked by default when making commits
-* (see full details [#PR3152](https://github.com/qwcontrol/qwcontrol/pull/3152))
+* (see full details [#PR3152](https://github.com/rundeck/rundeck/pull/3152))
 
 ## Contributors
 
@@ -40,9 +40,9 @@ Some bugfixes, and some improvements to Git SCM plugin:
 
 ## Issues
 
-[Milestone 2.10.7](https://github.com/qwcontrol/qwcontrol/milestone/71)
+[Milestone 2.10.7](https://github.com/rundeck/rundeck/milestone/71)
 
-* [SCM usability enhancement](https://github.com/qwcontrol/qwcontrol/pull/3152)
-* [PUT Project Configuration API endpoint fails w/ text/plain input](https://github.com/qwcontrol/qwcontrol/issues/3127)
-* [Documentation: add job.executionType to context variables documentation](https://github.com/qwcontrol/qwcontrol/issues/1811)
-* [Profile firstName does not accepts accents](https://github.com/qwcontrol/qwcontrol/issues/1581)
+* [SCM usability enhancement](https://github.com/rundeck/rundeck/pull/3152)
+* [PUT Project Configuration API endpoint fails w/ text/plain input](https://github.com/rundeck/rundeck/issues/3127)
+* [Documentation: add job.executionType to context variables documentation](https://github.com/rundeck/rundeck/issues/1811)
+* [Profile firstName does not accepts accents](https://github.com/rundeck/rundeck/issues/1581)

@@ -23,8 +23,8 @@ This rescue release addresses shadowed imports due to import optimization.
 
 ## Issues
 
-[Milestone 3.0.5](https://github.com/qwcontrol/qwcontrol/milestone/85)
+[Milestone 3.0.5](https://github.com/rundeck/rundeck/milestone/85)
 
-* [No such property: FrameworkProject for class: qwcontrol.controllers.FrameworkController](https://github.com/qwcontrol/qwcontrol/issues/3938)
-* [Add spec unit test for saveProjectNodeSources](https://github.com/qwcontrol/qwcontrol/pull/3933)
-* [Revert "cleanup: optimize imports"](https://github.com/qwcontrol/qwcontrol/pull/3931)
+* [No such property: FrameworkProject for class: rundeck.controllers.FrameworkController](https://github.com/rundeck/rundeck/issues/3938)
+* [Add spec unit test for saveProjectNodeSources](https://github.com/rundeck/rundeck/pull/3933)
+* [Revert "cleanup: optimize imports"](https://github.com/rundeck/rundeck/pull/3931)

@@ -2,7 +2,7 @@
 ::: enterprise
 :::
 
-The VMWare resource model plugin gets the VMs from a VSphere ESXi server or VCenter Server as QW Control Nodes.
+The VMWare resource model plugin gets the VMs from a VSphere ESXi server or VCenter Server as Rundeck Nodes.
 
 ### Configuration Options:
 
@@ -24,7 +24,7 @@ Also, the default values can be used per `osFamily` value, for example: `usernam
 Example of a custom mapping:
 
 ```
-username.default=qwcontrol
+username.default=rundeck
 username.windows.default=Administrator
 username.linux.default=root
 node-executor.windows.default=WinRMPython
@@ -51,7 +51,7 @@ For example, add this on the custom mapping: `nodename.selector=vm.name,vm.dataC
 
 ### Connecting using Certificate
 
-For now, to verify the certificate you need to add it to the truststore of QW Control or Java:
+For now, to verify the certificate you need to add it to the truststore of Rundeck or Java:
 
 - get the certificate from VSphere/VCenter Server:
 
@@ -70,7 +70,7 @@ keytool -import -alias WmWare-cert -file vmware-vm.cert -keystore  $RDECK_BASE/e
 
 ```
 
-For QW Control launcher, the truststore file will be located on `$RDECK_BASE/etc/`, for deb/rpm package will be located on `/etc/qwcontrol/ssl/`
+For Rundeck launcher, the truststore file will be located on `$RDECK_BASE/etc/`, for deb/rpm package will be located on `/etc/rundeck/ssl/`
 
 - (Optional) You can also add the certificate to the JVM
 

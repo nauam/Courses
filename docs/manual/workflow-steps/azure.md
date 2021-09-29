@@ -1,10 +1,10 @@
 # Azure Workflow Steps
 
-The Microsoft&reg; Azure cloud computing platform that offers a variety of services including but not limited to storage, networking and analytics. Azure's integration with QW Control allows you to edit and utilize your Azure services in a QW Control job.
+The Microsoft&reg; Azure cloud computing platform that offers a variety of services including but not limited to storage, networking and analytics. Azure's integration with Rundeck allows you to edit and utilize your Azure services in a Rundeck job.
 
 ## Azure / Storage / Copy
 
-This job step allows users to copy files to and from their Azure storage. For example, files can be transferred from Azure to a QW Control server or a specific node and from a node to Azure storage.
+This job step allows users to copy files to and from their Azure storage. For example, files can be transferred from Azure to a Rundeck server or a specific node and from a node to Azure storage.
 
 ![Azure - Copy](~@assets/img/azure_copy.png)
 

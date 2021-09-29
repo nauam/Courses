@@ -84,7 +84,7 @@ If you also want to enable it for automatic Retries, set `onRetry` to `true`.
 
 ## Clustering
 
-This plugin works with Clustering in QW Control Enterprise.  The serialized "Resume state" is stored alongside the execution log and execution state file in
+This plugin works with Clustering in Rundeck Enterprise.  The serialized "Resume state" is stored alongside the execution log and execution state file in
 your configured [Log Storage](/administration/cluster/logstore/index.md) system, with a file extension of `.resume.json`.
 
 You can initiate the **Resume Execution** from any Cluster member if the Resume state file has been copied to the Log Storage system.  Before the execution starts, the
@@ -94,6 +94,6 @@ file will be loaded from the Log Storage system.
 
 - Currently only the top level workflow steps will be tracked for resume. Referenced jobs will not
 resume at their internally failed step.
-- If the QW Control server is interrupted, such as an application or server crash, before the workflow state
+- If the Rundeck server is interrupted, such as an application or server crash, before the workflow state
 is serialized and stored the execution will not be able to resume from the failed step.
 - Currently, if you kill manually a job during its execution, this job cannot be resumed. The plugin does not allow this action. Only a job can be resumed when this fails by itself.

@@ -2,7 +2,7 @@
 
 ## When Node Executors are invoked
 
-QW Control executes Command items on Nodes. The command may be part of a Workflow as defined
+Rundeck executes Command items on Nodes. The command may be part of a Workflow as defined
 in a Job, and it may be executed multiple times on different nodes.
 
 Several "kinds" of Command items can be specified in Workflows:
@@ -14,7 +14,7 @@ Several "kinds" of Command items can be specified in Workflows:
    a set of input arguments.
 4. custom - Users can use or create their own workflow step plugins.
 
-QW Control uses the NodeExecutor and FileCopier services as part of the process of
+Rundeck uses the NodeExecutor and FileCopier services as part of the process of
 executing these command types.
 
 The procedure for executing an "exec" command is:
@@ -62,6 +62,6 @@ The order to determine the value is:
 
 ## Built-in Node Execution plugins
 
-QW Control includes node execution plugins out of the box.  For the lastest list check out [this list of plugins](/plugins)
+Rundeck includes node execution plugins out of the box.  For the lastest list check out [this list of plugins](/plugins)
 
 

@@ -4,10 +4,10 @@ Updated November 20, 2010
 
 # NAME
 
-job-v21 - The 'job' XML file declares job entries for QW Control.
+job-v21 - The 'job' XML file declares job entries for Rundeck.
 
 This is a demonstration document using all possible elements in the
-current QW Control "jobs" XML.
+current Rundeck "jobs" XML.
 
 ## Loading and unloading
 
@@ -17,7 +17,7 @@ This file can be batch loaded via [rd] jobs load command:
 rd jobs load -p project --file /path/to/jobs.xml
 ```
 
-QW Control job definitions can be dumped and saved to a file via
+Rundeck job definitions can be dumped and saved to a file via
 rd jobs list command:
 
 ```bash
@@ -51,7 +51,7 @@ _Example_
 ## job
 
 The job element is a sub-element of [joblist](#joblist) and defines a job
-executable in QW Control.
+executable in Rundeck.
 
 The following elements are used to describe the job. Only one of each
 element is allowed.
@@ -214,10 +214,10 @@ Execute a sequence of other commands, scripts and jobs:
 
 The UUID is a sub-element of [job](#job). This string can be set manually (if
 you are writing the job definition from scratch), or will be assigned at job
-creation time by the QW Control server using a random UUID. This string should be
+creation time by the Rundeck server using a random UUID. This string should be
 as unique as possible if you set it manually.
 
-This identifier is used to uniquely identify jobs when ported between QW Control
+This identifier is used to uniquely identify jobs when ported between Rundeck
 instances.
 
 ## name
@@ -231,7 +231,7 @@ included.
 The job description is a sub-element of [job](#job) and allows a short
 description of the job.
 
-If the description contains more than one line of text, then the first line is used as the "short description" of the job, and rendered exactly as text. The remaining lines are the "extended description", rendered using Markdown format as HTML in the QW Control GUI. Markdown can also embed HTML directly if you like. See [Wikipedia - Markdown](https://en.wikipedia.org/wiki/Markdown#Example).
+If the description contains more than one line of text, then the first line is used as the "short description" of the job, and rendered exactly as text. The remaining lines are the "extended description", rendered using Markdown format as HTML in the Rundeck GUI. Markdown can also embed HTML directly if you like. See [Wikipedia - Markdown](https://en.wikipedia.org/wiki/Markdown#Example).
 
 The HTML is sanitized to remove disallowed tags before rendering to the browser (such as `<script>`, etc.).
 You can disable all extended description HTML rendering
@@ -506,7 +506,7 @@ The [context](#context) options for user input.
 preserveOrder
 
 : If set to "true", then the order of the [option](#option) elements will be preserved in
-the QW Control GUI. Otherwise the options will be shown in alphabetical order.
+the Rundeck GUI. Otherwise the options will be shown in alphabetical order.
 
 _Nested elements_
 
@@ -761,7 +761,7 @@ See [Include/exclude patterns](#includeexclude-patterns)
 
 The [nodefilters](#nodefilters) include and exclude patterns.
 
-**Note:** These elements are deprecated and will be removed in a later version of QW Control. Use the [filter](#filter) string.
+**Note:** These elements are deprecated and will be removed in a later version of Rundeck. Use the [filter](#filter) string.
 
 _Nested elements_
 
@@ -1444,11 +1444,11 @@ linebreaks
 
 # SEE ALSO
 
-- [rd][] - QW Control CLI tool
+- [rd][] - Rundeck CLI tool
 
 [onsuccess]: #onsuccess
 [onfailure]: #onfailure
 [onstart]: #onstart
 [onavgduration]: #onavgduration
 [onretryablefailure]: #onretryablefailure
-[rd]: https://qwcontrol.github.io/qwcontrol-cli/
+[rd]: https://rundeck.github.io/rundeck-cli/

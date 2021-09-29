@@ -11,9 +11,9 @@ It can show the heatlh status visually in the GUI, and use the status to filter 
 
 ![Health Checks](~@assets/img/healthchecks-health-status-ui.png)
 
-Configure how to determine the Health Statuses of Nodes in QW Control, using a Command or Script.
+Configure how to determine the Health Statuses of Nodes in Rundeck, using a Command or Script.
 
-Capture output of the command or script to add as attributes to the nodes in QW Control.
+Capture output of the command or script to add as attributes to the nodes in Rundeck.
 
 Expose the status as Node Attributes using the Health Status Node Enhancer, and use the health check attributes inside node filters.
 
@@ -22,7 +22,7 @@ and which will be filtered out before running a Job.
 
 ## Health Checks System
 
-The Health Checks System operates across several parts of the QW Control System:
+The Health Checks System operates across several parts of the Rundeck System:
 
 * **Project Nodes** - as determined by the account's Nodes configuration.
 * **Health Checks configuration** - the definition of which checks to run in the project configuration.
@@ -45,7 +45,7 @@ Each Health Check can have a "label", which identifies it within the generated N
 
 Health Checks will be run *on-demand* asynchronously and the results will be cached for a period of time.
 The *on-demand* aspect is triggered when Health Status information is *requested* of the Health Checks System.
-The request can be triggered by accessing the Nodes page of QW Control, or otherwise reading the Nodes data, such as preparing to run a Job.
+The request can be triggered by accessing the Nodes page of Rundeck, or otherwise reading the Nodes data, such as preparing to run a Job.
 Initially, each node would be given an "Unknown" status, until the Health Checks are completed.
 
 After a period of time, the Health Checks results will *expire*, and another request for Nodes data would trigger a *refresh* of the data.
@@ -140,11 +140,11 @@ for:
 description: Allow run on all nodes for system Health Checks
 ```
 
-Change the Username and Role adopted by the Health Checks System with the following configuration in `qwcontrol-config.properties`:
+Change the Username and Role adopted by the Health Checks System with the following configuration in `rundeck-config.properties`:
 
 ```properties
-qwcontrol.healthcheck.access.username=system
-qwcontrol.healthcheck.access.role=system
+rundeck.healthcheck.access.username=system
+rundeck.healthcheck.access.role=system
 ```
 
 ## Health Status Node Attributes

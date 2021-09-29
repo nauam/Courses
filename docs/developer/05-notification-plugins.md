@@ -12,7 +12,7 @@ Currently there are five conditions that can trigger notifications:
 - `onavgduration` - The Execution exceed the average duration of the Job
 - `onretryablefailure` - the Job failed but will be retried
 
-QW Control has two built-in notification types that can be configured for Jobs:
+Rundeck has two built-in notification types that can be configured for Jobs:
 
 1. Send an email to a list of addresses
 2. POST XML to a list of URLs
@@ -33,10 +33,10 @@ The Configuration data is fully custom depending on your plugin, and is describe
 
 ## Notifications thread feature
 
-Notifications can be run on their own thread by setting the following properties in the qwcontrol-config.properties file:
+Notifications can be run on their own thread by setting the following properties in the rundeck-config.properties file:
 
-`qwcontrol.feature.notificationsOwnThread.enabled`: ('true','false') When set to 'true' it will trigger the notifications on a separate thread.
-`qwcontrol.notification.threadTimeOut`: (numeric, in miliseconds, defaults to 120000ms) When you set the notifications to be triggered on a separate thread, you can also set a time out for the notification thread so that it must be sent before a certain time.
+`rundeck.feature.notificationsOwnThread.enabled`: ('true','false') When set to 'true' it will trigger the notifications on a separate thread.
+`rundeck.notification.threadTimeOut`: (numeric, in miliseconds, defaults to 120000ms) When you set the notifications to be triggered on a separate thread, you can also set a time out for the notification thread so that it must be sent before a certain time.
 
 
 #### Property References
@@ -137,11 +137,11 @@ println execution.context.option.myoption
 Each plugin can define a set of "configuration" properties which allow users to specify input that the plugin can
 use when it operates.
 
-Notification plugins support scoped properties, allowing some of the configuration to be defined, or defaulted, on a per-project or per-QW Control instance basis.
+Notification plugins support scoped properties, allowing some of the configuration to be defined, or defaulted, on a per-project or per-Rundeck instance basis.
 
 ## Plugin types
 
-QW Control supports two types of Notification plugins:
+Rundeck supports two types of Notification plugins:
 
 1. Java-based development deployed as a Jar file.
 2. Groovy-based deployed as a single `.groovy` script.
@@ -153,19 +153,19 @@ Currently "script-based" plugins (shell scripts, that is) are not supported.
 See the source directory `examples/example-groovy-notification-plugins` for
 examples of Notification plugins written in Groovy.
 
-- On github: [example-groovy-notification-plugins](https://github.com/qwcontrol/qwcontrol/tree/development/examples/example-groovy-notification-plugins)
+- On github: [example-groovy-notification-plugins](https://github.com/rundeck/rundeck/tree/development/examples/example-groovy-notification-plugins)
 
 See the source directory `examples/example-java-notification-plugin` for
 Java examples.
 
-- On github: [example-java-notification-plugin](https://github.com/qwcontrol/qwcontrol/tree/development/examples/example-java-notification-plugin)
+- On github: [example-java-notification-plugin](https://github.com/rundeck/rundeck/tree/development/examples/example-java-notification-plugin)
 
 ## Java Plugin Type
 
-Java-based plugins can be developed just as any other QW Control plugin, as described in the chapter [Plugin Development - Java Plugin Development](/developer/01-plugin-development.md#java-plugin-development).
+Java-based plugins can be developed just as any other Rundeck plugin, as described in the chapter [Plugin Development - Java Plugin Development](/developer/01-plugin-development.md#java-plugin-development).
 
 These plugin classes should implement the interface
-[NotificationPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/notification/NotificationPlugin.html):
+[NotificationPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/notification/NotificationPlugin.html):
 
 ```java
 public interface NotificationPlugin {
@@ -181,11 +181,11 @@ public interface NotificationPlugin {
 
 To define configuration properties for your plugin, you use the same mechanisms as for Workflow Steps, described under the chapter [Plugin Development - Plugin Descriptions](/developer/01-plugin-development.md#plugin-descriptions).
 
-The simplest way to do this is to use [Plugin Annotations](/developer/02-plugin-annotations.md). Here is an example class annotated to describe it to the QW Control GUI:
+The simplest way to do this is to use [Plugin Annotations](/developer/02-plugin-annotations.md). Here is an example class annotated to describe it to the Rundeck GUI:
 
 ```java
 @Plugin(service="Notification", name="example")
-@PluginDescription(title="Example Plugin", description="An example Plugin for QW Control Notifications.")
+@PluginDescription(title="Example Plugin", description="An example Plugin for Rundeck Notifications.")
 public class ExampleNotificationPlugin implements NotificationPlugin{
 
     @PluginProperty(name = "test" ,title = "Test String", description = "a description")
@@ -205,19 +205,19 @@ Notification support the Groovy Plugin Type.
 
 To define metadata about your plugin, and configuration properties, see the [Plugin Development - Groovy Plugin Development](/developer/01-plugin-development.md#groovy-plugin-development) chapter.
 
-To create a Groovy based plugin, create a file named `MyNotificationPlugin.groovy` in the plugins directory for QW Control.
+To create a Groovy based plugin, create a file named `MyNotificationPlugin.groovy` in the plugins directory for Rundeck.
 
-You must restart qwcontrol to make the plugin available the first time, but you can subsequently update the .groovy script without restarting QW Control.
+You must restart rundeck to make the plugin available the first time, but you can subsequently update the .groovy script without restarting Rundeck.
 
 [Groovy Plugin Development](/developer/01-plugin-development.md#groovy-plugin-development)
 
 ### Groovy DSL
 
-Within the Groovy script, you define your plugin by calling the `qwcontrolPlugin` method, and pass it both the Class of the type of plugin, and a Closure used to build the plugin object.
+Within the Groovy script, you define your plugin by calling the `rundeckPlugin` method, and pass it both the Class of the type of plugin, and a Closure used to build the plugin object.
 
 ```java
-import  com.dtolabs.qwcontrol.plugins.notification.NotificationPlugin
-qwcontrolPlugin(NotificationPlugin){
+import  com.dtolabs.rundeck.plugins.notification.NotificationPlugin
+rundeckPlugin(NotificationPlugin){
     //plugin definition goes here...
 }
 ```
@@ -258,7 +258,7 @@ onretryablefailure{ Map execution, Map configuration ->
 }
 ```
 
-If your closure returns a `false` value, then QW Control will log an error in the server log.
+If your closure returns a `false` value, then Rundeck will log an error in the server log.
 
 ### Example
 
@@ -267,9 +267,9 @@ Here is a minimal example:
 **MinimalNotificationPlugin.groovy**:
 
 ```java
-import com.dtolabs.qwcontrol.plugins.notification.NotificationPlugin;
+import com.dtolabs.rundeck.plugins.notification.NotificationPlugin;
 
-qwcontrolPlugin(NotificationPlugin){
+rundeckPlugin(NotificationPlugin){
     onstart {
         println("job start: data ${execution}")
         true
@@ -301,9 +301,9 @@ alternate closure parameter lists:
 **MyNotificationPlugin.groovy**:
 
 ```java
-import com.dtolabs.qwcontrol.plugins.notification.NotificationPlugin;
+import com.dtolabs.rundeck.plugins.notification.NotificationPlugin;
 
-qwcontrolPlugin(NotificationPlugin) {
+rundeckPlugin(NotificationPlugin) {
     title="Example Plugin"
     description="An example"
 

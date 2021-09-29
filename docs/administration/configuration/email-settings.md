@@ -1,13 +1,13 @@
 # Email Settings
 
-This document describes how to configure QW Control for email
+This document describes how to configure Rundeck for email
 support.
-Email settings are located in the qwcontrol-config.properties file. Depending on the installer used, the configuration files will be under a base directory:
+Email settings are located in the rundeck-config.properties file. Depending on the installer used, the configuration files will be under a base directory:
 
-- RPM/DEB: /etc/qwcontrol/qwcontrol-config.properties
-- Launcher: \$RDECK_BASE/server/config/qwcontrol-config.properties
+- RPM/DEB: /etc/rundeck/rundeck-config.properties
+- Launcher: \$RDECK_BASE/server/config/rundeck-config.properties
 
-Refer to the appropriate configuration file paths from [Configuration -> Configuration Layout](/administration/configuration/config-file-reference.md#configuration-layout) to locate the QW Control configuration paths depending on your install.
+Refer to the appropriate configuration file paths from [Configuration -> Configuration Layout](/administration/configuration/config-file-reference.md#configuration-layout) to locate the Rundeck configuration paths depending on your install.
 
 ## SMTP server settings
 
@@ -38,7 +38,7 @@ See [Groovy config format](/administration/configuration/config-file-reference.m
 
 ## Notification email settings
 
-The URL and From: address used in [Job email notifications](/manual/creating-jobs.md#job-notifications) are managed via the settings located in the qwcontrol-config.properties file.
+The URL and From: address used in [Job email notifications](/manual/creating-jobs.md#job-notifications) are managed via the settings located in the rundeck-config.properties file.
 
 The two properties are:
 
@@ -58,19 +58,19 @@ You can define these properties to customize the email notifications. Each prope
 
 ```properties
 # trigger-specific templating
-qwcontrol.mail.[trigger].template.subject=[custom subject line]
-qwcontrol.mail.[trigger].template.file=[path to template file]
-qwcontrol.mail.[trigger].template.log.formatted=true/false (if true, prefix log lines with context information)
+rundeck.mail.[trigger].template.subject=[custom subject line]
+rundeck.mail.[trigger].template.file=[path to template file]
+rundeck.mail.[trigger].template.log.formatted=true/false (if true, prefix log lines with context information)
 
 # project and job specific
-qwcontrol.mail.[project].[jobname].template.subject=[custom subject line]
-qwcontrol.mail.[project].[jobname].template.file=[path to template file]
-qwcontrol.mail.[project].[jobname].template.log.formatted=true/false (if true, prefix log lines with context information)
+rundeck.mail.[project].[jobname].template.subject=[custom subject line]
+rundeck.mail.[project].[jobname].template.file=[path to template file]
+rundeck.mail.[project].[jobname].template.log.formatted=true/false (if true, prefix log lines with context information)
 
 # apply to any triggers not specified
-qwcontrol.mail.template.subject=[Default subject line]
-qwcontrol.mail.template.file=[path to template file]
-qwcontrol.mail.template.log.formatted=true/false (if true, prefix log lines with context information)
+rundeck.mail.template.subject=[Default subject line]
+rundeck.mail.template.file=[path to template file]
+rundeck.mail.template.log.formatted=true/false (if true, prefix log lines with context information)
 ```
 
 If a template filepath ends with `.md` or `.markdown`, then it will be interpreted as a Markdown formatted template. Otherwise it is expected that the template file contains HTML.
@@ -81,10 +81,10 @@ The "Context Variables" values used within the execution are available just as t
 
 In addition these properties are defined:
 
-- `qwcontrol.href`: URL to the QW Control server
+- `rundeck.href`: URL to the Rundeck server
 - `notification.trigger`: Trigger name
 - `notification.eventStatus`: A string indicating the combination of execution status, and notification trigger, suitable for an email subject line, such as "KILLED", "FAILURE", "STARTING", "SUCCESS".
-- `execution.projectHref`: URL to the Project within QW Control.
+- `execution.projectHref`: URL to the Project within Rundeck.
 
 #### Custom Attached Log Output file
 
@@ -92,18 +92,18 @@ When the log output is attached as a file, the file's extension can be defined b
 For example:
 
 ```properties
-qwcontrol.mail.template.log.extension=html
-qwcontrol.mail.template.log.contentType=text/html
+rundeck.mail.template.log.extension=html
+rundeck.mail.template.log.contentType=text/html
 ```
 
 ```properties
-qwcontrol.mail.<PROJECT>.<JOBNAME>.template.log.extension=csv
-qwcontrol.mail.<PROJECT>.<JOBNAME>.template.log.contentType=text/csv
+rundeck.mail.<PROJECT>.<JOBNAME>.template.log.extension=csv
+rundeck.mail.<PROJECT>.<JOBNAME>.template.log.contentType=text/csv
 ```
 
 ```properties
-qwcontrol.mail.<TRIGGER>.template.log.extension=html
-qwcontrol.mail.<TRIGGER>.template.log.contentType=text/html
+rundeck.mail.<TRIGGER>.template.log.extension=html
+rundeck.mail.<TRIGGER>.template.log.contentType=text/html
 ```
 
 ## Troubleshooting

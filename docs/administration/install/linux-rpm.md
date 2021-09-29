@@ -1,82 +1,82 @@
 # Installing on CentOS or Red Hat Linux distributions
 
 
-## Installing QW Control
+## Installing Rundeck
 :::: tabs
 
 ::: tab Enterprise
 ### Quick install with yum
 
-You can use this script to add the QW Control Enterprise yum repo:
+You can use this script to add the Rundeck Enterprise yum repo:
 
 ```bash
-curl https://raw.githubusercontent.com/qwcontrol/packaging/main/scripts/rpm-setup.sh 2> /dev/null | sudo bash -s qwcontrolpro
+curl https://raw.githubusercontent.com/rundeck/packaging/main/scripts/rpm-setup.sh 2> /dev/null | sudo bash -s rundeckpro
 ```
 
 
 ### Manual yum setup
 
-Remove `bintrayqwcontrolpro-rpm.repo` if it exists.
+Remove `bintray-rundeckpro-rpm.repo` if it exists.
 
-Add the following entries to `/etc/yum.repos.d/qwcontrol.repo` replacing any existing entries:
+Add the following entries to `/etc/yum.repos.d/rundeck.repo` replacing any existing entries:
 ```properties
-[qwcontrolpro]
-name=qwcontrolpro
-baseurl=https://packages.qwcontrol.com/pagerduty/qwcontrolpro/rpm_any/rpm_any/$basearch
+[rundeckpro]
+name=rundeckpro
+baseurl=https://packages.rundeck.com/pagerduty/rundeckpro/rpm_any/rpm_any/$basearch
 repo_gpgcheck=1
 gpgcheck=0
 enabled=1
-gpgkey=https://packages.qwcontrol.com/pagerduty/qwcontrolpro/gpgkey
+gpgkey=https://packages.rundeck.com/pagerduty/rundeckpro/gpgkey
 sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 metadata_expire=300
 ```
 
 ```bash
-sudo yum install java qwcontrolpro-enterprise
+sudo yum install java rundeckpro-enterprise
 ```
 
-When new versions of QW Control Enterprise are released, you can upgrade to them using the command:
+When new versions of Rundeck Enterprise are released, you can upgrade to them using the command:
 
 ```bash
-sudo yum update qwcontrolpro-enterprise
+sudo yum update rundeckpro-enterprise
 ```
 
 ### Install rpm package directly
 
-Download rpm package from the [download page](https://download.qwcontrol.com/eval/) and run:
+Download rpm package from the [download page](https://download.rundeck.com/eval/) and run:
 
 ```bash
-sudo rpm -i qwcontrolpro-enterprise-{{{qwcontrolVersionFull}}}-1.noarch.rpm
+sudo rpm -i rundeckpro-enterprise-{{{rundeckVersionFull}}}-1.noarch.rpm
 ```
 :::
 
 ::: tab Community
 ### Quick install with yum
 
-You can use this script to add the QW Control yum repo and install QW Control:
+You can use this script to add the Rundeck yum repo and install Rundeck:
 
 ```bash
-curl https://raw.githubusercontent.com/qwcontrol/packaging/main/scripts/rpm-setup.sh 2> /dev/null | sudo bash -s qwcontrol
+curl https://raw.githubusercontent.com/rundeck/packaging/main/scripts/rpm-setup.sh 2> /dev/null | sudo bash -s rundeck
 ```
 
-When new versions of QW Control are released, you can upgrade to them using the command:
+When new versions of Rundeck are released, you can upgrade to them using the command:
 
 ```bash
-sudo yum update qwcontrol
+sudo yum update rundeck
 ```
 
 ### Manual yum setup
-Add the following entries to `/etc/yum.repos.d/qwcontrol.repo` replacing any existing entries:
+Add the following entries to `/etc/yum.repos.d/rundeck.repo` replacing any existing entries:
 
 ```properties
-[qwcontrol]
-name=qwcontrol
-baseurl=https://packages.qwcontrol.com/pagerduty/qwcontrol/rpm_any/rpm_any/$basearch
+[rundeck]
+name=rundeck
+baseurl=https://packages.rundeck.com/pagerduty/rundeck/rpm_any/rpm_any/$basearch
 repo_gpgcheck=1
 gpgcheck=0
 enabled=1
-gpgkey=https://packages.qwcontrol.com/pagerduty/qwcontrol/gpgkey
+gpgkey=https://packages.rundeck.com/pagerduty/rundeck/gpgkey
 sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 metadata_expire=300
@@ -84,27 +84,27 @@ metadata_expire=300
 
 ### Install rpm package directly
 
-Download rpm package from the [download page](http://docs.qwcontrol.com/docs/downloads.html) and run:
+Download rpm package from the [download page](http://docs.rundeck.com/docs/downloads.html) and run:
 
 ```bash
-sudo rpm -i qwcontrol-{{{qwcontrolVersionFull}}}-1.noarch.rpm
+sudo rpm -i rundeck-{{{rundeckVersionFull}}}-1.noarch.rpm
 ```
 :::
 
 ::::
 
-## Starting QW Control
+## Starting Rundeck
 
-To start QW Control:
+To start Rundeck:
 
 ```bash
-sudo service qwcontrold start
+sudo service rundeckd start
 ```
 
 To verify that the service started correctly, tail the logs:
 
 ```bash
-tail -f /var/log/qwcontrol/service.log
+tail -f /var/log/rundeck/service.log
 ```
 
 The service is ready once you see something similar to:
@@ -118,6 +118,6 @@ Grails application running at http://localhost:4440 in environment: production
 1. Navigate to [http://localhost:4440/](http://localhost:4440/user/login) in a browser
 1. Log in with the username **admin** and password **admin**
 
-QW Control is now up and running!
+Rundeck is now up and running!
 
-Next, learn how to [create your first QW Control Enterprise project](/manual/03-getting-started.md#project-setup)
+Next, learn how to [create your first Rundeck Enterprise project](/manual/03-getting-started.md#project-setup)

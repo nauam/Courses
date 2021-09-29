@@ -1,10 +1,10 @@
 # Localization
 
-QW Control customization and localization/internationalization.
+Rundeck customization and localization/internationalization.
 
 ## Messages file
 
-QW Control uses Grails, based on Spring, which provides localization/internationalization by means of a `messages` file.
+Rundeck uses Grails, based on Spring, which provides localization/internationalization by means of a `messages` file.
 
 For reference, see [Grails Internationalization](https://docs.grails.org/latest/guide/i18n.html).
 
@@ -19,7 +19,7 @@ The Locale code you use is based on language code and country code.
 
 ### Testing your changes
 
-You can [change the locale used in QW Control](https://docs.grails.org/latest/guide/i18n.html#changingLocales)
+You can [change the locale used in Rundeck](https://docs.grails.org/latest/guide/i18n.html#changingLocales)
 by appending a `?lang=XX` to the URL in your request.
 
 You may have to use the full locale code to activate your locale. For example, to activate simplified Chinese you will
@@ -27,20 +27,20 @@ need to do so like this: `?lang=zh_cn`
 
 ### Missing Strings
 
-Not all of the QW Control GUI uses localized strings yet. If you find a page in QW Control that doesn't seem to use
+Not all of the Rundeck GUI uses localized strings yet. If you find a page in Rundeck that doesn't seem to use
 appropriate localization of English text,
-please [Submit an issue report](https://github.com/qwcontrol/qwcontrol/issues/new?title=Missing%20i18n%20Text%3A%20___&body=i18n%20support%20is%20missing%20on%20page%3A%20___%0A%0AText%3A%20___&labels[]=i18n).
+please [Submit an issue report](https://github.com/rundeck/rundeck/issues/new?title=Missing%20i18n%20Text%3A%20___&body=i18n%20support%20is%20missing%20on%20page%3A%20___%0A%0AText%3A%20___&labels[]=i18n).
 
 ### Submit a Pull Request
 
-If you would like to translate QW Control to another language, please submit your new messages file as a Pull Request
-via Github, so that we can include it in the next QW Control release.
+If you would like to translate Rundeck to another language, please submit your new messages file as a Pull Request
+via Github, so that we can include it in the next Rundeck release.
 
-There is a page on the [QW Control wiki: Internationalization](https://github.com/qwcontrol/qwcontrol/wiki/Internationalization) that can help if you are new to git.
+There is a page on the [Rundeck wiki: Internationalization](https://github.com/rundeck/rundeck/wiki/Internationalization) that can help if you are new to git.
 
 ## Date formats
 
-Changing the Date formats shown in the Activity page of QW Control:
+Changing the Date formats shown in the Activity page of Rundeck:
 
 These messages entries determine the formats shown:
 

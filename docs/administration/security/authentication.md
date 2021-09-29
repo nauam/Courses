@@ -1,6 +1,6 @@
 # Authenticating Users
 
-QW Control can be configured to use several mechanisms
+Rundeck can be configured to use several mechanisms
 to authenticate a user, and determine the user's authorized roles.
 
 Primarily these are:
@@ -19,7 +19,7 @@ See [JAAS](https://en.wikipedia.org/wiki/Java_Authentication_and_Authorization_S
 and specifically for Jetty,
 [JAAS for Jetty](https://wiki.eclipse.org/Jetty/Feature/JAAS).
 
-If you use the QW Control war file with a different container, such as Tomcat, refer to [Container authentication and authorization](#container-authentication-and-authorization) below.
+If you use the Rundeck war file with a different container, such as Tomcat, refer to [Container authentication and authorization](#container-authentication-and-authorization) below.
 
 # Single Sign On
 
@@ -27,15 +27,15 @@ See [Security > Single Sign On](/administration/security/sso.md).
 
 # Require Roles For Sign On
 
-By default, when users who are not granted access to any projects try to login, they are directed to a page that says they don't have any roles at the moment. However, if you would like to require roles to even get passed the login screen, that is possible. If you require roles for sign on, then if a user without a role tries to login, they will not be able to get into the QW Control portal. In order to require roles for sign on, add the following line to the qwcontrol-config.properties file:
+By default, when users who are not granted access to any projects try to login, they are directed to a page that says they don't have any roles at the moment. However, if you would like to require roles to even get passed the login screen, that is possible. If you require roles for sign on, then if a user without a role tries to login, they will not be able to get into the Rundeck portal. In order to require roles for sign on, add the following line to the rundeck-config.properties file:
 ```bash
-qwcontrol.security.requiredRole=Your_Role_Name
+rundeck.security.requiredRole=Your_Role_Name
 ```
 where Your_Role_Name is the name of the group you wish to grant access to.
 
 # Jetty and JAAS authentication
 
-QW Control has three basic JAAS modules.
+Rundeck has three basic JAAS modules.
 
 1. [PropertyFileLoginModule](#propertyfileloginmodule)
 2. [LDAP](#ldap)
@@ -45,9 +45,9 @@ By default a new installation uses the realm.properties method.
 
 Each method determines whether the user is authenticated, and what _roles_ they have.
 
-The list of roles can be accepted as-is (default), or you can add a prefix to them using the following config in qwcontrol-config.properties:
+The list of roles can be accepted as-is (default), or you can add a prefix to them using the following config in rundeck-config.properties:
 
-    qwcontrol.security.jaasRolePrefix=PREFIX_
+    rundeck.security.jaasRolePrefix=PREFIX_
 
 ## PropertyFileLoginModule
 
@@ -56,20 +56,20 @@ It is recommended to use `BCRYPT` encrypted passwords with `realm.properties` as
 :::
 
 - NOTE: The `org.eclipse.jetty.jaas.spi.PropertyFileLoginModule` JAAS module will automatically add the username as a role to the login credentials.  
-If you do not want this behavior please use the `org.qwcontrol.jaas.jetty.ReloadablePropertyFileLoginModule` module.*
+If you do not want this behavior please use the `org.rundeck.jaas.jetty.ReloadablePropertyFileLoginModule` module.*
 
 These instructions explain how to manage user credentials for
-QW Control using a text file containing usernames, passwords and role definitions.
+Rundeck using a text file containing usernames, passwords and role definitions.
 Usually this file is called <code>realm.properties</code>.
 
-The default QW Control installation handles user authentication via
+The default Rundeck installation handles user authentication via
 JAAS using the realm.properties file.
 This file is created at the time that you install the server.
 
 Location:
 
 - Executable War: `$RDECK_BASE/server/config/realm.properties`
-- RPM/DEB: `/etc/qwcontrol/realm.properties`
+- RPM/DEB: `/etc/rundeck/realm.properties`
 
 Assuming it wasn't modified, your realm.properties file will
 probably look something like this:
@@ -83,7 +83,7 @@ probably look something like this:
 #
 # Passwords may be clear text, obfuscated or checksummed.
 #
-# This sets the default user accounts for the QW Control apps
+# This sets the default user accounts for the Rundeck apps
 #
 admin:admin,user,admin
 user:user,user
@@ -96,14 +96,14 @@ than giving out role accounts to groups. You may also want to avoid
 having the passwords in plaintext within the configuration file.
 
 To accomplish this, you'll need a properly hashed or encrypted
-password to use in the config. QW Control has a built in command line utility to
+password to use in the config. Rundeck has a built in command line utility to
 encrypt passwords. The default encryption service is the Jetty password utility.
 
 In this example,
 we'll setup a new user named "jsmith", with a password of "mypass":
 
 ```
-$ java -jar qwcontrol-{{{qwcontrolVersionFull}}}.war --encryptpwd Jetty
+$ java -jar rundeck-{{{rundeckVersionFull}}}.war --encryptpwd Jetty
 Required values are marked with: *
 Username (Optional, but necessary for Crypt encoding):
 jsmith    <-----Type this value
@@ -125,9 +125,9 @@ Then add this to the `realm.properties` file with a line like so:
 
     jsmith: BCRYPT:a029d0df84eb5549c641e04a9ef389e5,user,admin
 
-Then restart QW Control to ensure it picks up the change and you're done.
+Then restart Rundeck to ensure it picks up the change and you're done.
 
-There is also a password encrypter utility user interface in the QW Control application that
+There is also a password encrypter utility user interface in the Rundeck application that
 can be used to generate encrypted passwords. Click the gear icon and then "Password Utility" to use that interface.
 
 **Warning**
@@ -138,7 +138,7 @@ should be avoided if possible.
 
 #### Hot Reloading the `realm.properties` file
 
-If you want your changes to the `realm.properties` file to be picked up without having to restart QW Control change the module specified in the JAAS config file from `org.eclipse.jetty.jaas.spi.PropertyFileLoginModule` to `org.qwcontrol.jaas.jetty.ReloadablePropertyFileLoginModule`
+If you want your changes to the `realm.properties` file to be picked up without having to restart Rundeck change the module specified in the JAAS config file from `org.eclipse.jetty.jaas.spi.PropertyFileLoginModule` to `org.rundeck.jaas.jetty.ReloadablePropertyFileLoginModule`
 
 The refresh interval for checking the file is 5 seconds. This is not configurable.
 
@@ -147,22 +147,22 @@ For example, the following configuration uses the non-reloadable `realm.properti
     RDpropertyfilelogin {
         org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
         debug="true"
-        file="/etc/qwcontrol/server/config/realm.properties";
+        file="/etc/rundeck/server/config/realm.properties";
     };
 
 This configuration would enable hot reloading:
 
     RDpropertyfilelogin {
-        org.qwcontrol.jaas.jetty.ReloadablePropertyFileLoginModule required
+        org.rundeck.jaas.jetty.ReloadablePropertyFileLoginModule required
         debug="true"
-        file="/etc/qwcontrol/server/config/realm.properties";
+        file="/etc/rundeck/server/config/realm.properties";
     };
 
 ## LDAP
 
 LDAP and Active Directory configurations are created in the same way, but your LDAP structure may be different than Active Directory's structure.
 
-QW Control includes two JAAS login modules you can use for LDAP directory authentication:
+Rundeck includes two JAAS login modules you can use for LDAP directory authentication:
 
 - `JettyCachingLdapLoginModule` Performs LDAP authentication and looks up user roles based on LDAP group membership
 - `JettyCombinedLdapLoginModule` Performs LDAP authentication, and can use "shared authentication credentials" to allow another module to provide authorization lookup for user roles. See [Login module configuration](#login-module-configuration) and [JettyRolePropertyFileLoginModule](#jettyrolepropertyfileloginmodule) and [Multiple Authentication Modules](#multiple-authentication-modules) below.
@@ -177,10 +177,10 @@ You must change some configuration values to change the authentication module to
 
 Configuring LDAP consists of defining a JAAS config file (e.g. "jaas-ldap.conf"), and changing the server startup script to use this file and use the correct Login Module configuration inside it.
 
-#### Sync QW Control profile from LDAP user attributes
+#### Sync Rundeck profile from LDAP user attributes
 
-You can use LDAP user attributes to update the email, first name, and last name properties of your QW Control users.
-To enable this feature, add the property: `qwcontrol.security.syncLdapUser=true` to your `qwcontrol-config.properties` file.
+You can use LDAP user attributes to update the email, first name, and last name properties of your Rundeck users.
+To enable this feature, add the property: `rundeck.security.syncLdapUser=true` to your `rundeck-config.properties` file.
 
 In your JAAS LDAP login module you can specify the ldap user attributes used to source the email, and name properties.
 The properties are:
@@ -189,16 +189,16 @@ The properties are:
     userFirstNameAttribute="givenName"
     userEmailAttribute="mail"
 
-These LDAP attributes will be checked when a user logs in, and their QW Control user profile will be updated from them.
+These LDAP attributes will be checked when a user logs in, and their Rundeck user profile will be updated from them.
 
-**Note**: By default, all users can log into QW Control. However, if they do not have the proper authorization, they will not be able to access any projects. If you want to prevent them from even being able to login to qwcontrol, you can include the following JVM parameter:
-`qwcontrol.security.requiredRole=Your_Role_Name`
+**Note**: By default, all users can log into Rundeck. However, if they do not have the proper authorization, they will not be able to access any projects. If you want to prevent them from even being able to login to rundeck, you can include the following JVM parameter:
+`rundeck.security.requiredRole=Your_Role_Name`
 
 #### Step 1: Setup the LDAP login module configuration file
 
 Create a `jaas-ldap.conf` file in the same directory as the `jaas-loginmodule.conf` file.
 
-- RPM/Deb install: `/etc/qwcontrol/`
+- RPM/Deb install: `/etc/rundeck/`
 - Executable War install: `$RDECK_BASE/server/config`
 
 Make sure the name of your Login Module configuration is the same as you use in the next step. The Login Module configuration is defined like this (e.g. "jaas-ldap.conf" file):
@@ -214,7 +214,7 @@ Where "ldap" is the module name.
 
 #### Step 2: Specify login module
 
-To override the default JAAS configuration file, you will need to supply the QW Control server with the proper path to the new one, and a `loginmodule.name` Java system property to identify the new login module by name.
+To override the default JAAS configuration file, you will need to supply the Rundeck server with the proper path to the new one, and a `loginmodule.name` Java system property to identify the new login module by name.
 
 The JAAS configuration file location is specified differently between the Executable War and the RPM/Deb.
 
@@ -223,16 +223,16 @@ The JAAS configuration file location is specified differently between the Execut
 You can simply specify the system properties on the java commandline:
 
 ```bash
-java -Dqwcontrol.jaaslogin=true \
+java -Drundeck.jaaslogin=true \
      -Dloginmodule.name=ldap \
      -Dloginmodule.conf.name=jaas-ldap.conf \
-     -jar qwcontrol-{{{qwcontrolVersionFull}}}.war
+     -jar rundeck-{{{rundeckVersionFull}}}.war
 ```
 
-Otherwise, if you are starting the Executable War via the supplied `qwcontrold` script, you can modify the `RDECK_JVM` value in the `$RDECK_BASE/etc/profile` file to add two JVM arguments:
+Otherwise, if you are starting the Executable War via the supplied `rundeckd` script, you can modify the `RDECK_JVM` value in the `$RDECK_BASE/etc/profile` file to add two JVM arguments:
 
 ```sh
-export RDECK_JVM="-Dqwcontrol.jaaslogin=true \
+export RDECK_JVM="-Drundeck.jaaslogin=true \
     -Dloginmodule.name=ldap \
     -Dloginmodule.conf.name=jaas-ldap.conf"
 ```
@@ -241,27 +241,27 @@ Note: more information about using the Executable War and useful properties are 
 
 **For the RPM/DEB installation**:
 
-Declare variables (as the ones from /etc/qwcontrol/profile) in `/etc/sysconfig/qwcontrold` (rpm) or `/etc/default/qwcontrold` (deb):
+Declare variables (as the ones from /etc/rundeck/profile) in `/etc/sysconfig/rundeckd` (rpm) or `/etc/default/rundeckd` (deb):
 
 Example:
 ```
-$ cat /etc/sysconfig/qwcontrold
+$ cat /etc/sysconfig/rundeckd
 JAAS_LOGIN=true
 LOGIN_MODULE=ldap
-JAAS_CONF=/etc/qwcontrol/jaas-ldap.conf
+JAAS_CONF=/etc/rundeck/jaas-ldap.conf
 ```
 
-#### Step 3: Restart qwcontrold
+#### Step 3: Restart rundeckd
 
 RPM/DEB
 ```bash
-service qwcontrold restart
+service rundeckd restart
 ```
 
 #### Step 4: Attempt to logon
 
-If everything was configured correctly, you will be able to access QW Control using your AD credentials. If something did not go smoothly, look at `/var/log/qwcontrol/service.log` for stack traces that may indicate what is wrong.
-To make troubleshooting easier, you may want to add the `-Dcom.dtolabs.qwcontrol.jetty.jaas.LEVEL=DEBUG` Java system property to the `RDECK_JVM` environment variable above, or as `RDECK_JVM_OPTS="$RDECK_JVM_OPTS -Dcom.dtolabs.qwcontrol.jetty.jaas.LEVEL=DEBUG"` in /etc/sysconfig/qwcontrold for RPM or /etc/default/qwcontrol for DEB to have enable DEBUG logging for the authentication module.
+If everything was configured correctly, you will be able to access Rundeck using your AD credentials. If something did not go smoothly, look at `/var/log/rundeck/service.log` for stack traces that may indicate what is wrong.
+To make troubleshooting easier, you may want to add the `-Dcom.dtolabs.rundeck.jetty.jaas.LEVEL=DEBUG` Java system property to the `RDECK_JVM` environment variable above, or as `RDECK_JVM_OPTS="$RDECK_JVM_OPTS -Dcom.dtolabs.rundeck.jetty.jaas.LEVEL=DEBUG"` in /etc/sysconfig/rundeckd for RPM or /etc/default/rundeck for DEB to have enable DEBUG logging for the authentication module.
 
 ### Login module configuration
 
@@ -269,7 +269,7 @@ Here is an example configuration file for the `JettyCachingLdapLoginModule`:
 
 ```c .numberLines
 ldap {
-    com.dtolabs.qwcontrol.jetty.jaas.JettyCachingLdapLoginModule required
+    com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule required
       debug="true"
       contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
       providerUrl="ldap://server:389"
@@ -364,7 +364,7 @@ The `JettyCachingLdapLoginModule` has these configuration properties:
 : Object class for role, default "groupOfUniqueNames".
 
 `rolePrefix`
-: Prefix string to remove from role names before returning to the application, e.g. "qwcontrol\_".
+: Prefix string to remove from role names before returning to the application, e.g. "rundeck\_".
 
 `cacheDurationMillis`
 : Duration that authorization should be cached, in milliseconds. Default "0". A value of "0" indicates no caching should be used.
@@ -388,7 +388,7 @@ The `JettyCombinedLdapLoginModule` is extends the previous module, so is configu
 
 ```c .numberLines
 ldap {
-    com.dtolabs.qwcontrol.jetty.jaas.JettyCombinedLdapLoginModule required
+    com.dtolabs.rundeck.jetty.jaas.JettyCombinedLdapLoginModule required
       ...
       ignoreRoles="true"
       storePass="true"
@@ -429,20 +429,20 @@ Here is an example configuration for Active Directory. The string _sAMAccountNam
 
 ```c .numberLines
 activedirectory {
-    com.dtolabs.qwcontrol.jetty.jaas.JettyCachingLdapLoginModule required
+    com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule required
     debug="true"
     contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
     providerUrl="ldap://localhost:389"
-    bindDn="cn=Manager,dc=qwcontrol,dc=com"
+    bindDn="cn=Manager,dc=rundeck,dc=com"
     bindPassword="secret"
     authenticationMethod="simple"
     forceBindingLogin="true"
-    userBaseDn="ou=users,dc=qwcontrol,dc=com"
+    userBaseDn="ou=users,dc=rundeck,dc=com"
     userRdnAttribute="sAMAccountName"
     userIdAttribute="sAMAccountName"
     userPasswordAttribute="unicodePwd"
     userObjectClass="user"
-    roleBaseDn="ou=roles,dc=qwcontrol,dc=com"
+    roleBaseDn="ou=roles,dc=rundeck,dc=com"
     roleNameAttribute="cn"
     roleMemberAttribute="member"
     roleObjectClass="group"
@@ -453,7 +453,7 @@ activedirectory {
 
 ### Communicating over secure ldap (ldaps://)
 
-The default port for communicating with active directory is 389, which is insecure. The secure port is 636, but the LoginModule describe above requires that the AD certificate or organizations CA certificate be placed in a truststore. The truststore provided with qwcontrol `/etc/qwcontrol/ssl/truststore` is used for the local communication between the cli tools and the qwcontrol server.
+The default port for communicating with active directory is 389, which is insecure. The secure port is 636, but the LoginModule describe above requires that the AD certificate or organizations CA certificate be placed in a truststore. The truststore provided with rundeck `/etc/rundeck/ssl/truststore` is used for the local communication between the cli tools and the rundeck server.
 
 Before you can establish trust, you need to get the CA certificate. Typically, this would require a request to the organization's security officer to have them send you the certificate. It's also often found publicly if your organization does secure transactions.
 
@@ -574,10 +574,10 @@ SSL-Session:
 
 Once a certificate has been obtained. There are two options for adding the certificate. The first involves updating the truststore for the JRE. If that is not possible or not desirable, then one can set the truststore to be used by the jvm, using any arbitrary truststore that contains the appropriate certificate.
 
-Both options require importing a certificate. The following would import a certificate called, AD.cert into the `/etc/qwcontrol/ssl/truststore`.
+Both options require importing a certificate. The following would import a certificate called, AD.cert into the `/etc/rundeck/ssl/truststore`.
 
 ```bash
-keytool -import -alias CompanyAD -file AD.cert -keystore  /etc/qwcontrol/ssl/truststore -storepass adminadmin
+keytool -import -alias CompanyAD -file AD.cert -keystore  /etc/rundeck/ssl/truststore -storepass adminadmin
 ```
 
 To add the certificate to the JRE, locate the file \$JAVA_HOME/lib/security/cacerts and run
@@ -600,26 +600,26 @@ Finally, in your `ldap-activedirectory.conf` be sure to change the _providerUrl_
 ### Communicating over secure ldap using Windows(ldaps://)
 1. Download certificate from remote site 
 ```bash
-c:\>  openssl s_client -connect ldaps_server.example:636 > C:\qwcontrol\certs.out
+c:\>  openssl s_client -connect ldaps_server.example:636 > C:\rundeck\certs.out
 ```
 2. Import the file to keystore in Java home  . 
 ```bash
-c:\> keytool -importcert -file "C:\qwcontrol\certs.out" -storepass changeit -keystore "C:\Program Files\Java\jre1.8.0_xxx\lib\security\cacerts" -alias host_ext
+c:\> keytool -importcert -file "C:\rundeck\certs.out" -storepass changeit -keystore "C:\Program Files\Java\jre1.8.0_xxx\lib\security\cacerts" -alias host_ext
 ```
-3. Import in qwcontrol (Optional if using QW Control with SSL)
+3. Import in rundeck (Optional if using Rundeck with SSL)
 ```bash
-c:\> keytool -importcert -file "C:\qwcontrol\certs.out" -storepass adminadmin -keystore "C:\qwcontrol\etc\truststore" -alias ldapsserver
+c:\> keytool -importcert -file "C:\rundeck\certs.out" -storepass adminadmin -keystore "C:\rundeck\etc\truststore" -alias ldapsserver
 ```
 
 
 ## PAM
 
-QW Control includes a [PAM](https://en.wikipedia.org/wiki/Pluggable_authentication_module) JAAS login module, which uses [libpam4j](https://github.com/kohsuke/libpam4j) to authenticate.
+Rundeck includes a [PAM](https://en.wikipedia.org/wiki/Pluggable_authentication_module) JAAS login module, which uses [libpam4j](https://github.com/kohsuke/libpam4j) to authenticate.
 
-In order for QW Control to have the necessary permissions to check user credentials, the user that runs the QW Control process must be in the `shadow` group.
+In order for Rundeck to have the necessary permissions to check user credentials, the user that runs the Rundeck process must be in the `shadow` group.
 This can be done with the command:
 
-    $ sudo addgroup qwcontrol shadow
+    $ sudo addgroup rundeck shadow
 
 On debian based systems you need to install libpam4j :
 
@@ -631,24 +631,24 @@ This module can work with existing properties-file based authorization roles by 
 
 Modules:
 
-- `org.qwcontrol.jaas.jetty.JettyPamLoginModule` authenticates via PAM, can add a default set of roles to authenticated users, and can use local unix group membership for role info.
-- `org.qwcontrol.jaas.jetty.JettyAuthPropertyFileLoginModule` authenticates via property file, but does not supply user authorization information.
-- `org.qwcontrol.jaas.jetty.JettyRolePropertyFileLoginModule` does not authenticate and only uses authorization roles from a property file. Can be combined with previous modules.
+- `org.rundeck.jaas.jetty.JettyPamLoginModule` authenticates via PAM, can add a default set of roles to authenticated users, and can use local unix group membership for role info.
+- `org.rundeck.jaas.jetty.JettyAuthPropertyFileLoginModule` authenticates via property file, but does not supply user authorization information.
+- `org.rundeck.jaas.jetty.JettyRolePropertyFileLoginModule` does not authenticate and only uses authorization roles from a property file. Can be combined with previous modules.
 
 sample jaas config:
 
 ```c .numberLines
 RDpropertyfilelogin {
-  org.qwcontrol.jaas.jetty.JettyPamLoginModule requisite
+  org.rundeck.jaas.jetty.JettyPamLoginModule requisite
         debug="true"
         service="sshd"
         supplementalRoles="readonly"
         storePass="true";
 
-    org.qwcontrol.jaas.jetty.JettyRolePropertyFileLoginModule required
+    org.rundeck.jaas.jetty.JettyRolePropertyFileLoginModule required
         debug="true"
         useFirstPass="true"
-        file="/etc/qwcontrol/realm.properties";
+        file="/etc/rundeck/realm.properties";
 
 };
 ```
@@ -682,7 +682,7 @@ It then looks the username up in the Properties file, and applies any roles for 
 
 Configuration properties:
 
-- `hotReload` - `hotReload="true"` enables the ability to modify the user list specified by `file` without having to restart QW Control. The refresh interval for checking the file is 5 seconds. This is not configurable.
+- `hotReload` - `hotReload="true"` enables the ability to modify the user list specified by `file` without having to restart Rundeck. The refresh interval for checking the file is 5 seconds. This is not configurable.
 - `file` - path to a Java Property formatted file in the format defined under [realm.properties](#PropertyFileLoginModule)
 - `caseInsensitive` - true/false. If true, usernames are converted to lowercase before being looked up in the property file, otherwise they are compared as entered. Default: true.
 
@@ -699,7 +699,7 @@ This module provides authentication in the same way as the [realm.properties](#P
 
 Configuration properties:
 
-- `hotReload` - `hotReload="true"` enables the ability to modify the user list specified by `file` without having to restart QW Control. The refresh interval for checking the file is 5 seconds. This is not configurable.
+- `hotReload` - `hotReload="true"` enables the ability to modify the user list specified by `file` without having to restart Rundeck. The refresh interval for checking the file is 5 seconds. This is not configurable.
 - `file` - path to a Java Property formatted file in the format defined under [realm.properties](#realm.properties)
 
 ## Multiple Authentication Modules
@@ -715,7 +715,7 @@ Here is an example combining an LDAP module flagged as `sufficient`, and a flat 
 ```c .numberLines
 multiauth {
 
-  com.dtolabs.qwcontrol.jetty.jaas.JettyCachingLdapLoginModule sufficient
+  com.dtolabs.rundeck.jetty.jaas.JettyCachingLdapLoginModule sufficient
     debug="true"
     contextFactory="com.sun.jndi.ldap.LdapCtxFactory"
     providerUrl="ldap://server:389"
@@ -738,7 +738,7 @@ multiauth {
 
   org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
     debug="true"
-    file="/etc/qwcontrol/realm.properties";
+    file="/etc/rundeck/realm.properties";
 };
 ```
 
@@ -753,12 +753,12 @@ Based on the flags, JAAS would attempt the following for authentication:
 
 # Jaas Authorization Testing
 
-If you would like to test your Jaas configuration without restarting QW Control every time you make a change to your Jaas configuration, you can add the `--testauth` option:
+If you would like to test your Jaas configuration without restarting Rundeck every time you make a change to your Jaas configuration, you can add the `--testauth` option:
 
 ldap example:
 
 ```sh
-$ java -Dqwcontrol.jaaslogin=true -Dloginmodule.conf.name=jaas-ldap.conf -Dloginmodule.name=ldap -jar qwcontrol-{{{qwcontrolVersionFull}}}.war --testauth
+$ java -Drundeck.jaaslogin=true -Dloginmodule.conf.name=jaas-ldap.conf -Dloginmodule.name=ldap -jar rundeck-{{{rundeckVersionFull}}}.war --testauth
 Checking file: $RDECK_BASE/server/config/jaas-ldap.conf
 Checking login module: ldap
 Enter user name: ldapuser
@@ -773,7 +773,7 @@ If the login fails a stacktrace will be printed out which will contain the detai
 
 # Container authentication and authorization
 
-Container Authentication provides the Servlet context used by QW Control
+Container Authentication provides the Servlet context used by Rundeck
 with a few mechanisms to determine what roles the user has.
 
 `containerPrincipal`
@@ -785,11 +785,11 @@ and which can list the "roles" the user has.
 `container`
 : The Container also provides a query mechanism `isUserInRole`.
 
-Both of these methods are used by default, although they can be disabled with the following configuration flags in `qwcontrol-config.properties`:
+Both of these methods are used by default, although they can be disabled with the following configuration flags in `rundeck-config.properties`:
 
 ```properties
-qwcontrol.security.authorization.containerPrincipal.enabled=false
-qwcontrol.security.authorization.container.enabled=false
+rundeck.security.authorization.containerPrincipal.enabled=false
+rundeck.security.authorization.container.enabled=false
 ```
 
 # Preauthenticated Mode
@@ -800,25 +800,25 @@ qwcontrol.security.authorization.container.enabled=false
 
 : "Preauthenticated" means that the Servlet Container (e.g. Tomcat)
 is not being used for authentication/authorization.
-The user name and role list are provided to QW Control
+The user name and role list are provided to Rundeck
 from another system, usually a reverse proxy set up "in front"
-of the QW Control web application, such as Apache HTTPD.
-QW Control accepts the "REMOTE_USER" as the username,
+of the Rundeck web application, such as Apache HTTPD.
+Rundeck accepts the "REMOTE_USER" as the username,
 and allows a configurable Request Attribute to contain
 the list of user roles.
 
 **Note**: If you use this method, make sure that _only_ your proxy
-has direct access to the ports QW Control is listening on
+has direct access to the ports Rundeck is listening on
 (e.g. firewall them),
-otherwise you are opening access to qwcontrol
+otherwise you are opening access to rundeck
 without requiring authentication.
 
-This method can be enabled with this config in `qwcontrol-config.properties`:
+This method can be enabled with this config in `rundeck-config.properties`:
 
 ```properties
-qwcontrol.security.authorization.preauthenticated.enabled=true
-qwcontrol.security.authorization.preauthenticated.attributeName=REMOTE_USER_GROUPS
-qwcontrol.security.authorization.preauthenticated.delimiter=:
+rundeck.security.authorization.preauthenticated.enabled=true
+rundeck.security.authorization.preauthenticated.attributeName=REMOTE_USER_GROUPS
+rundeck.security.authorization.preauthenticated.delimiter=:
 ```
 
 This configuration requires some additional setup to enable:
@@ -838,8 +838,8 @@ For Tomcat and Apache HTTPd with `mod_proxy_ajp`, here are some additional instr
 Here is an example using just `mod_proxy_ajp`, and passing a static list of roles. A real solution should use [mod_lookup_identity](https://www.adelton.com/apache/mod_lookup_identity/):
 
 ```
-<Location /qwcontrol>
-    ProxyPass  ajp://localhost:8009/qwcontrol
+<Location /rundeck>
+    ProxyPass  ajp://localhost:8009/rundeck
 
     AuthType basic
     AuthName "private area"
@@ -853,10 +853,10 @@ Here is an example using just `mod_proxy_ajp`, and passing a static list of role
 
 **Note**: `mod_proxy_ajp` requires prefixing the environment variable with "AJP\_", but `mod_jk` can pass the environment variable directly.
 
-Once authenticated via Apache, you should be able to access qwcontrol.
+Once authenticated via Apache, you should be able to access rundeck.
 You might see a page saying "You have no authorized access to projects",
 and then "(User roles: role1, role2, ...)"
-with a list of all of the user roles seen by QW Control.
+with a list of all of the user roles seen by Rundeck.
 This page just means that there are no aclpolicy files
 that match those roles,
 but the apache->tomcat authorization is still working correctly.
@@ -867,21 +867,21 @@ If the "User roles: " part is blank, then it may not be working correctly.
 
 ## Preauthenticated Mode using headers
 
-If you have a proxy sitting in front of your QW Control installation that authenticates your users, you can send the authenticated user and groups to QW Control via HTTP headers. Set the following properties in your `qwcontrol-config.properties` file.
+If you have a proxy sitting in front of your Rundeck installation that authenticates your users, you can send the authenticated user and groups to Rundeck via HTTP headers. Set the following properties in your `rundeck-config.properties` file.
 
 ```properties
-qwcontrol.security.authorization.preauthenticated.enabled=true
-qwcontrol.security.authorization.preauthenticated.attributeName=REMOTE_USER_GROUPS
-qwcontrol.security.authorization.preauthenticated.delimiter=,
-qwcontrol.security.authorization.preauthenticated.userNameHeader=X-Forwarded-Uuid
-qwcontrol.security.authorization.preauthenticated.userRolesHeader=X-Forwarded-Roles
+rundeck.security.authorization.preauthenticated.enabled=true
+rundeck.security.authorization.preauthenticated.attributeName=REMOTE_USER_GROUPS
+rundeck.security.authorization.preauthenticated.delimiter=,
+rundeck.security.authorization.preauthenticated.userNameHeader=X-Forwarded-Uuid
+rundeck.security.authorization.preauthenticated.userRolesHeader=X-Forwarded-Roles
 
 #sync user info headers
-qwcontrol.security.authorization.preauthenticated.userSyncEnabled=true
+rundeck.security.authorization.preauthenticated.userSyncEnabled=true
 #these are the default headers for passing user details
-qwcontrol.security.authorization.preauthenticated.userFirstNameHeader=X-Forwarded-User-FirstName
-qwcontrol.security.authorization.preauthenticated.userLastNameHeader=X-Forwarded-User-LastName
-qwcontrol.security.authorization.preauthenticated.userEmailHeader=X-Forwarded-User-Email
+rundeck.security.authorization.preauthenticated.userFirstNameHeader=X-Forwarded-User-FirstName
+rundeck.security.authorization.preauthenticated.userLastNameHeader=X-Forwarded-User-LastName
+rundeck.security.authorization.preauthenticated.userEmailHeader=X-Forwarded-User-Email
 ```
 
 The `attributeName` property is the name of the request attribute which stores the user groups for the request. The forwarded headers will be put into this attribute. This attribute must be set for this method to work properly.
@@ -900,9 +900,9 @@ X-Forwarded-User-Email
 ```
 To customize the headers used set the following properties
 ```
-qwcontrol.security.authorization.preauthenticated.userFirstNameHeader=X-Forwarded-User-FirstName
-qwcontrol.security.authorization.preauthenticated.userLastNameHeader=X-Forwarded-User-LastName
-qwcontrol.security.authorization.preauthenticated.userEmailHeader=X-Forwarded-User-Email
+rundeck.security.authorization.preauthenticated.userFirstNameHeader=X-Forwarded-User-FirstName
+rundeck.security.authorization.preauthenticated.userLastNameHeader=X-Forwarded-User-LastName
+rundeck.security.authorization.preauthenticated.userEmailHeader=X-Forwarded-User-Email
 ```
 
 ## Preauthenticated mode logout redirection
@@ -911,6 +911,6 @@ If you are running preauthenticated mode and wish to redirect to a custom logout
 
 ```properties
 # Redirect to upstream logout url
-qwcontrol.security.authorization.preauthenticated.redirectLogout=true
-qwcontrol.security.authorization.preauthenticated.redirectUrl=/customlogouturl
+rundeck.security.authorization.preauthenticated.redirectLogout=true
+rundeck.security.authorization.preauthenticated.redirectUrl=/customlogouturl
 ```

@@ -2,7 +2,7 @@
 
 ## About
 
-Storage converters can modify file contents and metadata uploaded to the [Key Storage](/administration/security/key-storage.md) via the [Key Storage API](/api/qwcontrol-api.md#key-storage).
+Storage converters can modify file contents and metadata uploaded to the [Key Storage](/administration/security/key-storage.md) via the [Key Storage API](/api/rundeck-api.md#key-storage).
 
 When installed, Storage Converter plugins can be configured to apply to all storage requests for a certain Path, or matching a certain metadata selector. This lets you apply plugins to only a subset of storage requests.
 
@@ -14,21 +14,21 @@ See: [Configuring the Storage Converter Plugin](/administration/security/key-sto
 
 ## Java Plugin Type
 
-- _Note_: Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for QW Control.
+- _Note_: Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for Rundeck.
 
-The plugin interface is [StorageConverterPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/storage/StorageConverterPlugin.html).
+The plugin interface is [StorageConverterPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/storage/StorageConverterPlugin.html).
 
-The service name is [`StorageConverter`]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/ServiceNameConstants.html#StorageConverter).
+The service name is [`StorageConverter`]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/ServiceNameConstants.html#StorageConverter).
 
-SEE ALSO: [qwcontrol-storage-api]({{{javaDocStorageApiBase}}}).
+SEE ALSO: [rundeck-storage-api]({{{javaDocStorageApiBase}}}).
 
 ```java
-import com.dtolabs.qwcontrol.core.plugins.Plugin;
-import com.dtolabs.qwcontrol.core.storage.ResourceMetaBuilder;
-import com.dtolabs.qwcontrol.plugins.ServiceNameConstants;
-import com.dtolabs.qwcontrol.plugins.storage.StorageConverterPlugin;
-import org.qwcontrol.storage.api.HasInputStream;
-import org.qwcontrol.storage.api.Path;
+import com.dtolabs.rundeck.core.plugins.Plugin;
+import com.dtolabs.rundeck.core.storage.ResourceMetaBuilder;
+import com.dtolabs.rundeck.plugins.ServiceNameConstants;
+import com.dtolabs.rundeck.plugins.storage.StorageConverterPlugin;
+import org.rundeck.storage.api.HasInputStream;
+import org.rundeck.storage.api.Path;
 
 @Plugin(name="myprovider", service=ServiceNameConstants.StorageConverter)
 public class MyProvider implements StorageConverterPlugin {

@@ -3,11 +3,11 @@
 :::tutorial
 :::
 
-Adding User accounts to QW Control can be done in many ways. QW Control Enterprise supports [Single Sign-On solutions](/administration/security/sso.md), [LDAP Authentication](/administration/security/authentication.html#ldap) and a variety of other options.
+Adding User accounts to Rundeck can be done in many ways. Rundeck Enterprise supports [Single Sign-On solutions](/administration/security/sso.md), [LDAP Authentication](/administration/security/authentication.html#ldap) and a variety of other options.
 
-The User Summary tab shows a list of users configured on the QW Control system.
+The User Summary tab shows a list of users configured on the Rundeck system.
 
-`admin` This is the default administration account included with all QW Control installations.
+`admin` This is the default administration account included with all Rundeck installations.
 `alice` and `betty` (and some of their friends) are configured by default with more restrictive rights. (the default password for all accounts is admin)
 
 Follow the Exercise below to add your own user:
@@ -15,7 +15,7 @@ Follow the Exercise below to add your own user:
 :::: tabs
 ::: tab Enterprise Exercise
 
-Our Enterprise product has a User Manager section that allows QW Control admins to create local user accounts using a GUI interface.
+Our Enterprise product has a User Manager section that allows Rundeck admins to create local user accounts using a GUI interface.
 
 To manage existing users or add an new one:_[optional]_
 

@@ -2,7 +2,7 @@
 
 The content of a project, jobs, configuration, readme, motd, project ACLs, executions, and webhooks can be exported to an archive file. You might archive a project as a way to:
 
-- transfer project content from one QW Control instance to another
+- transfer project content from one Rundeck instance to another
 - add a collection of boiler plate project content when provisioning new projects
 
 ## Export Archive
@@ -11,7 +11,7 @@ The content of a project, jobs, configuration, readme, motd, project ACLs, execu
 
 ![Export archive](~@assets/img/export_archive.png)
 
-This allows you to totally customize what is included in the exported project archive. You can either check "all" and have all the project configurations exported, or you could go through and select just the areas that you wish to export. So, say you already have a project on QW Control but you want to move it to another instance. You don't love your current ACL policy so you could select all the checkboxes except "ACL Policies". Then, when you import it into a new instance of QW Control, you will get all the areas except the ACL Policies which you can recreate for the new instance. 
+This allows you to totally customize what is included in the exported project archive. You can either check "all" and have all the project configurations exported, or you could go through and select just the areas that you wish to export. So, say you already have a project on Rundeck but you want to move it to another instance. You don't love your current ACL policy so you could select all the checkboxes except "ACL Policies". Then, when you import it into a new instance of Rundeck, you will get all the areas except the ACL Policies which you can recreate for the new instance. 
 
 ### CLI Usage
 
@@ -23,13 +23,13 @@ rd projects archives export -p MyProject --file MyProject.zip
 
 ## Import Archive
 
-Importing projects with QW Control is very beneficial when you dont want to rebuild a project from the ground up. Now, you can create a new project based off of another project on a different QW Control instance. 
+Importing projects with Rundeck is very beneficial when you dont want to rebuild a project from the ground up. Now, you can create a new project based off of another project on a different Rundeck instance. 
 
 ### Graphical Interface
 
 ![Import archive](~@assets/img/import_archive.png)
 
-When importing a project with QW Control, there are some things to consider:
+When importing a project with Rundeck, there are some things to consider:
 
 - **Imported Jobs**
 : This allows you to edit how the jobs are imported. You can either preserve the UUIDs or remove them. If you choose to preserve the imported job UUIDs, if a job with the same UUID exist in another project, the new job will not be imported.
@@ -66,7 +66,7 @@ When importing a project with QW Control, there are some things to consider:
 : This allows you to choose whether or not to import schedule definitions from the archive. If "import schedule definitions" is selected, then all schedule definitions in the archive will be imported. If not, then no schedule definitions will be imported and jobs will not run on a schedule.
 
 - **Nodes**
-: This allows you to choose whether or not to import the nodes from the archive. If "Import Nodes" is selected, then all of the nodes from the project archive will be imported. If not, then no nodes will be imported and there will just be one (default QW Control node).
+: This allows you to choose whether or not to import the nodes from the archive. If "Import Nodes" is selected, then all of the nodes from the project archive will be imported. If not, then no nodes will be imported and there will just be one (default Rundeck node).
 
 ### CLI Usage
 
@@ -77,5 +77,5 @@ rd projects archives import -p MyProject --file MyProject.zip
 ```
 
 ::: tip
-Note: Some options like Tours, Calendars, Schedules, etc are only available in QW Control Enterprise.
+Note: Some options like Tours, Calendars, Schedules, etc are only available in Rundeck Enterprise.
 :::

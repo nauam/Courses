@@ -11,18 +11,18 @@ You can configure health checks, which are used to monitor the health of the reg
 For more information, see How Elastic Load Balancing works in the [Elastic Load Balancing User Guide](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html).
 
 
-### Creating an AWS ALB for you QW Control Enterprise Cluster
+### Creating an AWS ALB for you Rundeck Enterprise Cluster
 
 <!-- blank line -->
 <figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="~@assets/img/qwcontrol-enterprise-aws-alb-poster_image.png">
-    <source src="~@assets/vid/qwcontrol-enterprise-aws-alb.mp4" type="video/mp4">
+  <video controls="true" allowfullscreen="true" poster="~@assets/img/rundeck-enterprise-aws-alb-poster_image.png">
+    <source src="~@assets/vid/rundeck-enterprise-aws-alb.mp4" type="video/mp4">
   </video>
 </figure>
 <!-- blank line -->
 
 ### Health Checks
-The web load balancer serving traffic to the QW Control instance should be configured with a health check.
+The web load balancer serving traffic to the Rundeck instance should be configured with a health check.
 
 The default path for unauthenticated health checks is /health.
 

@@ -6,7 +6,7 @@ Name: <span style="color: SteelBlue"><span class="glyphicon glyphicon-tent"></sp
 
 ## Upgrading from Earlier versions
 
-* See the [Upgrading Guide](http://qwcontrol.org/docs/upgrading/index.html)
+* See the [Upgrading Guide](http://rundeck.org/docs/upgrading/index.html)
 
 ## Notes
 
@@ -26,9 +26,9 @@ bug fixes
 
 ## Issues
 
-[Milestone 2.11.8](https://github.com/qwcontrol/qwcontrol/milestone/91)
+[Milestone 2.11.8](https://github.com/rundeck/rundeck/milestone/91)
 
-* [fix #4077 jobref respect successOnEmptyNodeFilter for release 2.11](https://github.com/qwcontrol/qwcontrol/pull/4173)
-* [Add validation to check if a key exists on secure options](https://github.com/qwcontrol/qwcontrol/pull/4172)
-* [fixing error: lock wait timeout exceeded on the storage table](https://github.com/qwcontrol/qwcontrol/pull/4169)
-* [(2.11) Fix execution show page error when invalid parameter was set](https://github.com/qwcontrol/qwcontrol/pull/4133)
+* [fix #4077 jobref respect successOnEmptyNodeFilter for release 2.11](https://github.com/rundeck/rundeck/pull/4173)
+* [Add validation to check if a key exists on secure options](https://github.com/rundeck/rundeck/pull/4172)
+* [fixing error: lock wait timeout exceeded on the storage table](https://github.com/rundeck/rundeck/pull/4169)
+* [(2.11) Fix execution show page error when invalid parameter was set](https://github.com/rundeck/rundeck/pull/4133)

@@ -1,6 +1,6 @@
 # Node Enhancers
 
-QW Control offers node enhancers to help you to better organize, manage and keep up to date on the status of your nodes. There are three different node enhancers: Attribute Match, Icon and Health Check (Enterprise).  
+Rundeck offers node enhancers to help you to better organize, manage and keep up to date on the status of your nodes. There are three different node enhancers: Attribute Match, Icon and Health Check (Enterprise).  
 
 ## Attribute Match
 
@@ -19,7 +19,7 @@ The attribute match enhancer is a way for you to add new attributes to various n
 
 ## Icon
 
-This node enhancer allows you to add icons to the nodes that you already have on QW Control. In order to do so, you need to specify an attribute. By doing so, the icon will be applied only to the nodes that contain that attribute. 
+This node enhancer allows you to add icons to the nodes that you already have on Rundeck. In order to do so, you need to specify an attribute. By doing so, the icon will be applied only to the nodes that contain that attribute. 
 
 ![Icon](~@assets/img/icon_badge.png)
 

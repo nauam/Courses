@@ -1,4 +1,4 @@
-module.exports.QW ControlVersion = class QW ControlVersion {
+module.exports.RundeckVersion = class RundeckVersion {
     versionString
     versionDate
     colorIdentity
@@ -17,7 +17,7 @@ module.exports.QW ControlVersion = class QW ControlVersion {
         this.colorIdentity = data && data.colorIdentity ? data.colorIdentity : 'minorPoint';
         this.nameIdentity = data && data.nameIdentity ? data.nameIdentity : 'majorMinor';
         this.iconIdentity = data && data.iconIdentity ? data.iconIdentity : 'minorPoint';
-        this.appId = data && data['appId'] ? data['appId'] : 'QW Control';
+        this.appId = data && data['appId'] ? data['appId'] : 'Rundeck';
         this.serverName = data && data['serverName'] ? data['serverName'] : null;
 
         if (this.versionString) {
@@ -184,7 +184,7 @@ module.exports.QW ControlVersion = class QW ControlVersion {
         var version = partsa.length > 1 ? partsa[0] : versionString;
         var parts = String(version).split('-');
         var vparts = parts[0].split('\.');
-        var data = { version: version };
+        var data = {version: version};
         if (vparts.length > 0) {
             data['major'] = parseInt(vparts[0]);
         } else {
@@ -221,7 +221,7 @@ module.exports.QW ControlVersion = class QW ControlVersion {
     splitUUID = function (versionString) {
         var partsa = String(versionString).split('-');
         var apart = partsa.length > 0 ? partsa[0].substring(0, 2) : versionString;
-        var data = { uuid: versionString };
+        var data = {uuid:versionString};
         for (var i = 0; i < partsa.length; i++) {
             data['uuid' + i] = parseInt(partsa[i].substring(0, 2), 16);
             data['hexuuid' + i] = partsa[i];
@@ -235,7 +235,7 @@ module.exports.QW ControlVersion = class QW ControlVersion {
         data['sixes'] = sixes;
         return data;
     };
-    inList(list, val) {
+    inList (list, val) {
         return list[val % list.length];
     };
     colorForVersion(val) {

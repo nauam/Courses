@@ -15,14 +15,14 @@ http {
         ip_hash;
         server 172.31.10.111:4440 max_fails=3 fail_timeout=30s;
         server 172.31.10.112:4440 max_fails=3 fail_timeout=30s;
-        server qwcontrolcn1:4440 max_fails=3 fail_timeout=30s;
-        server qwcontrolcn2:4440 max_fails=3 fail_timeout=30s;
+        server rundeckcn1:4440 max_fails=3 fail_timeout=30s;
+        server rundeckcn2:4440 max_fails=3 fail_timeout=30s;
         server node1.mydomain.internal:4440 max_fails=3 fail_timeout=30s;
         server node2.mydomain.internal:4440 max_fails=3 fail_timeout=30s;
     }
     server {
-      server_name qwcontrol.mydomain.com;
-      access_log  /var/log/qwcontrol.log;
+      server_name rundeck.mydomain.com;
+      access_log  /var/log/rundeck.log;
         location / {
             proxy_pass http://rdlb;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -45,15 +45,15 @@ http {
     upstream rdlb {
         server 172.31.10.111:4440 max_fails=3 fail_timeout=30s slow_start=30;
         server 172.31.10.112:4440 max_fails=3 fail_timeout=30s slow_start=30;
-        server qwcontrolcn1:4440 max_fails=3 fail_timeout=30s slow_start=30;
-        server qwcontrolcn2:4440 max_fails=3 fail_timeout=30s slow_start=30;
+        server rundeckcn1:4440 max_fails=3 fail_timeout=30s slow_start=30;
+        server rundeckcn2:4440 max_fails=3 fail_timeout=30s slow_start=30;
         server node1.mydomain.internal:4440 max_fails=3 fail_timeout=30s slow_start=30;
         server node2.mydomain.internal:4440 max_fails=3 fail_timeout=30s slow_start=30;
         sticky cookie srv_id expires=24h domain=.mydomain.com path=/;
     }
     server {
-      server_name qwcontrol.mydomain.com;
-      access_log  /var/log/qwcontrol.log;
+      server_name rundeck.mydomain.com;
+      access_log  /var/log/rundeck.log;
         location / {
             proxy_pass http://rdlb;
             health_check interval=10 fails=3 passes=2 uri=/health;
@@ -88,8 +88,8 @@ NGINX Plus can periodically check the health of upstream servers by sending spec
 
 ```
     server {
-      server_name qwcontrol.mydomain.com;
-      access_log  /var/log/qwcontrol.log;
+      server_name rundeck.mydomain.com;
+      access_log  /var/log/rundeck.log;
         location / {
             proxy_pass http://rdlb;
             health_check port=4440 interval=10 fails=3 passes=2 uri=/health;

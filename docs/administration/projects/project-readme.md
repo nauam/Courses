@@ -24,7 +24,7 @@ rd projects configure set -p MyProject -- \
 
 ## API Usage
 
-[Project readme/motd modification](/api/qwcontrol-api.md#project-readme-file)
+[Project readme/motd modification](/api/rundeck-api.md#project-readme-file)
 
     PUT /api/13/project/MyProject/readme.md
     Content-Type: text/plain
@@ -36,6 +36,6 @@ rd projects configure set -p MyProject -- \
 If using the _filesystem_ storage type only, you can create the file in the project base directory:
 
 - launcher: \$RDECK_BASE/projects/{project}/readme.md
-- rpm/deb: /var/qwcontrol/projects/{project}/readme.md
+- rpm/deb: /var/rundeck/projects/{project}/readme.md
 
 If using the _db_ storage type, use the GUI, the CLI or [API](#api-usage).

@@ -34,7 +34,7 @@ rd projects configure set -p MyProject -- --project.gui.motd.display=projectList
 
 ## API Usage
 
-[Project motd/motd modification](/api/qwcontrol-api.md#project-motd-file)
+[Project motd/motd modification](/api/rundeck-api.md#project-motd-file)
 
 As we saw above, setting the motd using the GUI is the easiest way, less used is the API, but you can accomplish the same as by GUI or rd-cli, using below example:
 
@@ -49,6 +49,6 @@ Content-Type: text/plain
 If using the _filesystem_ storage type only, you can create the file in the project base directory:
 
 - launcher: $RDECK_BASE/projects/{project}/motd.md
-- rpm/deb: /var/qwcontrol/projects/{project}/motd.md
+- rpm/deb: /var/rundeck/projects/{project}/motd.md
 
 If using the _db_ storage type, use the GUI, the [CLI](/manual/command-line-tools/rd.md) or [API](#api-usage).

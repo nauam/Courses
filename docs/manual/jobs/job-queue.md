@@ -49,10 +49,10 @@ To cancel a queued execution, go to the execution detail page and [kill it](/man
 
 ## Disabling queue system entirely.
 
-To disable the job queue system entirely, add the following setting to qwcontrol-config.properties
+To disable the job queue system entirely, add the following setting to rundeck-config.properties
 
   ```properties
-  qwcontrol.jobQueue.enabled=false
+  rundeck.jobQueue.enabled=false
   ```
 
 This will remove all queuing options and functions from the system. 
@@ -72,20 +72,20 @@ By default, the job queue is checked every 10 seconds for executions elegible to
 Increasing this delay is recommended if you have a big cluster with a large amount of jobs with its queue enabled, 
 in order to reduce polling pressure on the database.
 
-To change this delay set the following property at `qwcontrol-config.properties`:
+To change this delay set the following property at `rundeck-config.properties`:
 
   ```properties
   # Queue poll delay in seconds.
-  qwcontrol.jobQueue.pollDelay=10
+  rundeck.jobQueue.pollDelay=10
   ```
 
 ### Queue startup delay.
 
-By default, job queue processing will begin 10 seconds after qwcontrol startup. To change this delay
-set the following property at `qwcontrol-config.properties`:
+By default, job queue processing will begin 10 seconds after rundeck startup. To change this delay
+set the following property at `rundeck-config.properties`:
 
   ```properties
   # Queue startup delay in seconds.
-  qwcontrol.jobQueue.startupDelay=10
+  rundeck.jobQueue.startupDelay=10
   ```
 

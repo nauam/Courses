@@ -4,9 +4,9 @@ Updated February 25, 2011
 
 # NAME
 
-resource-json-v10 - describes the QW Control resource model document Json format
+resource-json-v10 - describes the Rundeck resource model document Json format
 
-The `resource` JSON document declares a resource model used by a QW Control Project to define the set of Nodes that are available.
+The `resource` JSON document declares a resource model used by a Rundeck Project to define the set of Nodes that are available.
 
 See <http://json.org> for more information about json.
 
@@ -109,7 +109,7 @@ _Anything_
 
 : Specify any custom attributes about node using a string value.
 
-- For more information about using the `editUrl`/`remoteUrl` see the [QW Control User Manual](/administration/projects/resource-model-sources/resource-editor.md#resource-editor).
+- For more information about using the `editUrl`/`remoteUrl` see the [Rundeck User Manual](/administration/projects/resource-model-sources/resource-editor.md#resource-editor).
 
 ## Examples
 
@@ -124,7 +124,7 @@ attributes discussed above.
     "username": "greg",
     "osVersion": "10.10.3",
     "osArch": "x86_64",
-    "description": "QW Control server node",
+    "description": "Rundeck server node",
     "hostname": "madmartigan.local",
     "nodename": "madmartigan.local",
     "osName": "Mac OS X"
@@ -136,7 +136,7 @@ attributes discussed above.
     "username": "vagrant",
     "osVersion": "10.10.3",
     "osArch": "x86_64",
-    "description": "QW Control server node",
+    "description": "Rundeck server node",
     "hostname": "192.168.33.12",
     "nodename": "test",
     "osName": "Mac OS X"

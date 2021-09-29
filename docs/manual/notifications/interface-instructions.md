@@ -2,7 +2,7 @@
 
 ## Creating A New Notification
 
-The second iteration of the QW Control notification user interface includes dropdowns to make creating a new notification more seamless for the user. Now, when creating a new notification for a job, you will be prompted to select from two dropdown menus:
+The second iteration of the Rundeck notification user interface includes dropdowns to make creating a new notification more seamless for the user. Now, when creating a new notification for a job, you will be prompted to select from two dropdown menus:
 
 ![Notifications - Trigger](~@assets/img/notification-ontrigger.png)
 
@@ -13,8 +13,8 @@ The second iteration of the QW Control notification user interface includes drop
 
  ## Reverting to the Legacy Interface
 
- There is an updated user interface for notifications in v3.3.4 and later. If you prefer to continue to use the legacy interface, set the following property in qwcontrol-config.properties:
- 'qwcontrol.feature.notificationsEditorVue.enabled = false'
+ There is an updated user interface for notifications in v3.3.4 and later. If you prefer to continue to use the legacy interface, set the following property in rundeck-config.properties:
+ 'rundeck.feature.notificationsEditorVue.enabled = false'
 
  If you decide that you would rather use the legacy interface you may run into issues.
 

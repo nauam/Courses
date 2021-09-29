@@ -10,7 +10,7 @@ Each uploaded file is recorded with a "refid", a unique ID that identifies the f
 
 A File Upload Plugin is configured globally. The default plugin implementation stores received files on the local disk only.
 
-When a user uploads a file to a Job Option value, or the Job File Upload API is called, the plugin is initialized, and the `uploadFile` method is called. QW Control creates an internal record for the file with the SHA hash of the contents, and generates the unique "refid" for the uploaded file.
+When a user uploads a file to a Job Option value, or the Job File Upload API is called, the plugin is initialized, and the `uploadFile` method is called. Rundeck creates an internal record for the file with the SHA hash of the contents, and generates the unique "refid" for the uploaded file.
 
 The plugin is expected to "retain" the uploaded file until a state transition occurs. The file might be used in an execution, or it might simply be deleted, for example if the execution fails to start due to invalid input, or if a timeout occurs.
 
@@ -32,9 +32,9 @@ and the plugin `transitionState` method is called with a state of `Deleted`.
 
 ## Configuration
 
-To enable the plugin, The plugin provider is specified in [qwcontrol-config.properties](/administration/configuration/config-file-reference.md#qwcontrol-config.properties):
+To enable the plugin, The plugin provider is specified in [rundeck-config.properties](/administration/configuration/config-file-reference.md#rundeck-config.properties):
 
-    qwcontrol.fileupload.plugin.type=[provider]
+    rundeck.fileupload.plugin.type=[provider]
 
 "Instance" scoped plugin properties will be configured on each File Option in a Job, and the property values will be pased to the `uploadFile` method.
 
@@ -57,4 +57,4 @@ Methods:
 - `removeFile(String refid)`: (unused) may be called to remove the file
 - `InternalState transitionState(String reference, ExternalState state)`: plugin should retain or delete the file
 
-[fileuploadplugin]: {{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/file/FileUploadPlugin.html
+[fileuploadplugin]: {{{javaDocBase}}}/com/dtolabs/rundeck/plugins/file/FileUploadPlugin.html

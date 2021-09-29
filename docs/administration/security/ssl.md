@@ -1,12 +1,12 @@
 # Configuring SSL
 
-This document describes how to configure QW Control for SSL/HTTPS support, and assumes you are using the qwcontrol-launcher standalone launcher. If you are using RPM/DEB install, refer to the appropriate configuration file paths from
-[QW Control Configuration - Configuration File Reference - Configuration Layout](/administration/configuration/config-file-reference.md#configuration-layout).
+This document describes how to configure Rundeck for SSL/HTTPS support, and assumes you are using the rundeck-launcher standalone launcher. If you are using RPM/DEB install, refer to the appropriate configuration file paths from
+[Rundeck Configuration - Configuration File Reference - Configuration Layout](/administration/configuration/config-file-reference.md#configuration-layout).
 
-(1) Before beginning, do a first-run of the launcher, as it will create the base directory for QW Control and generate configuration files.
+(1) Before beginning, do a first-run of the launcher, as it will create the base directory for Rundeck and generate configuration files.
 
 ```properties
-cd $RDECK_BASE;  java -jar qwcontrol-3.0.1.war
+cd $RDECK_BASE;  java -jar rundeck-3.0.1.war
 ```
 
 This will start the server and generate necessary config files. Press control-c to shut down the server after you get below message from terminal:
@@ -20,7 +20,7 @@ Grails application running at http://localhost:4440 in environment: production
 [keytool]: https://linux.die.net/man/1/keytool-java-1.6.0-openjdk
 
 ```shell
-keytool -keystore etc/keystore -alias qwcontrol -genkey -keyalg RSA -keypass adminadmin -storepass adminadmin
+keytool -keystore etc/keystore -alias rundeck -genkey -keyalg RSA -keypass adminadmin -storepass adminadmin
 ```
 
 Be sure to specify the correct hostname of the server as the response to the question "What is your first and last name?". Answer "yes" to the final question.
@@ -30,7 +30,7 @@ You can pass all the answers to the tool on the command-line by using a HERE doc
 Replace the first line "Venkman.local" with the hostname for your server, and use any other organizational values you like:
 
 ```shell
-keytool -keystore etc/keystore -alias qwcontrol -genkey -keyalg RSA -keypass adminadmin -storepass adminadmin  <<!
+keytool -keystore etc/keystore -alias rundeck -genkey -keyalg RSA -keypass adminadmin -storepass adminadmin  <<!
 Venkman.local
 devops
 My org
@@ -41,7 +41,7 @@ yes
 !
 ```
 
-(3) CLI tools that communicate to the QW Control server need to trust the SSL certificate provided by the server. They are preconfigured to look for a truststore at the location:
+(3) CLI tools that communicate to the Rundeck server need to trust the SSL certificate provided by the server. They are preconfigured to look for a truststore at the location:
 `$RDECK_BASE/etc/truststore`. Copy the keystore as the truststore for CLI tools:
 
 ```shell
@@ -57,10 +57,10 @@ vi server/config/ssl.properties
 An example ssl.properties file (from the RPM and DEB packages).
 
 ```properties
-keystore=/etc/qwcontrol/ssl/keystore
+keystore=/etc/rundeck/ssl/keystore
 keystore.password=adminadmin
 key.password=adminadmin
-truststore=/etc/qwcontrol/ssl/truststore
+truststore=/etc/rundeck/ssl/truststore
 truststore.password=adminadmin
 ```
 
@@ -70,13 +70,13 @@ The ssl.properties default keystore and truststore location path for war install
 `$RDECK_BASE/etc/framework.properties` and change these properties:
 
 * framework.server.url
-* framework.qwcontrol.url
+* framework.rundeck.url
 * framework.server.port
 
 
 Set them to the appropriate https protocol, and change the port to 4443, or to the value of your `-Dserver.https.port` runtime configuration property.
 
-(6) Configure server URL so that QW Control knows its external address. Modify the file `$RDECK_BASE/server/config/qwcontrol-config.properties` and change the `grails.serverURL`:
+(6) Configure server URL so that Rundeck knows its external address. Modify the file `$RDECK_BASE/server/config/rundeck-config.properties` and change the `grails.serverURL`:
 
 ```properties
 grails.serverURL=https://myhostname:4443
@@ -84,23 +84,23 @@ grails.serverURL=https://myhostname:4443
 
 Set the URL to include the appropriate https protocol, and change the port to 4443, or to the value of your `-Dserver.https.port` runtime configuration property.
 
-(7) For Debian installation, create/edit `/etc/default/qwcontrold`, for RPM installation, create/edit `/etc/sysconfig/qwcontrold`:
+(7) For Debian installation, create/edit `/etc/default/rundeckd`, for RPM installation, create/edit `/etc/sysconfig/rundeckd`:
 
 ```properties
-QWCONTROL_WITH_SSL=true
+RUNDECK_WITH_SSL=true
 RDECK_HTTPS_PORT=1234
 ```
 
-(8) Start the server. For the qwcontrol launcher, tell it where to read the ssl.properties
+(8) Start the server. For the rundeck launcher, tell it where to read the ssl.properties
 
 ```shell
-java -Dqwcontrol.ssl.config=$RDECK_BASE/server/config/ssl.properties -jar qwcontrol-3.0.1.war
+java -Drundeck.ssl.config=$RDECK_BASE/server/config/ssl.properties -jar rundeck-3.0.1.war
 ```
 
 You can change port by adding `-Dserver.https.port`:
 
 ```shell
-java -Dqwcontrol.ssl.config=$RDECK_BASE/server/config/ssl.properties -Dserver.https.port=1234 -jar qwcontrol-3.0.1.war
+java -Drundeck.ssl.config=$RDECK_BASE/server/config/ssl.properties -Dserver.https.port=1234 -jar rundeck-3.0.1.war
 ```
 
 If successful, you will see a line indicating the SSl connector has started:
@@ -118,7 +118,7 @@ The passwords stored in ssl.properties can be obfuscated so they are not in plai
 Run the jetty "Password" utility:
 
 ```shell
-java -jar qwcontrol.war --encryptpwd Jetty
+java -jar rundeck.war --encryptpwd Jetty
 ```
 
 This will produce two lines, one starting with "OBF:"
@@ -139,7 +139,7 @@ java.io.IOException: Keystore was tampered with, or password was incorrect
 
 : A password specified in the file was incorrect.
 
-2010-12-02 10:07:29.958::WARN: failed SslSocketConnector@0.0.0.0:4443: java.io.FileNotFoundException: /Users/greg/qwcontrol/etc/keystore (No such file or directory)
+2010-12-02 10:07:29.958::WARN: failed SslSocketConnector@0.0.0.0:4443: java.io.FileNotFoundException: /Users/greg/rundeck/etc/keystore (No such file or directory)
 
 : The keystore/truststore file specified in ssl.properties doesn't exist
 
@@ -150,7 +150,7 @@ You can export the PEM formatted server certificate for use by HTTPS clients (we
 Export pem cacert for use by e.g. curl:
 
 ```shell
-keytool -export -keystore etc/keystore -rfc -alias qwcontrol > qwcontrol.server.pem
+keytool -export -keystore etc/keystore -rfc -alias rundeck > rundeck.server.pem
 ```
 
 ## Using an SSL Terminated Proxy
@@ -159,7 +159,7 @@ You can tell Jetty to honor
 `X-Forwarded-Proto`, `X-Forwarded-Host`,
 `X-Forwarded-Server` and `X-Forwarded-For` headers in two ways:
 
-In [qwcontrol-config.properties](/administration/configuration/config-file-reference.md#qwcontrol-config.properties) you can set:
+In [rundeck-config.properties](/administration/configuration/config-file-reference.md#rundeck-config.properties) you can set:
 
 ```properties
 server.useForwardHeaders=true
@@ -167,27 +167,27 @@ server.useForwardHeaders=true
 
 Or by declaring the following JVM property:
 
-- `qwcontrol.jetty.connector.forwarded` set to "true" to enable proxy forwarded support.
+- `rundeck.jetty.connector.forwarded` set to "true" to enable proxy forwarded support.
 
-For the executable war you can specify it on the commandline `-Dqwcontrol.jetty.connector.forwarded=true`.
+For the executable war you can specify it on the commandline `-Drundeck.jetty.connector.forwarded=true`.
 
-For RPM/DEB install you can export the `RDECK_JVM_OPTS` variable in the file `/etc/sysconfig/qwcontrold` (RPM) or `/etc/default/qwcontrold` (DEB) and add:
+For RPM/DEB install you can export the `RDECK_JVM_OPTS` variable in the file `/etc/sysconfig/rundeckd` (RPM) or `/etc/default/rundeckd` (DEB) and add:
 
 ```properties
-RDECK_JVM_OPTS=-Dqwcontrol.jetty.connector.forwarded=true
+RDECK_JVM_OPTS=-Drundeck.jetty.connector.forwarded=true
 ```
 
 This will enable Jetty to respond correctly when a forwarded request is first received.
 
-**Note:** You will still need to modify the `grails.serverURL` value in [qwcontrol-config.properties](/administration/configuration/config-file-reference.md#qwcontrol-config.properties) to let QW Control know how to properly generate absolute URLs.
+**Note:** You will still need to modify the `grails.serverURL` value in [rundeck-config.properties](/administration/configuration/config-file-reference.md#rundeck-config.properties) to let Rundeck know how to properly generate absolute URLs.
 
 ## Disabling SSL Protocols
 
-### QW Control 3
+### Rundeck 3
 
-QW Control 3 by default uses TLSv1.2. To use other protocols, it's necessary to enable them and Ciphers needed for the connection.
+Rundeck 3 by default uses TLSv1.2. To use other protocols, it's necessary to enable them and Ciphers needed for the connection.
 
-#### Flags for enabling TLS Protocols in QW Control 3 using JVM
+#### Flags for enabling TLS Protocols in Rundeck 3 using JVM
 
 Use -Dserver.ssl.enabledProtocols to enable the protocol
 
@@ -195,7 +195,7 @@ Use -Dserver.ssl.enabledProtocols to enable the protocol
 -Dserver.ssl.enabledProtocols=YourProtocols`
 ```
 
-#### Flags for enabling Ciphers in QW Control 3 using JVM
+#### Flags for enabling Ciphers in Rundeck 3 using JVM
 Use -Dserver.ssl.ciphers to enable the Ciphers
 
 ```shell
@@ -203,7 +203,7 @@ Use -Dserver.ssl.ciphers to enable the Ciphers
 ```
 
 #### For .RPM and .DEB Systems
-Edit /etc/sysconfig/qwcontrold (for .RMP) or /etc/default/qwcontrold (for .DEB) and add the flags
+Edit /etc/sysconfig/rundeckd (for .RMP) or /etc/default/rundeckd (for .DEB) and add the flags
 
 ```properties
 RDECK_JVM_OPTS="-Dserver.ssl.enabledProtocols=YourProtocols -Dserver.ssl.ciphers=YourCiphers`
@@ -240,14 +240,14 @@ SSL-Session:
     Verify return code: 18 (self signed certificate)
 ```
 
-## QW Control 3 SSL Configuration with Tomcat Servlet
+## Rundeck 3 SSL Configuration with Tomcat Servlet
 
 #### Create a Keystore file
 
 From Linux Prompt:
 
 ```shell
-keytool -keystore ./keystore -alias qwcontrol -genkey -keyalg RSA -keypass adminadmin -storepass adminadmin`
+keytool -keystore ./keystore -alias rundeck -genkey -keyalg RSA -keypass adminadmin -storepass adminadmin`
 ```
 
 #### Copy the file to a desired directory (if not already created there):
@@ -264,22 +264,22 @@ E.g.:
                SSLEnabled="true"
                scheme="https" secure="true"
                clientAuth="false" sslProtocol="TLS"
-               keystoreFile="/usr/local/qwcontrolpro/server/config/keystore"
+               keystoreFile="/usr/local/rundeckpro/server/config/keystore"
                keystorePass="adminadmin"
                  ciphers="TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_CBC_SHA25,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA"/>
 ```
 
-#### Configure qwcontrol-config properties file with port 8443 and https protocol in grails URL
+#### Configure rundeck-config properties file with port 8443 and https protocol in grails URL
 E.g.:
 ```properties
-grails.serverURL=https://192.168.0.27:8443/qwcontrolpro
+grails.serverURL=https://192.168.0.27:8443/rundeckpro
 ```
 
 #### Configure framework.propeties file with port and https protocol
 E.g.:
 ```properties
 framework.server.port = 8443
-framework.server.url = https://192.168.0.27:8443/qwcontrolpro
+framework.server.url = https://192.168.0.27:8443/rundeckpro
 ```
 
-#### Restart Tomcat Service and enter new QW Control URL
+#### Restart Tomcat Service and enter new Rundeck URL

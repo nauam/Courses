@@ -3,22 +3,22 @@
 <!---
 
 Original:
-http://support.qwcontrol.com/customer/en/portal/articles/2338371-qwcontrol-pro-ha-for-aws
+http://support.rundeck.com/customer/en/portal/articles/2338371-rundeck-pro-ha-for-aws
 
-Make a Enterprise version of this CloudFormation template: https://osgav.run/page/projects/qwcontrol-cloudformation.html
+Make a Enterprise version of this CloudFormation template: https://osgav.run/page/projects/rundeck-cloudformation.html
 --->
 
-This document provides instructions to install QW Control Enterprise in an HA (cluster) configuration on AWS, taking advantage of ELB, RDS, and S3 for scale and availability.
+This document provides instructions to install Rundeck Enterprise in an HA (cluster) configuration on AWS, taking advantage of ELB, RDS, and S3 for scale and availability.
 
-![QW Control Enterprise HA architecture on AWS](~@assets/img/aws-architecture.png)
+![Rundeck Enterprise HA architecture on AWS](~@assets/img/aws-architecture.png)
 
 ## AWS Setup
 
-This section describes the AWS environment setup needed before the QW Control software can be installed.
+This section describes the AWS environment setup needed before the Rundeck software can be installed.
 
 ### Key Pair
 
-Create a key pair to access the QW Control Enterprise EC2 instances, qwcontrolpro-ec2user. This key pair will be specified when it is time to launch the EC2 instances later on. This is also the key pair used to ssh to the EC2 instances.
+Create a key pair to access the Rundeck Enterprise EC2 instances, rundeckpro-ec2user. This key pair will be specified when it is time to launch the EC2 instances later on. This is also the key pair used to ssh to the EC2 instances.
 
 - Open the Amazon EC2 console at: [https://console.aws.amazon.com/ec2/](https://console.aws.amazon.com/ec2/)
 - Go to navigation panel of the AWS console, under NETWORK & SECURITY, choose Key Pairs.
@@ -28,11 +28,11 @@ For further information, see [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide
 
 ### IAM
 
-Create a Role to allow the QW Control EC2 and S3 plugins to access AWS API so we don’t have to specify access and secret key strings.
+Create a Role to allow the Rundeck EC2 and S3 plugins to access AWS API so we don’t have to specify access and secret key strings.
 
 - Go to the AWS Management Console and open the IAM console at [https://console.aws.amazon.com/iam/](https://console.aws.amazon.com/iam/)
 - In the navigation pane of the console, click Roles and then click Create New Role.
-- Add the role name: qwcontrolpro-ec2-instance-role
+- Add the role name: rundeckpro-ec2-instance-role
 - Attach the following policies: AmazonS3FullAccess, AmazonEc2ReadOnlyAccess
 
 ![](~@assets/img/aws-iam.png)
@@ -43,7 +43,7 @@ For further information, see [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide
 
 ### Security Groups
 
-Several security groups are defined to manage network access between the layers of the Enterprise environment (ELB->QWCONTROL-RDS).
+Several security groups are defined to manage network access between the layers of the Enterprise environment (ELB->RUNDECK-RDS).
 
 - Open the Amazon EC2 console at [https://console.aws.amazon.com/ec2/](https://console.aws.amazon.com/ec2/).
 - In the navigation pane, choose Security Groups.
@@ -53,7 +53,7 @@ Several security groups are defined to manage network access between the layers 
 
 Create the follow groups:
 
-**sg:qwcontrol-elb**
+**sg:rundeck-elb**
 
 inbound:
 
@@ -66,12 +66,12 @@ outbound:
 
 ![](~@assets/img/aws-sg-elb.png)
 
-**sg:qwcontrol-instances**
+**sg:rundeck-instances**
 
 inbound:
 
-- type: custom, protocol TCP, port: 4440, source sg:qwcontrol-elb
-- type: custom, protocol SSH, port: 20, source sg:qwcontrol-elb
+- type: custom, protocol TCP, port: 4440, source sg:rundeck-elb
+- type: custom, protocol SSH, port: 20, source sg:rundeck-elb
 
 outbound:
 
@@ -79,11 +79,11 @@ outbound:
 
 ![](~@assets/img/aws-sg-instances.png)
 
-**sg:qwcontrol-rds**
+**sg:rundeck-rds**
 
 inbound:
 
-- type: mysql, protocol TCP, port: 3306, source: sg-qwcontrol-instances
+- type: mysql, protocol TCP, port: 3306, source: sg-rundeck-instances
 
 ![](~@assets/img/aws-sg-rds.png)
 
@@ -91,7 +91,7 @@ For further information, see [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide
 
 ### S3
 
-Create a folder in the S3 bucket to store logs called qwcontrolpro. You will specify this folder name when the pro software is installed.
+Create a folder in the S3 bucket to store logs called rundeckpro. You will specify this folder name when the pro software is installed.
 
 Go into the AWS Management Console and open the Amazon S3 console at [https://console.aws.amazon.com/s3](https://console.aws.amazon.com/s3)
 
@@ -110,7 +110,7 @@ Set Policy:
             "Effect": "Allow",
             "Principal": "*",
             "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::qwcontrolpro/*"
+            "Resource": "arn:aws:s3:::rundeckpro/*"
         }
     ]
 }
@@ -120,7 +120,7 @@ For further information, see [http://docs.aws.amazon.com/AmazonS3/latest/gsg/Cre
 
 ### RDS
 
-Create an RDS mysql instance, qwcontrol-rds and place it in the qwcontrol-rds security group. Specify a database named "qwcontrol". Note the name of the RDS hostname because it is needed for the Enterprise installation.
+Create an RDS mysql instance, rundeck-rds and place it in the rundeck-rds security group. Specify a database named "rundeck". Note the name of the RDS hostname because it is needed for the Enterprise installation.
 
 - Go into the AWS Management Console and open the Amazon RDS console at [https://console.aws.amazon.com/rds](https://console.aws.amazon.com/rds)
 - In the top right corner of the AWS Management Console, select the region in which you want to create the DB instance.
@@ -137,7 +137,7 @@ For further information, see [http://docs.aws.amazon.com/AmazonRDS/latest/UserGu
 
 ### EC2
 
-Create two EC2 instances for the QW Control Enterprise cluster. Specify the following when launching the instance:
+Create two EC2 instances for the Rundeck Enterprise cluster. Specify the following when launching the instance:
 
 - Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
 - From the console dashboard, choose Launch Instance.
@@ -145,15 +145,15 @@ Create two EC2 instances for the QW Control Enterprise cluster. Specify the foll
 
 ![](~@assets/img/aws-ec2.png)
 
-- In the configure instance details, choose the IAM Role: qwcontrolpro-ec2-instance-role
+- In the configure instance details, choose the IAM Role: rundeckpro-ec2-instance-role
 
 ![](~@assets/img/aws-ec2-iam.png)
 
-- In the configure Security-group, choose the qwcontrol-instances
+- In the configure Security-group, choose the rundeck-instances
 
 ![](~@assets/img/aws-ec2-sg.png)
 
-- Finally, add the key pair name: qwcontrolpro-ec2user
+- Finally, add the key pair name: rundeckpro-ec2user
 
 ![](~@assets/img/aws-ec2-key.png)
 
@@ -161,7 +161,7 @@ For further information, see [http://docs.aws.amazon.com/AWSEC2/latest/UserGuide
 
 ### ELB
 
-Create the ELB called qwcontrolpro-ha-elb. If you defined the HTTPS listener, you must create a new SSL certificate. You will upload the SSL cert and key when defining the HTTPS listener.
+Create the ELB called rundeckpro-ha-elb. If you defined the HTTPS listener, you must create a new SSL certificate. You will upload the SSL cert and key when defining the HTTPS listener.
 
 - Open the Amazon EC2 console at [https://console.aws.amazon.com/ec2/](https://console.aws.amazon.com/ec2/).
 - From the navigation bar, select a region for your load balancers. Be sure to select the same region that you selected for your EC2 instances.
@@ -169,11 +169,11 @@ Create the ELB called qwcontrolpro-ha-elb. If you defined the HTTPS listener, yo
 - Click Create Load Balancer.
 - Define the listeners:
   - 80 (HTTP) forwarding to 4440 (HTTP)
-  - 443 (HTTPS, required certificate: qwcontrolpro-cert) forwarding to 4440 (HTTP)
+  - 443 (HTTPS, required certificate: rundeckpro-cert) forwarding to 4440 (HTTP)
 
 ![](~@assets/img/aws-elb.png)
 
-- Select the security group qwcontrol-elb
+- Select the security group rundeck-elb
 
 ![](~@assets/img/aws-elb-sg.png)
 

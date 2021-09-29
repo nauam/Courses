@@ -14,7 +14,7 @@ Also, for import project archive, you will see a checkbox where you can define i
 
 When you export a job that is associated with a specific Project Calendar, the job definition will include the list of  calendars by name.
 
-When you import the job on another qwcontrol instance or project, if an existing project calendar doesn’t match with the calendar name, a warning will be displayed. Otherwise, the named calendar will be updated to apply to the Job.
+When you import the job on another rundeck instance or project, if an existing project calendar doesn’t match with the calendar name, a warning will be displayed. Otherwise, the named calendar will be updated to apply to the Job.
 
 ```xml
 <joblist>

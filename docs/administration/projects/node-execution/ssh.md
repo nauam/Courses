@@ -1,6 +1,6 @@
 # SSH Node Execution
 
-QW Control by default uses SSH to execute commands on remote nodes, SCP to copy scripts to remote nodes, and locally executes commands and scripts for the local (server) node.
+Rundeck by default uses SSH to execute commands on remote nodes, SCP to copy scripts to remote nodes, and locally executes commands and scripts for the local (server) node.
 
 The SSH plugin expects each node definition to have the following properties in order to create the SSH connection:
 
@@ -13,7 +13,7 @@ Out of the box typical node configuration to make use of these is simple.
 
 - Set the `hostname` attribute for the nodes. It can be in the format "hostname:port" to indicate that a non-default port should be used. The default port is 22.
 - Set the `username` attribute for the nodes to the username to connect to the remote node.
-- set up public/private key authentication from the QW Control server to the nodes
+- set up public/private key authentication from the Rundeck server to the nodes
 
 This will allow remote command and script execution on the nodes.
 
@@ -61,7 +61,7 @@ When connecting to a particular Node, this sequence is used to determine the cor
 
 1. **Node level**: `ssh-authentication` attribute on the Node. Applies only to the target node.
 2. **Project level**: `project.ssh-authentication` property in `project.properties`. Applies to any project node by default.
-3. **QW Control level**: `framework.ssh-authentication` property in `framework.properties`. Applies to all projects by default.
+3. **Rundeck level**: `framework.ssh-authentication` property in `framework.properties`. Applies to all projects by default.
 
 If none of those values are set, then the default public/private key authentication is used.
 
@@ -71,16 +71,16 @@ The username used to connect via SSH is taken from the `username` Node attribute
 
 - `username="user1"`
 
-This value can also include a property reference if you want to dynamically change it, for example to the name of the current QW Control user, or the username submitted as a Job Option value:
+This value can also include a property reference if you want to dynamically change it, for example to the name of the current Rundeck user, or the username submitted as a Job Option value:
 
-- `${job.username}` - uses the username of the user executing the QW Control execution.
+- `${job.username}` - uses the username of the user executing the Rundeck execution.
 - `${option.someUsername}` - uses the value of a job option named "someUsername".
 
 If the `username` node attribute is not set, then the static value provided via project or framework configuration is used. The username for a node is determined by looking for a value in this order:
 
 1. **Node level**: `username` node attribute. Can contain property references to dynamically set it from Option or Execution values.
 2. **Project level**: `project.ssh.user` property in `project.properties` file for the project.
-3. **QW Control level**: `framework.ssh.user` property in `framework.properties` file for the QW Control installation.
+3. **Rundeck level**: `framework.ssh.user` property in `framework.properties` file for the Rundeck installation.
 
 ### Specifying SSH Config options
 
@@ -93,13 +93,13 @@ SSH config options can be specified by setting the following properties:
 
 1. **Node level**: `ssh-config-KEY` attribute on the Node. Applies only to the target node.
 2. **Project level**: `project.ssh-config-KEY` property in `project.properties`. Applies to any project node by default.
-3. **QW Control level**: `framework.ssh-config-KEY` property in `framework.properties`. Applies to all projects by default.
+3. **Rundeck level**: `framework.ssh-config-KEY` property in `framework.properties`. Applies to all projects by default.
 
 ### Specifying SSH Timeout options
 
 SSH timeout options can be specified. The timeout values are in milliseconds.
 A value of 0 means the timeout will be indefinite.
-The precedence level is Node > Project > QW Control.
+The precedence level is Node > Project > Rundeck.
 
 1. **Node level**: attribute on the Node. Applies only to the target node.
 
@@ -111,7 +111,7 @@ The precedence level is Node > Project > QW Control.
    - `project.ssh-connection-timeout` connection timeout
    - `project.ssh-command-timeout` command timeout
 
-3. **QW Control level**: Applies to all projects by default. Set property in `framework.properties`.
+3. **Rundeck level**: Applies to all projects by default. Set property in `framework.properties`.
 
    - `framework.ssh-connection-timeout` connection timeout
    - `framework.ssh-command-timeout` command timeout
@@ -131,13 +131,13 @@ If the Private Key is encrypted with a passphrase, see: [SSH Private Key Passphr
 
 The default authentication mechanism is public/private key using a **private key file** stored locally on disk.
 
-The built-in SSH connector allows the private key file to be specified in several different ways. You can configure it per-node, per-project, or per-QW Control instance.
+The built-in SSH connector allows the private key file to be specified in several different ways. You can configure it per-node, per-project, or per-Rundeck instance.
 
-When connecting to the remote node, QW Control will look for a property/attribute specifying the location of the **private key file**, in this order, with the first match having precedence:
+When connecting to the remote node, Rundeck will look for a property/attribute specifying the location of the **private key file**, in this order, with the first match having precedence:
 
 1. **Node level**: `ssh-keypath` attribute on the Node. Applies only to the target node.
 2. **Project level**: `project.ssh-keypath` property in `project.properties`. Applies to any project node by default.
-3. **QW Control level**: `framework.ssh-keypath` property in `framework.properties`. Applies to all projects by default.
+3. **Rundeck level**: `framework.ssh-keypath` property in `framework.properties`. Applies to all projects by default.
 
 If you private key is encrypted with a passphrase, then you can use a "Secure Remote Authentication Option" to prompt the user to enter the passphrase when executing on the Node. See below.
 
@@ -147,11 +147,11 @@ You can embed context property references within the keypath such as `${job.proj
 
 **Note:** See [Using Key Storage for SSH](#using-key-storage-for-ssh).
 
-When connecting to the remote node, QW Control will look for a property/attribute specifying the location of the **private key storage path**, in this order, with the first match having precedence:
+When connecting to the remote node, Rundeck will look for a property/attribute specifying the location of the **private key storage path**, in this order, with the first match having precedence:
 
 1. **Node level**: `ssh-key-storage-path` attribute on the Node. Applies only to the target node.
 2. **Project level**: `project.ssh-key-storage-path` property in `project.properties`. Applies to any project node by default.
-3. **QW Control level**: `framework.ssh-key-storage-path` property in `framework.properties`. Applies to all projects by default.
+3. **Rundeck level**: `framework.ssh-key-storage-path` property in `framework.properties`. Applies to all projects by default.
 
 If you private key is encrypted with a passphrase, see [SSH Private Key Passphrase](#ssh-private-key-passphrase) below.
 
@@ -184,7 +184,7 @@ An example Node and Job option configuration are below:
  <node name="egon"
     description="egon"
     osFamily="unix"
-    username="qwcontrol"
+    username="rundeck"
     hostname="egon"
     ssh-keypath="/path/to/privatekey_rsa"
     ssh-authentication="privateKey"
@@ -214,13 +214,13 @@ Job:
 **Note:** See [Using Key Storage for SSH](#using-key-storage-for-ssh).
 
 When connecting to the remote node with a private key,
-QW Control will look for a property/attribute
+Rundeck will look for a property/attribute
 specifying the location of the **private key passphrase storage path**,
 in this order, with the first match having precedence:
 
 1. **Node level**: `ssh-key-passphrase-storage-path` attribute on the Node. Applies only to the target node.
 2. **Project level**: `project.ssh-key-passphrase-storage-path` property in `project.properties`. Applies to any project node by default.
-3. **QW Control level**: `framework.ssh-key-passphrase-storage-path` property in `framework.properties`. Applies to all projects by default.
+3. **Rundeck level**: `framework.ssh-key-passphrase-storage-path` property in `framework.properties`. Applies to all projects by default.
 
 An example Node using private key passphrase storage:
 
@@ -228,7 +228,7 @@ An example Node using private key passphrase storage:
  <node name="egon"
     description="egon"
     osFamily="unix"
-    username="qwcontrol"
+    username="rundeck"
     hostname="egon"
     ssh-authentication="privateKey"
     ssh-key-storage-path="keys/nodes/${node.name}.key"
@@ -265,7 +265,7 @@ An example Node and Job option configuration are below:
  <node name="egon"
     description="egon"
     osFamily="unix"
-    username="qwcontrol"
+    username="rundeck"
     hostname="egon"
     ssh-authentication="password"
     ssh-password-option="option.sshPassword1" />
@@ -292,11 +292,11 @@ Job:
 
 **Note:** See [Using Key Storage for SSH](#using-key-storage-for-ssh).
 
-When connecting to the remote node, QW Control will look for a property/attribute specifying the location of the **password storage path**, in this order, with the first match having precedence:
+When connecting to the remote node, Rundeck will look for a property/attribute specifying the location of the **password storage path**, in this order, with the first match having precedence:
 
 1. **Node level**: `ssh-password-storage-path` attribute on the Node. Applies only to the target node.
 2. **Project level**: `project.ssh-password-storage-path` property in `project.properties`. Applies to any project node by default.
-3. **QW Control level**: `framework.ssh-password-storage-path` property in `framework.properties`. Applies to all projects by default.
+3. **Rundeck level**: `framework.ssh-password-storage-path` property in `framework.properties`. Applies to all projects by default.
 
 **Note:** If both `ssh-password-storage-path` and `ssh-password-option` resolve to a value, then the `ssh-password-storage-path` will be used.
 
@@ -306,15 +306,15 @@ An example Node using password storage:
  <node name="egon"
     description="egon"
     osFamily="unix"
-    username="qwcontrol"
+    username="rundeck"
     hostname="egon"
     ssh-authentication="password"
-    ssh-password-storage-path="keys/projects/${job.project}/nodes/${node.name}/qwcontrol.password" />
+    ssh-password-storage-path="keys/projects/${job.project}/nodes/${node.name}/rundeck.password" />
 ```
 
 ### Secondary Sudo Password Authentication
 
-The SSH provider supports a secondary authentication mechanism: Sudo password authentication. This is useful if your security requirements are such that you require the SSH connection to be under a specific user's account instead of a generic "qwcontrol" account, and you still need to allow "sudo" level commands to be executed requiring a password to be entered.
+The SSH provider supports a secondary authentication mechanism: Sudo password authentication. This is useful if your security requirements are such that you require the SSH connection to be under a specific user's account instead of a generic "rundeck" account, and you still need to allow "sudo" level commands to be executed requiring a password to be entered.
 
 This works in the following way:
 
@@ -330,7 +330,7 @@ The Sudo password(s) can be provided in two ways:
 
 To enable Sudo Password Authentication, set the `sudo-command-enabled` property/attribute to `true`.
 
-You can configure the way the Sudo Password Authentication works by setting these properties at the Node, Project or QW Control scopes. Simply set the attribute name on a Node, the `project.NAME` in project.properties, or `framework.NAME` in framework.properties:
+You can configure the way the Sudo Password Authentication works by setting these properties at the Node, Project or Rundeck scopes. Simply set the attribute name on a Node, the `project.NAME` in project.properties, or `framework.NAME` in framework.properties:
 
 - `sudo-command-enabled` - set to "true" to enable Sudo Password Authentication.
 - `sudo-command-pattern` - a regular expression to detect when a command execution should expect to require Sudo authentication. Default pattern is `^sudo$`.
@@ -365,7 +365,7 @@ An example Node and Job option configuration are below:
  <node name="egon"
     description="egon"
     osFamily="unix"
-    username="qwcontrol"
+    username="rundeck"
     hostname="egon"
     sudo-command-enabled="true"
     sudo-password-option="option.sudoPassword2" />
@@ -406,7 +406,7 @@ See example Node configuration below:
  <node name="egon"
     description="egon"
     osFamily="unix"
-    username="qwcontrol"
+    username="rundeck"
     hostname="egon"
     sudo-command-enabled="true"
     sudo-password-storage-path="keys/nodes/${node.name}/sudo.password" />
@@ -464,7 +464,7 @@ Optionally ssh-agent can be started with `-t <ttl>`
 which will guarantee the private key will be flushed at that time
 if by some chance it's not killed.
 
-Obviously with this enabled you cannot rely on QW Control to limit
+Obviously with this enabled you cannot rely on Rundeck to limit
 what hosts are accessible to your users,
 proper key management is required on all hosts.
 
@@ -493,7 +493,7 @@ local-ttl-ssh-agent=<time in sec>
 
 ## SSH System Configuration
 
-- The SSH configuration requires that the QW Control server machine can
+- The SSH configuration requires that the Rundeck server machine can
   ssh commands to the client machines.
 - SSH is assumed to be installed and configured appropriately to allow
   this access.
@@ -510,7 +510,7 @@ local-ttl-ssh-agent=<time in sec>
 
 ### SSH key generation
 
-- The QW Control installation can be configured to use RSA _or_ DSA
+- The Rundeck installation can be configured to use RSA _or_ DSA
   type keys.
 
 Here's an example of SSH RSA key generation on a Linux system:
@@ -598,7 +598,7 @@ below.
     $ ls -la
     drwx------   2 raj  staff    68 Nov 22 18:19 .ssh
 
-If you are running QW Control on Windows, we heartily recommend using
+If you are running Rundeck on Windows, we heartily recommend using
 [Cygwin] on Windows as it includes SSH and a number of
 Unix-like tools that are useful when you work in a command line
 environment.
@@ -613,11 +613,11 @@ remote end. See the `AcceptEnv` directive in the "sshd_config(5)"
 manual page for instructions.
 
 Use a wild card pattern to permit `RD_` prefixed variables to provide
-open access to QW Control generated environment variables.
+open access to Rundeck generated environment variables.
 
 Example in sshd_config:
 
-    # pass QW Control variables
+    # pass Rundeck variables
     AcceptEnv RD_*
 
 [ssh]: https://en.wikipedia.org/wiki/Secure_Shell

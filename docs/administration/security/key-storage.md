@@ -1,6 +1,6 @@
-# QW Control Key Storage
+# Rundeck Key Storage
 
-This document describes the QW Control Key Storage mechanism for a developer to implement a secure data flow of sensitive private key data that can be used for sessions via a QW Control Node Executor.
+This document describes the Rundeck Key Storage mechanism for a developer to implement a secure data flow of sensitive private key data that can be used for sessions via a Rundeck Node Executor.
 
 The default structure or hierarchy used for organizing Keys is by project.  Keys organized by project allow access to be isolated from other contexts at the System level.
 
@@ -10,7 +10,7 @@ The project scope defined keys should be stored by the "project/[name]" paths
 
 For users who want overwrite the project defined key storage structure and allow key access at the system level would have to set the configuration property:
 ```yaml
-     qwcontrol.feature.projectKeyStorage.enabled=false
+     rundeck.feature.projectKeyStorage.enabled=false
 ```
 A typical way to store shared keys defined at the system level might be under a "common" or "shared" root.  Specific user keys might be stored under "user/[username]/"  paths:
 
@@ -29,7 +29,7 @@ Access to the `keys` path requires an [Project scope](/administration/security/a
 
 The access to the `keys` can be changed to the [Application scope] (/administration/security/authorization.md#application-scope-resources-and-actions) by setting the feature flag:
 ```yaml
-     qwcontrol.feature.projectKeyStorage.enabled=false
+     rundeck.feature.projectKeyStorage.enabled=false
 ```
 Define access with a `for` entry of `storage`.
 
@@ -61,7 +61,7 @@ for:
 
 ## API Usage
 
-The [Key Storage API](/api/qwcontrol-api.md#key-storage) is provided through the standard QW Control HTTP API. QW Control should be configured to use HTTPS, and all API access requires either an authentication token, or username and password authentication.
+The [Key Storage API](/api/rundeck-api.md#key-storage) is provided through the standard Rundeck HTTP API. Rundeck should be configured to use HTTPS, and all API access requires either an authentication token, or username and password authentication.
 
 Creating an key entry:
 
@@ -96,7 +96,7 @@ Deleting an entry:
 
 The location of stored Key data can be either on the filesystem, the database, or some external system via usage of a **Storage Plugin**.
 
-QW Control provides these built-in implementations:
+Rundeck provides these built-in implementations:
 
 - `file` - stores files locally on the filesystem (default)
 - `db` - stores file data as BLOBs in the database
@@ -117,7 +117,7 @@ Converter plugins do not have to manage storing the data, that will be handled b
 
 See [Plugins User Guide - Configuring Storage Converter Plugins](/administration/configuration/plugins/configuring.md#storage-converter-plugins).
 
-## Using Keys via QW Control Node Executors
+## Using Keys via Rundeck Node Executors
 
 ### Built-in JschNodeExecutor
 
@@ -135,7 +135,7 @@ Attribute
 Value
 : `/keys/{path}/{name}` - the storage path to the key. Currently all keys are stored under the `/keys` top-level path.
 
-The value of the `ssh-key-storage-path` attribute can embed values taken from the execution context of the QW Control job or execution, for example the username of the user running the job. This would be embedded as `${job.username}`, so to specify use of a key named "default.pem" stored in a path with the username of the executing user, the attribute might be set as:
+The value of the `ssh-key-storage-path` attribute can embed values taken from the execution context of the Rundeck job or execution, for example the username of the user running the job. This would be embedded as `${job.username}`, so to specify use of a key named "default.pem" stored in a path with the username of the executing user, the attribute might be set as:
 
     ssh-key-storage-path="/keys/users/${job.username}/default.pem"
 

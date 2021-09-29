@@ -2,14 +2,14 @@
 
 Name: <span style="color: sandybrown"><span class="glyphicon glyphicon-leaf"></span> "onion ring sandybrown leaf"</span>
 
-- [Download QW Control](https://download.qwcontrol.com/)
-- [Sign up for Release Notes](https://www.qwcontrol.com/release-notes-signup)
+- [Download Rundeck](https://download.rundeck.com/)
+- [Sign up for Release Notes](https://www.rundeck.com/release-notes-signup)
 
 ## Overview
 
 ### Secure Authentication Tokens
 
-In an effort to enhance the security of QW Control Authentication tokens are now stored securely and will only be displayed upon creation. Here are the highlights of this new functionality:
+In an effort to enhance the security of Rundeck Authentication tokens are now stored securely and will only be displayed upon creation. Here are the highlights of this new functionality:
 
 - New tokens created will be stored hashed, and only will be displayed once when created, either by UI or API. After creation it won't be possible to obtain tokens.
 - Existing tokens will be kept as is until deleted.
@@ -18,9 +18,9 @@ In an effort to enhance the security of QW Control Authentication tokens are now
 
 ### Jenkins Update
 
-The QW Control/Jenkins integration [received an update](https://plugins.jenkins.io/qwcontrol/#documentation) that addressed some open issues.  We've also added some Option Value and Notification plugins to the Enterprise product to supplement the updated Jenkins code:
+The Rundeck/Jenkins integration [received an update](https://plugins.jenkins.io/rundeck/#documentation) that addressed some open issues.  We've also added some Option Value and Notification plugins to the Enterprise product to supplement the updated Jenkins code:
 
-- [Post Deployment Notification Plugin](https://docs.qwcontrol.com/docs/manual/notifications/jenkins.html)
+- [Post Deployment Notification Plugin](https://docs.rundeck.com/docs/manual/notifications/jenkins.html)
 - Artifacts Option Value Plugin
 - Build Option Value Plugin
 
@@ -30,28 +30,28 @@ The QW Control/Jenkins integration [received an update](https://plugins.jenkins.
 
 * SSO sync can now use user info that is provided in non-OIDC standard attributes
 * Enable OAuth2 client authentication method configuration (Ping SSO)
-* Changes to allow use of the namespaces for HashiCorp Vault in qwcontrol-config.properties
+* Changes to allow use of the namespaces for HashiCorp Vault in rundeck-config.properties
 * [FIXED] PyWinRM fails when using options or arguments with simple quotes
-* [Property loader wasn't decrypting property value](https://github.com/qwcontrol/qwcontrol/pull/6694)
+* [Property loader wasn't decrypting property value](https://github.com/rundeck/rundeck/pull/6694)
 
 ### Core Product Updates
 
-* [Migrate auth call from frameworkService to new ACL classes in repository controller](https://github.com/qwcontrol/qwcontrol/pull/6692)
-* [Update pywinrm plugin to add a function to remove/replace simple quotes when execute CMD command](https://github.com/qwcontrol/qwcontrol/pull/6689)
-* [Update Ace editor to fix handling of yaml multiline string](https://github.com/qwcontrol/qwcontrol/pull/6685)
-* [Allow syncing user info in pre-authenticated mode](https://github.com/qwcontrol/qwcontrol/pull/6684)
-* [Package and Publish UI Trellis](https://github.com/qwcontrol/qwcontrol/pull/6681)
-* [Fix NPE while cleaning up pending triggers](https://github.com/qwcontrol/qwcontrol/pull/6680)
-* [Add user email to the context that is used to resolve parameters for options](https://github.com/qwcontrol/qwcontrol/pull/6677)
-* [Fixing Enterprise download link that was point to Open Source version (update available notification)](https://github.com/qwcontrol/qwcontrol/pull/6667)
-* [Fix execution log viewer not updating settings on running job](https://github.com/qwcontrol/qwcontrol/pull/6664)
-* [Add ability to redirect login page to a different uri](https://github.com/qwcontrol/qwcontrol/pull/6663)
-* [Fix an issue with notification plugin and dynamic properties](https://github.com/qwcontrol/qwcontrol/pull/6662)
-* [Update Gradle to 5.6.4](https://github.com/qwcontrol/qwcontrol/pull/6659)
-* [Fix/job life cycle node list](https://github.com/qwcontrol/qwcontrol/pull/6658)
-* [Secure authentication tokens](https://github.com/qwcontrol/qwcontrol/pull/6643)
-* [Updating node set on subworkflow state when the node filter is modified during the job execution](https://github.com/qwcontrol/qwcontrol/pull/6640)
-* [NPE In JobSchedulerService](https://github.com/qwcontrol/qwcontrol/issues/6580)
+* [Migrate auth call from frameworkService to new ACL classes in repository controller](https://github.com/rundeck/rundeck/pull/6692)
+* [Update pywinrm plugin to add a function to remove/replace simple quotes when execute CMD command](https://github.com/rundeck/rundeck/pull/6689)
+* [Update Ace editor to fix handling of yaml multiline string](https://github.com/rundeck/rundeck/pull/6685)
+* [Allow syncing user info in pre-authenticated mode](https://github.com/rundeck/rundeck/pull/6684)
+* [Package and Publish UI Trellis](https://github.com/rundeck/rundeck/pull/6681)
+* [Fix NPE while cleaning up pending triggers](https://github.com/rundeck/rundeck/pull/6680)
+* [Add user email to the context that is used to resolve parameters for options](https://github.com/rundeck/rundeck/pull/6677)
+* [Fixing Enterprise download link that was point to Open Source version (update available notification)](https://github.com/rundeck/rundeck/pull/6667)
+* [Fix execution log viewer not updating settings on running job](https://github.com/rundeck/rundeck/pull/6664)
+* [Add ability to redirect login page to a different uri](https://github.com/rundeck/rundeck/pull/6663)
+* [Fix an issue with notification plugin and dynamic properties](https://github.com/rundeck/rundeck/pull/6662)
+* [Update Gradle to 5.6.4](https://github.com/rundeck/rundeck/pull/6659)
+* [Fix/job life cycle node list](https://github.com/rundeck/rundeck/pull/6658)
+* [Secure authentication tokens](https://github.com/rundeck/rundeck/pull/6643)
+* [Updating node set on subworkflow state when the node filter is modified during the job execution](https://github.com/rundeck/rundeck/pull/6640)
+* [NPE In JobSchedulerService](https://github.com/rundeck/rundeck/issues/6580)
 
  Plus many additional updates to package verisons across Enterprise and Open Source products.
 
@@ -82,7 +82,7 @@ The QW Control/Jenkins integration [received an update](https://plugins.jenkins.
 * sjrd218
 
 :::danger Remember!!
-**For MySQL users**: Starting with QW Control `3.3.4` the MySQL JDBC driver is no longer be
-bundled with the distributions. See the [Upgrade Guide](/upgrading/upgrading-to-qwcontrol-3.3.4.md)
-for instructions to ensure your QW Control installation can still connect to MySQL after upgrading.
+**For MySQL users**: Starting with Rundeck `3.3.4` the MySQL JDBC driver is no longer be
+bundled with the distributions. See the [Upgrade Guide](/upgrading/upgrading-to-rundeck-3.3.4.md)
+for instructions to ensure your Rundeck installation can still connect to MySQL after upgrading.
 :::

@@ -7,7 +7,7 @@ Then, using the GUI you will be able to encrypt password or text values with a c
 
 ## Use
 
-Create a Password Utility Plugin and install it as a QW Control Plugin.
+Create a Password Utility Plugin and install it as a Rundeck Plugin.
 You will need to implement the `PasswordUtilityEncrypterPlugin` interface. 
 
 Then, on the `System > Password Utility` menu option.
@@ -30,13 +30,13 @@ Finally, run the encryption
 ```java
 package com.plugin.example;
 
-import com.dtolabs.qwcontrol.core.encrypter.EncryptorResponse;
-import com.dtolabs.qwcontrol.core.encrypter.PasswordUtilityEncrypterPlugin;
-import com.dtolabs.qwcontrol.core.plugins.Plugin;
-import com.dtolabs.qwcontrol.core.plugins.configuration.*;
-import com.dtolabs.qwcontrol.plugins.ServiceNameConstants;
-import com.dtolabs.qwcontrol.plugins.descriptions.PluginDescription;
-import com.dtolabs.qwcontrol.plugins.util.*;
+import com.dtolabs.rundeck.core.encrypter.EncryptorResponse;
+import com.dtolabs.rundeck.core.encrypter.PasswordUtilityEncrypterPlugin;
+import com.dtolabs.rundeck.core.plugins.Plugin;
+import com.dtolabs.rundeck.core.plugins.configuration.*;
+import com.dtolabs.rundeck.plugins.ServiceNameConstants;
+import com.dtolabs.rundeck.plugins.descriptions.PluginDescription;
+import com.dtolabs.rundeck.plugins.util.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,7 +45,7 @@ import java.util.Map;
 @Plugin(service = ServiceNameConstants.PasswordUtilityEncrypter, name ="MyPasswordEncrypterTest")
 @PluginDescription(title = "MyPasswordEncrypterTest", description = "MyPasswordEncrypterTest")
 /**
- * new MyPasswordEncrypterTest plugin, will provide the encrypt function on the qwcontrol GUI (Password Utility page)
+ * new MyPasswordEncrypterTest plugin, will provide the encrypt function on the rundeck GUI (Password Utility page)
  */
 public class MyPasswordEncrypterTest implements PasswordUtilityEncrypterPlugin, Describable {
 

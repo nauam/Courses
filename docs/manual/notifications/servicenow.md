@@ -3,12 +3,12 @@
 :::
 <!---
 Original:
-http://support.qwcontrol.com/customer/en/portal/articles/2915300-servicenow-plugins)
+http://support.rundeck.com/customer/en/portal/articles/2915300-servicenow-plugins)
 --->
 
 ## ServiceNow / Incident / Comment
 
-QW Control Notification plugin to comment an incident
+Rundeck Notification plugin to comment an incident
 
 ### Configuration
 
@@ -30,7 +30,7 @@ To use the plugin, configure this mandatory input:
 
 ## ServiceNow / Incident / Create
 
-QW Control Notification plugin that creates an incident
+Rundeck Notification plugin that creates an incident
 
 ### Configuration
 
@@ -59,7 +59,7 @@ These inputs are optional and if left empty the default value of Service now it'
 
 ## ServiceNow / Change / Create
 
-QW Control Notification plugin to create a ServiceNow&reg; Change
+Rundeck Notification plugin to create a ServiceNow&reg; Change
 
 ### Configuration
 

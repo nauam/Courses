@@ -16,17 +16,17 @@ There are only three configuration components:
   - Name Data
   - Log Data (Checkbox)
 
-The Pattern field matches a regular expression and looks for one or two Capture Groups. If there are two Capture Groups, the first will be mapped to a QW Control variable key in the data context, while the second will be the value. If there is only one Capture Group, the match will be the value.
+The Pattern field matches a regular expression and looks for one or two Capture Groups. If there are two Capture Groups, the first will be mapped to a Rundeck variable key in the data context, while the second will be the value. If there is only one Capture Group, the match will be the value.
 
 The Name Data field is only used when a single Capture Group is defined in the regex statement. The value of that field will be used as the variable key.  The variable value will be the content from the Capture Group.
 
 Log Data is a checkbox that, if checked, will add tabular output of what is captured in the filter to the log output of the job that the filter is attached to.
 
-By default, the pattern field is set to: `^QWCONTROL:DATA:(.+?)\s*=\s*(.+)$`
+By default, the pattern field is set to: `^RUNDECK:DATA:(.+?)\s*=\s*(.+)$`
 
-This will match output of the attached job if there is a line in the log output that begins with _QWCONTROL:DATA:foo=value1_. The data is available in later job steps as the QW Control variable `$data.foo` with a value of everything after the equals sign to the end of the line. So in this case, the value of `$data.foo` would be _value1_.
+This will match output of the attached job if there is a line in the log output that begins with _RUNDECK:DATA:foo=value1_. The data is available in later job steps as the Rundeck variable `$data.foo` with a value of everything after the equals sign to the end of the line. So in this case, the value of `$data.foo` would be _value1_.
 
-Under the Advanced section, there is also an Invalid Character Pattern. This is a regular expression that matches unwanted characters in the matched value of the Pattern field. By default, QW Control filters out whitespace and characters typical of QW Control variable calls like `$, {, }, and \`.
+Under the Advanced section, there is also an Invalid Character Pattern. This is a regular expression that matches unwanted characters in the matched value of the Pattern field. By default, Rundeck filters out whitespace and characters typical of Rundeck variable calls like `$, {, }, and \`.
 
 ## Examples
 

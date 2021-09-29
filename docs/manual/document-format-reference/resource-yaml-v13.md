@@ -4,9 +4,9 @@ Updated February 25, 2011
 
 # NAME
 
-resource-yaml-v13 - describes the QW Control resource model document Yaml format
+resource-yaml-v13 - describes the Rundeck resource model document Yaml format
 
-The `resource` YAML document declares a resource model used by a QW Control Project to define the set of Nodes that are available.
+The `resource` YAML document declares a resource model used by a Rundeck Project to define the set of Nodes that are available.
 
 See <http://yaml.org> for more information about YAML.
 
@@ -94,7 +94,7 @@ Optional Entries:
 
 `ssh-keypath`
 
-: The path to the SSH key in the QW Control Key store. For example: keys/ec2/west.pem
+: The path to the SSH key in the Rundeck Key store. For example: keys/ec2/west.pem
 
 `node-executor`
 
@@ -129,7 +129,7 @@ _Anything_
 
 : Specify any custom attributes about node using a string value.
 
-- For more information about using the `editUrl`/`remoteUrl` see the [QW Control User Manual](/administration/projects/resource-model-sources/resource-editor.md#resource-editor).
+- For more information about using the `editUrl`/`remoteUrl` see the [Rundeck User Manual](/administration/projects/resource-model-sources/resource-editor.md#resource-editor).
 
 ## Examples
 
@@ -138,7 +138,7 @@ attributes discussed above.
 
 ```yaml
 Venkman.local:
-  description: QW Control server node
+  description: Rundeck server node
   hostname: Venkman.local
   nodename: Venkman.local
   osArch: x86_64

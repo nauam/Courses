@@ -1,6 +1,6 @@
 # Bundled Orchestrator Plugins
 
-Bundled Orchestrator plugins included in QW Control.
+Bundled Orchestrator plugins included in Rundeck.
 
 ## Random Subset
 

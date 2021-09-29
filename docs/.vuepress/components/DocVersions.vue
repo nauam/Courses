@@ -16,7 +16,7 @@
 </template>
 
 <script>
-const docsBase= "https://docs.qwcontrol.com"
+const docsBase= "https://docs.rundeck.com"
 //include the last version in each minor release
 const previousDocsVersions= [
         "3.3.9",

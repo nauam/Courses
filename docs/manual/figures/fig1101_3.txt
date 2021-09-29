@@ -1,7 +1,7 @@
         (Project/Format Services)      (Providers)
 
 +-----------+    +--------------\      /----------\ 
-| QW Control   |-+->| Resource     |---+->| XML      |
+| Rundeck   |-+->| Resource     |---+->| XML      |
 |  Core cFDD| |  | FormatParser |   |  \----------/
 +-----------+ |  | cEEE         |   |  /----------\
               |  \--------------+   +->| Yaml     |

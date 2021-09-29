@@ -4,7 +4,7 @@
 :::
 ## Overview
 
-The DataDog Health Check plugin allow QW Control to check status of DataDog hosts to determine if they are healthy. The plugin checks if the host is up according to the DataDog system and returns "healthy/unhealthy".  Optionally, the plugin can check the status of the DataDog Agent process.
+The DataDog Health Check plugin allow Rundeck to check status of DataDog hosts to determine if they are healthy. The plugin checks if the host is up according to the DataDog system and returns "healthy/unhealthy".  Optionally, the plugin can check the status of the DataDog Agent process.
 
 ## Preparation
 

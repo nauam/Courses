@@ -1,7 +1,7 @@
 # Jira Workflow Steps (Enterprise)
 
 ::: tip Upgrade Notice
-As of QW Control version 3.4.0 the Jira plugins now support Auth Tokens.  Please check the [Release Notes updates here](/history/3_4_x/version-3.4.0.md).
+As of Rundeck version 3.4.0 the Jira plugins now support Auth Tokens.  Please check the [Release Notes updates here](/history/3_4_x/version-3.4.0.md).
 :::
 
 Configuration of the Jira Workflow Steps can be done centrally using Configuration Management.

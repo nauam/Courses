@@ -6,7 +6,7 @@ Name: <span style="color: SlateBlue"><span class="glyphicon glyphicon-knight"></
 
 ## Upgrading from Earlier versions
 
-* See the [Upgrading Guide](http://qwcontrol.org/docs/upgrading/index.html)
+* See the [Upgrading Guide](http://rundeck.org/docs/upgrading/index.html)
 
 ## Notes
 
@@ -23,6 +23,6 @@ Performance improvements with large data sets
 
 ## Issues
 
-[Milestone 2.11.7](https://github.com/qwcontrol/qwcontrol/milestone/88)
+[Milestone 2.11.7](https://github.com/rundeck/rundeck/milestone/88)
 
-* [Query optimization 2.11](https://github.com/qwcontrol/qwcontrol/pull/3998)
+* [Query optimization 2.11](https://github.com/rundeck/rundeck/pull/3998)

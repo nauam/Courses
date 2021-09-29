@@ -1,6 +1,6 @@
 # Bundled Plugins
 
-QW Control comes with several plugins out of the box. _Built-in_ plugins are part of the core installation, and do not
+Rundeck comes with several plugins out of the box. _Built-in_ plugins are part of the core installation, and do not
 have an associated plugin file. _Bundled_ plugins come packaged in a plugin file,
 and are installed in the `libext` dir automatically at installation time.
 
@@ -14,7 +14,7 @@ File: _none_ (built-in)
 
 ## Built-in Resource Model Sources
 
-QW Control comes with four built-in Resource Model Source providers, see [Resource Model Source Plugins](/administration/projects/resource-model-sources/builtin.md):
+Rundeck comes with four built-in Resource Model Source providers, see [Resource Model Source Plugins](/administration/projects/resource-model-sources/builtin.md):
 
 - File: Parses a file in one of the supported [Model Source Formats](#built-in-resource-model-formats)
 - Directory: Scans all files in a directory in one of the supported formats
@@ -24,7 +24,7 @@ File: _none_ (built-in)
 
 ## Built-in Resource Model Formats
 
-QW Control comes with three Resource Model Format plugins, see [Resource Model Source Plugins](/administration/projects/resource-model-sources/builtin.md#resource-model-document-formats):
+Rundeck comes with three Resource Model Format plugins, see [Resource Model Source Plugins](/administration/projects/resource-model-sources/builtin.md#resource-model-document-formats):
 
 - XML: the [resourcexml](/manual/document-format-reference/resource-v13.md) format
 - YAML: the [resourceyaml](/manual/document-format-reference/resource-yaml-v13.md) format
@@ -40,7 +40,7 @@ For more detail see [Script Plugin](/administration/projects/node-execution/scri
 
 Executes an external script file to perform the command, useful for developing your own plugin with the [Script Plugin Development](/developer/01-plugin-development.md#script-plugin-development) model.
 
-File: `qwcontrol-script-plugin-{{{qwcontrolVersionFull}}}.jar`
+File: `rundeck-script-plugin-{{{rundeckVersionFull}}}.jar`
 
 ## Stub Plugin
 
@@ -74,13 +74,13 @@ You can also test some failure scenarios by configuring the following node attri
 You could, for example, disable or test an entire project's workflows or jobs by
 simply setting the `project.properties` node executor provider to `stub`.
 
-File: `qwcontrol-stub-plugin-{{{qwcontrolVersionFull}}}.jar`
+File: `rundeck-stub-plugin-{{{rundeckVersionFull}}}.jar`
 
 ## Local Execution Plugin
 
 A Node Step plugin which executes a command locally instead of on a target node.
 
-File: `qwcontrol-localexec-plugin-{{{qwcontrolVersionFull}}}.jar`
+File: `rundeck-localexec-plugin-{{{rundeckVersionFull}}}.jar`
 
 ## Job State Plugin
 
@@ -88,7 +88,7 @@ Provides a Workflow Step:
 
 - Job State Conditional: Can query and assert the state of another Job, such as running, succeeded, failed, etc, and optionally halt the current execution.
 
-File: `qwcontrol-job-state-plugin-{{{qwcontrolVersionFull}}}.jar`
+File: `rundeck-job-state-plugin-{{{rundeckVersionFull}}}.jar`
 
 ## Flow Control Plugin
 
@@ -96,7 +96,7 @@ Provides a Workflow Step:
 
 - Flow Control: Can halt the execution with a custom status, useful as an Error handler.
 
-File: `qwcontrol-flow-control-plugin-{{{qwcontrolVersionFull}}}.jar`
+File: `rundeck-flow-control-plugin-{{{rundeckVersionFull}}}.jar`
 
 ## Jasypt Encryption Plugin
 
@@ -154,26 +154,26 @@ Configuration properties:
 Example configuration for the Key Storage facility:
 
 ```properties
-qwcontrol.storage.converter.1.type=jasypt-encryption
-qwcontrol.storage.converter.1.path=keys
-qwcontrol.storage.converter.1.config.encryptorType=custom
-qwcontrol.storage.converter.1.config.passwordEnvVarName=ENC_PASSWORD
-qwcontrol.storage.converter.1.config.algorithm=PBEWITHSHA256AND128BITAES-CBC-BC
-qwcontrol.storage.converter.1.config.provider=BC
+rundeck.storage.converter.1.type=jasypt-encryption
+rundeck.storage.converter.1.path=keys
+rundeck.storage.converter.1.config.encryptorType=custom
+rundeck.storage.converter.1.config.passwordEnvVarName=ENC_PASSWORD
+rundeck.storage.converter.1.config.algorithm=PBEWITHSHA256AND128BITAES-CBC-BC
+rundeck.storage.converter.1.config.provider=BC
 ```
 
 Example configuration for the Project Configuration storage facility:
 
 ```properties
-qwcontrol.config.storage.converter.1.type=jasypt-encryption
-qwcontrol.config.storage.converter.1.path=/
-qwcontrol.config.storage.converter.1.config.password=sekrit
-qwcontrol.config.storage.converter.1.config.encryptorType=custom
-qwcontrol.config.storage.converter.1.config.algorithm=PBEWITHSHA256AND128BITAES-CBC-BC
-qwcontrol.config.storage.converter.1.config.provider=BC
+rundeck.config.storage.converter.1.type=jasypt-encryption
+rundeck.config.storage.converter.1.path=/
+rundeck.config.storage.converter.1.config.password=sekrit
+rundeck.config.storage.converter.1.config.encryptorType=custom
+rundeck.config.storage.converter.1.config.algorithm=PBEWITHSHA256AND128BITAES-CBC-BC
+rundeck.config.storage.converter.1.config.provider=BC
 ```
 
-File: `qwcontrol-jasypt-encryption-plugin-{{{qwcontrolVersionFull}}}.jar`
+File: `rundeck-jasypt-encryption-plugin-{{{rundeckVersionFull}}}.jar`
 
 ## Git Plugin
 
@@ -181,10 +181,10 @@ File: `qwcontrol-jasypt-encryption-plugin-{{{qwcontrolVersionFull}}}.jar`
 
 Provides SCM Export and SCM Import providers for Git.
 
-File: `qwcontrol-git-plugin-{{{qwcontrolVersionFull}}}.jar`
+File: `rundeck-git-plugin-{{{rundeckVersionFull}}}.jar`
 
 ## Copy File Plugin
 
 Provides a Node Step that can copy a file to a node, using the Node's File Copier.
 
-File: `qwcontrol-copyfile-plugin-{{{qwcontrolVersionFull}}}.jar`
+File: `rundeck-copyfile-plugin-{{{rundeckVersionFull}}}.jar`

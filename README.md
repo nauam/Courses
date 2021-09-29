@@ -1,5 +1,5 @@
-# QW Control Documentation
-QW Control Documentation project.
+# Rundeck Documentation
+Rundeck Documentation project.
 
 ## Getting starting
 
@@ -16,7 +16,7 @@ Run this before the first you start the docs site locally.
 npm install
 ```
 
-### Run the QW Control Docs site locally
+### Run the Rundeck Docs site locally
 
 ```
 npm run docs:dev
@@ -30,7 +30,7 @@ npm run docs:build
 ```
 
 ## Submitting Changes
-QW Control welcomes documentation PRs.  Please submit PRs against the default branch (currently `3.3.x`) and we will review.
+Rundeck welcomes documentation PRs.  Please submit PRs against the default branch (currently `3.3.x`) and we will review.
 
 
 ## Publishing
@@ -38,16 +38,16 @@ QW Control welcomes documentation PRs.  Please submit PRs against the default br
 Docs will be built and published to a base matching a branch name of
 `/3\.[1-9]\..*/`:
 
-- Branch `3.3.x` => `docs.qwcontrol.com/3.3.x/`
-- Branch `3.3.1` => `docs.qwcontrol.com/3.3.1/`
+- Branch `3.3.x` => `docs.rundeck.com/3.3.x/`
+- Branch `3.3.1` => `docs.rundeck.com/3.3.1/`
 
 ### Latest
-> Version tag must contain the full QW Control version with date!
+> Version tag must contain the full Rundeck version with date!
 
 Tag a commit to publish to the matching version base as well as
 to the latest:
-- Tag `v3.3.1-20200727` => `docs.qwcontrol.com/3.3.1/` **AND**
-`docs.qwcontrol.com/docs/`
+- Tag `v3.3.1-20200727` => `docs.rundeck.com/3.3.1/` **AND**
+`docs.rundeck.com/docs/`
 
 
 Example Code:
@@ -68,10 +68,10 @@ git push origin
 
 ## Generating Release Notes
 
-QW Control Core PRs are included by default.
+Rundeck Core PRs are included by default.
 Core PRs can excluded by labeling them with the `release-notes/exclude` label.
 
-QW Control Enterprise PRs are excluded by default.
+Rundeck Enterprise PRs are excluded by default.
 Enterprise PRs can be included by labeling them with the `release-notes/include` label.
 
 Create the file `.env` in the project root and add the line `GH_API_TOKEN=[TOKEN]`

@@ -27,13 +27,13 @@ Misfire detection is enabled by default.  If there is a need to change settings 
 
 [More information about Configuration Management](/manual/configuration-mgmt/configmgmt.md)
 
-Alternatively it's possible to configure the Missed Job Fires feature by adding the following settings in [`qwcontrol-config.properties`](/administration/configuration/config-file-reference.html#qwcontrol-config-properties):
+Alternatively it's possible to configure the Missed Job Fires feature by adding the following settings in [`rundeck-config.properties`](/administration/configuration/config-file-reference.html#rundeck-config-properties):
 
 ```properties
 #Enable the misfire marking feature
-qwcontrol.feature.misfireDetection.enabled=true
+rundeck.feature.misfireDetection.enabled=true
 #Set the threshold at which a schedule will be marked as missed. Default is 60000ms. The value should be in milliseconds.
-qwcontrol.scheduler.misfire.threshold=60000
+rundeck.scheduler.misfire.threshold=60000
 #Set the rate at which the server will check for misfires. Default is 60000ms. The value should be in milliseconds.
-qwcontrol.scheduler.misfire.checkRate=60000
+rundeck.scheduler.misfire.checkRate=60000
 ```

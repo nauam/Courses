@@ -4,7 +4,7 @@
 
 Installation of plugins is simple:
 
-Put the plugin file, such as `plugin.jar` or `some-plugin.zip`, into the QW Control
+Put the plugin file, such as `plugin.jar` or `some-plugin.zip`, into the Rundeck
 server's libext dir:
 
     cp some-plugin.zip $RDECK_BASE/libext
@@ -12,7 +12,7 @@ server's libext dir:
 The plugin is now enabled, and any providers it defines can be used by nodes
 or projects.
 
-The QW Control server does not have to be restarted.
+The Rundeck server does not have to be restarted.
 
 ## Uninstalling or Updating
 

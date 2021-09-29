@@ -6,8 +6,8 @@ Job Lifecycle Plugins add custom logic to be executed before a job is saved, and
 They can also modify the Options of the Job and input values.
 
 ::: tip
-To enable the Job Lifecycle Plugin add: `qwcontrol.feature.jobLifecyclePlugin.enabled=true`
-to your `qwcontrol-config.properties` or equivalent file.
+To enable the Job Lifecycle Plugin add: `rundeck.feature.jobLifecyclePlugin.enabled=true`
+to your `rundeck-config.properties` or equivalent file.
 :::
 
 The lifecycle points currently supported:
@@ -66,12 +66,12 @@ project.plugin.JobLifecycle.[your_plugin_name].[property]=value
 
 
 ::: tip
-Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for QW Control.
+Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for Rundeck.
 :::
 
 Implement the `JobLifecyclePlugin` interface:
 
-* [JobLifecyclePlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/jobs/JobLifecyclePlugin.html)
+* [JobLifecyclePlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/jobs/JobLifecyclePlugin.html)
 
 
 Define your class with the `@Plugin` annotation, with a service name of `JobLifecycle`
@@ -80,11 +80,11 @@ Define your class with the `@Plugin` annotation, with a service name of `JobLife
 Your class can implement two optional methods: `beforeJobExecution` and `beforeSaveJob`:
 
 ```java
-import com.dtolabs.qwcontrol.core.jobs.*;
-import com.dtolabs.qwcontrol.core.plugins.JobLifecyclePluginException;
-import com.dtolabs.qwcontrol.core.plugins.Plugin;
-import com.dtolabs.qwcontrol.plugins.ServiceNameConstants;
-import com.dtolabs.qwcontrol.plugins.project.JobLifecyclePlugin;
+import com.dtolabs.rundeck.core.jobs.*;
+import com.dtolabs.rundeck.core.plugins.JobLifecyclePluginException;
+import com.dtolabs.rundeck.core.plugins.Plugin;
+import com.dtolabs.rundeck.plugins.ServiceNameConstants;
+import com.dtolabs.rundeck.plugins.project.JobLifecyclePlugin;
 
 @Plugin(service = ServiceNameConstants.ExecutionLifecycle, name = "MyPlugin")
 class MyPlugin implements JobLifecyclePlugin{
@@ -102,27 +102,27 @@ class MyPlugin implements JobLifecyclePlugin{
 }
 ```
 
-The `beforeJobExecution` method will be called before the execution is created.  The [JobPreExecutionEvent]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/jobs/JobPreExecutionEvent.html) type allows access to information about the Job, and includes
+The `beforeJobExecution` method will be called before the execution is created.  The [JobPreExecutionEvent]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/jobs/JobPreExecutionEvent.html) type allows access to information about the Job, and includes
 the option values that will be used for the execution. The return value from your method can modify the option values used in the execution, or prevent the execution from
 occurring.
 
-You can use [JobLifecycleStatusImpl.builder\(\)]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/jobs/JobLifecycleStatusImpl.html) to build the JobLifecycleStatus result.
+You can use [JobLifecycleStatusImpl.builder\(\)]({{{javaDocBase}}}/com/dtolabs/rundeck/core/jobs/JobLifecycleStatusImpl.html) to build the JobLifecycleStatus result.
 
 * if `isSuccessful()` returns `false`, the execution will be prevented.  The value in `errorMessage` will be logged as an error.
 * otherwise, if `isUseNewValues()` returns `true`:
   * if `getOptionValues()` is not null, the values returned will be added to the Map used for the execution.
 
-The [JobPersistEvent]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/jobs/JobPersistEvent.html) type allows access to information about the Job before it is persisted.
+The [JobPersistEvent]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/jobs/JobPersistEvent.html) type allows access to information about the Job before it is persisted.
 
 * if `isSuccessful()` returns `false`, the create/update will be prevented.  The value in `errorMessage` will be returned as a validation error.
 * otherwise, if `isUseNewValues()` returns `true`:
   * if `getOptions()` is not null, the options defined will be *replaced* by the options returned here. If you want to preserve the initial values, you will
   have to include them in the result as well. 
 
-You can use [JobOptionImpl.builder\(\)]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/jobs/JobOptionImpl.html) to create new JobOption values.
+You can use [JobOptionImpl.builder\(\)]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/jobs/JobOptionImpl.html) to create new JobOption values.
 
 
 ## Example Code
 
-A full example is available on Github: <https://github.com/qwcontrol/qwcontrol/tree/main/examples/example-java-job-lifecycle-plugin>
+A full example is available on Github: <https://github.com/rundeck/rundeck/tree/main/examples/example-java-job-lifecycle-plugin>
 

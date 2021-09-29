@@ -1,21 +1,21 @@
-# QW Control Release Highlights
+# Rundeck Release Highlights
 
 ## Most Recent Release Notes
 
-[Our most recent release is {{{qwcontrolVersion}}}](3_4_x/version-{{{qwcontrolVersion}}}.md)
+[Our most recent release is {{{rundeckVersion}}}](3_4_x/version-{{{rundeckVersion}}}.md)
 
-Also check out the 3.4.0 release list of larger feature enhancements for our Enterprise and Open Source versions of QW Control.
+Also check out the 3.4.0 release list of larger feature enhancements for our Enterprise and Open Source versions of Rundeck.
 
-[QW Control 3.4.0](3_4_x/version-3.4.0.md)
+[Rundeck 3.4.0](3_4_x/version-3.4.0.md)
 
 :::danger New Packages Repository
-The official download distributions of QW Control are now available on a new hosting service.  [Details here](/learning/howto/migrate-to-qwcontrol-packages-repo) provide full details about new repository sources and guidance about signing keys.
+The official download distributions of Rundeck are now available on a new hosting service.  [Details here](/learning/howto/migrate-to-rundeck-packages-repo) provide full details about new repository sources and guidance about signing keys.
 :::
 
 :::danger MySQL Support
-**For MySQL users**: Starting with QW Control `3.3.4` the MySQL JDBC driver is no longer be
-bundled with the distributions. See the [Upgrade Guide](/upgrading/upgrading-to-qwcontrol-3.3.4.md)
-for instructions to ensure your QW Control installation can still connect to MySQL after
+**For MySQL users**: Starting with Rundeck `3.3.4` the MySQL JDBC driver is no longer be
+bundled with the distributions. See the [Upgrade Guide](/upgrading/upgrading-to-rundeck-3.3.4.md)
+for instructions to ensure your Rundeck installation can still connect to MySQL after
 the upgrading.
 :::
 
@@ -30,4 +30,4 @@ This list shows all the items fixed in the 3.2.x series [3.2.0 Release Notes](3_
 
 ## Upgrading
 
-See [Upgrading to QW Control](/upgrading/index.md) section for details about using this latest version.
+See [Upgrading to Rundeck](/upgrading/index.md) section for details about using this latest version.

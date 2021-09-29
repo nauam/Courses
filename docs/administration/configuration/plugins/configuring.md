@@ -4,7 +4,7 @@
 
 ### Configuration Management
 
-As of QW Control 3.4.0 Configuration for system wide settings can happen in the QW Control GUI.  [Read the Configuration Management documentation](/manual/configuration-mgmt/configmgmt.md).
+As of Rundeck 3.4.0 Configuration for system wide settings can happen in the Rundeck GUI.  [Read the Configuration Management documentation](/manual/configuration-mgmt/configmgmt.md).
 
 ### Workflow Steps
 
@@ -25,12 +25,12 @@ exist at Framework or Project levels.
 
 1. Instance (Job) scope: the property values defined in the Job definition
 2. Project scope: property values defined in the Project's _project.properties_ file
-3. Framework (Application) scope: property values defined in QW Control's _framework.properties_ file or [Configuration Management](/manual/configuration-mgmt/configmgmt.md).
+3. Framework (Application) scope: property values defined in Rundeck's _framework.properties_ file or [Configuration Management](/manual/configuration-mgmt/configmgmt.md).
 
-When determining the property value to use, QW Control will evaluate the most-specific scope first (Instance level), and
+When determining the property value to use, Rundeck will evaluate the most-specific scope first (Instance level), and
 then widen the scope to Project, then Framework definitions.
 
-When you create a Job in the QW Control GUI, you will be shown the Instance-scope properties
+When you create a Job in the Rundeck GUI, you will be shown the Instance-scope properties
 as part of the GUI Workflow Builder for any plugin step that you add to your workflow.
 
 When a property can be configured at the framework/project level, you will be able to define it like this:
@@ -162,13 +162,13 @@ you can specify the configuration properties for the source.
 
 Example project.properties configuration of a default File provider, and two other providers:
 
-    project.resources.file=/home/qwcontrol/projects/example/etc/resources.xml
+    project.resources.file=/home/rundeck/projects/example/etc/resources.xml
 
     resources.source.1.type=url
     resources.source.1.url=http://server/nodes.yaml
 
     resources.source.2.type=directory
-    resources.source.2.directory=/home/qwcontrol/projects/example/resources
+    resources.source.2.directory=/home/rundeck/projects/example/resources
 
 ### Resource Format Generators and Parsers
 
@@ -228,69 +228,69 @@ In addition, you can also use these variables:
 ### Logging
 
 Logging plugins consist of Readers and Writers, and Log File Storage.
-QW Control has a built-in Reader/Writer called the **Local File Log** that is used by default.
+Rundeck has a built-in Reader/Writer called the **Local File Log** that is used by default.
 
-Logging plugins are enabled in the `qwcontrol-config` file or [Configuration Management](/manual/configuration-mgmt/configmgmt.md). You should add an entry identifying the plugin by its "provider name". For Java plugins, this provider name is defined in the Java code. For Groovy plugins, the provider name is usually just the name of the Groovy script file, such as "MyStreamingLogWriterPlugin".
+Logging plugins are enabled in the `rundeck-config` file or [Configuration Management](/manual/configuration-mgmt/configmgmt.md). You should add an entry identifying the plugin by its "provider name". For Java plugins, this provider name is defined in the Java code. For Groovy plugins, the provider name is usually just the name of the Groovy script file, such as "MyStreamingLogWriterPlugin".
 
 To add StreamingLogWriter plugins, add a comma separated list to this entry, note that this will enable these plugins in addition to the **Local File Log Writer**:
 
-- `qwcontrol.execution.logs.streamingWriterPlugins`
+- `rundeck.execution.logs.streamingWriterPlugins`
   - example value: `MyStreamingLogWriterPlugin,otherPlugin`
 
 To change the StreamingLogReader plugin. Note that this will replace the **Local File Log Reader**, but will not disable the **Local File Log Writer**:
 
-- `qwcontrol.execution.logs.streamingReaderPlugin`
+- `rundeck.execution.logs.streamingReaderPlugin`
   - example value: `MyStreamingLogReaderPlugin`
 
 To disable the **Local File Log Writer**:
 
-- `qwcontrol.execution.logs.localFileStorageEnabled`
+- `rundeck.execution.logs.localFileStorageEnabled`
   - value: `false`
 
 To configure a ExecutionFileStorage plugin:
 
-- `qwcontrol.execution.logs.fileStoragePlugin`
+- `rundeck.execution.logs.fileStoragePlugin`
   - example value: `MyFileStoragePlugin`
 
-Also, if `localFileStorageEnabled` is `false`, but no `streamingReaderPlugin` is enabled, then QW Control will still default to using the **Local File Log Writer**.
+Also, if `localFileStorageEnabled` is `false`, but no `streamingReaderPlugin` is enabled, then Rundeck will still default to using the **Local File Log Writer**.
 
 The ExecutionFileStorage plugins also have some associated configuration values
 that can be used to tune the behavior of the plugins:
 
-- `qwcontrol.execution.logs.fileStorage.storageRetryCount`
+- `rundeck.execution.logs.fileStorage.storageRetryCount`
   - The number of `store` attempts to try before giving up for a single log file
   - default value: `1`
-- `qwcontrol.execution.logs.fileStorage.storageRetryDelay`
+- `rundeck.execution.logs.fileStorage.storageRetryDelay`
   - Time to wait between retry attempts
   - default value: `60` (seconds)
-- `qwcontrol.execution.logs.fileStorage.retrievalRetryCount`
+- `rundeck.execution.logs.fileStorage.retrievalRetryCount`
   - The number of `retrieve` attempts to try before giving up for a single log file
   - default value: `3`
-- `qwcontrol.execution.logs.fileStorage.retrievalRetryDelay`
+- `rundeck.execution.logs.fileStorage.retrievalRetryDelay`
   - Time to wait between retry attempts
   - default value: `60` (seconds)
-- `qwcontrol.execution.logs.fileStorage.remotePendingDelay`
+- `rundeck.execution.logs.fileStorage.remotePendingDelay`
   - Grace time to allow after an execution finishes. Clients will see a "pending" message within this period after an execution finishes, even if the storage plugin is unable to find the log file. After this time period, they will see a "not found" message if the plugin is unable to find the log file.
   - default value: `120` (seconds)
-- `qwcontrol.execution.logs.fileStorage.retrievalTasks.concurrencyLimit`
+- `rundeck.execution.logs.fileStorage.retrievalTasks.concurrencyLimit`
   - concurrency for retrieval tasks
   - default: 5
-- `qwcontrol.execution.logs.fileStorage.storageTasks.concurrencyLimit`
+- `rundeck.execution.logs.fileStorage.storageTasks.concurrencyLimit`
   - concurrency for storage tasks
   - default: 10
-- `qwcontrol.execution.logs.fileStorage.scheduledTasks.poolSize`
+- `rundeck.execution.logs.fileStorage.scheduledTasks.poolSize`
   - threadpool size for log storage retry scheduling (retries)
   - default: 5
 
 For plugins that support Partial/Checkpoint log storage, these additional configuration properties can be set:
 
-- `qwcontrol.execution.logs.fileStorage.checkpoint.time.interval` default: `30s` (30 seconds)
+- `rundeck.execution.logs.fileStorage.checkpoint.time.interval` default: `30s` (30 seconds)
   - This is the time interval between submitting a new partial log storage request
-- `qwcontrol.execution.logs.fileStorage.checkpoint.time.minimum` default: `30s` (30 seconds)
+- `rundeck.execution.logs.fileStorage.checkpoint.time.minimum` default: `30s` (30 seconds)
   - This is the minimum time to wait until the first partial log storage request
-- `qwcontrol.execution.logs.fileStorage.checkpoint.fileSize.minimum` default: `0` (no minimum)
+- `rundeck.execution.logs.fileStorage.checkpoint.fileSize.minimum` default: `0` (no minimum)
   - This is the minimum file size before the first partial log storage request
-- `qwcontrol.execution.logs.fileStorage.checkpoint.fileSize.increment` default: `0` (no minimum increment)
+- `rundeck.execution.logs.fileStorage.checkpoint.fileSize.increment` default: `0` (no minimum increment)
   - this is the file size change increment required before submitting another partial log storage request
 
 #### Logging Plugin Configuration
@@ -312,21 +312,21 @@ The `TYPE` is one of:
 ### Storage Plugins
 
 Storage plugins for the [Storage Facility](/administration/configuration/storage-facility.md)
-are configured in the `qwcontrol-config.properties` file.
+are configured in the `rundeck-config.properties` file.
 
 Two separate "containers" are used, one for Key Storage, and one for Project Definition Storage.
 
 - Key Storage
-  - uses a configuration prefix of `qwcontrol.storage.provider`
+  - uses a configuration prefix of `rundeck.storage.provider`
   - uses `file` provider by default, stored at the `${framework.var.dir}/storage` path
   - stores all content under the `/keys` top-level path
 - Project Definition Storage
-  - uses a configuration prefix of `qwcontrol.config.storage.provider`
+  - uses a configuration prefix of `rundeck.config.storage.provider`
   - uses `db` provider by default
   - stores all content under the `/projects` top-level path
 
 To configure a different Storage Plugin Provider for either **Key Storage** or **Project Definition Storage**,
-modify your `qwcontrol-config.properties` file:
+modify your `rundeck-config.properties` file:
 
 To use the `db` storage:
 
@@ -367,21 +367,21 @@ You would defin multiple configurations using sequential index numbers, and appl
 Example:
 
 ```properties
-qwcontrol.storage.provider.1.type=db
-qwcontrol.storage.provider.1.path=/keys
+rundeck.storage.provider.1.type=db
+rundeck.storage.provider.1.path=/keys
 
-qwcontrol.storage.provider.2.type=file
-qwcontrol.storage.provider.2.path=/keys/local
-qwcontrol.storage.provider.2.config.baseDir=/var/local/qwcontrol
+rundeck.storage.provider.2.type=file
+rundeck.storage.provider.2.path=/keys/local
+rundeck.storage.provider.2.config.baseDir=/var/local/rundeck
 
-qwcontrol.storage.provider.3.type=vault-plugin
-qwcontrol.storage.provider.3.path=/keys/vault
-qwcontrol.storage.provider.3.removePathPrefix=true
+rundeck.storage.provider.3.type=vault-plugin
+rundeck.storage.provider.3.path=/keys/vault
+rundeck.storage.provider.3.removePathPrefix=true
 ```
 
 In this configuration, anything stored under `keys/vault` would be stored with the Vault plugin,
 and the `removePathPrefix` means that the Vault plugin would not see the `keys/vault` prefix in the path it uses internally.
-Anything stored under `keys/local` would be stored on the filesystem under `/var/local/qwcontrol`
+Anything stored under `keys/local` would be stored on the filesystem under `/var/local/rundeck`
 using the full path (including `keys/local`).
 Anything else, e.g. under `keys/anotherdir` or just under `keys` would be stored in the DB.
 
@@ -391,16 +391,16 @@ as in the `keys` stored in DB and `keys/vault` using Vault examples above.
 
 ### Storage Converter Plugins
 
-Storage Converter plugins are configured in the `qwcontrol-config.properties` file.
+Storage Converter plugins are configured in the `rundeck-config.properties` file.
 
 Two separate "containers" are used, one for Key Storage, and one for Project Definition Storage.
 
 - Key Storage
-  - uses a configuration prefix of `qwcontrol.storage.converter`
+  - uses a configuration prefix of `rundeck.storage.converter`
 - Project Definition Storage
-  - uses a configuration prefix of `qwcontrol.config.storage.converter`
+  - uses a configuration prefix of `rundeck.config.storage.converter`
 
-Add an entry in your `qwcontrol-config.properties` file declaring the converter plugin
+Add an entry in your `rundeck-config.properties` file declaring the converter plugin
 which will handle content in subpath of the storage container.
 
 ```
@@ -420,14 +420,14 @@ The `resourceSelector` allows applying the converter to only resources which hav
 
 Available metadata keys:
 
-- `QW Control-content-type`: the Content type of the stored file
-- `QW Control-key-type`: a value of `public` or `private` for Keys.
+- `Rundeck-content-type`: the Content type of the stored file
+- `Rundeck-key-type`: a value of `public` or `private` for Keys.
 
 `OP` can be `=` for exact match, or `=~` for regular expression match.
 
 For example, this will apply only to private key files:
 
-    qwcontrol.storage.converter.1.resourceSelector = QW Control-key-type=private
+    rundeck.storage.converter.1.resourceSelector = Rundeck-key-type=private
 
 If a value for `resourceSelector` is not specified, the converter plugin will apply to all files in the matching path.
 

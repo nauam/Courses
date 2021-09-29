@@ -1,4 +1,4 @@
-# QW Control Configuration
+# Rundeck Configuration
 
 - [License (Enterprise)](/administration/configuration/license.md)
 - [Remote Job Execution (Enterprise)](/administration/configuration/remote-job-execution.md)

@@ -27,6 +27,6 @@ This is a bugfix release.
 
 ## Issues
 
-[Milestone 2.7.1](https://api.github.com/repos/qwcontrol/qwcontrol/milestones/49)
+[Milestone 2.7.1](https://api.github.com/repos/rundeck/rundeck/milestones/49)
 
-* [Error start QW Control SSL since last update 2.7.0](https://github.com/qwcontrol/qwcontrol/issues/2217)
+* [Error start Rundeck SSL since last update 2.7.0](https://github.com/rundeck/rundeck/issues/2217)

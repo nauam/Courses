@@ -8,7 +8,7 @@ There are currently three ways to develop plugins:
 
 Either way, the resultant plugin archive file, either a .jar java archive,
 or a .zip file archive, will be placed in the plugin directory
-(Launcher: `$RDECK_BASE/libext`, RPM,DEB: `/var/lib/qwcontrol/libext`).
+(Launcher: `$RDECK_BASE/libext`, RPM,DEB: `/var/lib/rundeck/libext`).
 
 ## Java Plugin Development
 
@@ -21,39 +21,39 @@ and must have a `@Plugin` annotation to define its service type and provider nam
 The `.jar` file you distribute must have this metadata within the main Manifest
 for the jar file to be correctly loaded by the system:
 
-- `QW Control-Plugin-Version: 1.2`
-- `QW Control-Plugin-Archive: true`
-- `QW Control-Plugin-Classnames: classname,..`
-- `QW Control-Plugin-Libs: lib/something.jar ...` _(optional)_
-- `QW Control-Plugin-Author: Author name` _(optional)_
-- `QW Control-Plugin-URL: Website URL` _(optional)_
-- `QW Control-Plugin-Date: Publication date` _(optional)_ in ISO8601 format
+- `Rundeck-Plugin-Version: 1.2`
+- `Rundeck-Plugin-Archive: true`
+- `Rundeck-Plugin-Classnames: classname,..`
+- `Rundeck-Plugin-Libs: lib/something.jar ...` _(optional)_
+- `Rundeck-Plugin-Author: Author name` _(optional)_
+- `Rundeck-Plugin-URL: Website URL` _(optional)_
+- `Rundeck-Plugin-Date: Publication date` _(optional)_ in ISO8601 format
 
 Additionally, you should include a manifest entry to indicate the plugin file's version:
 
-- `QW Control-Plugin-File-Version: 1.x`
+- `Rundeck-Plugin-File-Version: 1.x`
 
 This version number will be used to load only the newest plugin file, if more than one provider of
 the same name and type is defined.
 
 ### Plugin Version
 
-`QW Control-Plugin-Version` indicates the plugin mechanism version
+`Rundeck-Plugin-Version` indicates the plugin mechanism version
 
 ### Build dependencies
 
-QW Control's jars are published to the central Maven repository, and [jCenter](https://jcenter.bintray.com), so you can simply specify a dependency in your build file.
+Rundeck's jars are published to the central Maven repository, and [jCenter](https://jcenter.bintray.com), so you can simply specify a dependency in your build file.
 
-- `qwcontrol-core` is the primary build dependency for most plugin types
-  - [org.qwcontrol:qwcontrol-core:{{{ qwcontrolVersionFull }}}](https://search.maven.org/artifact/org.qwcontrol/qwcontrol-core/{{{ qwcontrolVersionFull }}}/jar)
+- `rundeck-core` is the primary build dependency for most plugin types
+  - [org.rundeck:rundeck-core:{{{ rundeckVersionFull }}}](https://search.maven.org/artifact/org.rundeck/rundeck-core/{{{ rundeckVersionFull }}}/jar)
 
-- `qwcontrol-storage-api` is also required for [Storage Plugin](/developer/07-storage-plugin.md).
-  - [org.qwcontrol:qwcontrol-storage-api:{{{qwcontrolVersionFull}}}](https://search.maven.org/artifact/org.qwcontrol/qwcontrol-storage-api/{{{qwcontrolVersionFull}}}/jar)
+- `rundeck-storage-api` is also required for [Storage Plugin](/developer/07-storage-plugin.md).
+  - [org.rundeck:rundeck-storage-api:{{{rundeckVersionFull}}}](https://search.maven.org/artifact/org.rundeck/rundeck-storage-api/{{{rundeckVersionFull}}}/jar)
 
 For gradle, use:
 
 ```java
-compile(group:'org.qwcontrol', name: 'qwcontrol-core', version: '{{{qwcontrolVersionFull}}}')
+compile(group:'org.rundeck', name: 'rundeck-core', version: '{{{rundeckVersionFull}}}')
 ```
 
 For maven use:
@@ -61,28 +61,28 @@ For maven use:
 ```xml
 <dependencies>
    <dependency>
-      <groupId>org.qwcontrol</groupId>
-      <artifactId>qwcontrol-core</artifactId>
-      <version>{{{qwcontrolVersionFull}}}</version>
+      <groupId>org.rundeck</groupId>
+      <artifactId>rundeck-core</artifactId>
+      <version>{{{rundeckVersionFull}}}</version>
       <scope>compile</scope>
    </dependency>
 </dependencies>
 ```
 
-- QW Control's core jar is published to the central Maven repository, so you can now declare a build dependency more easily.
+- Rundeck's core jar is published to the central Maven repository, so you can now declare a build dependency more easily.
 
 If your Java classes require external libraries that are not included with
-the QW Control runtime, you can include them in your .jar archive. (Look in
-`/var/lib/qwcontrol/lib` to see the set of
+the Rundeck runtime, you can include them in your .jar archive. (Look in
+`/var/lib/rundeck/lib` to see the set of
 third-party jars that are available for your classes by default at runtime).
 
-Specify the `QW Control-Plugin-Libs` attribute in the Main attributes of the
+Specify the `Rundeck-Plugin-Libs` attribute in the Main attributes of the
 Manifest for the jar, set the value to a space-separated list of jar file names
 as you have included them in the jar.
 
 E.g.:
 
-    QW Control-Plugin-Libs: lib/somejar-1.2.jar lib/anotherjar-1.3.jar
+    Rundeck-Plugin-Libs: lib/somejar-1.2.jar lib/anotherjar-1.3.jar
 
 Then include the jar files in the Plugin's jar contents:
 
@@ -90,17 +90,17 @@ Then include the jar files in the Plugin's jar contents:
     META-INF/MANIFEST.MF
     com/
     com/mycompany/
-    com/mycompany/qwcontrol/
-    com/mycompany/qwcontrol/plugin/
-    com/mycompany/qwcontrol/plugin/test/
-    com/mycompany/qwcontrol/plugin/test/TestNodeExecutor.class
+    com/mycompany/rundeck/
+    com/mycompany/rundeck/plugin/
+    com/mycompany/rundeck/plugin/test/
+    com/mycompany/rundeck/plugin/test/TestNodeExecutor.class
     lib/
     lib/somejar-1.2.jar
     lib/anotherjar-1.3.jar
 
 ### Available Services
 
-The QW Control core makes use of several different "Services" that provide functionality for
+The Rundeck core makes use of several different "Services" that provide functionality for
 executing steps, getting information about Nodes or sending notifications.
 
 Plugins can contain one or more Service Provider implementations.
@@ -109,14 +109,14 @@ however typically each plugin file would contain only providers related in some 
 
 Node Execution services:
 
-- `NodeExecutor` - executes a command on a node [javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/service/NodeExecutor.html).
-- `FileCopier` - copies a file to a node [javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/service/FileCopier.html).
+- `NodeExecutor` - executes a command on a node [javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/service/NodeExecutor.html).
+- `FileCopier` - copies a file to a node [javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/service/FileCopier.html).
 
 Resource model services:
 
-- `ResourceModelSource` - produces a set of Node definitions for a project [javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/resources/ResourceModelSource.html).
-- `ResourceFormatParser` - parses a document into a set of Node resources [javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/resources/format/ResourceFormatParser.html).
-- `ResourceFormatGenerator` - generates a document from a set of Node resources [javadoc]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/resources/format/ResourceFormatGenerator.html).
+- `ResourceModelSource` - produces a set of Node definitions for a project [javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/resources/ResourceModelSource.html).
+- `ResourceFormatParser` - parses a document into a set of Node resources [javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/resources/format/ResourceFormatParser.html).
+- `ResourceFormatGenerator` - generates a document from a set of Node resources [javadoc]({{{javaDocBase}}}/com/dtolabs/rundeck/core/resources/format/ResourceFormatGenerator.html).
 
 Workflow Step services (described in [Workflow Step Plugin](/developer/03-step-plugins.md)):
 
@@ -146,16 +146,16 @@ Orchestrator:
 ### Provider Classes
 
 A "Provider Class" is a java class that implements a particular interface and declares
-itself as a provider for a particular QW Control "Service".
+itself as a provider for a particular Rundeck "Service".
 
-Each plugin also defines a "Name" that identifies it for use in QW Control. The Name
+Each plugin also defines a "Name" that identifies it for use in Rundeck. The Name
 of a plugin is also referred to as a "Provider Name", as the plugin class is a
 provider of a particular service.
 
 You should choose a unique but simple name for your provider.
 
 Each plugin class must have the
-[Plugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/plugins/Plugin.html) annotation applied to it.
+[Plugin]({{{javaDocBase}}}/com/dtolabs/rundeck/core/plugins/Plugin.html) annotation applied to it.
 
 ```java
 @Plugin(name="myprovider", service="NodeExecutor")
@@ -166,12 +166,12 @@ public class MyProvider implements NodeExecutor {
 
 Your provider class must have at least a zero-argument constructor, and optionally
 can have a single-argument constructor with a
-`com.dtolabs.qwcontrol.core.common.Framework` parameter, in which case your
+`com.dtolabs.rundeck.core.common.Framework` parameter, in which case your
 class will be constructed with this constructor and passed the Framework
 instance.
 
 You may log messages to the ExecutionListener available via
-[ExecutionContext#getExecutionListener()]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/ExecutionContext.html) method.
+[ExecutionContext#getExecutionListener()]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/ExecutionContext.html) method.
 
 You can also send output to `System.err` and `System.out` and it will be
 captured as output of the execution.
@@ -192,14 +192,14 @@ careful not to use un-threadsafe operations.
 
 Some plugin methods return a "Result" interface which indicates the result status of the call to the plugin class. If there is an error, some plugins allow an Exception to be thrown or for the error to be included in the Result class. In both cases, there is a "FailureReason" that must be specified.
 See the javadoc:
-[FailureReason]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/workflow/steps/FailureReason.html).
+[FailureReason]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/workflow/steps/FailureReason.html).
 
 This can be any implementation of the FailureReason interface, and this object's `toString()` method will be used to return the reason value (for example, it is passed to Error Handler steps in a Workflow as the "result.reason" string). The mechanism used internally is to provide an Enum implementation of the FailureReason interface, and to enumerate the possible reasons for failure within the enum.
 
 You are encouraged to re-use existing FailureReasons as much as possible as they provide some basic failure causes. Existing classes:
 
-- [NodeStepFailureReason]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/workflow/steps/node/NodeStepFailureReason.html)
-- [StepFailureReason]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/execution/workflow/steps/StepFailureReason.html)
+- [NodeStepFailureReason]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/workflow/steps/node/NodeStepFailureReason.html)
+- [StepFailureReason]({{{javaDocBase}}}/com/dtolabs/rundeck/core/execution/workflow/steps/StepFailureReason.html)
 
 ### Plugin Descriptions
 
@@ -214,18 +214,18 @@ There are several ways to declare your plugin's Description:
 **Collaborator interface**
 
 Implement the
-[DescriptionBuilder.Collaborator]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/util/DescriptionBuilder.Collaborator.html) interface
+[DescriptionBuilder.Collaborator]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/util/DescriptionBuilder.Collaborator.html) interface
 in your plugin class, and it will be given an opportunity to perform actions on the Builder object before it finally constructs a Description.
 
 **Describable interface**
 
 If you want to build the Description object yourself, you can do so by
 implementing the
-[Describable]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/plugins/configuration/Describable.html)
+[Describable]({{{javaDocBase}}}/com/dtolabs/rundeck/core/plugins/configuration/Describable.html)
 interface. Return a
-[Description]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/plugins/configuration/Description.html) instance. You can
+[Description]({{{javaDocBase}}}/com/dtolabs/rundeck/core/plugins/configuration/Description.html) instance. You can
 construct one by using the
-[DescriptionBuilder]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/util/DescriptionBuilder.html) builder class.
+[DescriptionBuilder]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/util/DescriptionBuilder.html) builder class.
 
 **Description Annotations**
 
@@ -242,22 +242,22 @@ Within a Description object you can define a set of Property objects, which repr
 
 Some plugin types support using Java Annotations to define properties, see [Plugin Annotations](/developer/02-plugin-annotations.md).
 
-For the remaining plugin types, the Properties must be defined using the other interfaces described above, typically with the use of a [PropertyBuilder]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/util/PropertyBuilder.html).
+For the remaining plugin types, the Properties must be defined using the other interfaces described above, typically with the use of a [PropertyBuilder]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/util/PropertyBuilder.html).
 
 **Rendering Options**
 
-You can specify "rendering options" to affect the property being rendered in the QW Control GUI. These affect Property type _String_ only:
+You can specify "rendering options" to affect the property being rendered in the Rundeck GUI. These affect Property type _String_ only:
 
 - Textarea: renders the input as a multi-line text area.
 - Password: renders the input as a password input.
 
 For more information see the options under [Property Rendering options](#property-rendering-options).
 
-A set of constants for the supported rendering option keys and some values are provided in the [StringRenderingConstants]({{{javaDocBase}}}/com/dtolabs/qwcontrol/core/plugins/configuration/StringRenderingConstants.html).
+A set of constants for the supported rendering option keys and some values are provided in the [StringRenderingConstants]({{{javaDocBase}}}/com/dtolabs/rundeck/core/plugins/configuration/StringRenderingConstants.html).
 
 ### Internationalization/Localization for Jar files
 
-Since QW Control 2.6.10, Plugins support Internationalization ("i18n") using Java properties files.
+Since Rundeck 2.6.10, Plugins support Internationalization ("i18n") using Java properties files.
 
 Include a `resources/i18n` directory in your jar file, with localized versions of your Plugin messages.
 
@@ -269,17 +269,17 @@ Some types of plugins can be created with a simple Groovy-based DSL.
 This gives you a simpler way to develop plugins, but still provides the power of Java. Of course, you can build a Java plugin using Groovy, however this DSL allows you to create a plugin within a single file for simple
 use cases.
 
-To create a Groovy based plugin, create a file named `MyXYZPlugin.groovy` in the plugins directory for QW Control.
+To create a Groovy based plugin, create a file named `MyXYZPlugin.groovy` in the plugins directory for Rundeck.
 
-You must restart qwcontrol to make the plugin available the first time, but you can subsequently update the .groovy script without restarting QW Control.
+You must restart rundeck to make the plugin available the first time, but you can subsequently update the .groovy script without restarting Rundeck.
 
 ### Groovy DSL
 
-Within the Groovy script, you define your plugin by calling the `qwcontrolPlugin` method, and pass it both the Class of the type of plugin, and a Closure used to build the plugin object.
+Within the Groovy script, you define your plugin by calling the `rundeckPlugin` method, and pass it both the Class of the type of plugin, and a Closure used to build the plugin object.
 
 ```java
-import  com.dtolabs.qwcontrol.plugins.notification.NotificationPlugin
-qwcontrolPlugin(NotificationPlugin){
+import  com.dtolabs.rundeck.plugins.notification.NotificationPlugin
+rundeckPlugin(NotificationPlugin){
     //plugin definition goes here...
 }
 ```
@@ -292,7 +292,7 @@ Note: Be sure to `import` all necessary types used in the Groovy script.
 
 #### Definition
 
-Within the definition section you can define your plugin's Description to be shown in the QW Control GUI, as well as
+Within the definition section you can define your plugin's Description to be shown in the Rundeck GUI, as well as
 configuration properties to present to the user.
 
 _Properties_
@@ -372,7 +372,7 @@ phone_number(title: "Phone number"){
 
 **A Note about Scopes and Validation**:
 
-The user is presented with any `Instance` scoped properties in the QW Control GUI when defining a Job, and any invalid configuration values will present an error when saving the Job. This includes failing to set a value for a "required" property. However, if you have properties that are scoped for `Project` or lower, those properties will not be shown in the GUI. In that case, the validation will not be checked for the properties when saving the Job definition, and will only be performed when the plugin is invoked.
+The user is presented with any `Instance` scoped properties in the Rundeck GUI when defining a Job, and any invalid configuration values will present an error when saving the Job. This includes failing to set a value for a "required" property. However, if you have properties that are scoped for `Project` or lower, those properties will not be shown in the GUI. In that case, the validation will not be checked for the properties when saving the Job definition, and will only be performed when the plugin is invoked.
 
 ### Supported Groovy Plugin Types
 
@@ -440,7 +440,7 @@ The file `plugin.yaml` must have this structure:
 
 name: plugin name
 version: plugin version
-qwcontrolPluginVersion: 1.2
+rundeckPluginVersion: 1.2
 author: author name
 date: release date (ISO8601)
 url: website URL
@@ -457,7 +457,7 @@ The main metadata that is required:
 
 - `name` - name for the plugin
 - `version` - version number of the plugin
-- `qwcontrolPluginVersion` - QW Control Plugin type version, currently "1.2"
+- `rundeckPluginVersion` - Rundeck Plugin type version, currently "1.2"
 - `providers` - list of provider metadata maps
 
 These are optional:
@@ -471,7 +471,7 @@ entries in the `providers` list to declare those providers defined in the plugin
 
 ### Plugin version changes
 
-The value of `qwcontrolPluginVersion` defines some features of the loaded plugin.
+The value of `rundeckPluginVersion` defines some features of the loaded plugin.
 
 - `1.2`
   - allows use of [Plugin Localization][] with message resources and [Plugin Icons][].
@@ -492,7 +492,7 @@ Required provider entries:
   - `WorkflowNodeStep`
   - `RemoteScriptNodeStep`
 - `plugin-type` - must be `script` for these types (or `ui` for [UI Plugins](/developer/11-ui-plugins.md))
-- `plugin-meta` - an optional Map defining additional [Provider Metadata](#provider-metadata) entries. (Since qwcontrol 3.0.14)
+- `plugin-meta` - an optional Map defining additional [Provider Metadata](#provider-metadata) entries. (Since rundeck 3.0.14)
 - `script-file` - must be the name of a file relative to the `contents` directory
 
 For `ResourceModelSource` service, this additional entry is required:
@@ -517,10 +517,10 @@ Optional entries:
   (Available for `RemoteScriptNodeStep` only.)
 - `script-file-extension`: A file extension to use for the remotely copied script.
   (Available for `RemoteScriptNodeStep` only.)
-- `mergeEnvironment` - boolean, if true (default for `qwcontrolPluginVersion: 1.1+`), when the script
-  is executed the Environment variables from the QW Control server
+- `mergeEnvironment` - boolean, if true (default for `rundeckPluginVersion: 1.1+`), when the script
+  is executed the Environment variables from the Rundeck server
   will be merged with the context environment variables provided to the script.
-  If false (default for `qwcontrolPluginVersion: 1.0`), then
+  If false (default for `rundeckPluginVersion: 1.0`), then
   only the context environment variables will be provided.
 - `config` - a Map defining custom [Plugin properties](#plugin-properties) (see below.)
 
@@ -569,7 +569,7 @@ Here is an example:
 
 name: plugin name
 version: plugin version
-qwcontrolPluginVersion: 1.0
+rundeckPluginVersion: 1.0
 author: author name
 date: release date
 providers:
@@ -620,8 +620,8 @@ specific Service will provide some additional context properties that can be use
 
 All script-plugins will also be provided with these context entries:
 
-- `qwcontrol.base` - base directory of the QW Control installation
-- `qwcontrol.project` - project name
+- `rundeck.base` - base directory of the Rundeck installation
+- `rundeck.project` - project name
 - `plugin.base` - base directory of the expanded 'contents' dir of the plugin
 - `plugin.file` - the plugin file itself
 - `plugin.scriptfile` - the path to the script file being executed for the plugin
@@ -685,7 +685,7 @@ For `ResourceModelSource`
 
 ### Internationalization/Localization for Zip files
 
-Since QW Control 2.6.10, Plugins support Internationalization ("i18n") using Java properties files.
+Since Rundeck 2.6.10, Plugins support Internationalization ("i18n") using Java properties files.
 
 Include a `resources/i18n` directory in your zip file, with localized versions of your Plugin messages.
 
@@ -769,11 +769,11 @@ Available rendering option keys:
 - `instance-scope-node-attribute`
   - Value is the name of a Node attribute to use for instance-scoped properties for _Node Services_ plugins `NodeExecutor` and `FileCopier` only.
 - `selectionAccessor`, values:
-  - `STORAGE_PATH` - display an additional input to select a Storage Path string from QW Control's [Key Storage Facility](/administration/security/key-storage.md).
+  - `STORAGE_PATH` - display an additional input to select a Storage Path string from Rundeck's [Key Storage Facility](/administration/security/key-storage.md).
 - `storage-path-root`
   - Value is a Storage Path indicating the root to use if the selectionAccessor is `STORAGE_PATH`.
 - `storage-file-meta-filter`
-  - Value is a Storage metadata filter string, indicating the types of Storage Files to select from if selectionAccessor is `STORAGE_PATH`. Filter string format: `metadatakey=value`, e.g. `QW Control-key-type=private`.
+  - Value is a Storage metadata filter string, indicating the types of Storage Files to select from if selectionAccessor is `STORAGE_PATH`. Filter string format: `metadatakey=value`, e.g. `Rundeck-key-type=private`.
 - `valueConversion` defines a way to convert a the value of the resolved property. Allowed values:
   - `STORAGE_PATH_AUTOMATIC_READ` - automatically loads the storage contents from the given Storage Path, replacing the path with the loaded file contents as a String. E.g. can be used to load a Password file contents.
   - `PRIVATE_DATA_CONTEXT` - automatically read a value from the Private data context, which contains Secure Authentication Job Option values. E.g. With this conversion enabled, a config value of "option.mypassword" would be replaced with the value of a secure authentication job option named "mypassword".
@@ -790,16 +790,16 @@ Available rendering option keys:
 - `grouping` allowed value: `secondary`, indicates that the specified `groupName` should be shown in a
     collapsed state if no input values in that group have been set. If no `groupName` is set, then the field
     will be displayed under a group with a heading of "More".
-- `codeSyntaxMode` - if displayType is `CODE`, name of a [ACE editor mode][acejs] supported by QW Control. One of: `batchfile`, `diff`, `dockerfile`, `golang`, `groovy`, `html`, `java`, `javscript`, `json`, `markdown`, `perl`, `php`, `powershell`, `properties`, `python`, `ruby`, `sh`, `sql`, `xml`, `yaml`.
+- `codeSyntaxMode` - if displayType is `CODE`, name of a [ACE editor mode][acejs] supported by Rundeck. One of: `batchfile`, `diff`, `dockerfile`, `golang`, `groovy`, `html`, `java`, `javscript`, `json`, `markdown`, `perl`, `php`, `powershell`, `properties`, `python`, `ruby`, `sh`, `sql`, `xml`, `yaml`.
 - `codeSyntaxSelectable` - if displayType is `CODE`, `true/false`: if true, show a select box for choosing from the available syntax highlighting modes.
 
   [acejs]: https://ace.c9.io
 
 ## Plugin Localization
 
-Since QW Control Plugin Version 1.2 (QW Control 2.6.10), Plugins support Internationalization ("i18n") using Java properties files.
+Since Rundeck Plugin Version 1.2 (Rundeck 2.6.10), Plugins support Internationalization ("i18n") using Java properties files.
 
-Specify `qwcontrolPluginVersion: 1.2` in your plugin.yaml (script plugins) or `QW Control-Plugin-Version: 1.2` in your
+Specify `rundeckPluginVersion: 1.2` in your plugin.yaml (script plugins) or `Rundeck-Plugin-Version: 1.2` in your
 jar Manifest (jar plugins) to enable Localization support.
 
 Include a `resources/i18n` directory in your jar/zip file, with localized versions of your Plugin messages.
@@ -838,7 +838,7 @@ Here is an example:
 
 ### Defining Plugin Localization Messages
 
-When displaying a plugin in the GUI, QW Control will look for localized versions of text for the plugin, using the
+When displaying a plugin in the GUI, Rundeck will look for localized versions of text for the plugin, using the
 localization messages if they are found. If they are not found, it will use the text
 versions defined in the Plugin Description (Java annotations or plugin.yaml file).
 
@@ -878,13 +878,13 @@ provider2.plugin.title=My Provider 2
 
 ## Plugin Icons
 
-Since QW Control Plugin Version 1.2 (QW Control 2.6.10), Custom Icons can now be defined for your plugin.
+Since Rundeck Plugin Version 1.2 (Rundeck 2.6.10), Custom Icons can now be defined for your plugin.
 
 You can use an [Icon Image Files](#icon-image-files), or specify [Provider Metadata](#provider-metadata) to use a CSS icon, such as Glyphicon or Font Awesome icon.
 
 ### Icon Image Files
 
-Specify `qwcontrolPluginVersion: 1.2` in your plugin.yaml (script plugins) or `QW Control-Plugin-Version: 1.2` in your
+Specify `rundeckPluginVersion: 1.2` in your plugin.yaml (script plugins) or `Rundeck-Plugin-Version: 1.2` in your
 jar Manifest (jar plugins) to enable custom icon support.
 
 Include a `resources/` directory in your jar/zip file with your icon file. The icon is resolved by looking for
@@ -899,7 +899,7 @@ You can define a custom icon for each Provider in your plugin file, or a single 
 
 ## Provider Metadata
 
-(Since QW Control 3.0.14)
+(Since Rundeck 3.0.14)
 
 These metadata keys may be available:
 

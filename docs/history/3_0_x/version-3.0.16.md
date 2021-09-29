@@ -23,6 +23,6 @@ Reverts default CSP image source behavior to `img-src: '*'`.
 
 ## Issues
 
-[Milestone 3.0.16](https://github.com/qwcontrol/qwcontrol/milestone/101)
+[Milestone 3.0.16](https://github.com/rundeck/rundeck/milestone/101)
 
-* [Allow loading images from any source](https://github.com/qwcontrol/qwcontrol/pull/4537)
+* [Allow loading images from any source](https://github.com/rundeck/rundeck/pull/4537)

@@ -2,7 +2,7 @@
 ::: enterprise
 :::
 
-This feature allows QW Control to create Calendars at the System or Project level.  Calendars define dates and times, and whether they these times are **blackout** or **allowed** for scheduled jobs.
+This feature allows Rundeck to create Calendars at the System or Project level.  Calendars define dates and times, and whether they these times are **blackout** or **allowed** for scheduled jobs.
 
 Blackout Calendars
 :   Scheduled Jobs won’t run on the matching dates and times, but will run on other dates and times.
@@ -18,7 +18,7 @@ Calendars can be defined at system level as *System Calendars* or project level 
 
 [System Calendars](/manual/calendars/system-calendars.md)
 
-:   Can be applied for all Jobs on all QW Control Projects, or to all Jobs on selected Projects.
+:   Can be applied for all Jobs on all Rundeck Projects, or to all Jobs on selected Projects.
 
 [Project Calendars](/manual/calendars/project-calendars.md)
 
@@ -26,10 +26,10 @@ Calendars can be defined at system level as *System Calendars* or project level 
 
 ### Disable Calendars feature
 
-If there is a need to disable the calendars feature, add the following settings to qwcontrol-config.properties
+If there is a need to disable the calendars feature, add the following settings to rundeck-config.properties
 
 ```properties
-qwcontrol.feature.calendars.enabled=false
+rundeck.feature.calendars.enabled=false
 ```
 
 (Setting the value to 'true' or removing line will enable the feature.)

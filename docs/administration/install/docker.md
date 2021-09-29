@@ -12,39 +12,39 @@ See the [Docker Configuration Reference](/administration/configuration/docker.md
 the full set of configuration options.
 :::
 
-## Open Source QW Control
+## Open Source Rundeck
 
-[qwcontrol/qwcontrol:{{{qwcontrolVersion}}}](https://hub.docker.com/r/qwcontrol/qwcontrol/)
+[rundeck/rundeck:{{{rundeckVersion}}}](https://hub.docker.com/r/rundeck/rundeck/)
 
 ```sh
-docker run --name someqwcontrol -p 4440:4440 -v data:/home/qwcontrol/server/data qwcontrol/qwcontrol:{{{qwcontrolVersion}}}
+docker run --name some-rundeck -p 4440:4440 -v data:/home/rundeck/server/data rundeck/rundeck:{{{rundeckVersion}}}
 ```
 
-## QW Control Enterprise
+## Rundeck Enterprise
 
-[qwcontrolpro/enterprise:{{{qwcontrolVersion}}}](https://hub.docker.com/r/qwcontrolpro/enterprise/)
+[rundeckpro/enterprise:{{{rundeckVersion}}}](https://hub.docker.com/r/rundeckpro/enterprise/)
 The following example invocation will require an accessible MySQL instance
 with a database, user, and the required privileges setup:
 
 ```sh
 docker run \
-    --name someqwcontrol \
-    -v data:/home/qwcontrol/server/data \
-    -e QWCONTROL_DATABASE_DRIVER=org.mariadb.jdbc.Driver \
-    -e QWCONTROL_DATABASE_USERNAME="${DB_USERNAME}" \
-    -e QWCONTROL_DATABASE_PASSWORD="${DB_PASSWORD}" \
-    -e QWCONTROL_DATABASE_URL="${DB_URL}" \
-    qwcontrolpro/enterprise:{{{qwcontrolVersion}}}
+    --name some-rundeck \
+    -v data:/home/rundeck/server/data \
+    -e RUNDECK_DATABASE_DRIVER=org.mariadb.jdbc.Driver \
+    -e RUNDECK_DATABASE_USERNAME="${DB_USERNAME}" \
+    -e RUNDECK_DATABASE_PASSWORD="${DB_PASSWORD}" \
+    -e RUNDECK_DATABASE_URL="${DB_URL}" \
+    rundeckpro/enterprise:{{{rundeckVersion}}}
 ```
 
 ## Example Configurations
 
-The [QW Control Docker Zoo](https://github.com/qwcontrol/docker-zoo)
+The [Rundeck Docker Zoo](https://github.com/rundeck/docker-zoo)
 has many docker compose example projects. Check it out for use as a quick config reference and starting templates!
 
-- [Basic quick-start with persistent storage](https://github.com/qwcontrol/docker-zoo/tree/master/basic)
-- [Mysql database backend](https://github.com/qwcontrol/docker-zoo/tree/master/mysql)
-- [Oracle database backend](https://github.com/qwcontrol/docker-zoo/tree/master/oracle)
-- [LDAP configuration](https://github.com/qwcontrol/docker-zoo/tree/master/ldap)
-- [Cloud deployment example](https://github.com/qwcontrol/docker-zoo/tree/master/cloud)
+- [Basic quick-start with persistent storage](https://github.com/rundeck/docker-zoo/tree/master/basic)
+- [Mysql database backend](https://github.com/rundeck/docker-zoo/tree/master/mysql)
+- [Oracle database backend](https://github.com/rundeck/docker-zoo/tree/master/oracle)
+- [LDAP configuration](https://github.com/rundeck/docker-zoo/tree/master/ldap)
+- [Cloud deployment example](https://github.com/rundeck/docker-zoo/tree/master/cloud)
 - And more!

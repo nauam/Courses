@@ -1,5 +1,5 @@
 # Administrator Guide
 
-This the QW Control Administration Guide.
+This the Rundeck Administration Guide.
 
-For information about using QW Control, see the [User Manual](/manual/index.md).
+For information about using Rundeck, see the [User Manual](/manual/index.md).

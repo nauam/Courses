@@ -42,7 +42,7 @@ In the following Exercise we will allow Alice to also run AdHoc Commands:
     ```
 1. Click Save
 
->The code tells QW Control to Allow Alice to run adhoc commands.
+>The code tells Rundeck to Allow Alice to run adhoc commands.
 :::
 ::::
 

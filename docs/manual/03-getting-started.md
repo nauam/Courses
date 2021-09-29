@@ -1,32 +1,32 @@
 # Getting Started
 
-The best way to get started with QW Control is through our [Learning section](/learning/).  
+The best way to get started with Rundeck is through our [Learning section](/learning/).  
 [Terminology](/learning/tutorial/terminology), [Tutorials](/learning/tutorial/preparing) and
-[How To articles](/learning/how-to/overview) that show the many ways to use QW Control.
+[How To articles](/learning/how-to/overview) that show the many ways to use Rundeck.
 
 ## Essential Concepts
 
-Several fundamental concepts underlie and drive the QW Control system.
+Several fundamental concepts underlie and drive the Rundeck system.
 If you are a new user, knowing about them will
-help you use or integrate QW Control into your environment.
+help you use or integrate Rundeck into your environment.
 
 - **Projects**: A _[project](/administration/projects/index.md)_ is a place to separate management activity.
-  All QW Control activities occur within the context of a project.
-  Multiple projects can be maintained on the same QW Control server.
+  All Rundeck activities occur within the context of a project.
+  Multiple projects can be maintained on the same Rundeck server.
 - **Jobs** : A _job_ encapsulates a sequence of steps, job options and nodes where the steps execute. See [Jobs](/manual/04-jobs.md) and [Creating Jobs](/manual/creating-jobs.md).
 - **Nodes**: A _[node](/manual/05-nodes.md)_ is a resource that is either a physical or virtual instance
   of a network accessible host.
   A _resource model_ is a representation of Nodes in a project.
 - **Commands**: A _[command](/manual/06-commands.md)_ is a single executable string executed on a Node.
-  QW Control invokes commands on nodes via a _node executor_,
+  Rundeck invokes commands on nodes via a _node executor_,
   which evaluates the command string and executes it.
 - **Executions**: An _[execution](/manual/07-executions.md)_ is a representation of the activity of a running or completed
-  command or job. The data about the execution is used in qwcontrol to monitor
+  command or job. The data about the execution is used in rundeck to monitor
   the progress of a job or command, and later for reporting about what happened.
-- **Role-based Access Control Policies**: A QW Control _[access control policy](/administration/security/authorization.md)_ grants users
-    and user groups certain privileges to perform actions against qwcontrol resources
+- **Role-based Access Control Policies**: A Rundeck _[access control policy](/administration/security/authorization.md)_ grants users
+    and user groups certain privileges to perform actions against rundeck resources
     like projects, jobs, nodes, commands and API.
-- **Plugins**: Extending QW Control functionality is done through _plugins_. Plugins exist
+- **Plugins**: Extending Rundeck functionality is done through _plugins_. Plugins exist
   to execute commands on nodes, perform steps in a job,
   send a notification about job status, gather
   information about the hosts in your network, copy a file to a remote
@@ -34,28 +34,28 @@ help you use or integrate QW Control into your environment.
 
   Our Enterprise version includes built-in plugins to further enhance functionality for [Scheduling](schedules/project-schedules.md) job executions, providing [Guided Tours](tour-manager.md), incorporating [Health Checks](healthchecks.md), and much more.
 
-  See [Job Plugins](/manual/job-plugins.md) and [Plugin Developer Guide](/developer/index.md) and [QW Control Plugins](/plugins/index.md).
+  See [Job Plugins](/manual/job-plugins.md) and [Plugin Developer Guide](/developer/index.md) and [Rundeck Plugins](/plugins/index.md).
 
 ## Download and Installation
 
-If a running QW Control instance isn't already available to you,
+If a running Rundeck instance isn't already available to you,
 there are a couple ways you can try it.
 
 - Check out the Docker based Welcome Projects described on the [Learning Overview Page](/learning/).
-- Visit our download site [download](http://qwcontrol.org/downloads.html) and
-  install the QW Control software. There are several package formats.
+- Visit our download site [download](http://rundeck.org/downloads.html) and
+  install the Rundeck software. There are several package formats.
   Choose the one that best suits the target infrastructure.
-  After installation, be sure QW Control has been started.
+  After installation, be sure Rundeck has been started.
   ::: tip
-  See [Startup](/administration/maintenance/startup.md) to learn how to  startup and shutdown qwcontrol.
+  See [Startup](/administration/maintenance/startup.md) to learn how to  startup and shutdown rundeck.
   :::
 
 The default port for the web interface is `4440`. If you
-installed QW Control on your local machine, go to this URL: `http://locahost:4440`
+installed Rundeck on your local machine, go to this URL: `http://locahost:4440`
 
 ## Login
 
-QW Control requires every user to login. The default installation
+Rundeck requires every user to login. The default installation
 defines an "admin" user with access to perform all actions.
 Use "admin" for username and password.
 
@@ -63,7 +63,7 @@ Use "admin" for username and password.
 
 ## Project setup
 
-A new installation will not contain any projects so QW Control will present
+A new installation will not contain any projects so Rundeck will present
 you with a dialog to create one. Press the "New Project" button to create
 a project.
 Fill the project creation form with a desired name. Project names can
@@ -71,11 +71,11 @@ contain letters and numbers, but do not use spaces or special characters.
 The [project](/administration/projects/index.md)
 section
 will teach you how to add Nodes, automate the creation and maintenance of
-QW Control projects.
+Rundeck projects.
 
-Once the project has been created, you are ready to use your QW Control instance.
+Once the project has been created, you are ready to use your Rundeck instance.
 
-## QW Control Graphical Console (GUI)
+## Rundeck Graphical Console (GUI)
 
 ### Navigation
 
@@ -84,7 +84,7 @@ Once inside a project navigation is done using the navigation bar on the left si
  _Dashboard_, _Jobs_, _Nodes_, _Commands_, _Activity_, and other pages.
 Project administrators will also be able to access the _Project Settings_ pages menu.
 
-For those with QW Control administrator access, the System settings can be accessed by clicking the gear icon in the page header.
+For those with Rundeck administrator access, the System settings can be accessed by clicking the gear icon in the page header.
 
 Finally, the user profile and logout functions are found under the User icon.
 
@@ -99,7 +99,7 @@ this menu, too.
 #### Dashboard
 
 View the project description, Readme and executions summary.
-QW Control Enterprise users may see additional visualizations for schedules and execution history.
+Rundeck Enterprise users may see additional visualizations for schedules and execution history.
 
 #### Jobs
 
@@ -140,7 +140,7 @@ and Jobs, or browse execution history. The execution
 history can be filtered based on user-selected parameters. Once the
 filter has been set, the matching history is displayed. The current
 filter settings also configure an RSS link, found in the top right of
-the page (see QW Control Administration to enable RSS).
+the page (see Rundeck Administration to enable RSS).
 
 ::: tip
 See [Activity](/manual/08-activity.md).
@@ -171,7 +171,7 @@ See [User](/manual/10-user.md)
 
 ## Command Line Tools
 
-QW Control includes a number of shell tools to dispatch commands, load
+Rundeck includes a number of shell tools to dispatch commands, load
 and run Job definitions, and interact with the dispatcher's queue. These
 command line tools are an alternative to functions accessible in the
 graphical console.
@@ -183,7 +183,7 @@ See the [Command line tools](/manual/command-line-tools/index.md).
 You can also use the Web API to interface with all aspects of Node
 and Job execution.
 
-See the [QW Control API](/api/qwcontrol-api.md) page for a reference on the
+See the [Rundeck API](/api/rundeck-api.md) page for a reference on the
 endpoints and examples.
 
 ## Document Formats

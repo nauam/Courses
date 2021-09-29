@@ -25,7 +25,7 @@ Fixes community news sidebar style
 
 ## Issues
 
-[Milestone 3.0.15](https://github.com/qwcontrol/qwcontrol/milestone/100)
+[Milestone 3.0.15](https://github.com/rundeck/rundeck/milestone/100)
 
-* [exclusively css fixes for the community news and version notification…](https://github.com/qwcontrol/qwcontrol/pull/4535)
-* [Community news component doesn't collapse well](https://github.com/qwcontrol/qwcontrol/issues/4529)
+* [exclusively css fixes for the community news and version notification…](https://github.com/rundeck/rundeck/pull/4535)
+* [Community news component doesn't collapse well](https://github.com/rundeck/rundeck/issues/4529)

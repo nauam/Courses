@@ -1,31 +1,31 @@
 
 # Running Jobs on Windows Nodes
 
-QW Control allows users to execute jobs to remote Windows nodes to manage and automate tasks using QW Control workflows. This article shows how to add a Windows node and execute QW Control jobs and commands with windows-based systems.
+Rundeck allows users to execute jobs to remote Windows nodes to manage and automate tasks using Rundeck workflows. This article shows how to add a Windows node and execute Rundeck jobs and commands with windows-based systems.
 
-To communicate with Windows nodes, QW Control uses an out-of-the-box [Node Execution/ File Copier plugin](https://github.com/qwcontrol-plugins/py-winrm-plugin) that uses the [WinRM](https://docs.microsoft.com/en-us/windows/win32/winrm/portal) (Windows Remote Management) protocol.
+To communicate with Windows nodes, Rundeck uses an out-of-the-box [Node Execution/ File Copier plugin](https://github.com/rundeck-plugins/py-winrm-plugin) that uses the [WinRM](https://docs.microsoft.com/en-us/windows/win32/winrm/portal) (Windows Remote Management) protocol.
 
->Note: If this is the first time adding remote nodes, we suggest reviewing the [QW Control Tutorial](/learning/tutorial/preparing.md) before adding Windows nodes. This exercise assumes some experience with Windows and QW Control basics covered in the Tutorial.
+>Note: If this is the first time adding remote nodes, we suggest reviewing the [Rundeck Tutorial](/learning/tutorial/preparing.md) before adding Windows nodes. This exercise assumes some experience with Windows and Rundeck basics covered in the Tutorial.
 
 ## Basic pywinrm Plugin Requirements
 
-The [pywinrm plugin](https://github.com/qwcontrol-plugins/py-winrm-plugin) needs the following requirements on the QW Control server to work properly.  It is supported on QW Control running on Linux, Mac OS X, or Windows operating systems.
+The [pywinrm plugin](https://github.com/rundeck-plugins/py-winrm-plugin) needs the following requirements on the Rundeck server to work properly.  It is supported on Rundeck running on Linux, Mac OS X, or Windows operating systems.
 
 ### Requirements:
 
-The [pywinrm plugin](https://github.com/qwcontrol-plugins/py-winrm-plugin) uses the python [WinRM Library](https://github.com/diyan/pywinrm/) to provide the WinRM implementation.
+The [pywinrm plugin](https://github.com/rundeck-plugins/py-winrm-plugin) uses the python [WinRM Library](https://github.com/diyan/pywinrm/) to provide the WinRM implementation.
 
-* Python 3.3-3.5 or PyPy2 installed on QW Control server. _(Python 3 strongly recommended)_
+* Python 3.3-3.5 or PyPy2 installed on Rundeck server. _(Python 3 strongly recommended)_
 * Pywinrm library (It can be installed with the following command: `pip install pywinrm`)
     * `requests-kerberos` and `requests-credssp` are optional.
 
-Note: Due to networking complexity issues this exercise will not work with the Welcome Projects.  These steps assume you have QW Control installed [using these instructions](/administration/install/installing-qwcontrol.md).  For more information see the [Additional Information](#additional-information) section.
+Note: Due to networking complexity issues this exercise will not work with the Welcome Projects.  These steps assume you have Rundeck installed [using these instructions](/administration/install/installing-rundeck.md).  For more information see the [Additional Information](#additional-information) section.
 
 ## Basic Windows Requirements
 
 To follow this How to Guide, your Windows system needs the following requirements:
 
-* A Windows node in the same network as the QW Control instance
+* A Windows node in the same network as the Rundeck instance
 * Windows Server 2008 R2 or above
 * PowerShell 2.0 or above
 
@@ -52,14 +52,14 @@ The first step is to configure the Windows machine. To do this, go to the Window
     ```
 
 :::warning
-It's important to allow access to the 5985 port via Windows Firewall (any between the QW Control server and the node), to receive the remote requests.
+It's important to allow access to the 5985 port via Windows Firewall (any between the Rundeck server and the node), to receive the remote requests.
 :::
 
 >Note: These settings are for Exercise purposes only and do not represent the most secure method of implementing.  Please follow your own security guidelines for production implementations.
 
-## QW Control Configuration
+## Rundeck Configuration
 
-Create a Windows-based project on the QW Control instance.
+Create a Windows-based project on the Rundeck instance.
 
 1. Create a new project: **Name** `windows`, and  **Label` Windows Jobs`**
     <br><br>![Create Project](@assets/img/howto-winnode-createproject.png)<br><br>
@@ -71,7 +71,7 @@ Create a Windows-based project on the QW Control instance.
 
 ## Adding a Windows Test Node
 
-Now QW Control should ask about the model source. Let's start with the Windows node definition.
+Now Rundeck should ask about the model source. Let's start with the Windows node definition.
 :::: tabs
 ::: tab Enterprise Steps
 1. Click on the **Add a new Node Source +** button.
@@ -119,7 +119,7 @@ Now QW Control should ask about the model source. Let's start with the Windows n
 :::
 ::::
 
-Don't forget to add the Windows user password to the QW Control key storage.
+Don't forget to add the Windows user password to the Rundeck key storage.
 
 1. Go to the _System Menu(Gear Icon) > Key Storage_.
     <br><br>![Key Storage](@assets/img/howto-winnode-keystorage.png)<br><br>
@@ -144,7 +144,7 @@ Now it's time to send some commands against the windows remote machine.
     <br><br>![Success](@assets/img/howto-winnode-commandsuccess.png)<br><br>
 
 
-And now your Windows node is ready to receive PowerShell commands from the QW Control instance.
+And now your Windows node is ready to receive PowerShell commands from the Rundeck instance.
 
 
 ## Additional Information
@@ -154,4 +154,4 @@ Using Linux? Read the [Using SSH on Linux/Unix Nodes](/learning/howto/ssh-on-lin
 
 ### Networking Issues
 
-Docker Desktop has some limitations to how it handles networking. [Check out this information](/learning/howto/connect-local-nodes.md) about how to get the QW Control Welcome Projects to connect to a single host on your local network.
+Docker Desktop has some limitations to how it handles networking. [Check out this information](/learning/howto/connect-local-nodes.md) about how to get the Rundeck Welcome Projects to connect to a single host on your local network.

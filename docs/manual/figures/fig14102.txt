@@ -15,7 +15,7 @@
 +-------------+  +-------------+  +-------------+
 | Coyote AJP  |  | Coyote AJP  |  | Coyote AJP  |
 | ----------  |  | ----------  |  | ----------  | (Tomcat 
-|  QW Control 1  |  |  QW Control 2  |  |  QW Control 3  |  containers)
+|  Rundeck 1  |  |  Rundeck 2  |  |  Rundeck 3  |  containers)
 +-------------+  +-------------+  +-------------+
        |                 |               |
        v                 v               v

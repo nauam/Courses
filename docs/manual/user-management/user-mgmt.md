@@ -4,13 +4,13 @@
 
 ## User Summary
 
-This is a listing of all the users that have logged in to QW Control regardless of the source of users.
+This is a listing of all the users that have logged in to Rundeck regardless of the source of users.
 
 ## Manage Local Users (Enterprise)
 ::: enterprise
 :::
 
-Enterprise users can leverage the built-in GUI based management and centralized storage of local QW Control user accounts.
+Enterprise users can leverage the built-in GUI based management and centralized storage of local Rundeck user accounts.
 
 ![User Manager Screen](@assets/img/usermgr-manage-users.png)
 
@@ -52,4 +52,4 @@ Click the ***Add Group*** button in the main window.  Fill out the fields and se
 ## Appendix
 
 ### Including Admin Users
-By default the QW Control admin user is not listed in the User Manager.  There are some options available in `qwcontrol-config.properties` to configure whether admin accounts are available in this module.  [They are documented here](/administration/configuration/config-file-reference.html#qwcontrol-config-properties) and prefixed with `qwcontrol.security.dblogin.`
+By default the Rundeck admin user is not listed in the User Manager.  There are some options available in `rundeck-config.properties` to configure whether admin accounts are available in this module.  [They are documented here](/administration/configuration/config-file-reference.html#rundeck-config-properties) and prefixed with `rundeck.security.dblogin.`

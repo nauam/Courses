@@ -22,5 +22,5 @@ See [2.3.0 release notes](/history/version-2.3.0.md).
 
 ## Issues
 
-* [Options not expanded in inline scripts in 2.3.0](https://github.com/qwcontrol/qwcontrol/issues/994)
-* [bad interpreter error](https://github.com/qwcontrol/qwcontrol/issues/993)
+* [Options not expanded in inline scripts in 2.3.0](https://github.com/rundeck/rundeck/issues/994)
+* [bad interpreter error](https://github.com/rundeck/rundeck/issues/993)

@@ -25,7 +25,7 @@ See [2.3.0 release notes](/history/version-2.3.0.md).
 
 ## Issues
 
-* [dispatch -s scriptfile -- args fails](https://github.com/qwcontrol/qwcontrol/issues/1006)
-* [Create email settings page in admin guide](https://github.com/qwcontrol/qwcontrol/issues/1004)
-* [that ^M aka CRLF line terminators](https://github.com/qwcontrol/qwcontrol/issues/1003)
-* [node attributes not expanded in inline scripts in 2.3.1](https://github.com/qwcontrol/qwcontrol/issues/1001)
+* [dispatch -s scriptfile -- args fails](https://github.com/rundeck/rundeck/issues/1006)
+* [Create email settings page in admin guide](https://github.com/rundeck/rundeck/issues/1004)
+* [that ^M aka CRLF line terminators](https://github.com/rundeck/rundeck/issues/1003)
+* [node attributes not expanded in inline scripts in 2.3.1](https://github.com/rundeck/rundeck/issues/1001)

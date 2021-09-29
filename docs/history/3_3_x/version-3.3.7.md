@@ -2,8 +2,8 @@
 
 Name: <span style="color: salmon"><span class="glyphicon glyphicon-lamp"></span> "onion ring salmon lamp"</span>
 
-- [Download QW Control](https://download.qwcontrol.com/)
-- [Sign up for Release Notes](https://www.qwcontrol.com/release-notes-signup)
+- [Download Rundeck](https://download.rundeck.com/)
+- [Sign up for Release Notes](https://www.rundeck.com/release-notes-signup)
 
 ## Overview
 
@@ -19,7 +19,7 @@ New Workflows steps allow DataDog users to create / update Incidents and add Tas
 
 ### Config Refresh
 
-You can make changes in the qwcontrol-config.properties file and then get QW Control to reload the config without having to restart. [Check out details here.](/administration/configuration/config-file-reference.html#live-configuration-refreshing-enterprise)
+You can make changes in the rundeck-config.properties file and then get Rundeck to reload the config without having to restart. [Check out details here.](/administration/configuration/config-file-reference.html#live-configuration-refreshing-enterprise)
 
 ### Additional Improvements
 
@@ -27,16 +27,16 @@ You can make changes in the qwcontrol-config.properties file and then get QW Con
 
 ## Issues
 
-* [Fix values list in option form displayed misaligned in 3.3.7](https://github.com/qwcontrol/qwcontrol/pull/6653)
-* [Allow option values plugins to access the key storage](https://github.com/qwcontrol/qwcontrol/pull/6642)
-* [Fix multivalued options validation with no errors when another option (not multivalued) is invalid](https://github.com/qwcontrol/qwcontrol/pull/6641)
-* [Add the ability to reload qwcontrol-config.properties](https://github.com/qwcontrol/qwcontrol/pull/6638)
-* [Enhance missing schedule UI and info](https://github.com/qwcontrol/qwcontrol/pull/6632)
-* [Fixing multivalued options validation with no errors but that appear as invalid when another option (not multivalued) is invalid](https://github.com/qwcontrol/qwcontrol/pull/6608)
-* [Handle dynamicProperties plugin errors](https://github.com/qwcontrol/qwcontrol/pull/6603)
-* [Open execution in new tab on middle-click](https://github.com/qwcontrol/qwcontrol/pull/6601)
-* [Include a checkbox to enable/disable expanding tokens for "Script File or URL" node step](https://github.com/qwcontrol/qwcontrol/pull/6592)
-* [EventStore and webhooks debugging](https://github.com/qwcontrol/qwcontrol/pull/6584)
+* [Fix values list in option form displayed misaligned in 3.3.7](https://github.com/rundeck/rundeck/pull/6653)
+* [Allow option values plugins to access the key storage](https://github.com/rundeck/rundeck/pull/6642)
+* [Fix multivalued options validation with no errors when another option (not multivalued) is invalid](https://github.com/rundeck/rundeck/pull/6641)
+* [Add the ability to reload rundeck-config.properties](https://github.com/rundeck/rundeck/pull/6638)
+* [Enhance missing schedule UI and info](https://github.com/rundeck/rundeck/pull/6632)
+* [Fixing multivalued options validation with no errors but that appear as invalid when another option (not multivalued) is invalid](https://github.com/rundeck/rundeck/pull/6608)
+* [Handle dynamicProperties plugin errors](https://github.com/rundeck/rundeck/pull/6603)
+* [Open execution in new tab on middle-click](https://github.com/rundeck/rundeck/pull/6601)
+* [Include a checkbox to enable/disable expanding tokens for "Script File or URL" node step](https://github.com/rundeck/rundeck/pull/6592)
+* [EventStore and webhooks debugging](https://github.com/rundeck/rundeck/pull/6584)
 
 ## Contributors
 
@@ -54,7 +54,7 @@ You can make changes in the qwcontrol-config.properties file and then get QW Con
 * sjrd218
 
 :::danger Remember!!
-**For MySQL users**: Starting with QW Control `3.3.4` the MySQL JDBC driver is no longer be
-bundled with the distributions. See the [Upgrade Guide](/upgrading/upgrading-to-qwcontrol-3.3.4.md)
-for instructions to ensure your QW Control installation can still connect to MySQL after upgrading.
+**For MySQL users**: Starting with Rundeck `3.3.4` the MySQL JDBC driver is no longer be
+bundled with the distributions. See the [Upgrade Guide](/upgrading/upgrading-to-rundeck-3.3.4.md)
+for instructions to ensure your Rundeck installation can still connect to MySQL after upgrading.
 :::

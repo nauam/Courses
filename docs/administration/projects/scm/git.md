@@ -1,6 +1,6 @@
 # Git Plugin
 
-QW Control provides SCM Export and SCM Import providers for Git.
+Rundeck provides SCM Export and SCM Import providers for Git.
 
 This plugin allows Source Code Management of the jobs, versioning, exporting or importing their definitions using a remote Git repository.
 

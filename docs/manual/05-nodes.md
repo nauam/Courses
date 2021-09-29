@@ -10,7 +10,7 @@ describe the properties of a node or reflect the state of the node.
 One of a Node's built in attributes is called "tags" which is a list
 of classifications or categories about that Node.
 
-To add nodes to your QW Control instances, see [Configure - Resource Model Sources Configuration](/administration/projects/resource-model-sources/)
+To add nodes to your Rundeck instances, see [Configure - Resource Model Sources Configuration](/administration/projects/resource-model-sources/)
 
 ## Nodes tab overview
 
@@ -34,7 +34,7 @@ Because nodes might have many attributes, it can be helpful to use a naming conv
 
     {namespace}:{name} = {value}
 
-When QW Control sees an attribute with a name containing a colon it automatically groups them in the UI. For example, the screenshot below shows a node with two attributes under the "web" prefix.
+When Rundeck sees an attribute with a name containing a colon it automatically groups them in the UI. For example, the screenshot below shows a node with two attributes under the "web" prefix.
 
 ![Attribute namespace](~@assets/img/fig0204-h.png)
 
@@ -68,7 +68,7 @@ The next screenshot shows a single node view. Notice the nodes unique name is en
 ## Node filtering
 
 A _node filter_ is a search pattern that matches a set of nodes.
-QW Control node filters let you match Nodes based on a pattern like "tags" or any node attribute. You can define node filters that include and exclude nodes based on sets of patterns. While a node filter can specifically reference nodes using their unique name, filter patterns are more resilient to changes in your environment and better handle dynamically provisioned servers.
+Rundeck node filters let you match Nodes based on a pattern like "tags" or any node attribute. You can define node filters that include and exclude nodes based on sets of patterns. While a node filter can specifically reference nodes using their unique name, filter patterns are more resilient to changes in your environment and better handle dynamically provisioned servers.
 
 ![Filtered nodes](~@assets/img/fig0204-c.png)
 
@@ -102,7 +102,7 @@ The example below shows the dialog to confirm saving a new filter.
 
 1. Filter name
 
-The saved filters become available in the Filters menu in other parts of qwcontrol, like in the Nodes page, when creating Jobs or running Commands.
+The saved filters become available in the Filters menu in other parts of rundeck, like in the Nodes page, when creating Jobs or running Commands.
 
 ![Saved Filters menu](~@assets/img/fig0204-e.png)
 
@@ -125,5 +125,5 @@ The example below shows that the user can't create Job for those nodes.
 
 ## Related Command line tools
 
-[rd nodes](https://qwcontrol.github.io/qwcontrol-cli/commands/#nodes)
+[rd nodes](https://rundeck.github.io/rundeck-cli/commands/#nodes)
 ~ List nodes via the `rd` tool.

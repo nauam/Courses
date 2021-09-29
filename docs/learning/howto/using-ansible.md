@@ -1,8 +1,8 @@
-# QW Control and Ansible Integration
+# Rundeck and Ansible Integration
 
-It’s common for QW Control users to integrate Ansible into their QW Control. Like QW Control, Ansible's straightforward design and learning curve make it Operations friendly.
+It’s common for Rundeck users to integrate Ansible into their Rundeck. Like Rundeck, Ansible's straightforward design and learning curve make it Operations friendly.
 
-What does QW Control do for Ansible users? QW Control gives them a great GUI front-end experience and ties together their Ansible automation alongside different tools used by other groups. QW Control's powerful access control capabilities can be used to safely provide other users and teams with self-service access to run automation (including Ansible playbooks) https://docs.ansible.com/ansible/latest/user_guide/playbooks.html.
+What does Rundeck do for Ansible users? Rundeck gives them a great GUI front-end experience and ties together their Ansible automation alongside different tools used by other groups. Rundeck's powerful access control capabilities can be used to safely provide other users and teams with self-service access to run automation (including Ansible playbooks) https://docs.ansible.com/ansible/latest/user_guide/playbooks.html.
 
 # What is Ansible?
 
@@ -14,16 +14,16 @@ Ansible uses [playbooks](https://docs.ansible.com/ansible/latest/user_guide/play
 
 The full Ansible documentation is available here [https://docs.ansible.com/](https://docs.ansible.com/).
 
-## How to Integrate Ansible with QW Control
+## How to Integrate Ansible with Rundeck
 
-> Note: This How To assumes readers are very familiar with QW Control. It is suggested to review and fully understand thee [Tutorial Exercises](/learning/tutorial/preparing.md) prior to attempting these steps.
+> Note: This How To assumes readers are very familiar with Rundeck. It is suggested to review and fully understand thee [Tutorial Exercises](/learning/tutorial/preparing.md) prior to attempting these steps.
 
-Both QW Control versions (Community and Enterprise) use a [built-in plugin](https://github.com/Batix/qwcontrol-ansible-plugin) for Ansible integrations. This plugin imports hosts from Ansible's inventory. It includes a bunch of facts and can run modules and playbooks. There is also a node executor and file copier for the project.
+Both Rundeck versions (Community and Enterprise) use a [built-in plugin](https://github.com/Batix/rundeck-ansible-plugin) for Ansible integrations. This plugin imports hosts from Ansible's inventory. It includes a bunch of facts and can run modules and playbooks. There is also a node executor and file copier for the project.
 
-This integration enables QW Control users to:
+This integration enables Rundeck users to:
 
-- Call Ansible playbooks and modules from QW Control. QW Control returns output from Ansible's command line, however in an easier to consume format within QW Control’s GUI and users can utilize the QW Control API and access control features.
-- Use Ansible as the underlying execution framework. Run any command or script and output will be collated by node and step like typical QW Control output.
+- Call Ansible playbooks and modules from Rundeck. Rundeck returns output from Ansible's command line, however in an easier to consume format within Rundeck’s GUI and users can utilize the Rundeck API and access control features.
+- Use Ansible as the underlying execution framework. Run any command or script and output will be collated by node and step like typical Rundeck output.
 
 ## Ansible Configuration
 
@@ -38,13 +38,13 @@ In this guide we use three nodes defined at the [Ansible inventory](https://docs
 192.168.33.22
 ```
 
-## QW Control/Ansible Integration
+## Rundeck/Ansible Integration
 
-1. To run commands via the "Commands" menu or the default "Command" node step in a QW Control job, we can configure a project with the Ansible node executor. **Create a new project**, go to the **Default Node Executor** tab and select _Ansible Ad-hoc Node Executor_.
+1. To run commands via the "Commands" menu or the default "Command" node step in a Rundeck job, we can configure a project with the Ansible node executor. **Create a new project**, go to the **Default Node Executor** tab and select _Ansible Ad-hoc Node Executor_.
     <br><br>![ Edit Config ](@assets/img/howto-ansible-editconfig.png)<br><br>
 1. In the Ansible Node Executor configuration, set the Executable (usually `/bin/bash`) and define the Ansible config path (usually at `/etc/ansible/ansible.cfg`). Click on the **Generate Inventory** checkbox. Now scroll down and click on the **Save** button.
     <br><br>![ Node Executor Config ](@assets/img/howto-ansible-defaultnodeexec.png)<br><br>
-    The QW Control-Ansible plugin uses the `qwcontrol` user as the default user to connect to the Ansible remote inventory nodes. At this point, it’s possible to define the SSH authentication method (`privatekey` and `password`) and the specific Ansible SSH user to connect to the remote inventory nodes. You need to define the username in the SSH User textbox. Depending on the auth method you can select the password from the storage path or the ssh key (also from the filesystem path).
+    The Rundeck-Ansible plugin uses the `rundeck` user as the default user to connect to the Ansible remote inventory nodes. At this point, it’s possible to define the SSH authentication method (`privatekey` and `password`) and the specific Ansible SSH user to connect to the remote inventory nodes. You need to define the username in the SSH User textbox. Depending on the auth method you can select the password from the storage path or the ssh key (also from the filesystem path).
     <br><br>![ Node Executor Authentication ](@assets/img/howto-ansible-nodeexecauth.png)<br><br>
 1. Is time to add the Ansible inventory nodes, for that click on **Project Settings**, click on **Edit Nodes...** and then on **Add new Node Source +**.
     <br><br>![ Add Node Source ](@assets/img/howto-ansible-addnodesource.png)<br><br>
@@ -63,7 +63,7 @@ Time for a quick test.
     <br><br>![ Run Test Commands ](@assets/img/howto-ansible-runcommand.png)<br><br>
 1. Now you can run any command/playbooks/inline-playbooks over your Ansible inventory.
 
-### First Inline-Playbook Inside a QW Control Job
+### First Inline-Playbook Inside a Rundeck Job
 1. Create a new Job
 1. Give it any name
 1. In the Workflow tab select **Ansible Playbook Inline Workflow Node Step**

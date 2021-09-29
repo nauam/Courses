@@ -2,11 +2,11 @@
 
 <!---
 Original:
-http://download.qwcontrol.com/plugins/file-transfer-plugin.html
+http://download.rundeck.com/plugins/file-transfer-plugin.html
 --->
 
 This plugin provides FTP/SFTP/HTTP file transfers via Workflow Steps.
-It is available since 2.1.0 (QW Control Enterprise Version History)
+It is available since 2.1.0 (Rundeck Enterprise Version History)
 
 ## Configuration
 
@@ -75,14 +75,14 @@ For example, the command `ssh-keyscan -t rsa 10.10.10.4` should output:
 ```
 
 Copy this line entirely (be very careful to copy all characters) and paste it into the `$RDECK_BASE/.ssh/known_hosts` file.
-Ensure each hostkey text is one single line on the file. If the address reported at this text does not match the IP you need on your QW Control server, you can change the IP address manually.
+Ensure each hostkey text is one single line on the file. If the address reported at this text does not match the IP you need on your Rundeck server, you can change the IP address manually.
 You must be careful to not modify any text character besides the server address.
 
-### What if my QW Control server is a windows server?
+### What if my Rundeck server is a windows server?
 
-If QW Control is running in a windows server, you have a few options:
+If Rundeck is running in a windows server, you have a few options:
 
-You can run the above command on a Linux server (even the destination server is useful) and copy the text to your QW Control’s known_hosts file.
+You can run the above command on a Linux server (even the destination server is useful) and copy the text to your Rundeck’s known_hosts file.
 Be sure to set the correct address at the start of the line.
 
 You can a windows SSH client to retrieve the hostkey. Be sure to retrieve the key in the correct “known_hosts” format.
@@ -104,11 +104,11 @@ More info on this issue [here](http://stackoverflow.com/questions/30846076/jsch-
 
 ### Copy from SFTP to Local
 
-This job copy a file from remote machine to the QW Control server using SFTP
+This job copy a file from remote machine to the Rundeck server using SFTP
 
 ```
 - defaultTab: summary
-  description: 'Copy a file from SFTP server to qwcontrol'
+  description: 'Copy a file from SFTP server to rundeck'
   executionEnabled: true
   group: FileTransfer
   loglevel: INFO
@@ -121,7 +121,7 @@ This job copy a file from remote machine to the QW Control server using SFTP
         backupDestinationFile: 'false'
         backupSourceFile: 'false'
         deleteFile: 'false'
-        destURLString: file:///var/lib/qwcontrol/
+        destURLString: file:///var/lib/rundeck/
         sourceAuthentication: password
         sourcePassword: keys/node/user.password
         sourceURLString: sftp://stfp-sever:/home/user/somefile.dat
@@ -134,7 +134,7 @@ This job copy a file from remote machine to the QW Control server using SFTP
 
 ### Copy from Local to FTP
 
-This job copy a file from the QW Control server to a remote machine using FTP
+This job copy a file from the Rundeck server to a remote machine using FTP
 
 ```
 - defaultTab: summary
@@ -155,7 +155,7 @@ This job copy a file from the QW Control server to a remote machine using FTP
         destPassword: keys/node/windows.password
         destURLString: ftp://windows-server/tmp/
         destUsername: Administrator
-        sourceURLString: file:///var/lib/qwcontrol/test.txt
+        sourceURLString: file:///var/lib/rundeck/test.txt
       nodeStep: true
       type: filetransfer
     keepgoing: false

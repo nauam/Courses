@@ -1,6 +1,6 @@
 # Project Settings
 
-Each QW Control Project has it's own unique Configuration Page which contains lets you view and manage project settings.
+Each Rundeck Project has it's own unique Configuration Page which contains lets you view and manage project settings.
 
 
 ## Edit Configuration...
@@ -25,7 +25,7 @@ Additional configuration for the user interface for this project that can show o
 
 ### Default Node Executor Configuration
 
-When QW Control executes a command on a node, it does so via a "Node Executor".
+When Rundeck executes a command on a node, it does so via a "Node Executor".
 The most common built-in Node Executor is the "SSH" implementation, which uses
 SSH to connect to the remote node, however other implementations can be used.
 
@@ -37,7 +37,7 @@ You can install more types of Node Executors as plugins, see [Node Execution Plu
 
 ### Default File Copier Configuration
 
-When QW Control executes a script on a node, it does so by first copying the script as a file to the node, via a "File Copier". (It then uses a "Node Executor" to execute the script like a command.)
+When Rundeck executes a script on a node, it does so by first copying the script as a file to the node, via a "File Copier". (It then uses a "Node Executor" to execute the script like a command.)
 
 The most common built-in File Copier is the "SCP" implementation, which uses
 SCP to copy the file to the remote node, however other implementations can be used.
@@ -52,14 +52,14 @@ You can install more types of File Copiers as plugins, see [Node Execution Plugi
 ## Edit Nodes...
 This section lets you add and modify Node Resource Model Sources for the project.
 These sources contain the node definitions for the project.
-A default source will be defined listing the QW Control Host as a node as a result of the initial project creation.
+A default source will be defined listing the Rundeck Host as a node as a result of the initial project creation.
 You can configure additional Node Sources to gather all the node information relevant to this project.
 
 See [Node Sources](/administration/projects/resource-model-sources/) for more details.
 
 ## Node Enhancers
 
-Take advantage of the node enhancers that QW Control offers by adding them to your nodes. See [Node Enhancers](/manual/node-enhancers.md) for more details.
+Take advantage of the node enhancers that Rundeck offers by adding them to your nodes. See [Node Enhancers](/manual/node-enhancers.md) for more details.
 
 ## Access Control
 Control access to the project with [ACL Policy GUI](/administration/security/acl-policy-editor.html) (Enterprise) or [Access Control Policy](/administration/security/authorization.html) files.

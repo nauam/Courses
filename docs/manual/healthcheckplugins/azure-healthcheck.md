@@ -61,7 +61,7 @@ To configure this plugin some information will be needed from the Azure system.
 Add the Client Key Key to the [Key Storage](/manual/system-configs.md#key-storage).
 
 > To use key storage path, you need to enable [health-check access control](/manual/healthchecks.md#access-control) by adding two configuration options in Configuration Management.
-`qwcontrol.healthcheck.access.username=system` and `qwcontrol.healthcheck.access.role=system`.
+`rundeck.healthcheck.access.username=system` and `rundeck.healthcheck.access.role=system`.
 
 **API Key Path**: Select the Key Storage entry containing the key material.
 
@@ -70,7 +70,7 @@ Add the Client Key Key to the [Key Storage](/manual/system-configs.md#key-storag
 ::: tab Certificate Authentication
 It is also possible to save the certificate as a file on the local server.
 
-**Certificate Path**:  Path to certificate file on local QW Control server. `/home/qwcontrol/certs/file.name`
+**Certificate Path**:  Path to certificate file on local Rundeck server. `/home/rundeck/certs/file.name`
 
 **Certificate Password**: If the certificate is encrypted provide the password to unlock it.
 

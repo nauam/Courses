@@ -5,13 +5,13 @@ alias: api/index.html
 
 # API Reference | Version {{{ apiVersion }}}
 
-QW Control provides a Web API for use with your applications.
+Rundeck provides a Web API for use with your applications.
 
 ## API Version Number
 
-| Current              | Minimum                 |
-| -------------------- | ----------------------- |
-| `{{{ apiVersion }}}` | `{{{ apiMinVersion }}}` |
+| Current  | Minimum |
+|---------|-------------|
+|`{{{ apiVersion }}}` | `{{{ apiMinVersion }}}` |
 
 Current
 :   The current version number.
@@ -43,7 +43,7 @@ If the version number is not included or if the requested version number is unsu
 <result error="true">
     <error code="api-version-unsupported">
         <message>
-        Unsupported API Version "1". API Request: /qwcontrol/api/1/project/test/jobs. Reason: Minimum supported version: 11
+        Unsupported API Version "1". API Request: /rundeck/api/1/project/test/jobs. Reason: Minimum supported version: 11
         </message>
     </error>
 </result>
@@ -72,7 +72,7 @@ Changes introduced by API Version number:
 **Version 39**:
 
 * Removed support for previously deprecated API v10 and below. The minimum API version is now v11. 
-* XML Responses no longer support the request header of `X-QW Control-API-XML-Response-Wrapper: true`. A `<result>` element will now only be returned in some endpoints where explicitly documented.
+* XML Responses no longer support the request header of `X-Rundeck-API-XML-Response-Wrapper: true`. A `<result>` element will now only be returned in some endpoints where explicitly documented.
 * When returning an error response, JSON will be sent by default if no `Accept:` header is specified, instead of XML.
 * Removed Endpoints:
     - `/api/1/executions/running` replacement: [`/api/14/project/[PROJECT*]/executions/running`][/api/V/project/\[PROJECT\]/executions/running]
@@ -95,7 +95,7 @@ Changes introduced by API Version number:
 
 **Version 36**:
 * Updated Response:
-    - [`GET /api/V/system/executions/status`][/api/V/system/executions/status] - If QW Control is in passive mode, the call will now return a 503 error code. 
+    - [`GET /api/V/system/executions/status`][/api/V/system/executions/status] - If Rundeck is in passive mode, the call will now return a 503 error code. 
 
 **Version 35**:
 * Updated Response:
@@ -345,7 +345,7 @@ Changes introduced by API Version number:
     - [`/api/14/execution/[ID]/abort`][/api/V/execution/\[ID\]/abort] - added API/GUI href/permalink to XML responses.
     - [`/api/14/project/[PROJECT]/history`][/api/V/project/\[PROJECT\]/history] - added API/GUI href/permalink to XML responses.
     - `/api/14/project/[PROJECT]/run/*` - added API/GUI href/permalink to XML responses for adhoc command/script/url.
-    - [`/api/14/system/info`][/api/V/system/info] - added information about QW Control Execution Mode
+    - [`/api/14/system/info`][/api/V/system/info] - added information about Rundeck Execution Mode
     - [`/api/14/project/[PROJECT]/import`][/api/V/project/\[PROJECT\]/import] - Added parameters for importing Configuration and ACL Policies from the archive.
 * Endpoints promoted out of "incubator" status:
     - [`/api/14/scheduler/takeover`][/api/V/scheduler/takeover] - Can specify `all` servers, or jobs within a specific `project`. Added API/GUI href/permalink to XML responses for adhoc command/script/url. Note: `href` was modified as mentioned below.
@@ -390,7 +390,7 @@ In this version, all new and updated endpoints support XML or JSON request and r
 **Modified XML Response format**:
 
 - For endpoints requiring API version 11 *only*, the default for XML responses is to *no longer* include a `<result>` element around the data.
-- For API clients that expect to see the `<result>` element, a request header of `X-QW Control-API-XML-Response-Wrapper: true` will restore it.
+- For API clients that expect to see the `<result>` element, a request header of `X-Rundeck-API-XML-Response-Wrapper: true` will restore it.
 - For endpoint requests for API version 10 and earlier, the `<result>` element will be sent as it has been (described in [Response Format][])
 
 * New endpoints
@@ -472,7 +472,7 @@ In this version, all new and updated endpoints support XML or JSON request and r
 
 **Version 5**:
 
-Added in QW Control 1.4.6, 1.5.1:
+Added in Rundeck 1.4.6, 1.5.1:
 
 * New feature for some endpoints:
     * new `asUser` parameter can record an action (run or abort) as having been performed by another user
@@ -531,11 +531,11 @@ These endpoints are in "Incubating" status, and are subject to change in future 
 
 ## URLs
 
-The QW Control server has a "Base URL", where you access the server. Your QW Control Server URL may look like: `http://myserver:4440`.
+The Rundeck server has a "Base URL", where you access the server. Your Rundeck Server URL may look like: `http://myserver:4440`.
 
 The root URL path for all calls to the API in this version is:
 
-    $QWCONTROL_SERVER_URL/api/2
+    $RUNDECK_SERVER_URL/api/2
 
 ## XML and JSON
 
@@ -556,14 +556,14 @@ Some endpoints also support using a `format` query parameter to specify the expe
 Authentication can be done in two different ways, either with Token based authentication,
 or with a username and password.
 
-Note that in either case, **it is recommended that you enable SSL Support for the QW Control server** so that communication is encrypted at all times. For more information about using SSL, see [Security - Configuring QW Control for SSL](/administration/security/ssl.md).
+Note that in either case, **it is recommended that you enable SSL Support for the Rundeck server** so that communication is encrypted at all times. For more information about using SSL, see [Security - Configuring Rundeck for SSL](/administration/security/ssl.md).
 
 ### Token Authentication
 
 Token Authentication consists of including a string known as an "API Token" with every
-request to the QW Control API.
+request to the Rundeck API.
 
-To obtain an API Token, you must first log in to the QW Control GUI using a user account.
+To obtain an API Token, you must first log in to the Rundeck GUI using a user account.
 Click on your username in the header of the page, and you will be shown your User Profile page.
 From this page you can [manage your API Tokens](/manual/10-user.html#user-api-tokens).
 
@@ -574,11 +574,11 @@ and an *Expiration Period*.
 
 Click "Generate API Token" to create a new one. The unique string that is shown is the API Token.
 
-Alternately you can define tokens in static file, by setting the `qwcontrol.tokens.file` in [framework.properties](/administration/configuration/config-file-reference.md#framework-properties).
+Alternately you can define tokens in static file, by setting the `rundeck.tokens.file` in [framework.properties](/administration/configuration/config-file-reference.md#framework-properties).
 
 You must include one of the following with every HTTP request to the API:
 
-* HTTP Header `X-QW Control-Auth-Token` set to the API Token string
+* HTTP Header `X-Rundeck-Auth-Token` set to the API Token string
 
 OR
 
@@ -597,7 +597,7 @@ Using the URL parameter to request the project list:
 Using the HTTP Header:
 
     GET /api/11/projects HTTP/1.1
-    X-QW Control-Auth-Token: E4rNvVRV378knO9dp3d73O0cs1kd0kCd
+    X-Rundeck-Auth-Token: E4rNvVRV378knO9dp3d73O0cs1kd0kCd
     ...
 
 ### Password Authentication
@@ -610,14 +610,14 @@ The Session Cookie must be sent with all calls to the API to maintain the authen
 
 To submit authentication, submit a `POST` request to the URL:
 
-    $QWCONTROL_SERVER_URL/j_security_check
+    $RUNDECK_SERVER_URL/j_security_check
 
 With these parameters:
 
-* `j_username`: qwcontrol username
+* `j_username`: rundeck username
 * `j_password`: password
 
-If the response includes a redirect chain which includes or results in `$QWCONTROL_SERVER_URL/user/login` or `$QWCONTROL_SERVER_URL/user/error`, then the authentication request failed.
+If the response includes a redirect chain which includes or results in `$RUNDECK_SERVER_URL/user/login` or `$RUNDECK_SERVER_URL/user/error`, then the authentication request failed.
 
 Otherwise, if the response is a redirect chain which results in `200 successful` response,  then the authentication was successful.
 
@@ -678,13 +678,13 @@ Defined error codes that may be returned as `<error code="...">`
 
 Authentication tokens can be managed via the API itself.
 
-**Note:** as of QW Control 3.3.8, Authentication tokens are stored in secure form and are no longer retrievable. Listing and getting
+**Note:** as of Rundeck 3.3.8, Authentication tokens are stored in secure form and are no longer retrievable. Listing and getting
 tokens will show the token id, name and other metadata but not the token value itself. The token value is only available at creation time
 using the [POST /api/V/tokens/[USER]][POST /api/V/tokens/\[USER\]] endpoint. 
 
-**Note:** as of QW Control 2.8, Authentication tokens are generated with a unique ID as well as a token string. Listing
+**Note:** as of Rundeck 2.8, Authentication tokens are generated with a unique ID as well as a token string. Listing
 tokens will show the ID instead of the token string, and the ID should be used to manage the token instead of the
-token string itself.  Until QW Control 3.3.7, token strings can be retrieved with the [/api/V/token/[ID]][/api/V/token/\[ID\]] endpoint.
+token string itself.  Until Rundeck 3.3.7, token strings can be retrieved with the [/api/V/token/[ID]][/api/V/token/\[ID\]] endpoint.
 
 ### List Tokens ####
 
@@ -799,7 +799,7 @@ List all tokens or all tokens for a specific user.
 
 **Response (API version: 18 and earlier):**
 
-**Note: removed since QW Control 3.3.8**
+**Note: removed since Rundeck 3.3.8**
 
 `application/xml`:
 
@@ -846,13 +846,13 @@ Get a specified auth token metadata.
 
 **Note:** API Version 19 and later uses the token ID instead of the token string.
 
-**Note:** As of QW Control 3.3.8, the actual token value is not available through this endpoint.
+**Note:** As of Rundeck 3.3.8, the actual token value is not available through this endpoint.
 
 **Request:**
 
     GET /api/11/token/[ID]
 
-**Response (API version: 19) (QW Control 3.3.8 and later):**
+**Response (API version: 19) (Rundeck 3.3.8 and later):**
 
 The token includes the `creator` of the token, as well as the `user` (the effective username) of the token.
 The `id` is the unique ID, and the `name` (since v37) is the name given at creation.
@@ -887,7 +887,7 @@ creator="user3" name="CI Server Token">
 }
 ```
 
-**Response (API version: 19) (QW Control 3.3.7 and earlier):**
+**Response (API version: 19) (Rundeck 3.3.7 and earlier):**
 
 The token includes the `creator` of the token, as well as the `user` (the effective username) of the token.
 The `id` is the unique ID, and the `token` value is the token string.
@@ -922,7 +922,7 @@ id="c13de457-c429-4476-9acd-e1c89e3c2928" creator="user3">
 }
 ```
 
-**Response (API version: 18 and earlier) (removed since QW Control 3.3.8):**
+**Response (API version: 18 and earlier) (removed since Rundeck 3.3.8):**
 
 The `id` value returned is the token string.
 
@@ -952,7 +952,7 @@ Create a new token for a specific user. Specify custom roles and duration if aut
 
 The user specified must either be part of the URL, or be part of the request content.
 
-**Note:** As of QW Control 3.3.8, the actual token value **is only available at creation time through the response of this endpoint**. Be sure to store your tokens as they will not be available later.
+**Note:** As of Rundeck 3.3.8, the actual token value **is only available at creation time through the response of this endpoint**. Be sure to store your tokens as they will not be available later.
 
 **For API v18 and earlier**: by default the role `api_token_group` is set for the generated token,
 and the duration will be the maximum allowed token duration.  If `user` is present in the URL, then the request content is ignored and can be empty.
@@ -1071,7 +1071,7 @@ Response:
     
 ## Config Refresh ##
 
-Make the QW Control server re-read the config properties file.
+Make the Rundeck server re-read the config properties file.
 
 **Request:**
 
@@ -1083,14 +1083,14 @@ Make the QW Control server re-read the config properties file.
 
 ``` json
 {
-    "msg": "QW Control configuration refreshed"
+    "msg": "Rundeck configuration refreshed"
 }
 ```
         
 
 ## System Info ###
 
-Get QW Control server information and stats.
+Get Rundeck server information and stats.
 
 **Request:**
 
@@ -1109,14 +1109,14 @@ Success response, with included system info and stats in this format:
     <timestamp epoch="1305909785806" unit="ms">
         <datetime>2011-05-20T16:43:05Z</datetime>
     </timestamp>
-    <qwcontrol>
+    <rundeck>
         <version>1.2.1</version>
         <apiversion>2</apiversion>
         <build>1.2.1-0-beta</build>
         <node>Venkman.local</node>
-        <base>/Users/greg/qwcontrol121</base>
+        <base>/Users/greg/rundeck121</base>
         <serverUUID>3E43E30D-F3D7-45AA-942A-04D5BAFED8CA</serverUUID>
-    </qwcontrol>
+    </rundeck>
     <executions active="true" executionMode="active" />
     <os>
         <arch>x86_64</arch>
@@ -1169,11 +1169,11 @@ Success response, with included system info and stats in this format:
       "unit": "ms",
       "datetime": "2015-05-18T18:54:38Z"
     },
-    "qwcontrol": {
+    "rundeck": {
       "version": "2.5.2-SNAPSHOT",
       "build": "2.5.2-0-SNAPSHOT",
       "node": "madmartigan.local",
-      "base": "/Users/greg/qwcontrol25",
+      "base": "/Users/greg/rundeck25",
       "apiversion": 14,
       "serverUUID": null
     },
@@ -1253,29 +1253,29 @@ attribute includes the milliseconds since the unix epoch.
 
 :   The W3C date and time
 
-`qwcontrol` includes information about the QW Control application.
+`rundeck` includes information about the Rundeck application.
 
-`qwcontrol/version`
+`rundeck/version`
 
-:   QW Control version
+:   Rundeck version
 
-`qwcontrol/apiversion`
+`rundeck/apiversion`
 
-:   QW Control API version
+:   Rundeck API version
 
-`qwcontrol/build`
+`rundeck/build`
 
-:   QW Control build stamp
+:   Rundeck build stamp
 
-`qwcontrol/node`
+`rundeck/node`
 
 :   Server node name
 
-`qwcontrol/base`
+`rundeck/base`
 
 :   Server base directory
 
-`qwcontrol/serverUUID`
+`rundeck/serverUUID`
 
 :   Server UUID (present if cluster mode is enabled)
 
@@ -1345,7 +1345,7 @@ The `memory` section describes memory usage in bytes:
 
 `scheduler/threadPoolSize`
 
-:   Size of the scheduler threadPool: maximum number of concurrent QW Control executions
+:   Size of the scheduler threadPool: maximum number of concurrent Rundeck executions
 
 `threads/active`
 
@@ -1417,93 +1417,93 @@ Return the metrics data.
     "dataSource.connection.pingTime": {
       "value": 1
     },
-    "qwcontrol.scheduler.quartz.runningExecutions": {
+    "rundeck.scheduler.quartz.runningExecutions": {
       "value": 0
     },
-    "qwcontrol.services.AuthorizationService.sourceCache.evictionCount": {
+    "rundeck.services.AuthorizationService.sourceCache.evictionCount": {
       "value": 0
     },
-    "qwcontrol.services.AuthorizationService.sourceCache.hitCount": {
+    "rundeck.services.AuthorizationService.sourceCache.hitCount": {
       "value": 9
     },
-    "qwcontrol.services.AuthorizationService.sourceCache.hitRate": {
+    "rundeck.services.AuthorizationService.sourceCache.hitRate": {
       "value": 0.9
     },
-    "qwcontrol.services.AuthorizationService.sourceCache.loadExceptionCount": {
+    "rundeck.services.AuthorizationService.sourceCache.loadExceptionCount": {
       "value": 0
     },
-    "qwcontrol.services.AuthorizationService.sourceCache.missCount": {
+    "rundeck.services.AuthorizationService.sourceCache.missCount": {
       "value": 1
     },
-    "qwcontrol.services.NodeService.nodeCache.evictionCount": {
+    "rundeck.services.NodeService.nodeCache.evictionCount": {
       "value": 0
     },
-    "qwcontrol.services.NodeService.nodeCache.hitCount": {
+    "rundeck.services.NodeService.nodeCache.hitCount": {
       "value": 11
     },
-    "qwcontrol.services.NodeService.nodeCache.hitRate": {
+    "rundeck.services.NodeService.nodeCache.hitRate": {
       "value": 0.9166666666666666
     },
-    "qwcontrol.services.NodeService.nodeCache.loadExceptionCount": {
+    "rundeck.services.NodeService.nodeCache.loadExceptionCount": {
       "value": 0
     },
-    "qwcontrol.services.NodeService.nodeCache.missCount": {
+    "rundeck.services.NodeService.nodeCache.missCount": {
       "value": 1
     },
-    "qwcontrol.services.ProjectManagerService.fileCache.evictionCount": {
+    "rundeck.services.ProjectManagerService.fileCache.evictionCount": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.fileCache.hitCount": {
+    "rundeck.services.ProjectManagerService.fileCache.hitCount": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.fileCache.hitRate": {
+    "rundeck.services.ProjectManagerService.fileCache.hitRate": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.fileCache.loadExceptionCount": {
+    "rundeck.services.ProjectManagerService.fileCache.loadExceptionCount": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.fileCache.missCount": {
+    "rundeck.services.ProjectManagerService.fileCache.missCount": {
       "value": 6
     },
-    "qwcontrol.services.ProjectManagerService.projectCache.evictionCount": {
+    "rundeck.services.ProjectManagerService.projectCache.evictionCount": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.projectCache.hitCount": {
+    "rundeck.services.ProjectManagerService.projectCache.hitCount": {
       "value": 530
     },
-    "qwcontrol.services.ProjectManagerService.projectCache.hitRate": {
+    "rundeck.services.ProjectManagerService.projectCache.hitRate": {
       "value": 0.9888059701492538
     },
-    "qwcontrol.services.ProjectManagerService.projectCache.loadExceptionCount": {
+    "rundeck.services.ProjectManagerService.projectCache.loadExceptionCount": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.projectCache.missCount": {
+    "rundeck.services.ProjectManagerService.projectCache.missCount": {
       "value": 6
     },
-    "qwcontrol.services.ProjectManagerService.sourceCache.evictionCount": {
+    "rundeck.services.ProjectManagerService.sourceCache.evictionCount": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.sourceCache.hitCount": {
+    "rundeck.services.ProjectManagerService.sourceCache.hitCount": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.sourceCache.hitRate": {
+    "rundeck.services.ProjectManagerService.sourceCache.hitRate": {
       "value": 1
     },
-    "qwcontrol.services.ProjectManagerService.sourceCache.loadExceptionCount": {
+    "rundeck.services.ProjectManagerService.sourceCache.loadExceptionCount": {
       "value": 0
     },
-    "qwcontrol.services.ProjectManagerService.sourceCache.missCount": {
+    "rundeck.services.ProjectManagerService.sourceCache.missCount": {
       "value": 0
     }
   },
   "counters": {
-    "qwcontrol.scheduler.quartz.scheduledJobs": {
+    "rundeck.scheduler.quartz.scheduledJobs": {
       "count": 6
     }
   },
   "histograms": {},
   "meters": {
-    "qwcontrol.services.AuthorizationService.systemAuthorization.evaluateMeter": {
+    "rundeck.services.AuthorizationService.systemAuthorization.evaluateMeter": {
       "count": 4,
       "m15_rate": 0.00314076610191179,
       "m1_rate": 0.023875601445527157,
@@ -1511,7 +1511,7 @@ Return the metrics data.
       "mean_rate": 0.026528128813374685,
       "units": "events/second"
     },
-    "qwcontrol.services.AuthorizationService.systemAuthorization.evaluateSetMeter": {
+    "rundeck.services.AuthorizationService.systemAuthorization.evaluateSetMeter": {
       "count": 12,
       "m15_rate": 0.6892782713428792,
       "m1_rate": 0.1267495745218626,
@@ -1519,7 +1519,7 @@ Return the metrics data.
       "mean_rate": 0.07958452971073966,
       "units": "events/second"
     },
-    "qwcontrol.services.ExecutionService.executionJobStartMeter": {
+    "rundeck.services.ExecutionService.executionJobStartMeter": {
       "count": 6,
       "m15_rate": 0.3446391356714396,
       "m1_rate": 0.0633747872609313,
@@ -1527,7 +1527,7 @@ Return the metrics data.
       "mean_rate": 0.039926086575635206,
       "units": "events/second"
     },
-    "qwcontrol.services.ExecutionService.executionStartMeter": {
+    "rundeck.services.ExecutionService.executionStartMeter": {
       "count": 6,
       "m15_rate": 0.3446391356714396,
       "m1_rate": 0.0633747872609313,
@@ -1535,7 +1535,7 @@ Return the metrics data.
       "mean_rate": 0.039893916635731115,
       "units": "events/second"
     },
-    "qwcontrol.services.ExecutionService.executionSuccessMeter": {
+    "rundeck.services.ExecutionService.executionSuccessMeter": {
       "count": 6,
       "m15_rate": 0.3465591259042392,
       "m1_rate": 0.06888231291145262,
@@ -1545,7 +1545,7 @@ Return the metrics data.
     }
   },
   "timers": {
-    "qwcontrol.api.requests.requestTimer": {
+    "rundeck.api.requests.requestTimer": {
       "count": 3,
       "max": 0.19907502000000002,
       "mean": 0.108295424,
@@ -1564,7 +1564,7 @@ Return the metrics data.
       "duration_units": "seconds",
       "rate_units": "calls/second"
     },
-    "qwcontrol.quartzjobs.ExecutionJob.executionTimer": {
+    "rundeck.quartzjobs.ExecutionJob.executionTimer": {
       "count": 6,
       "max": 2.785892703,
       "mean": 0.6245617408333334,
@@ -1583,7 +1583,7 @@ Return the metrics data.
       "duration_units": "seconds",
       "rate_units": "calls/second"
     },
-    "qwcontrol.services.AuthorizationService.getSystemAuthorization": {
+    "rundeck.services.AuthorizationService.getSystemAuthorization": {
       "count": 10,
       "max": 0.11291242300000001,
       "mean": 0.0168355508,
@@ -1602,7 +1602,7 @@ Return the metrics data.
       "duration_units": "seconds",
       "rate_units": "calls/second"
     },
-    "qwcontrol.services.AuthorizationService.systemAuthorization.evaluateSetTimer": {
+    "rundeck.services.AuthorizationService.systemAuthorization.evaluateSetTimer": {
       "count": 12,
       "max": 0.064324482,
       "mean": 0.0064664489166666676,
@@ -1621,7 +1621,7 @@ Return the metrics data.
       "duration_units": "seconds",
       "rate_units": "calls/second"
     },
-    "qwcontrol.services.AuthorizationService.systemAuthorization.evaluateTimer": {
+    "rundeck.services.AuthorizationService.systemAuthorization.evaluateTimer": {
       "count": 4,
       "max": 0.002291996,
       "mean": 0.00132195675,
@@ -1640,7 +1640,7 @@ Return the metrics data.
       "duration_units": "seconds",
       "rate_units": "calls/second"
     },
-    "qwcontrol.services.FrameworkService.authorizeApplicationResource": {
+    "rundeck.services.FrameworkService.authorizeApplicationResource": {
       "count": 4,
       "max": 0.016328387,
       "mean": 0.004882139000000001,
@@ -1659,7 +1659,7 @@ Return the metrics data.
       "duration_units": "seconds",
       "rate_units": "calls/second"
     },
-    "qwcontrol.services.FrameworkService.filterNodeSet": {
+    "rundeck.services.FrameworkService.filterNodeSet": {
       "count": 12,
       "max": 0.36586338300000004,
       "mean": 0.03359687208333334,
@@ -1678,7 +1678,7 @@ Return the metrics data.
       "duration_units": "seconds",
       "rate_units": "calls/second"
     },
-    "qwcontrol.services.NodeService.project.bingo.loadNodes": {
+    "rundeck.services.NodeService.project.bingo.loadNodes": {
       "count": 3,
       "max": 0.29763018,
       "mean": 0.13177108533333334,
@@ -1697,7 +1697,7 @@ Return the metrics data.
       "duration_units": "seconds",
       "rate_units": "calls/second"
     },
-    "qwcontrol.web.requests.requestTimer": {
+    "rundeck.web.requests.requestTimer": {
       "count": 5,
       "max": 0.19833273,
       "mean": 0.0921360348,
@@ -2357,7 +2357,7 @@ or
 
 ### Takeover Schedule in Cluster Mode
 
-Tell a QW Control server in cluster mode to claim all scheduled jobs from another
+Tell a Rundeck server in cluster mode to claim all scheduled jobs from another
 cluster server.
 
 This endpoint can take over the schedule of certain jobs based on the input:
@@ -2518,11 +2518,11 @@ Example XML Response, when `uuid` was specified:
           <successful count='2'>
             <job id='a1aa53ac-73a6-4ead-bbe4-34afbff8e057'
             href='http://localhost:9090/api/14/job/a1aa53ac-73a6-4ead-bbe4-34afbff8e057'
-            permalink='http://localhost:9090/qwcontrol/job/show/a1aa53ac-73a6-4ead-bbe4-34afbff8e057'
+            permalink='http://localhost:9090/rundeck/job/show/a1aa53ac-73a6-4ead-bbe4-34afbff8e057'
             previous-owner="8F3D5976-2232-4529-847B-8E45764608E3" />
             <job id='116e2025-7895-444a-88f7-d96b4f19fdb3'
             href='http://localhost:9090/api/14/job/116e2025-7895-444a-88f7-d96b4f19fdb3'
-            permalink='http://localhost:9090/qwcontrol/job/show/116e2025-7895-444a-88f7-d96b4f19fdb3'
+            permalink='http://localhost:9090/rundeck/job/show/116e2025-7895-444a-88f7-d96b4f19fdb3'
             previous-owner="8F3D5976-2232-4529-847B-8E45764608E3" />
           </successful>
           <failed count='0'></failed>
@@ -2744,7 +2744,7 @@ Otherwise if XML or JSON is requested, the YAML text will be wrapped within that
 ``` yaml
 description: "my policy"
 context:
-  application: qwcontrol
+  application: rundeck
 for:
   project:
     - allow: read
@@ -2756,7 +2756,7 @@ by:
 
 ``` json
 {
-  "contents": "description: \"my policy\"\ncontext:\n  application: qwcontrol\nfor:\n  project:\n    - allow: read\nby:\n  group: build"
+  "contents": "description: \"my policy\"\ncontext:\n  application: rundeck\nfor:\n  project:\n    - allow: read\nby:\n  group: build"
 }
 ```
 
@@ -2765,7 +2765,7 @@ by:
 ``` xml
 <contents><![CDATA[description: "my policy"
 context:
-  application: qwcontrol
+  application: rundeck
 for:
   project:
     - allow: read
@@ -2790,7 +2790,7 @@ Otherwise, you can use XML or JSON in the same format as returned by [Get an ACL
 
 ``` json
 {
-  "contents": "description: \"my policy\"\ncontext:\n  application: qwcontrol\nfor:\n  project:\n    - allow: read\nby:\n  group: build"
+  "contents": "description: \"my policy\"\ncontext:\n  application: rundeck\nfor:\n  project:\n    - allow: read\nby:\n  group: build"
 }
 
 ```
@@ -2800,7 +2800,7 @@ Otherwise, you can use XML or JSON in the same format as returned by [Get an ACL
 ``` xml
 <contents><![CDATA[description: "my policy"
 context:
-  application: qwcontrol
+  application: rundeck
 for:
   project:
     - allow: read
@@ -3734,7 +3734,7 @@ Now run the job using the file key value for the `myfile` option:
 
 **Multiple file example using curl:**
 
-    curl -X POST -H x-qwcontrol-auth-token:$RD_TOKEN \
+    curl -X POST -H x-rundeck-auth-token:$RD_TOKEN \
         -H accept:application/json \
         -F option.csvfile=@data.csv \
         -F option.xmlfile=@data.xml \
@@ -4068,7 +4068,7 @@ Each `execution` of the form:
     <!-- argString (arguments) of the execution -->
     <argstring>...</argstring>
 
-    <!-- if QW Control is in cluster mode -->
+    <!-- if Rundeck is in cluster mode -->
     <serverUUID>...</serverUUID>
 
     <!-- The following elements included only if the execution has ended -->
@@ -4164,8 +4164,8 @@ The `[status]` value indicates the execution status.  It is one of:
 
 If `status` is `other`, then, `customStatus` will contain the exit status.
 
-The `[url]` value for the `href` is a URL the QW Control API for the execution.
-The `[url]` value for the `permalink` is a URL to the QW Control server page to view the execution output.
+The `[url]` value for the `href` is a URL the Rundeck API for the execution.
+The `[url]` value for the `permalink` is a URL to the Rundeck server page to view the execution output.
 
 `[user]` is the username of the user who started the execution.
 
@@ -4888,7 +4888,7 @@ Get the output for an execution by ID.  The execution can be currently running o
     GET /api/10/execution/[ID]/output/node/[NODE]/step/[STEPCTX]
     GET /api/10/execution/[ID]/output/step/[STEPCTX]
 
-The log output for each execution is stored in a file on the QW Control server, and this API endpoint allows you to retrieve some or all of the output, in several possible formats: json, XML, and plain text.  When retrieving the plain text output, some metadata about the log is included in HTTP Headers.  JSON and XML output formats include metadata about each output log line, as well as metadata about the state of the execution and log file, and your current index location in the file.
+The log output for each execution is stored in a file on the Rundeck server, and this API endpoint allows you to retrieve some or all of the output, in several possible formats: json, XML, and plain text.  When retrieving the plain text output, some metadata about the log is included in HTTP Headers.  JSON and XML output formats include metadata about each output log line, as well as metadata about the state of the execution and log file, and your current index location in the file.
 
 Output can be selected by Node or Step Context or both as of API v10.
 
@@ -5108,17 +5108,17 @@ For the plain text format, the content of the response will simply be the log ou
 
 Included in the response will be some HTTP headers that provide the metadata about the output location. Some headers may not be present, depending on the state of the response. See the [Output Content](#output-content) section for descriptions of the content and availability of the values:
 
-* `X-QW Control-ExecOutput-Error`: The `error` field
-* `X-QW Control-ExecOutput-Message`: The `message` field
-* `X-QW Control-ExecOutput-Empty`: The `empty` field
-* `X-QW Control-ExecOutput-Unmodified`: The `unmodified` field
-* `X-QW Control-ExecOutput-Offset`: The `offset` field
-* `X-QW Control-ExecOutput-Completed`: The `completed` field
-* `X-QW Control-Exec-Completed`: The `execCompleted` field
-* `X-QW Control-Exec-State`: The `execState` field
-* `X-QW Control-Exec-Duration`: the `execDuration` field
-* `X-QW Control-ExecOutput-LastModifed`: The `lastModified` field
-* `X-QW Control-ExecOutput-TotalSize`: The `totalSize` field
+* `X-Rundeck-ExecOutput-Error`: The `error` field
+* `X-Rundeck-ExecOutput-Message`: The `message` field
+* `X-Rundeck-ExecOutput-Empty`: The `empty` field
+* `X-Rundeck-ExecOutput-Unmodified`: The `unmodified` field
+* `X-Rundeck-ExecOutput-Offset`: The `offset` field
+* `X-Rundeck-ExecOutput-Completed`: The `completed` field
+* `X-Rundeck-Exec-Completed`: The `execCompleted` field
+* `X-Rundeck-Exec-State`: The `execState` field
+* `X-Rundeck-Exec-Duration`: the `execDuration` field
+* `X-Rundeck-ExecOutput-LastModifed`: The `lastModified` field
+* `X-Rundeck-ExecOutput-TotalSize`: The `totalSize` field
 
 ### Execution Output with State
 
@@ -5383,11 +5383,11 @@ new execution by ID:
 Upload and manage public and private key files and passwords.
 For more information see the [Administration - Key Storage](/administration/security/key-storage.md) document.
 
-Keys are stored via QW Control's *Storage* facility.  This is a path-based interface to manage files.  The underlying storage may be on disk or in a database.
+Keys are stored via Rundeck's *Storage* facility.  This is a path-based interface to manage files.  The underlying storage may be on disk or in a database.
 
 The Storage facility manages "resources", which may be files or directories.  File resources can have metadata associated with them (such as MIME content type).
 
-Note: Private Keys and Passwords can be uploaded but not retrieved directly with this API.  They can only be used internally by QW Control.
+Note: Private Keys and Passwords can be uploaded but not retrieved directly with this API.  They can only be used internally by Rundeck.
 
 URL:
 
@@ -5399,7 +5399,7 @@ Specify the type of key via the `Content-type` header:
 
 * `application/octet-stream` specifies a **private key**
 * `application/pgp-keys` specifies a **public key**
-* `application/x-qwcontrol-data-password` specifies a **password**
+* `application/x-rundeck-data-password` specifies a **password**
 
 Use `POST` to create a new file, or `PUT` to modify an existing file.
 
@@ -5433,31 +5433,31 @@ url='http://dignan.local:4440/api/11/storage/keys'>
     url='http://dignan.local:4440/api/11/storage/keys/test1.pem'
     name='test1.pem'>
       <resource-meta>
-        <QW Control-content-type>
-        application/octet-stream</QW Control-content-type>
-        <QW Control-content-size>1679</QW Control-content-size>
-        <QW Control-content-mask>content</QW Control-content-mask>
-        <QW Control-key-type>private</QW Control-key-type>
+        <Rundeck-content-type>
+        application/octet-stream</Rundeck-content-type>
+        <Rundeck-content-size>1679</Rundeck-content-size>
+        <Rundeck-content-mask>content</Rundeck-content-mask>
+        <Rundeck-key-type>private</Rundeck-key-type>
       </resource-meta>
     </resource>
     <resource path='keys/test1.pub' type='file'
     url='http://dignan.local:4440/api/11/storage/keys/test1.pub'
     name='test1.pub'>
       <resource-meta>
-        <QW Control-content-type>
-        application/pgp-keys</QW Control-content-type>
-        <QW Control-content-size>393</QW Control-content-size>
-        <QW Control-key-type>public</QW Control-key-type>
+        <Rundeck-content-type>
+        application/pgp-keys</Rundeck-content-type>
+        <Rundeck-content-size>393</Rundeck-content-size>
+        <Rundeck-key-type>public</Rundeck-key-type>
       </resource-meta>
     </resource>
     <resource path='keys/monkey1.pub' type='file'
     url='http://dignan.local:4440/api/11/storage/keys/monkey1.pub'
     name='monkey1.pub'>
       <resource-meta>
-        <QW Control-content-type>
-        application/pgp-keys</QW Control-content-type>
-        <QW Control-content-size>640198</QW Control-content-size>
-        <QW Control-key-type>public</QW Control-key-type>
+        <Rundeck-content-type>
+        application/pgp-keys</Rundeck-content-type>
+        <Rundeck-content-size>640198</Rundeck-content-size>
+        <Rundeck-key-type>public</Rundeck-key-type>
       </resource-meta>
     </resource>
     <resource path='keys/subdir' type='directory'
@@ -5474,10 +5474,10 @@ url='http://dignan.local:4440/api/11/storage/keys'>
   "resources": [
     {
       "meta": {
-        "QW Control-key-type": "private",
-        "QW Control-content-mask": "content",
-        "QW Control-content-size": "1679",
-        "QW Control-content-type": "application/octet-stream"
+        "Rundeck-key-type": "private",
+        "Rundeck-content-mask": "content",
+        "Rundeck-content-size": "1679",
+        "Rundeck-content-type": "application/octet-stream"
       },
       "url": "http://dignan.local:4440/api/11/storage/keys/test1.pem",
       "name": "test1.pem",
@@ -5491,9 +5491,9 @@ url='http://dignan.local:4440/api/11/storage/keys'>
     },
     {
       "meta": {
-        "QW Control-key-type": "public",
-        "QW Control-content-size": "640198",
-        "QW Control-content-type": "application/pgp-keys"
+        "Rundeck-key-type": "public",
+        "Rundeck-content-size": "640198",
+        "Rundeck-content-type": "application/pgp-keys"
       },
       "url": "http://dignan.local:4440/api/11/storage/keys/monkey1.pub",
       "name": "monkey1.pub",
@@ -5502,9 +5502,9 @@ url='http://dignan.local:4440/api/11/storage/keys'>
     },
     {
       "meta": {
-        "QW Control-key-type": "public",
-        "QW Control-content-size": "393",
-        "QW Control-content-type": "application/pgp-keys"
+        "Rundeck-key-type": "public",
+        "Rundeck-content-size": "393",
+        "Rundeck-content-type": "application/pgp-keys"
       },
       "url": "http://dignan.local:4440/api/11/storage/keys/test1.pub",
       "name": "test1.pub",
@@ -5537,10 +5537,10 @@ Response:
 url='http://dignan.local:4440/api/11/storage/keys/test1.pub'
 name='test1.pub'>
   <resource-meta>
-    <QW Control-content-type>
-    application/pgp-keys</QW Control-content-type>
-    <QW Control-content-size>393</QW Control-content-size>
-    <QW Control-key-type>public</QW Control-key-type>
+    <Rundeck-content-type>
+    application/pgp-keys</Rundeck-content-type>
+    <Rundeck-content-size>393</Rundeck-content-size>
+    <Rundeck-key-type>public</Rundeck-key-type>
   </resource-meta>
 </resource>
 ```
@@ -5550,9 +5550,9 @@ name='test1.pub'>
 ``` json
 {
   "meta": {
-    "QW Control-key-type": "public",
-    "QW Control-content-size": "393",
-    "QW Control-content-type": "application/pgp-keys"
+    "Rundeck-key-type": "public",
+    "Rundeck-content-size": "393",
+    "Rundeck-content-type": "application/pgp-keys"
   },
   "url": "http://dignan.local:4440/api/11/storage/keys/test1.pub",
   "name": "test1.pub",
@@ -5570,7 +5570,7 @@ Provides the **public key** content if the `Accept` request header matches `*/*`
 **Retrieving private key or password file contents is not allowed.**
 
 A GET request for a private key file if the `Accept` request header matches `*/*` or `application/octet-stream`,
-or a password if the request header matches `*/*` or `application/x-qwcontrol-data-password`
+or a password if the request header matches `*/*` or `application/x-rundeck-data-password`
 will result in a `403 Unauthorized` response.
 
     GET /api/11/storage/keys/[PATH]/[FILE]
@@ -6082,7 +6082,7 @@ whether it is `writeable`.  The `href` indicates the URL for [Listing and Updati
     {
         "index": 1,
         "resources": {
-            "description": "/Users/greg/qwcontrol2.11/projects/atest/etc/resources.xml",
+            "description": "/Users/greg/rundeck2.11/projects/atest/etc/resources.xml",
             "empty": false,
             "href": "http://ecto1.local:4440/api/23/project/atest/source/1/resources",
             "writeable": true
@@ -6090,7 +6090,7 @@ whether it is `writeable`.  The `href` indicates the URL for [Listing and Updati
         "type": "file"
     },
     {
-        "errors": "File does not exist: /Users/greg/qwcontrol2.11/projects/atest/etc/resources2.xml",
+        "errors": "File does not exist: /Users/greg/rundeck2.11/projects/atest/etc/resources2.xml",
         "index": 2,
         "resources": {
             "href": "http://ecto1.local:4440/api/23/project/atest/source/2/resources",
@@ -6110,14 +6110,14 @@ whether it is `writeable`.  The `href` indicates the URL for [Listing and Updati
     <resources href="http://ecto1.local:4440/api/23/project/atest/source/1/resources"
     writeable="true" empty="false">
       <description>
-      /Users/greg/qwcontrol2.11/projects/atest/etc/resources.xml</description>
+      /Users/greg/rundeck2.11/projects/atest/etc/resources.xml</description>
     </resources>
   </source>
   <source index="2" type="stub">
     <resources href="http://ecto1.local:4440/api/23/project/atest/source/2/resources"
     writeable="false" />
      <errors>File does not exist:
-    /Users/greg/qwcontrol2.11/projects/atest/etc/resources2.xml</errors>
+    /Users/greg/rundeck2.11/projects/atest/etc/resources2.xml</errors>
   </source>
 </sources>
 ```
@@ -6466,9 +6466,9 @@ Custom attributes can also be used.
 
 ## SCM
 
-QW Control SCM Plugins can be used to synchronize Job definitions with an external Source Control Management repository.
+Rundeck SCM Plugins can be used to synchronize Job definitions with an external Source Control Management repository.
 
-Currently QW Control includes a single built-in plugin for Git repositories.
+Currently Rundeck includes a single built-in plugin for Git repositories.
 
 There are two "integration" types of SCM Plugins: `import` and `export`, and they are managed separately.
 
@@ -7281,7 +7281,7 @@ Same response as [Setup SCM Plugin for a Project](#setup-scm-plugin-for-a-projec
 [
     {
         "artifactName": "kubernetes-plugin",
-        "author": "QW Control",
+        "author": "Rundeck",
         "builtin": false,
         "description": "dispatch the command to the kubernetes pod",
         "id": "15712f2421d1",
@@ -7292,7 +7292,7 @@ Same response as [Setup SCM Plugin for a Project](#setup-scm-plugin-for-a-projec
     },
     {
         "artifactName": "py-winrm-plugin",
-        "author": "© 2017, QW Control, Inc.",
+        "author": "© 2017, Rundeck, Inc.",
         "builtin": false,
         "description": "Executing Scripts or Commands on remote Windows computer",
         "id": "59ed572534b2",
@@ -7519,7 +7519,7 @@ ok
 ::: incubating
 :::
 
-Manage System and Project Calendars in QW Control Enterprise.
+Manage System and Project Calendars in Rundeck Enterprise.
 
 ### List System Calendars
 Get all calendars at system level.
@@ -7792,7 +7792,7 @@ Example:
 ::: incubating
 :::
 
-Returns metadata about the current License for QW Control Enterprise.
+Returns metadata about the current License for Rundeck Enterprise.
 
 **Request:**
 
@@ -7802,9 +7802,9 @@ Returns metadata about the current License for QW Control Enterprise.
 
 ```json
 {
-  "company": "qwcontrol.com",
-  "contactEmail": "support@qwcontrol.com",
-  "application": "qwcontrolpro",
+  "company": "rundeck.com",
+  "contactEmail": "support@rundeck.com",
+  "application": "rundeckpro",
   "editions": [
     "ENTERPRISE"
   ],
@@ -7827,10 +7827,10 @@ Returns metadata about the current License for QW Control Enterprise.
   "state": "ACTIVE",
   "active": true,
   "shouldWarn": true,
-  "baseUrl": "http://qwcontrol/license/index",
+  "baseUrl": "http://rundeck/license/index",
   "edition": "ENTERPRISE",
   "reason": "The License is Valid",
-  "warning": "The QW Control License will expire in 26 days"
+  "warning": "The Rundeck License will expire in 26 days"
 }
 
 ```
@@ -7843,20 +7843,20 @@ Returns metadata about the current License for QW Control Enterprise.
 ::: incubating
 :::
 
-Uploads a license key for QW Control Enterprise.
+Uploads a license key for Rundeck Enterprise.
 
 **Request:**
 
     POST /api/V/incubating/enterprise/license
-    Content-Type: application/x-qwcontrol-license
+    Content-Type: application/x-rundeck-license
 
 Request Content:
 
-The QW Control Enterprise License key file.
+The Rundeck Enterprise License key file.
 
 Optional Parameters:
 
-* `license_agreement`: `true` to agree with the QW Control Enterprise License.
+* `license_agreement`: `true` to agree with the Rundeck Enterprise License.
 
 **Response:**
 

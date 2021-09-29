@@ -3,7 +3,7 @@
 ## About
 
 UI Plugins provide a way to include Javascript and CSS files
-in various parts of the QW Control GUI's HTML pages.
+in various parts of the Rundeck GUI's HTML pages.
 You can define which pages of the GUI should include your plugin files,
 and use the Javascript and CSS to modify or add new features to the GUI.
 
@@ -16,14 +16,14 @@ Your Javascript can make use if a simple [Javascript API](#javascript-api) for a
 
 ## Behavior
 
-When QW Control renders a page, it evaluates whether any UI plugins are applicable, and
+When Rundeck renders a page, it evaluates whether any UI plugins are applicable, and
 what resources of those plugins to load for the page. If some plugins declare that they `require`
 other plugins, the ordering is arranged to load required plugins first, if possible. Note: any plugin that you put in the `requires` section must also be configured to load on the
-same pages, otherwise QW Control will not load it.
+same pages, otherwise Rundeck will not load it.
 
-For Zip UI plugins QW Control looks at the `plugin.yaml` data which declares the page configurations to determine applicability. For Java plugins, QW Control calls the `doesApply` method.
+For Zip UI plugins Rundeck looks at the `plugin.yaml` data which declares the page configurations to determine applicability. For Java plugins, Rundeck calls the `doesApply` method.
 
-When loading a plugin for the page, QW Control will link to the script and stylesheets for the
+When loading a plugin for the page, Rundeck will link to the script and stylesheets for the
 page. For Zip UI Plugins, the Page configuration determines which scripts and stylesheets
 to load. For Java plugins, the `scriptResourcesForPath` and `styleResourcesForPath` methods
 will be called.
@@ -60,7 +60,7 @@ The following is required in the `providers:` section of the `plugin.yaml`:
 
 name: plugin name
 version: plugin version
-qwcontrolPluginVersion: 1.2
+rundeckPluginVersion: 1.2
 author: author name
 date: release date (ISO8601)
 url: website URL
@@ -109,10 +109,10 @@ See [Plugin Icons](/developer/01-plugin-development.md#plugin-icons).
 ## Java Plugin Type
 
 ::: tip
-Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for QW Control.
+Refer to [Java Development](/developer/01-plugin-development.md#java-plugin-development) for information about developing a Java plugin for Rundeck.
 :::
 
-The plugin interface is [UIPlugin]({{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/qwcontrol/UIPlugin.html).
+The plugin interface is [UIPlugin]({{{javaDocBase}}}/com/dtolabs/rundeck/plugins/rundeck/UIPlugin.html).
 
 ```java
 
@@ -175,12 +175,12 @@ See [Plugin Icons](/developer/01-plugin-development.md#plugin-icons).
 
 ## Javascript API
 
-When loaded in a QW Control GUI page, your Javascript code can use a simple Javascript API to
-get more information about the QW Control application, and your plugin.
+When loaded in a Rundeck GUI page, your Javascript code can use a simple Javascript API to
+get more information about the Rundeck application, and your plugin.
 
-Note: QW Control makes use of [Knockout][] and [jQuery][] on all GUI pages, so they can be used by your plugins. Knockout is useful to understand when interacting with the JS already included on a QW Control page.
+Note: Rundeck makes use of [Knockout][] and [jQuery][] on all GUI pages, so they can be used by your plugins. Knockout is useful to understand when interacting with the JS already included on a Rundeck page.
 
-QW Control creates a window object called `qwcontrolPage` with these methods:
+Rundeck creates a window object called `rundeckPage` with these methods:
 
 - `project()`: returns the name of the current project, if available
 - `path()`: the page path
@@ -188,7 +188,7 @@ QW Control creates a window object called `qwcontrolPage` with these methods:
 - `pluginBaseUrl(pluginId)`: returns the base URL for loading file resources for a plugin with provider ID "pluginId". Append a resources path to retrieve any plugin resource files.
 - `pluginBasei18nUrl(pluginId)`: returns the base URL for loading i18n resources for a plugin with provider ID "pluginId". Append a resources path to retrieve i18n resources.
 
-Note: the `qwcontrolPage` object may have other methods, but any methods not documented here are subject to change.
+Note: the `rundeckPage` object may have other methods, but any methods not documented here are subject to change.
 
 ### Loading resources
 
@@ -199,8 +199,8 @@ Example using jQuery:
 ```js
 function loadHtmlTemplate(file){
 	//assuming my zip plugin has a resources/html/myfile.html
-	var myProvider='com.mycompany.qwcontrol.myplugin';
-	var pluginUrl = qwcontrolPage.pluginBaseUrl(myProvider);
+	var myProvider='com.mycompany.rundeck.myplugin';
+	var pluginUrl = rundeckPage.pluginBaseUrl(myProvider);
     var fullUrl = pluginUrl + '/html/' + file + ".html";
     jQuery.get(fullUrl, function (text) {
     	//do something with the HTML contents
@@ -210,14 +210,14 @@ function loadHtmlTemplate(file){
 
 ### Loading i18n Resources
 
-The `qwcontrolPage.pluginBasei18nUrl(..)` method will return the base URL for loading i18n resources.
+The `rundeckPage.pluginBasei18nUrl(..)` method will return the base URL for loading i18n resources.
 
-QW Control Plugin Localization/Internationalization uses java `.properties` formatted files. (See [Plugin Localization](/developer/01-plugin-development.md#plugin-localization)). However, your i18n resources don't have to be `.properties` files.
+Rundeck Plugin Localization/Internationalization uses java `.properties` formatted files. (See [Plugin Localization](/developer/01-plugin-development.md#plugin-localization)). However, your i18n resources don't have to be `.properties` files.
 
 Requesting resources via this URL provides two features to help with i18n:
 
-1. Locale resolution. Requesting a path such as `qwcontrolPage.pluginBasei18nUrl('myprovider')+'/myfile.txt'`, will attempt to resolve the file by looking for a file based on the current User's locale/language settings. E.g. if their language is set to Spanish (code `es_419`), the request will resolve to a file `i18n/myfile_es_419.txt` if it exists. It will fall back to the language (e.g. `es`), then any default locale (e.g. `en_us`), default language (e.g. `en`) and finally the original file path.
-2. Conversion of Java .properties to JSON. If you request a `.properties` file, and append a `?format=json` to the URL, QW Control will load the Java Properties formatted data, and return the JSON for the data.
+1. Locale resolution. Requesting a path such as `rundeckPage.pluginBasei18nUrl('myprovider')+'/myfile.txt'`, will attempt to resolve the file by looking for a file based on the current User's locale/language settings. E.g. if their language is set to Spanish (code `es_419`), the request will resolve to a file `i18n/myfile_es_419.txt` if it exists. It will fall back to the language (e.g. `es`), then any default locale (e.g. `en_us`), default language (e.g. `en`) and finally the original file path.
+2. Conversion of Java .properties to JSON. If you request a `.properties` file, and append a `?format=json` to the URL, Rundeck will load the Java Properties formatted data, and return the JSON for the data.
 
 Examples:
 
@@ -227,8 +227,8 @@ and user's current lang is `es_419`, this would load the Spanish messages:
 
 ```js
 function loadi18nMessages(file){
-	var myProvider='com.mycompany.qwcontrol.myplugin';
-	var plugini18nBase = qwcontrolPage.pluginBasei18nUrl(myProvider);
+	var myProvider='com.mycompany.rundeck.myplugin';
+	var plugini18nBase = rundeckPage.pluginBasei18nUrl(myProvider);
     jQuery.ajax({
         url: plugini18nBase + '/messages.properties?format=json',
         success: function (data) {
@@ -246,8 +246,8 @@ This example is similar to the first example, but loads a HTML file specific to 
 ```js
 
 function loadi18nHtmlTemplate(file){
-	var myProvider='com.mycompany.qwcontrol.myplugin';
-	var plugini18nBase = qwcontrolPage.pluginBasei18nUrl(myProvider);
+	var myProvider='com.mycompany.rundeck.myplugin';
+	var plugini18nBase = rundeckPage.pluginBasei18nUrl(myProvider);
     var fullUrl = plugini18nBase + '/html/' + file + ".html";
     jQuery.get(fullUrl, function (text) {
     	//do something with the HTML contents
@@ -259,7 +259,7 @@ function loadi18nHtmlTemplate(file){
 
 Here are some [UI Plugin Examples][example-code].
 
-[uiplugin]: {{{javaDocBase}}}/com/dtolabs/qwcontrol/plugins/qwcontrol/UIPlugin.html
+[uiplugin]: {{{javaDocBase}}}/com/dtolabs/rundeck/plugins/rundeck/UIPlugin.html
 [knockout]: https://knockoutjs.com/
 [jquery]: https://jquery.com/
-[example-code]: https://github.com/qwcontrol-plugins/ui-plugin-examples/
+[example-code]: https://github.com/rundeck-plugins/ui-plugin-examples/

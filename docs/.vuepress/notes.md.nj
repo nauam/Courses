@@ -2,12 +2,12 @@
 
 Name: <span style="color: {{version.color()}}"><span class="glyphicon glyphicon-{{version.icon()}}"></span> "{{version.name()}} {{version.color()}} {{version.icon()}}"</span>
 
-- [Download QW Control](https://download.qwcontrol.com/)
-- [Sign up for Release Notes](https://www.qwcontrol.com/release-notes-signup)
+- [Download Rundeck](https://download.rundeck.com/)
+- [Sign up for Release Notes](https://www.rundeck.com/release-notes-signup)
 
 ## Overview
 
-Check out the new features and enhancements for QW Control Enterprise and QW Control Community included in this release.
+Check out the new features and enhancements for Rundeck Enterprise and Rundeck Community included in this release.
 
 ## Enterprise Updates
 
@@ -38,7 +38,7 @@ Check out the new features and enhancements for QW Control Enterprise and QW Con
 {% endfor %}
 
 
-[Here is a link to the full list of public PRs](https://github.com/qwcontrol/qwcontrol/pulls?q=is%3Apr+milestone%3A{{version.versionString}}+is%3Aclosed)
+[Here is a link to the full list of public PRs](https://github.com/rundeck/rundeck/pulls?q=is%3Apr+milestone%3A{{version.versionString}}+is%3Aclosed)
 
 ## Community Contributors
 

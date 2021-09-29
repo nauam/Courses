@@ -2,7 +2,7 @@
 ::: enterprise
 :::
 
-The Node Wizard allows QW Control Enterprise admins to manually create Node entries in the QW Control database using a graphical interface fill in values.
+The Node Wizard allows Rundeck Enterprise admins to manually create Node entries in the Rundeck database using a graphical interface fill in values.
 
   ![](~@assets/img/nodewiz-source.png)
 
@@ -30,7 +30,7 @@ To add the Node Wizard Resource Model source open the Project where the Node Sou
 
 - _Node Name_: This is used as an ID field. Value can be any string. if other sources are added will also be used to tie those entries together with this one.
 - _Description_: A user friendly description of the Node.
-- _Host Name/IP_: Provide a DNS hostname or IP address that will be used for the QW Control Server to connect to the node.
+- _Host Name/IP_: Provide a DNS hostname or IP address that will be used for the Rundeck Server to connect to the node.
 - _OS Family_: Select **Windows**, **Unix**, or **Other**.  _Note: this must be set so the proper Node Executor and File Copier are used._
 - _Tags_: Can be used to help in search filters.
 - _Custom Attributes_: Add custom attributes in java properties format. eg: `myAttribute=myValue`.  One entry per line.

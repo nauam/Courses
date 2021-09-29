@@ -2,7 +2,7 @@
 
 ## Access Control Pages
 
-You can manage ACL Policy files within the QW Control GUI, at both System and Project contexts (also referred to as scopes).
+You can manage ACL Policy files within the Rundeck GUI, at both System and Project contexts (also referred to as scopes).
 
 System > Access Control 
 :   This page manages System context ACL Policies. 
@@ -26,16 +26,16 @@ In the Access Control pages, you can view the list of ACL Policies in use.  You 
 They are categorized into "Stored ACL Policies" and "ACL Policies on local filesystem" (System context only).
 
 Stored ACL Policies
-:   ACL Policies stored in the QW Control storage system (e.g. in the Database), typically shared across Cluster members.
+:   ACL Policies stored in the Rundeck storage system (e.g. in the Database), typically shared across Cluster members.
     
     These policies can be modified by Admin users. Click the "Edit" button to edit the Policy, or use the action menu to **Delete** or **Upload** a new definition for the Policy.
 
 Local Filesystem ACL Policies (System context only)
-:   Local ACL Policies files on the filesystem of the Cluster member. (A default set of ACL Policies for `admin` user is created on the filesystem for new QW Control installations.)
+:   Local ACL Policies files on the filesystem of the Cluster member. (A default set of ACL Policies for `admin` user is created on the filesystem for new Rundeck installations.)
     
     These policies *cannot* be modified via the web GUI.
 
-In QW Control Enterprise you can also see an "Access Levels" tab, which allows testing the current Access Levels for users and groups across all loaded ACL Policy files.
+In Rundeck Enterprise you can also see an "Access Levels" tab, which allows testing the current Access Levels for users and groups across all loaded ACL Policy files.
 
 ![System Access Control Page](~@assets/img/acl-editor-system.png)
 
@@ -47,7 +47,7 @@ The Project context Access Control page is similar to the System Access Control 
 
 Choose "Edit" or "Create" to modify an ACL Policy.
 
-You can edit the YAML format for the ACL Policy directly. (In QW Control Enterprise, click the "Editor" tab to view the YAML editor.)
+You can edit the YAML format for the ACL Policy directly. (In Rundeck Enterprise, click the "Editor" tab to view the YAML editor.)
 
 ::: tip
 See the [Access Control Policy](/administration/security/authorization.md#access-control-policy-2) and [aclpolicy](/manual/document-format-reference/aclpolicy-v10.html) pages for more information.
@@ -63,7 +63,7 @@ If your ACL Policy YAML fails validation checks, attempting to save it will disp
 
 ## Editing ACL Rules (Enterprise)
 
-In QW Control Enterprise, by default you will see the Rules editor which allows defining ACL Policy rules with a simpler wizard UI.
+In Rundeck Enterprise, by default you will see the Rules editor which allows defining ACL Policy rules with a simpler wizard UI.
 
 ![ACL Editor Rules List](~@assets/img/acl-editor-edit-rules-list.png)
 
@@ -147,7 +147,7 @@ If you choose Group, enter a Group name or choose one from the drop down list. Y
 
 ### Seeing What is Allowed
 
-Access Levels to a resource in QW Control are shown as Actions that are either Allowed, Denied, or Rejected.
+Access Levels to a resource in Rundeck are shown as Actions that are either Allowed, Denied, or Rejected.
 
 An **Allowed** Action means an ACL policy allows the action, and no other policy denies it. 
 

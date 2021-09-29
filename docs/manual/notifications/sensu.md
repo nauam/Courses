@@ -7,9 +7,9 @@ Enterprise customers have access to this plugin, that allows users to create an 
 
 ## Setup
 
-Before using the Sensu plugins, add the API key and URL to the framework settings To do this, add the API key to QW Control's key storage and specify the path and the URL value in the framework.
+Before using the Sensu plugins, add the API key and URL to the framework settings To do this, add the API key to Rundeck's key storage and specify the path and the URL value in the framework.
 
-1. In the top right-hand corner of QW Control, click on the gear icon and select "Key Storage."
+1. In the top right-hand corner of Rundeck, click on the gear icon and select "Key Storage."
 2. Select "Add or Upload a Key."
 3. For key type, select "Password."
 4. Where it says enter text, copy and paste the API key.

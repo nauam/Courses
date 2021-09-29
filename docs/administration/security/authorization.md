@@ -1,27 +1,27 @@
 # Access Control Policy
 
 Based on the [Authentication](/administration/security/authentication.md) mechanism,
-the Container provides QW Control
+the Container provides Rundeck
 with a list of "group" or "role" names
 that the user belongs to.
-QW Control uses this list to determine what access rights the user has.
+Rundeck uses this list to determine what access rights the user has.
 For more about the role list,
 refer to [Authenticating Users - Container authentication and authorization](/administration/security/authentication.md#container-authentication-and-authorization).
 
-A QW Control _access control policy_ grants users
+A Rundeck _access control policy_ grants users
 and user groups certain
-privileges to perform actions against qwcontrol resources
+privileges to perform actions against rundeck resources
 like projects, jobs, nodes, commands and API.
 Every action requested by a user is evaluated by the
-QW Control authorization system and logged for
+Rundeck authorization system and logged for
 reporting and auditing purposes.
 
-Since QW Control respects the policy definition, you can define role-based
+Since Rundeck respects the policy definition, you can define role-based
 authorization to restrict users to only a subset of actions. This
 enables a self-service type interface, where some users have
 access to a limited set of executable actions.
 
-Two dimensions of information dictate authorization inside QW Control:
+Two dimensions of information dictate authorization inside Rundeck:
 
 - _group_ memberships assigned to a _user_ login.
 - access control policy that grants access to one or more *policy
@@ -43,7 +43,7 @@ grant access for certain actions to certain resources:
 - [aclpolicy](/manual/document-format-reference/aclpolicy-v10.md)
 
 Policies can be organized into more than one file to help organize
-access by group or pattern of use. The normal QW Control install will
+access by group or pattern of use. The normal Rundeck install will
 have generated a policy for the "admin" group. Not all users will need
 to be given "admin" access level to control and modify all Jobs. More
 typically, a group of users will be given access to just a subset of
@@ -51,16 +51,16 @@ Jobs.
 
 ### Policy File Locations
 
-QW Control loads ACL Policy definitions from these locations:
+Rundeck loads ACL Policy definitions from these locations:
 
-- All `*.aclpolicy` files found in the qwcontrol `etc` dir, which is either `/etc/qwcontrol` (rpm and debian install defaults),
+- All `*.aclpolicy` files found in the rundeck `etc` dir, which is either `/etc/rundeck` (rpm and debian install defaults),
   or `$RDECK_BASE/etc` (launcher/war configuration).
-- System level policies created via the [System ACLs API](/api/qwcontrol-api.md#acls)
-- Project level policies created via the [Project ACLs API](/api/qwcontrol-api.md#project-acls), limited only to project context policies for a specific project.
+- System level policies created via the [System ACLs API](/api/rundeck-api.md#acls)
+- Project level policies created via the [Project ACLs API](/api/rundeck-api.md#project-acls), limited only to project context policies for a specific project.
 
 ### Lifecycle
 
-The QW Control server does not need to be restarted for changes to aclpolicy files to take effect.
+The Rundeck server does not need to be restarted for changes to aclpolicy files to take effect.
 
 The files are loaded at startup and are cached.
 When an authorization request occurs, the policies may be reloaded if the file was modified.
@@ -75,7 +75,7 @@ Otherwise, only the policies on the filesystem, and uploaded to the System ACLs 
 
 ### rd-acl
 
-The [rd acl](https://qwcontrol.github.io/qwcontrol-cli/) command
+The [rd acl](https://rundeck.github.io/rundeck-cli/) command
 can help to create, test, and validate your policy files.
 
 ### Example
@@ -110,7 +110,7 @@ by:
 
 description: Admin Application level access control, applies to creating/deleting projects, admin of user profiles, viewing projects and reading system information.
 context:
-  application: 'qwcontrol'
+  application: 'rundeck'
 for:
   resource:
     - equals:
@@ -169,21 +169,21 @@ job. Which means this corresponds to a generic resource with a "kind" called "jo
 
 ## API Token Authorization Roles
 
-In QW Control 2.8.x and later, Authentication Tokens are given a set of _Authorization Roles_ at generation time,
+In Rundeck 2.8.x and later, Authentication Tokens are given a set of _Authorization Roles_ at generation time,
 so the access levels for the Token depend on how it was generated.
 
-See: [API Token](/api/qwcontrol-api.md#token-authentication) usage instructions.
+See: [API Token](/api/rundeck-api.md#token-authentication) usage instructions.
 
 See below: [API Token Authorization][].
 
-(**Note:** In QW Control 2.7.x and earlier, clients of the [Web API](/api/qwcontrol-api.md) may use the [Token Authentication](/api/qwcontrol-api.md#token-authentication) method. These clients are
+(**Note:** In Rundeck 2.7.x and earlier, clients of the [Web API](/api/rundeck-api.md) may use the [Token Authentication](/api/rundeck-api.md#token-authentication) method. These clients are
 placed in the special authorization group called `api_token_group`.)
 
 [api token authorization]: #api-token-authorization
 
-## QW Control resource authorizations
+## Rundeck resource authorizations
 
-QW Control declares a number of actions that can be referenced inside the access control policy document.
+Rundeck declares a number of actions that can be referenced inside the access control policy document.
 
 The actions and resources are divided into project scope and application scope:
 
@@ -192,7 +192,7 @@ The actions and resources are divided into project scope and application scope:
 You define application scope rules in the aclpolicy, by declaring this context:
 
     context:
-      application: 'qwcontrol'
+      application: 'rundeck'
 
 These are the Application scope actions that can be allowed or denied via the
 aclpolicy:
@@ -222,7 +222,7 @@ aclpolicy:
   - Use SCM import plugin on GUI or API without having access to other import archive actions `scm_import`
   - Use SCM export plugin on GUI or API calls without having access to other export archive actions `scm_export`
   - Deleting executions `delete_execution`
-  - Export project to another QW Control instance `promote`
+  - Export project to another Rundeck instance `promote`
   - Full access `admin`
 - Managing Project level ACL Policies on specific projects by name (actions on a `project_acl` type)
   - Reading `read`
@@ -245,33 +245,33 @@ aclpolicy:
 The following table summarizes the generic and specific resources and the
 actions you can restrict in the application scope:
 
-| Type       | Resource Kind | Properties | Actions                  | Description                               |
-| ---------- | ------------- | ---------- | ------------------------ | ----------------------------------------- |
-| `resource` | `project`     | none       | `create`                 | Create a new project                      |
-| "          | `system`      | none       | `read`                   | Read system information                   |
-| "          | "             | none       | `view_cluster`           | Read only view of enterprise cluster view |
-| "          | "             | none       | `enable_executions`      | Enable executions                         |
-| "          | "             | none       | `disable_executions`     | Disable executions                        |
-| "          | "             | none       | `admin`                  | Enable or disable executions              |
-| "          | `system_acl`  | none       | `read`                   | Read system ACL policy files              |
-| "          | "             | none       | `create`                 | Create system ACL policy files            |
-| "          | "             | none       | `update`                 | Update system ACL policy files            |
-| "          | "             | none       | `delete`                 | Delete system ACL policy files            |
-| "          | "             | none       | `admin`                  | All access to system ACL policy files     |
-| "          | `user`        | none       | `admin`                  | Modify user profiles                      |
-| "          | `job`         | none       | `admin`                  | Manage job schedules                      |
-| "          | `apitoken`    | none       | `generate_user_token`    | Create a "user" token                     |
-| "          | "             | none       | `generate_service_token` | Create a "service" token                  |
-| "          | "             | none       | `admin`                  | Full access                               |
-| "          | `plugin`      | none       | `read`                   | List installed and available plugins      |
-| "          | "             | none       | `install`                | Install plugins                           |
-| "          | "             | none       | `uninstall`              | Uninstall plugins                         |
-| "          | "             | none       | `admin`                  | Full access                               |
+| Type       | Resource Kind | Properties | Actions                  | Description                                    |
+|------------|---------------|------------|--------------------------|------------------------------------------------|
+| `resource` | `project`     | none       | `create`                 | Create a new project                           |
+| "          | `system`      | none       | `read`                   | Read system information                        |
+| "          | "             | none       | `view_cluster`                | Read only view of enterprise cluster view |
+| "          | "             | none       | `enable_executions`      | Enable executions                              |
+| "          | "             | none       | `disable_executions`     | Disable executions                             |
+| "          | "             | none       | `admin`                  | Enable or disable executions                   |
+| "          | `system_acl`  | none       | `read`                   | Read system ACL policy files                   |
+| "          | "             | none       | `create`                 | Create system ACL policy files                 |
+| "          | "             | none       | `update`                 | Update system ACL policy files                 |
+| "          | "             | none       | `delete`                 | Delete system ACL policy files                 |
+| "          | "             | none       | `admin`                  | All access to system ACL policy files          |
+| "          | `user`        | none       | `admin`                  | Modify user profiles                           |
+| "          | `job`         | none       | `admin`                  | Manage job schedules                           |
+| "          | `apitoken`    | none       | `generate_user_token`    | Create a "user" token                          |
+| "          | "             | none       | `generate_service_token` | Create a "service" token                       |
+| "          | "             | none       | `admin`                  | Full access                                    |
+| "          | `plugin`      | none       | `read`                   | List installed and available plugins           |
+| "          | "             | none       | `install`                | Install plugins                                |
+| "          | "             | none       | `uninstall`              | Uninstall plugins                              |
+| "          | "             | none       | `admin`                  | Full access                                    |
 
 Table: Application scope generic type actions
 
 | Type          | Properties         | Actions            | Description                                             |
-| ------------- | ------------------ | ------------------ | ------------------------------------------------------- |
+|---------------|--------------------|--------------------|---------------------------------------------------------|
 | `project`     | "name"             | `read`             | View a project in the project list                      |
 | "             | "                  | `configure`        | View and modify project configuration                   |
 | "             | "                  | `delete`           | Delete project                                          |
@@ -324,7 +324,7 @@ for:
       kind: apitoken
     allow: generate_user_token
 context:
-  application: qwcontrol
+  application: rundeck
 by:
   group: ops_team
 ```
@@ -352,7 +352,7 @@ for:
       - mysql_api_access
       - myservice_api_access
 context:
-  application: qwcontrol
+  application: rundeck
 by:
   group: sec_ops
 ```
@@ -411,7 +411,7 @@ The following table summarizes the generic and specific resources and the
 actions you can restrict in the project scope:
 
 | Type       | Resource Kind | Actions      | Description                                   |
-| ---------- | ------------- | ------------ | --------------------------------------------- |
+|------------|---------------|--------------|-----------------------------------------------|
 | `resource` | `job`         | `create`     | Create a new Job                              |
 | "          | "             | `delete`     | Delete jobs                                   |
 | "          | "             | `scm_create` | Create a new job only using SCM import plugin |
@@ -431,37 +431,37 @@ actions you can restrict in the project scope:
 
 Type Properties Actions Description
 
-| Type    | Properties                          | Actions            | Description                                                                         |
-| ------- | ----------------------------------- | ------------------ | ----------------------------------------------------------------------------------- |
-| `adhoc` |                                     | `read`             | Read adhoc execution output                                                         |
-| "       |                                     | `run`              | Run an adhoc execution                                                              |
-| "       |                                     | `runAs`            | Run an adhoc execution as another user                                              |
-| "       |                                     | `kill`             | Kill an adhoc execution                                                             |
-| "       |                                     | `killAs`           | Kill an adhoc execution as another user                                             |
-| `job`   | "name","group","uuid"               | `read`             | View a Job, its executions, and read its definition                                 |
-| "       |                                     | `view`             | View a Job and its executions                                                       |
-| "       |                                     | `update`           | Modify a job                                                                        |
-| "       |                                     | `delete`           | Delete a job                                                                        |
-| "       |                                     | `run`              | Run a job                                                                           |
-| "       |                                     | `runAs`            | Run a job as another user                                                           |
-| "       |                                     | `kill`             | Kill a running job                                                                  |
-| "       |                                     | `killAs`           | Kill a running job as another user                                                  |
-| "       |                                     | `create`           | Create the matching job                                                             |
-| "       |                                     | `toggle_schedule`  | Enable/disable the job's schedule                                                   |
-| "       |                                     | `toggle_execution` | Enable/disable the job for execution                                                |
-| "       |                                     | `scm_create`       | Create a Job only using SCM import plugin                                           |
-| "       |                                     | `scm_update`       | Import changes to a job using SCM import plugin                                     |
-| "       |                                     | `scm_delete`       | Delete a job only using SCM import plugin                                           |
-| "       |                                     | `view_history`     | View job executions history                                                         |
-| `node`  | "qwcontrol_server", "nodename", ... | `read`             | View the node in the UI (see [Node resource properties](#node-resource-properties)) |
-| "       |                                     | `run`              | Run jobs/adhoc on the node                                                          |
+| Type    | Properties                        | Actions            | Description                                                                         |
+|---------|-----------------------------------|--------------------|-------------------------------------------------------------------------------------|
+| `adhoc` |                                   | `read`             | Read adhoc execution output                                                         |
+| "       |                                   | `run`              | Run an adhoc execution                                                              |
+| "       |                                   | `runAs`            | Run an adhoc execution as another user                                              |
+| "       |                                   | `kill`             | Kill an adhoc execution                                                             |
+| "       |                                   | `killAs`           | Kill an adhoc execution as another user                                             |
+| `job`   | "name","group","uuid"             | `read`             | View a Job, its executions, and read its definition                                 |
+| "       |                                   | `view`             | View a Job and its executions                                                       |
+| "       |                                   | `update`           | Modify a job                                                                        |
+| "       |                                   | `delete`           | Delete a job                                                                        |
+| "       |                                   | `run`              | Run a job                                                                           |
+| "       |                                   | `runAs`            | Run a job as another user                                                           |
+| "       |                                   | `kill`             | Kill a running job                                                                  |
+| "       |                                   | `killAs`           | Kill a running job as another user                                                  |
+| "       |                                   | `create`           | Create the matching job                                                             |
+| "       |                                   | `toggle_schedule`  | Enable/disable the job's schedule                                                   |
+| "       |                                   | `toggle_execution` | Enable/disable the job for execution                                                |
+| "       |                                   | `scm_create`       | Create a Job only using SCM import plugin                                           |
+| "       |                                   | `scm_update`       | Import changes to a job using SCM import plugin                                     |
+| "       |                                   | `scm_delete`       | Delete a job only using SCM import plugin                                           |
+| "       |                                   | `view_history`     | View job executions history                                                         |
+| `node`  | "rundeck_server", "nodename", ... | `read`             | View the node in the UI (see [Node resource properties](#node-resource-properties)) |
+| "       |                                   | `run`              | Run jobs/adhoc on the node                                                          |
 
 
 _Note_: see [Node resource properties](#node-resource-properties) for more node resource properties for authorization.
 
 _Note_: Jobs can be referenced using "name" and "group" or using "uuid".
 
-_Note_: `runAs` and `killAs` actions only apply to certain API endpoints, and allow running jobs or adhoc executions or killing executions to be performed with a different username attached as the author of the action. See [QW Control API - Running a Job](/api/qwcontrol-api.md#running-a-job).
+_Note_: `runAs` and `killAs` actions only apply to certain API endpoints, and allow running jobs or adhoc executions or killing executions to be performed with a different username attached as the author of the action. See [Rundeck API - Running a Job](/api/rundeck-api.md#running-a-job).
 
 _Note_:
 Job deletion requires allowing the 'delete' action
@@ -501,23 +501,23 @@ for:
 
 ### Node resource properties
 
-The properties available are the attributes that are defined on the node, so you can apply authorizations based on tag, osName, hostname, etc. The special `qwcontrol_server` property will be set to "true" for the QW Control server node only, and "false" for all other nodes.
+The properties available are the attributes that are defined on the node, so you can apply authorizations based on tag, osName, hostname, etc. The special `rundeck_server` property will be set to "true" for the Rundeck server node only, and "false" for all other nodes.
 
 Any custom attributes can be used as well.
 
 Pre-defined Node resource properties for authorization filters
-| Name               | Description                                                     |
-| ------------------ | --------------------------------------------------------------- |
-| `nodename`         | Name of the node                                                |
-| `username`         | Authentication username                                         |
-| `hostname`         | Hostname of the node                                            |
-| `description`      | Description of the node                                         |
-| `tags`             | Set of tags.  Can use with the `contains:` filter.              |
-| `osName`           | Operating System name                                           |
-| `osFamily`         | Operating System family, e.g. "unix" or "windows"               |
-| `osVersion`        | Operating System version                                        |
-| `osArch`           | Operating System architecture                                   |
-| `qwcontrol_server` | A value set to "true" if the node is the QW Control server node |
+| Name             | Description                                                  |
+|------------------|--------------------------------------------------------------|
+| `nodename`       | Name of the node                                             |
+| `username`       | Authentication username                                      |
+| `hostname`       | Hostname of the node                                         |
+| `description`    | Description of the node                                      |
+| `tags`           | Set of tags.  Can use with the `contains:` filter.           |
+| `osName`         | Operating System name                                        |
+| `osFamily`       | Operating System family, e.g. "unix" or "windows"            |
+| `osVersion`      | Operating System version                                     |
+| `osArch`         | Operating System architecture                                |
+| `rundeck_server` | A value set to "true" if the node is the Rundeck server node |
 
 ### Access control policy actions example
 
@@ -558,7 +558,7 @@ by:
 
 description: Limited user access for adm restart action.
 context:
-  application: 'qwcontrol'
+  application: 'rundeck'
 for:
   resource:
     - equals:
@@ -572,13 +572,13 @@ by:
   group: [restart_user]
 ```
 
-## Prevent Local Execution on the QW Control Server
+## Prevent Local Execution on the Rundeck Server
 
 Below is an example policy to prevent any user on the "remote" group to
-execute any command or job on the local qwcontrol server.
+execute any command or job on the local rundeck server.
 
 If a job is tried to be executed locally, it will fail. Also, the local
-qwcontrol server will not appear on the node filter list.
+rundeck server will not appear on the node filter list.
 
 File listing: remote.aclpolicy
 
@@ -595,7 +595,7 @@ for:
     - allow: '*'
   node:
     - equals:
-        qwcontrol_server: 'false'
+        rundeck_server: 'false'
       allow: [read, run]
 by:
   group: remote
@@ -610,9 +610,9 @@ complaints that certain actions are not possible.
 To diagnose this, begin by checking two bits:
 
 1. The user's group membership. This can be done by going to the
-   user's profile page in QW Control. That page will list the groups the
+   user's profile page in Rundeck. That page will list the groups the
    user is a member.
-2. Read the messages inside the `qwcontrol.audit.log` log file. The
+2. Read the messages inside the `rundeck.audit.log` log file. The
    authorization facility generates fairly low level messages describing
    how the policy is matched to the user context.
 3. Use the [rd-acl](/manual/command-line-tools/rd-acl.html) tool to test and validate your policy files

@@ -10,7 +10,7 @@ nunjucks.configure({
         variableEnd: '}}}',
         commentStart: '{{{#',
         commentEnd: '#}}}'
-    }
+      }
 })
 
 const config = {
@@ -18,14 +18,14 @@ const config = {
     apiDepVersion: setup.apiDepVersion,
     apiDepRelease: setup.apiDepRelease,
     apiMinVersion: setup.apiMinVersion,
-    qwcontrolVersion: setup.qwcontrolVersion,
-    qwcontrolVersionFull: setup.qwcontrolVersionFull,
+    rundeckVersion: setup.rundeckVersion,
+    rundeckVersionFull: setup.rundeckVersionFull,
 
-    javaDocBase: `https://static.javadoc.io/org.qwcontrol/qwcontrol-core/` + setup.qwcontrolVersionFull,
-    javaDocStorageApiBase: `https://static.javadoc.io/org.qwcontrol/qwcontrol-storage-api/` + setup.qwcontrolVersionFull
+    javaDocBase: `https://static.javadoc.io/org.rundeck/rundeck-core/`+setup.rundeckVersionFull,
+    javaDocStorageApiBase: `https://static.javadoc.io/org.rundeck/rundeck-storage-api/`+setup.rundeckVersionFull
 }
 
-module.exports = function (source) {
+module.exports = function(source) {
     const isProd = process.env.NODE_ENV === 'production'
     const isServer = this.target === 'node'
 

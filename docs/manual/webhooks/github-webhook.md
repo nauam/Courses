@@ -2,13 +2,13 @@
 ::: enterprise
 :::
 
-This plugin provides simplified integration with Github Webhooks and includes support for the confirmation ping event.  When a new webhook is setup in GitHub a ping event is sent to confirm the webhook.  The QW Control Github Webhook will receive the ping event and return a success response, but will not run the related jobs.  The jobs will only run for valid events configured on the webhook.
+This plugin provides simplified integration with Github Webhooks and includes support for the confirmation ping event.  When a new webhook is setup in GitHub a ping event is sent to confirm the webhook.  The Rundeck Github Webhook will receive the ping event and return a success response, but will not run the related jobs.  The jobs will only run for valid events configured on the webhook.
 
 **This plugin expects the payload from GitHub to be JSON**
 
 ## Configuration
 
-Create a webhook in QW Control and choose `GitHub Webhook` as the event plugin.
+Create a webhook in Rundeck and choose `GitHub Webhook` as the event plugin.
 
 The job property is the only required property.
 
