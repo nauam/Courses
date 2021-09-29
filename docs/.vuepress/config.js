@@ -23,7 +23,6 @@ console.log(setup)
 
 module.exports = {
     title: 'QW Control Docs',
-    base: "/courses/",
     description: '',
     base: `/${setup.base ? setup.base + '/' : ''}`,
     configureWebpack: {
