@@ -1,66 +1,15 @@
 ---
 home: true
-title: Home
-heroImage: /images/hero.png
-actions:
-  - text: Get Started
-    link: /guide/getting-started.html
-    type: primary
-  - text: Introduction
-    link: /guide/
-    type: secondary
+title: 'Documentação do QW Controle'
+heroImage: /images/qwcontrollogo-black-big.png
+actionText: Começar →
+actionLink: /introduction/introduction.html
 features:
-  - title: Simplicity First
-    details: Minimal setup with markdown-centered project structure helps you focus on writing.
-  - title: Vue-Powered
-    details: Enjoy the dev experience of Vue, use Vue components in markdown, and develop custom themes with Vue.
-  - title: Performant
-    details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
-  - title: Themes
-    details: Providing a default theme out of the box. You can also choose a community theme or create your own one.
-  - title: Plugins
-    details: Flexible plugin API, allowing plugins to provide lots of plug-and-play features for your site. 
-  - title: Bundlers
-    details: Both Webpack and Vite are supported. Choose the one you like!
-footer: MIT Licensed | Copyright © 2018-present Evan You
+  - title: Simplicidade
+    details: O que temos que ter sempre em mente é que a percepção das dificuldades não pode mais se dissociar das condições financeiras e administrativas exigidas.
+  - title: Orquestração
+    details: Gostaria de enfatizar que a revolução dos costumes faz parte de um processo de gerenciamento dos modos de operação convencionais.
+  - title: WebHooks
+    details: No mundo atual, a necessidade de renovação processual agrega valor ao estabelecimento das diversas correntes de pensamento.
+footer: © QW Software | 2020-2021 | Todos os direitos reservados.
 ---
-
-### As Easy as 1, 2, 3
-
-<CodeGroup>
-  <CodeGroupItem title="YARN" active>
-
-```bash
-# install in your project
-yarn add -D vuepress@next
-
-# create a markdown file
-echo '# Hello VuePress' > README.md
-
-# start writing
-yarn vuepress dev
-
-# build to static files
-yarn vuepress build
-```
-
-  </CodeGroupItem>
-
-  <CodeGroupItem title="NPM">
-  
-```bash
-# install in your project
-npm install -D vuepress@next
-
-# create a markdown file
-echo '# Hello VuePress' > README.md
-
-# start writing
-npx vuepress dev
-
-# build to static files
-npx vuepress build
-```
-
-  </CodeGroupItem>
-</CodeGroup>

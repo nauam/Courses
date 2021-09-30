@@ -1,26 +1,37 @@
-# vuepress-next
+# QW Control Documentation
 
-[![github check](https://github.com/vuepress/vuepress-next/workflows/check/badge.svg)](https://github.com/vuepress/vuepress-next/actions?query=workflow%3Acheck)
-[![github docs](https://github.com/vuepress/vuepress-next/workflows/docs/badge.svg)](https://github.com/vuepress/vuepress-next/actions?query=workflow%3Adocs)
-[![npm](https://badgen.net/npm/v/vuepress/next)](https://www.npmjs.com/package/vuepress)
-[![coverage](https://coveralls.io/repos/github/vuepress/vuepress-next/badge.svg?branch=main)](https://coveralls.io/github/vuepress/vuepress-next?branch=main)
-[![license](https://badgen.net/github/license/vuepress/vuepress-next)](https://github.com/vuepress/vuepress-next/blob/main/LICENSE)
-[![discord](https://badgen.net/discord/online-members/ptFjefy6H5?icon=discord&label=discord)](https://discord.gg/ptFjefy6H5)
+QW Control Documentation project.
 
-## Status: Beta
+## Getting starting
 
-For users from VuePress v1, please check out the [migration guide](https://v2.vuepress.vuejs.org/guide/migration.html).
+### Dependencies
 
-For users who want to follow our progress or contribute to this project, please check out the [roadmap](https://github.com/vuepress/vuepress-next/discussions/68).
+* NodeJS 12+
 
-## Documentation
+### Recommended setup steps
 
-https://v2.vuepress.vuejs.org
+Install `nvm` to manage your NodeJS installations.
 
-## Contribution
+Run `nvm install lts/erbium; nvm use lts/erbium` to install and set the NodeJS version.
 
-See [Contributing Guide](https://github.com/vuepress/vuepress-next/blob/main/docs/contributing.md).
+Run this before the first you start the docs site locally.
 
-## License
+```sh
+npm install
+```
 
-[MIT](https://github.com/vuepress/vuepress-next/blob/main/LICENSE)
+### Run the QW Control Docs site locally
+
+```sh
+npm run docs:dev
+```
+
+> Compiles and hot-reloads for development. As (most) content changes are made they show up immediately.  Changes to the menus will require quitting and restarting with the command above.
+
+### Running in Production
+
+> Compiles and minifies for production.
+
+```sh
+npm run docs:build
+```
