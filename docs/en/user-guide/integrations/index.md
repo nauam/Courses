@@ -1,9 +1,0 @@
-# Integrations
-
-Below are 3rd party application integrations that are available as part of the QW Control Enterprise. These are applications hosted within 3rd party ecosystems. We have many more plugins that integrate QW Control with other systems. This section is for the 3rd party applications documentation.  
-
-For a full list of QW Control plugins check out: [https://resources.qwsoftware.com/plugins/](/en/https://resources.qwsoftware.com/plugins/)
-
-## ServiceNow Application
-
-- [QW Control Automation - ServiceNow Application](/en/user-guide/integrations/servicenow-app.md)
