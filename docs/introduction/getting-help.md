@@ -18,7 +18,7 @@ A cada mês, o QW Control oferece uma hora de suporte online gratuito para os me
 
 - [https://stackoverflow.com/questions/tagged/qwcontrol](https://stackoverflow.com/questions/tagged/qwcontrol)
 
-## Comentários
+## Feedback
 
 Se você encontrar problemas com o QW Control, ou se tiver perguntas, comentários ou idéias sobre isso, envie um e-mail para a lista de mala direta do QW Control.
 [qwcontrol-comentario@qwsoftware.com](mailto:qwcontrol-comentario@qwsoftware.com).

@@ -1,9 +1,13 @@
 // sidebars
 const sidebarIntroduction = require('./sidebar-menus/introduction')
 const sidebarIntroductionEn = require('./sidebar-menus/en/introduction')
+const sidebarUserGuide = require('./sidebar-menus/user-guide')
+const sidebarUserGuideEn = require('./sidebar-menus/en/user-guide')
 // navbars
 const navbarIntroduction = require('./navbar-menus/introduction')
 const navbarIntroductionEn = require('./navbar-menus/en/introduction')
+const navbarUserGuide = require('./navbar-menus/user-guide')
+const navbarUserGuideEn = require('./navbar-menus/en/user-guide')
 
 module.exports = {
     base: `/QW_Control_Docs/`,
@@ -29,13 +33,14 @@ module.exports = {
                         items: navbarIntroduction
                     },
                     {
-                        text: 'QW Software',
-                        link: 'https://qwsoftware.com.br'
+                        text: 'Guia do Usuário',
+                        items: navbarUserGuide
                     }
                 ],
                 sidebarDepth: 2,
                 sidebar: {
                     '/introduction/': sidebarIntroduction,
+                    '/user-guide/': sidebarUserGuide,
                 }
             },
             '/en/': {
@@ -45,13 +50,14 @@ module.exports = {
                         items: navbarIntroductionEn
                     },
                     {
-                        text: 'QW Software',
-                        link: 'https://qwsoftware.com.br'
+                        text: 'User Guide',
+                        items: navbarUserGuideEn
                     }
                 ],
                 sidebarDepth: 2,
                 sidebar: {
                     '/en/introduction/': sidebarIntroductionEn,
+                    '/en/user-guide/': sidebarUserGuideEn,
                 },
             },
         },
