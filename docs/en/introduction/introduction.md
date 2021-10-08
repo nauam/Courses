@@ -16,30 +16,9 @@ QW Control was designed to accept the reality that heterogeneous infrastructure 
 
 Out of the box, QW Control gives you capabilities that would be expensive to develop and maintain in-house: workflow control, scheduling, error-handling, logging, access control, option passing, log filtering, web GUI, REST API (with CLI tools) and integration with external sources for authentication, resource model, and option data.
 
-## Is QW Control free?
-
-### QW Control
-
-QW Control Open Source is free open source software licensed under the [Apache Software License v2.0](http://www.apache.org/licenses/LICENSE-2.0.html), and you can participate in the project on [GitHub]. For those who write and run QW Control jobs at small-scale usage (e.g., limited use or within a team), the open-source QW Control delivers you the features you need, for free, _forever_.
-
-#### QW Control Enterprise
-
-The focus of [QW Control Enterprise], our commercial offering, is on making QW Control production-ready and enterprise-scale. QW Control Enterprise, built on the open source QW Control, is the bundle of software and services you need to run QW Control as an enterprise-class service.
-
-Built and tested for the enterprise, QW Control Enterprise includes exclusive features (including clustering/HA, advanced workflow, enhanced ACL management, enhanced dashboards/visualization) and QW Control Enterprise exclusive plugins. Professional support and on-boarding services are also part of the QW Control Enterprise subscription bundle.
-
-_NOTE: QW Control Enterprise was recently renamed from QW Control Pro. You may still see references to "Pro" here and there, as we work to update our documentation. Just know that they are the same thing._
-
-[New to QW Control]: https://www.qwcontrol.com/new-to-qwcontrol
-[QW Control Enterprise]: https://www.qwcontrol.com/enterprise
-[github]: https://github.com/qwcontrol/qwcontrol
-
 ## Who makes QW Control?
 
-[QW Control] is part of the [QW Software] suite of products and is developed by the QW Control Business unit and the QW Control community. The community is welcomed to participate in the project and contribute. Please submit an issue on our GitHub repository listed above or reach out to your Customer Success Team contact.
-
-[QW Control]: https://www.qwcontrol.com/
-[QW Software]: https://www.qwsoftware.com/
+[QW Control](https://www.qwcontrol.com/) is part of [QW Software](https://www.qwsoftware.com/) along with other products.
 
 ## QW Control feature highlights
 

@@ -12,7 +12,7 @@ module.exports = [{
             children: [
                 '/user-guide/jobs',
                 '/user-guide/creating-jobs',
-                // '/user-guide/job-workflows',
+                '/user-guide/job-workflows',
                 // '/user-guide/job-options',
                 // '/user-guide/jobs/job-notifications',
                 // {

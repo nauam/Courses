@@ -20,7 +20,7 @@ Marque a caixa "Enviar para _Nós_". Escolha a opção "Excluir Filtros _Nó_" e
 
 Digite um script de shell que produza algumas informações (por exemplo, `uname -a`)
 
-Salve a etapa do Fluxo de trabalho.
+Salve o _Passo do Fluxo de Trabalho_.
 
 Pressione o botão "Criar" na parte inferior da página.
 
@@ -75,7 +75,7 @@ O valor da nova tentativa pode ser:
 - Um número inteiro específico
 - Uma referência de propriedade incorporada, como `${option.retryMax}`. Isso permite que uma opção de _job_ seja usada para alterar a contagem de novas tentativas do _job_.
 
-Cada execução será iniciada com variáveis ​​de contexto indicando a tentativa de nova tentativa atual e se foi uma nova tentativa. Veja [Variáveis ​​de Contexto](/manual/_job_-workflows.md#context-variables).
+Cada execução será iniciada com variáveis ​​de contexto indicando a tentativa de nova tentativa atual e se foi uma nova tentativa. Veja [Variáveis ​​de Contexto](/manual/job-workflows.md#context-variables).
 
 Opcionalmente, um atraso entre as novas tentativas pode ser estabelecido:
 
@@ -154,13 +154,13 @@ A opção "Continuar executando em quaisquer _nós_ restantes antes de falhar na
 
 Além de inserir valores estáticos que correspondem aos _nós_, você também pode usar valores mais dinâmicos.
 
-Se você definiu opções para o _job_ (consulte [Opções do _job_](/user-guide/_job_-options.md)), você pode usar os valores enviados pelo usuário quando o _job_ é executado como parte da filtragem de _nó_.
+Se você definiu opções para o _job_ (consulte [Opções do _job_](/user-guide/job-options.md)), você pode usar os valores enviados pelo usuário quando o _job_ é executado como parte da filtragem de _nó_.
 
 Basta definir o valor do filtro como `${option.name}`, onde "nome" é o nome da opção.
 
 Quando a tarefa for executada, o usuário será solicitado a inserir o valor da opção, e isso será usado no filtro _nó_ para determinar os _nós_ a serem despachados.
 
-::: tip
+::: tip DICA
 Uma vez que o valor da opção dinâmica ainda não foi definido, os "_Nós_ Combinados" mostrados na entrada de filtragem de _nó_ podem indicar que há "Nenhum" correspondido. Além disso, quando o Job é executado, você pode ver uma mensagem dizendo "Aviso: Os filtros _Nó_ especificados para este Job não correspondem a nenhum _nó_, a execução pode falhar." Os _nós_ combinados serão determinados após o usuário inserir os valores da opção.
 :::
 
@@ -253,18 +253,18 @@ Clique no botão Escolher arquivo e escolha o arquivo de definição de _job_ pa
 Escolha uma opção onde diz "Quando já existe um _job_ com o mesmo nome:":
 
 - Atualizar
-  - significa que um _job_ definido no xml substituirá qualquer _job_ existente com o mesmo nome.
+  - Significa que um _job_ definido no xml substituirá qualquer _job_ existente com o mesmo nome.
 - Ignorar
-  - significa que um _job_ definido no xml será ignorado se houver um _job_ existente com o mesmo nome
+  - Significa que um _job_ definido no xml será ignorado se houver um _job_ existente com o mesmo nome
 - Criar
   - Isso significa que o _job_ definido no xml serão utilizados para criar um novo _job_ se houver um já existente _job_ com o mesmo nome.
 
 Escolha uma opção onde diz "_Jobs_ importados":
 
 - Preservar UUIDs
-  - isso significa que os UUIDs definidos nos _jobs_ importados serão usados ​​ao importá-los. Os UUIDs devem ser únicos, portanto, se você tiver um Job com o mesmo UUID definido em qualquer projeto, sua importação pode falhar.
+  - Isso significa que os UUIDs definidos nos _jobs_ importados serão usados ​​ao importá-los. Os UUIDs devem ser únicos, portanto, se você tiver um Job com o mesmo UUID definido em qualquer projeto, sua importação pode falhar.
 - Remover UUIDs
-  - isto significa que importados Job UUIDs será ignorado, e os importados empregos será ou atualizar um já existente _job_, ou ser criada com um novo UUID.
+  - Isto significa que importados Job UUIDs será ignorado, e os importados empregos será ou atualizar um já existente _job_, ou ser criada com um novo UUID.
 
 Clique no botão Upload. Se houver algum erro nas definições de _job_ no arquivo XML, eles serão exibidos na página.
 

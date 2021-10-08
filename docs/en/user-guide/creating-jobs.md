@@ -38,7 +38,6 @@ After the the job is created, the browser is directed to the page of the job you
 
 ![Simple job form](/assets/img/fig0303-a.png)
 
-
 When you go to the Jobs page, you will see folder icons reflecting the Job's group.
 Navigate through to the administration/resources folder. Notice the extra information is displayed, markdown now rendered as HTML.
 
@@ -124,9 +123,11 @@ The syntax of the value you enter determines the type of limit:
 
 And one of three actions can be performed if the limit is exceeded:
 
-- Halt - the job will halt with a certain status
+- Halt
+  - the job will halt with a certain status
   - Enter a status string in the field, such as "failed" or "aborted", or any custom status
-- Truncate and Continue - the job will not halt, but no more log output will be produced.
+- Truncate and Continue
+  - the job will not halt, but no more log output will be produced.
 
 ![Job Log limit action](/assets/img/jobs-loglimit-action.png)
 
@@ -221,7 +222,7 @@ expression.
 
 ![Scheduled job crontab form](/assets/img/fig0307.png)
 
-Use the crontab syntax referenced here: [Quartz Scheduler crontrigger].
+Use the crontab syntax referenced here: [Quartz Scheduler crontrigger](http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html).
 
 A good place to generate, validate and test job crontabs is [here](/en/https://www.freeformatter.com/cron-expression-generator-quartz.html).
 
@@ -293,17 +294,22 @@ Click the Choose File button and choose your job definition file to upload.
 Choose an option where it says "When a job with the same name already
 exists:":
 
-- Update - this means that a job defined in the xml will overwrite any
+- Update
+  - This means that a job defined in the xml will overwrite any
   existing job with the same name.
-- Skip - this means that a job defined in the xml will be skipped over
+- Skip
+  - This means that a job defined in the xml will be skipped over
   if there is an existing job with the same name
-- Create - this means that the job defined in the xml will be used to
+- Create
+  - This means that the job defined in the xml will be used to
   create a new job if there is an existing job with the same name.
 
 Choose an option where it says "Imported Jobs:":
 
-- Preserve UUIDs - this means that UUIDs defined in the imported jobs will be used when importing them. UUIDs must be unique, so if you have a Job with the same UUID defined in any project, your import may fail.
-- Remove UUIDs - this means that imported Job UUIDs will be ignored, and the imported jobs will either _update_ an existing job, or be created with a new UUID.
+- Preserve UUIDs
+  - This means that UUIDs defined in the imported jobs will be used when importing them. UUIDs must be unique, so if you have a Job with the same UUID defined in any project, your import may fail.
+- Remove UUIDs
+  - This means that imported Job UUIDs will be ignored, and the imported jobs will either _update_ an existing job, or be created with a new UUID.
 
 Click the Upload button. If there are any errors with the Job
 definitions in the XML file, they will show up on the page.

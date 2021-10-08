@@ -8,7 +8,7 @@ Quando usado para gerenciamento de incidentes, o QW Control o ajudará a reduzir
 
 Quando usado para o trabalho de operações gerais, o QW Control ajudará a aliviar o trabalho demorado e repetitivo que atualmente consome muito do tempo de sua equipe.
 
-Para obter mais informações sobre casos de uso, consulte a pagina [O que há de novo na QW Control].
+Para obter mais informações sobre casos de uso, consulte a pagina [O que há de novo na QW Control](https://www.qwcontrol.com/new-to-qwcontrol).
 
 Com o QW Control, é simples e fácil criar fluxos de trabalho (chamados de "jobs") a partir de qualquer uma de suas ferramentas ou scripts existentes.  Acione os jobs do QW Control a partir de Web GUI, API, CLI ou por agendamento. Os recursos de controle de acesso do QW Control tornam mais fácil delegar com segurança o controle de tarefas àqueles que estão tradicionalmente fora das operações.
 
@@ -16,14 +16,9 @@ O QW Control foi projetado para aceitar a realidade de que infraestrutura e ferr
 
 Pronto para usar, o QW Control oferece recursos que seriam caros para desenvolver e manter internamente: controle de fluxo de trabalho, agendamento, tratamento de erros, registro, controle de acesso, passagem de opção, filtragem de registro, interface web, API REST (com CLI ferramentas) e integração com fontes externas para autenticação, modelo de recursos e dados de opções.
 
-[O que há de novo no QW Control]: https://www.qwcontrol.com/new-to-qwcontrol
-
 ## Quem faz o QW Control?
 
-[QW Control] faz parte da [QW Software] junto de outros produtos.
-
-[QW Control]: https://www.qwcontrol.com/
-[QW Software]: https://www.qwsoftware.com/
+[QW Control](https://www.qwcontrol.com/) faz parte da [QW Software](https://www.qwsoftware.com/) junto de outros produtos.
 
 ## Destaques do recurso da QW Control
 

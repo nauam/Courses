@@ -15,18 +15,20 @@ module.exports = {
     locales: {
         '/': {
             lang: 'pt-BR',
-            description: 'Plataforma de automação e orquestração de serviços',
+            description: 'Plataforma de automação e orquestração de serviços, processos de TI e de negócios.',
         },
         '/en/': {
             lang: 'en-US',
-            description: 'Automation and Service Orchestration Platform',
+            description: 'Automation and orchestration platform for services, IT and business processes.',
         },
     },
     head: [['link', { rel: 'icon', href: '/images/qwcontrollogo-black-small.png' }]],
     themeConfig: {
         locales: {
             '/': {
-                lang: 'pt-BR',
+                label: 'Português',
+                selectText: 'Linguagens',
+                ariaLabel: 'Linguagens',
                 nav: [
                     {
                         text: 'Introdução',
@@ -44,6 +46,9 @@ module.exports = {
                 }
             },
             '/en/': {
+                label: 'English',
+                selectText: 'Languages',
+                ariaLabel: 'Languages',
                 nav: [
                     {
                         text: 'Introduction',

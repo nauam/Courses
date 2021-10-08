@@ -70,6 +70,7 @@ Isso mostrará os campos de filtro. Insira um valor em qualquer um dos campos de
 - Grupo: o nome do Grupo de _Job_
 - Descrição: texto da descrição do _Job_
 - Agendamento: inclui os _Jobs_ que foram programados.
+
 Você pode digitar uma substring ou uma expressão regular em qualquer um desses campos.
 
 Após pressionar o botão "Filtrar", a lista de _Jobs_ será filtrada para incluir apenas os _Jobs_ correspondentes .
@@ -126,6 +127,7 @@ As informações na visualização de detalhes do _Job_ incluem:
 - UUID do _Job_
 - Data de criação
 - Estatísticas sobre as execuções de _Job_
+
 Pressionar o link "Mostrar partidas" exibirá a lista do _Nós_ onde o _Job_ será executado.
 
 ## Histórico de _Job_
