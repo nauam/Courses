@@ -13,7 +13,7 @@ module.exports = [{
                 '/user-guide/jobs',
                 '/user-guide/creating-jobs',
                 '/user-guide/job-workflows',
-                // '/user-guide/job-options',
+                '/user-guide/job-options',
                 // '/user-guide/jobs/job-notifications',
                 // {
                 //     title: 'Log Filters',

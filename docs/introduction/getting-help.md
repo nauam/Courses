@@ -8,4 +8,4 @@ A QW Software por meio dela própria ou de seus parceiros, fornece suporte aos s
 
 ## Feedback e Bugs (Erros)
 
-Se você encontrar problemas com o QW Control, ou se tiver perguntas, comentários ou idéias sobre isso, envie um e-mail para a QW Control ([qw@qwsoftware.com.br](mailto:qw@qwsoftware.com.br)), informando seu Nome, Telefone, Empresa e o Feedback e/ou Bugs.
+Se você encontrar problemas com o QW Control, ou se tiver perguntas, comentários ou idéias sobre isso, envie um e-mail para o QW Control ([qw@qwsoftware.com.br](mailto:qw@qwsoftware.com.br)), informando seu Nome, Telefone, Empresa e o Feedback e/ou Bugs.

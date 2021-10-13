@@ -2,13 +2,13 @@
 
 ## What is QW Control?
 
-QW Control is runbook automation that gives you and your colleagues self-service access to the processes and tools they need to get their job done.
+QW Control is a job automation and orchestration tool capable of executing in an organized and scheduled way, varied commands (bath, shell) on machines (nodes), through the use of a communication network using different protocols (ssh, FTP(s) ), HTTP(s)).
 
-When used for incident management, QW Control will help you have shorter incidents and fewer escalations.
+QW Control was born from the need to automate manual work and routines, with security and use of encryption, log storage and user access control.
 
-When used for general operations work, QW Control will help alleviate the time-consuming and repetitive toil that currently consumes too much of your team's time.
+When used for general operations work, QW Control will help alleviate time-consuming and repetitive work that currently consumes a lot of your IT staff's time when out of business.
 
-For more information on use cases, see the [New to QW Control] page.
+This means that we can control for example from a simple database backup, file transfers between servers, to complex ETL jobs and robotic process automation. Try using our plugins or do it yourself, in python or java, your own for integration with legacy systems.
 
 With QW Control, it is simple and easy to create workflows (called "jobs") from any of your existing tools or scripts. Trigger QW Control jobs from the Web GUI, API, CLI, or by schedule. QW Control's access control features make it easy to safely delegate control of tasks to those traditionally outside of operations.
 
@@ -18,7 +18,7 @@ Out of the box, QW Control gives you capabilities that would be expensive to dev
 
 ## Who makes QW Control?
 
-[QW Control](https://www.qwcontrol.com/) is part of [QW Software](https://www.qwsoftware.com/) along with other products.
+QW Control is part of [QW Software](https://www.qwsoftware.com/) along with [other products](https://www.qwsoftware.com.br/catalogo-de-produtos/).
 
 ## QW Control feature highlights
 
@@ -32,9 +32,5 @@ Out of the box, QW Control gives you capabilities that would be expensive to dev
 - Access control policy editing/management tools
 - History and auditing logs
 - Use any scripting language
-
-Want to learn more or give it a test run?
-[Check out the Learning Page for a Welcome Tutorial](/learning)
-
-Already itching to install it? Jump ahead to
-[Installing QW Control](/manual/03-getting-started.md#download-and-installation).
+- Critical path of flow execution
+- Job statistics

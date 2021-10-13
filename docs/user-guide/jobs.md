@@ -15,9 +15,9 @@ os passos do processo, uma expressão de filtro que corresponde aos _Nós_ onde 
 
 O acesso ao _Job_ é regido por uma política de controle de acesso que você define, declarando como os usuários recebem privilégios para ler, criar, editar, executar e eliminar os _Jobs_.
 
-A QW Control permite organizar e executar tarefas e observar o andamento à medida que a tarefa é executada. Você pode ver uma lista dos _Jobs_ atualmente em execução ou fazer uma busca detalhada para ver a saída das etapas de execução individuais. As execuções de _Jobs_ também podem ser abortadas se precisarem ser interrompidas.
+O QW Control permite organizar e executar tarefas e observar o andamento à medida que a tarefa é executada. Você pode ver uma lista dos _Jobs_ atualmente em execução ou fazer uma busca detalhada para ver a saída das etapas de execução individuais. As execuções de _Jobs_ também podem ser abortadas se precisarem ser interrompidas.
 
-Cada execução de _Job_ é armazenada e contém informações sobre os _Nós_ onde os passos foram executados, sucesso e duração de cada passo. O resultado da execução do _Job_ pode ser baixado, encaminhado para um armazenamento de log externo ou enviado como parte de uma notificação por e-mail, IRC, sistema de tíquetes ou outros destinos.
+Cada execução de _Job_ é armazenada e contém informações sobre os _Nós_ onde os passos foram executados, sucesso e duração de cada passo. O resultado da execução do _Job_ pode ser baixado, encaminhado para um armazenamento de log externo ou enviado como parte de uma notificação por e-mail ou outros.
 
 As próximas seções descrevem como navegar e executar _Jobs_ existentes. Em seções posteriores, o tópico de criação de _Jobs_ será abordado, onde você aprenderá sobre os passos e opções de _Job_
 
@@ -27,7 +27,7 @@ Se você quiser pular, vá direto para
 ## Grupos de _Job_
 
 Como muitos _Jobs_  se acumulam com o tempo, é útil organizar os _Jobs_
- em grupos. Um grupo é um conjunto lógico de _Jobs_ e um grupo de _Job_ pode existir dentro de outro. A QW Control exibe listas de _Job_ como um conjunto de pastas correspondentes à estrutura de grupo que seus  _Jobs_ definem.
+ em grupos. Um grupo é um conjunto lógico de _Jobs_ e um grupo de _Job_ pode existir dentro de outro. O QW Control exibe listas de _Job_ como um conjunto de pastas correspondentes à estrutura de grupo que seus  _Jobs_ definem.
 
 Para criar um novo grupo de _Job_, crie um novo _Job_ e digite o nome do grupo no qual o _Job_ deve ser armazenado. Depois de criar o _Job_, o grupo será criado e pode ser selecionado na IU para criação de _Job_ futuro.
 
@@ -40,7 +40,7 @@ Quando criado, cada novo _Job_ receberá um identificador universal exclusivo (U
 
 Você pode usar o UUID para certificar-se de que, ao renomear ou alterar o grupo de seu _Job_ na definição de _Job_, ele modificará o _Job_ correto no servidor.
 
-O UUID também é útil ao portar definições de _Job_ entre instâncias da QW Control.
+O UUID também é útil ao portar definições de _Job_ entre instâncias do QW Control.
 
 ::: warning AVISO
 Não exigimos que este campo seja compatível com o formato UUID, mas tome cuidado ao criar UUIDs personalizados, pois isso pode levar a inconsistências no carregamento do _Job_.
@@ -48,7 +48,7 @@ Não exigimos que este campo seja compatível com o formato UUID, mas tome cuida
 
 ## Listagem e filtragem de _Jobs_
 
-Todas as atividades de _Job_ começam na página principal _Jobs_ dentro da QW Control. Após o login, pressione a guia _Jobs_ na barra de navegação superior e todos os _Jobs_ que você está autorizado a ver serão exibidos.
+Todas as atividades de _Job_ começam na página principal _Jobs_ dentro do QW Control. Após o login, pressione a guia _Jobs_ na barra de navegação superior e todos os _Jobs_ que você está autorizado a ver serão exibidos.
 
 Se os _Jobs_ foram definidos dentro de grupos, você verá a lista agrupada em uma estrutura semelhante a uma pasta. Essas pastas representam os grupos de _Job_ descritos anteriormente. Você pode navegar nessas pastas pressionando o ícone da pasta para revelar seu conteúdo.
 
@@ -132,7 +132,7 @@ Pressionar o link "Mostrar partidas" exibirá a lista do _Nós_ onde o _Job_ ser
 
 ## Histórico de _Job_
 
-Na página _Job_, você pode ver o resultado de execuções anteriores de _Jobs_ olhando a seção Activity.
+Na página _Job_, você pode ver o resultado de execuções anteriores de _Jobs_ olhando a seção "Activity".
 
 Você pode clicar em qualquer execução anterior na lista para ver a execução completa dessa execução do _Job_.
 
@@ -142,16 +142,16 @@ Você também pode navegar até a página Atividade na barra de navegação supe
 
 A página _Jobs_ também contém todas as execuções para o grupo de _Job_ mostrado.
 
-## Matando _Jobs_
+## Abortar _Jobs_
 
-Os _Jobs_ que estão em execução podem ser eliminados imediatamente.
+Os _Jobs_ que estão em execução podem ser interrompidos imediatamente.
 
-AVISO: Este recurso deve ser usado com cuidado, pois elimina forçadamente o Java Thread em que o _Job_ está sendo executado.
+AVISO: Este recurso deve ser usado com cuidado, pois abortar forçadamente o Java Thread em que o _Job_ está sendo executado.
 
-Na seção Visualização da atividade em execução ou na página seguinte do _Job_ da tarefa, clique no botão "Eliminar _Job_" para o _Job_ em execução.
+Na seção Visualização da atividade em execução ou na página seguinte do _Job_ da tarefa, clique no botão "Abortar _Job_" para o _Job_ em execução.
 
-Quando solicitado "Quer realmente matar este _Job_?" Clique no botão "Sim".
+Quando solicitado "Quer realmente abortar este _Job_?" Clique no botão "Sim".
 
-O trabalho será encerrado com um status de conclusão "Eliminado".
+O trabalho será encerrado com um status de conclusão "Abortado".
 
 ![_Job_ definition](/assets/img/fig0319-d.png)
