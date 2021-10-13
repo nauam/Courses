@@ -1,4 +1,4 @@
-# _Job_ Opções
+# Opções de _Job_
 
 O _Jobs_ pode ser configurado para solicitar a entrada de um usuário, definindo uma ou mais opções nomeadas. Uma opção modela um parâmetro nomeado que pode ser obrigatório ou opcional e inclui uma gama de opções que irão serão apresentado ao usuário quando o _Job_ for executado.
 
@@ -416,10 +416,12 @@ Os provedores de modelo de opção são configurados por opção (onde um _Job_ 
 
 ### Configuração
 
-Cada entrada de opção para um _Job_ pode ser configurada para obter o conjunto de valores possíveis de um URL remoto. Se você está criando jobs por meio do formato de arquivo job.xml, simplesmente adicione um atributo `valuesUrl` para a` <option> `. Se você estiver modificando o trabalho na interface web do QW Control, poderá inserir um URL no campo "URL remoto" para a opção.
+Cada entrada de opção para um _Job_ pode ser configurada para obter o conjunto de valores possíveis de um URL remoto. Se você está criando jobs por meio do [formato de arquivo job.xml](/user-guide/document-format-reference/job-v20.md#opcao), simplesmente adicione um atributo `valuesUrl` para a` <option> `. Se você estiver modificando o _Job_ na interface web do QW Control, poderá inserir um URL no campo "URL remoto" para a opção.
 por exemplo:
 
-    <option valuesUrl = "http://site.example.com/values.json" .../>
+```html
+<option valuesUrl = "http://site.example.com/values.json" .../>
+```
 
 ::: tip DICA
 O esquema de URL do arquivo também é aceitável (por exemplo, `file:/path/to/job/options/optA.json`).
@@ -429,54 +431,53 @@ Os dados do valor devem ser retornados no formato de dados JSON descrito abaixo.
 
 ### formato JSON
 
-Três estilos de dados de retorno são suportados: lista simples, objeto simples e uma lista de nome/valor. Para uma lista simples, os valores da lista serão exibidos em uma lista pop-up ao executar o _Job_. Se um objeto simples ou pares nome/valor forem retornados, então o `nome` será exibido na lista, mas o `valor` será usado como a entrada.
+Três estilos de dados de retorno são suportados: lista simples, objeto simples e uma lista de nome/valor. Para uma lista simples, os valores da lista serão exibidos em uma lista pop-up ao executar o _Job_. Se um objeto simples ou pares nome/valor forem retornados, então o `name` será exibido na lista, mas o `value` será usado como a entrada.
 
 ### Exemplos
 
 Lista Simples:
 
-    ```json
-    ["valor x para teste", "valor y para teste"]
-    ```
+```json
+["valor x para teste", "valor y para teste"]
+```
 
 Isso irá preencher o menu de seleção com os valores fornecidos.
 
 Objeto simples:
 
-    ```json
-    {"Nome": "valor1", "Nome2": "valor2"}
-    ```
+```json
+{ "Name1": "value1", "Name2":"value2" }
+```
 
 Isso irá preencher o menu de seleção para mostrar os nomes e usar os valores.
 
 Lista de valores de nomes:
 
-    ```json
-    [
+```json
+[
     {"name":"X Label", "value":"x value"},
     {"name":"Y Label", "value":"y value"},
     {"name":"A Label", "value":"a value"}
-    ]
-    ```
+]
+```
 
-Para opções de vários valores, se o resultado for uma lista de objetos e alguns tiverem uma propriedade `selected` de `true`,
-esses valores serão selecionados por padrão.
+Para opções com vários valores, se o resultado for uma lista de objetos e alguns tiverem uma propriedade `selected` de `true`, esses valores serão selecionados por padrão.
 
-Para uma opção de valor único, o primeiro resultado com `selected=true`  será selecionado (se houver).
+Para uma opção de valor único, o primeiro resultado com `selected=true` será selecionado (se houver).
 
 Lista de valores de nomes com seleções padrão:
 
-    ```json
-    [
+```json
+[
     {"name":"X Label", "value":"x value", "selected": true},
     {"name":"Y Label", "value":"y value"},
     {"name":"A Label", "value":"a value", "selected": true}
-    ]
-    ```
+]
+```
 
 ### Parâmetros de conexão de URL
 
-Você pode configurar os tempos limite globalmente conforme descrito em [Configuração - _Job_ Parâmetros de conexão do URL de opção remota](/Administration/configuration/config-file-reference.md # qwcontrol-config.properties).
+Você pode configurar tempos limites globalmente conforme descrito em [Configuração - Parâmetros de conexão da URL da opção remota do _Job_](/administration/configuration/config-file-reference.md#qwcontrol-config.properties).
 
 Você também pode especificar esses parâmetros de conexão por URL:
 
@@ -491,116 +492,89 @@ Você também pode especificar esses parâmetros de conexão por URL:
 
 Para definir isso em uma URL remota de Option, adicione-os como a parte "fragmento" da URL, após o caractere `#` como:
 
-    http://host/mypath#timeout=60;contimeout=5;retry=1
+```http
+http://host/mypath#timeout=60;contimeout=5;retry=1
+```
 
 Use `key=value` para um parâmetro e separe vários parâmetros com o caractere`;`.
 
 ### Opções remotas em cascata
 
-As opções em cascata permitem que o URL de valores remotos de uma opção incorpore os valores
-inserido pelo usuário para outras opções ao executar um _Job_. Quando o usuário
-insere ou seleciona um valor para uma das outras opções, então o JSON remoto é
-atualizado para a opção atual.
+As opções em cascata permitem que o URL de valores remotos de uma opção incorpore os valores inseridos pelo usuário para outras opções ao executar um _Job_. Quando o usuário insere ou seleciona um valor para uma das outras opções, o JSON remoto é atualizado para a opção atual.
 
-Isso fornece um mecanismo para declarar conjuntos hierárquicos ou dependentes de opções
-valores.
+Isso fornece um mecanismo para declarar conjuntos hierárquicos ou dependentes de valores de opção.
 
-Por exemplo. se você quiser uma opção para escolher um "repositório", e outra opção para
-selecione um "branch" específico dentro desse repositório. Defina seu provedor de opções
-para responder corretamente com base no valor do "repositório" selecionado e definir o seu
-URL de opção remota para incluir uma referência ao valor da opção "repositório". o
-QW Control GUI irá então recarregar os valores JSON do URL remoto e inserir o
-valor correto da opção "repositório" ao carregar a opção "branch"
-valores. Se o usuário alterar o repositório selecionado, os valores do ramo irão
-ser atualizado automaticamente.
+Por exemplo. se você quiser uma opção para escolher um "repositório" e outra opção para selecionar um "ramo" específico dentro desse repositório. Defina seu provedor de opções para responder corretamente com base no valor de "repositório" selecionado e defina sua URL de opção remota para incluir uma referência ao valor de opção de "repositório". A GUI do QW Control irá então recarregar os valores JSON da URL remota e inserir o valor correto da opção "repositório" ao carregar os valores da opção "branch". Se o usuário alterar o repositório selecionado, os valores do branch serão atualizados automaticamente.
 
-Você pode declarar um
-dependência de uma opção para outra incorporando referências de propriedade dentro do
-URL de valores remotos. A referência da propriedade está no formato
-`${option.[name].value}`. Se você declarar uma opção com um URL de valores remotos
-como `http://server/options?option2=${option.option2.value}`, então essa opção
-dependerá do valor da opção "option2".
+Você pode declarar a dependência de uma opção para outra incorporando referências de propriedade na URL de valores remotos. A referência da propriedade tem o formato `${option.[name].value}`. Se você declarar uma opção com uma URL de valores remotos como `http://server/options?option2=${option.option2.value}`, então essa opção dependerá do valor da opção "option2".
 
-Na GUI, quando as opções são carregadas, a opção 2 será mostrada primeiro, e o
-valores remotos para a opção 1 só serão carregados depois que um valor tiver sido selecionado para
-opção2, e o valor será colocado no URL quando for carregado.
+Na GUI, quando as opções são carregadas, a opção2 será mostrada primeiro, e os valores remotos para a opção1 só serão carregados depois que um valor for selecionado para a opção2, e o valor será colocado na URL quando for carregado.
 
-Se uma opção tiver dependências de outras opções que não tenham um valor definido,
-então as referências incorporadas serão avaliadas como "" (string vazia) ao carregar
+Se uma opção tiver dependências de outras opções que não tenham um valor definido, as referências incorporadas serão avaliadas como "" (string vazia) ao carregar
 o URL.
 
-Se uma opção tiver dependências de outras opções e dos valores remotos [JSON
-data](/user-guide/job-options#formato-json) está vazio (lista vazia ou objeto vazio), então a opção mostrada em
-a GUI indicará que o usuário deve selecionar valores para os
-opções. Isso permite que os fornecedores de modelos de opções indiquem que alguns ou todos os
-valores de opções dependentes são necessários para a opção atual antes de mostrar o
-entrada para a opção.
+Se uma opção tiver dependências de outras opções e os [dados JSON](/user-guide/job-options.html#formato-json) de valores remotos estiverem vazios (lista vazia ou objeto vazio), a opção mostrada na GUI indicará que o usuário deve selecionar valores para as opções necessárias. Isso permite que os fornecedores de modelos de opções indiquem que alguns ou todos os valores de opções dependentes são necessários para a opção atual antes de mostrar a entrada para a opção.
 
-É possível ter dependências em mais de uma opção, e qualquer mudança para
-uma das dependências fará com que os valores das opções sejam recarregados do
-URL remoto.
+É possível ter dependências em mais de uma opção e qualquer alteração em uma das dependências fará com que os valores da opção sejam recarregados a partir do URL remoto.
 
 ::: tip DICA
-Também é possível declarar um ciclo de dependências entre os valores das opções, o que fará com que o recarregamento automático seja desabilitado. Nesse caso, o usuário deve clicar manualmente no botão recarregar para recarregar os valores de opção se uma dependência foi alterada.
+Também é possível declarar um ciclo de dependências entre os valores das opções, o que fará com que o recarregamento automático seja desabilitado. Nesse caso, o usuário deve clicar manualmente no botão recarregar para recarregar os valores da opção se uma dependência foi alterada.
 :::
 
 ### Expansão de variável em URLs remotos
 
-O URL declarado para "valuesUrl" pode incorporar variáveis ​​que serão
-preenchido com certos itens de contexto _job_ ao fazer a solicitação remota. Esse
-ajuda a tornar os URLs mais genéricos e contextuais para o _Job_.
+O URL declarado para "valuesUrl" pode incorporar variáveis que serão preenchidas com certos itens de contexto do _job_ ao fazer a solicitação remota. Isso ajuda a tornar os URLs mais genéricos e contextuais para o _Job_.
 
-Dois tipos de expansões estão disponíveis, contexto _Job_ e Opção
-contexto.
+Dois tipos de expansões estão disponíveis, contexto de _Job_ e contexto de opção.
 
-Para incluir informações de _job_ no URL, especifique uma variável do formulário
-`${job.property}`.
+Para incluir as informações do _job_ na URL, especifique uma variável no formato `${job.property}`.
 
-Propriedades disponíveis para contexto _Job_:
+Propriedades disponíveis para o contexto do _Job_:
 
-- `nome`: Nome do _Job_
-- `grupo`: Grupo do _Job_
-- `descrição`: _Job_ descrição
-- `projeto`: nome do projeto
-- `user.name`: usuário executando o _job_
-- `qwsoftware.nodename`: Nome do servidor QW Control _node_
-- `qwsoftware.serverUUID`: UUID do servidor QW Control _node_ (modo cluster)
+- `name`: nome do _Job_
+- `group`: Grupo do _Job_
+- `description`: descrição do _Job_
+- `project`: nome do projeto
+- `user.name`: Usuário executando o _Job_
+- `qwsoftware.nodename`: Nome do nó do servidor QW Control
+- `qwsoftware.serverUUID`: UUID do nó do servidor QW Control (modo de cluster)
 - `qwsoftware.basedir`: Caminho do arquivo do diretório base do QW Control (`file://` URLs apenas)
 
-Além disso, as propriedades `qwsoftware. *` Podem ser especificadas sem o prefixo `_job_`, por exemplo, `${qwsoftware.basedir}`.
+Além disso, as propriedades `qwsoftware.*` podem ser especificadas sem o prefixo `job.`, por exemplo, `${qwsoftware.basedir}`.
 
-Para incluir informações de opção no URL, especifique uma variável do
-form \${option.property}:
+Para incluir informações de opção no URL, especifique uma variável do formulário \${option.property}:
 
 Propriedades disponíveis para o contexto da opção:
 
 - `name`: Nome da opção atual
 
-Para incluir informações de valores de [opção remota em cascata](/user-guide/job-options#cascading-remote-options) na URL, especifique uma variável do
-form \${option.name.value}:
+Para incluir informações de valores de [opção remota em cascata](/user-guide/job-options#opcao-remota-em-cascata) no URL, especifique uma variável no formato \${option.name.value}:
 
 - `option.[name].value`: substitui o valor selecionado de outra opção pelo nome. Se a opção não for definida, uma string em branco ("") será substituída.
 
 ***Exemplos***
 
-    http://server.com/test?name=${option.name}
+```http
+http://server.com/test?name=${option.name}
+```
 
-Passa o nome da opção como o parâmetro de consulta "nome" para o URL.
+Passa o nome da opção como o parâmetro de consulta "name" para o URL.
 
-    http://server.com/test?jobname=${job.name}&jobgroup=${_job_.group}
+```http
+http://server.com/test?jobname=${job.name}&jobgroup=${job.group}
+```
 
-Transmite o nome e grupo _job_ como parâmetros de consulta.
+Transmite o nome e grupo do _job_ como parâmetros de consulta.
 
-    http://server.com/branches?repository=${option.repository.value}
+```http
+http://server.com/branches?repository=${option.repository.value}
+```
 
-Passa o valor da opção "repositório" selecionada ou "" (em branco) se não estiver definida. Esta opção torna-se
-um dependente da opção "repository", e se o valor "repository" mudar, os valores da opção remota
-para esta opção será recarregado.
+Passa o valor da opção "repositório" selecionada ou "" (em branco) se não estiver definida. Esta opção torna-se dependente da opção "repositório" e se o valor do "repositório" mudar, os valores da opção remota para esta opção serão recarregados.
 
 ### Falhas de solicitação remota
 
-Se a solicitação dos valores da opção remota falhar, o formulário da GUI
-exibirá uma mensagem de aviso:
+Se a solicitação dos valores da opção remota falhar, o formulário da GUI exibirá uma mensagem de aviso:
 
 ![fig0901](/assets/img/fig0901.png)
 
@@ -616,14 +590,20 @@ Formato de parâmetros de consulta para opções:
 
 Por exemplo, se o URL para _Job_ for:
 
-    http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0
+```http
+http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0
+```
 
 Em seguida, você pode preencher previamente os valores de `myopt1` e `myotheropt` anexando-o ao URL:
 
-    ?opt.myopt1=some+value&opt.myotheropt=another+value
+```http
+?opt.myopt1=some+value&opt.myotheropt=another+value
+```
 
 O resultado seria:
 
-    http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0?opt.myopt1=some+value&opt.myotheropt=another+value
+```http
+http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0?opt.myopt1=some+value&opt.myotheropt=another+value
+```
 
 Observação: certifique-se de escapar adequadamente das strings para os valores das opções e, se necessário, também para os nomes das opções.

@@ -415,7 +415,9 @@ Each Option entry for a _Job_ can be configured to get the set of possible value
 
 e.g.:
 
-    <option valuesUrl="http://site.example.com/values.json" ... />
+```html
+<option valuesUrl="http://site.example.com/values.json" ... />
+```
 
 ::: tip
 File URL scheme is also acceptable (e.g, `file:/path/to/job/options/optA.json`).
@@ -431,44 +433,43 @@ Three styles of return data are supported: simple list, simple object, and a nam
 
 Simple List:
 
-    ```json
-    ["x value for test","y value for test"]
-    ```
+```json
+["x value for test","y value for test"]
+```
 
 This will populate the select menu with the given values.
 
 Simple Object:
 
-    ```json
-    { "Name": "value1", "Name2":"value2" }
-    ```
+```json
+{ "Name1": "value1", "Name2":"value2" }
+```
 
 This will populate the select menu to show the names and use the values.
 
 Name Value List:
 
-    ```json
-    [
+```json
+[
     {"name":"X Label", "value":"x value"},
     {"name":"Y Label", "value":"y value"},
     {"name":"A Label", "value":"a value"}
-    ]
-    ```
+]
+```
 
-For multivalued options, if the result is a list of objects and some have a `selected` property of `true`,
-those values will be selected by default.
+For multivalued options, if the result is a list of objects and some have a `selected` property of `true`, those values will be selected by default.
 
 For a single valued option, the first result with `selected=true` will be selected (if any).
 
 Name Value List with default selections:
 
-    ```json
-    [
+```json
+[
     {"name":"X Label", "value":"x value", "selected": true},
     {"name":"Y Label", "value":"y value"},
     {"name":"A Label", "value":"a value", "selected": true}
-    ]
-    ```
+]
+```
 
 ### URL connection parameters
 
@@ -487,54 +488,30 @@ You can also specify these connection parameters on a per-URL basis:
 
 To set this in an Option's remote URL, add them as the "fragment" portion of the URL, after the `#` character like so:
 
-    http://host/mypath#timeout=60;contimeout=5;retry=1
+```http
+http://host/mypath#timeout=60;contimeout=5;retry=1
+```
 
 Use `key=value` for a parameter, and separate multiple parameters with the `;` character.
 
 ### Cascading Remote Options
 
-Cascading options allow an option's Remote values URL to embed the values
-entered by the user for other options when executing a _Job_. When the user
-enters or selects a value for one of the other options, then the remote JSON is
-refreshed for the current option.
+Cascading options allow an option's Remote values URL to embed the values entered by the user for other options when executing a _Job_. When the user enters or selects a value for one of the other options, then the remote JSON is refreshed for the current option.
 
-This provides a mechanism for declaring hierarchical or dependent sets of option
-values.
+This provides a mechanism for declaring hierarchical or dependent sets of option values.
 
-E.g. if you wanted one option to choose a "repository", and another option to
-select a specific "branch" within that repository. Define your option provider
-to respond correctly based on the selected "repository" value, and define your
-Remote option URL to include a reference to the "repository" option value. The
-QW Control GUI will then reload the JSON values from the remote URL and insert the
-correct value of the "repository" option when loading the "branch" option
-values. If the user changes the selected repository, then the branch values will
-be automatically refreshed.
+E.g. if you wanted one option to choose a "repository", and another option to select a specific "branch" within that repository. Define your option provider to respond correctly based on the selected "repository" value, and define your Remote option URL to include a reference to the "repository" option value. The QW Control GUI will then reload the JSON values from the remote URL and insert the correct value of the "repository" option when loading the "branch" option values. If the user changes the selected repository, then the branch values will be automatically refreshed.
 
-You can declare a
-dependency of one option to another by embedding property references within the
-remote values URL. The property reference is of the form
-`${option.[name].value}`. If you declare an option with a remote values URL
-like `http://server/options?option2=${option.option2.value}`, then that option
-will depend on the value of the "option2" option.
+You can declare a dependency of one option to another by embedding property references within the remote values URL. The property reference is of the form `${option.[name].value}`. If you declare an option with a remote values URL like `http://server/options?option2=${option.option2.value}`, then that option will depend on the value of the "option2" option.
 
-In the GUI, when the options are loaded, option2 will be shown first, and the
-remote values for option1 will only be loaded once a value has been selected for
-option2, and the value will be placed in the URL when it is loaded.
+In the GUI, when the options are loaded, option2 will be shown first, and the remote values for option1 will only be loaded once a value has been selected for option2, and the value will be placed in the URL when it is loaded.
 
-If an option has dependencies on other options that do not have a value set,
-then the embedded references will evaluate to "" (empty string) when loading
+If an option has dependencies on other options that do not have a value set, then the embedded references will evaluate to "" (empty string) when loading
 the URL.
 
-If an option has dependencies on other options and the remote values [JSON
-data](/en/user-guide/job-options#json-format) is empty (empty list or empty object), then the option shown in
-the GUI will indicate that the user should select values for the necessary
-options. This allows Option model providers to indicate that some or all of the
-dependent option values are necessary for the current option before showing the
-input for the option.
+If an option has dependencies on other options and the remote values [JSON data](/en/user-guide/job-options.html#json-format) is empty (empty list or empty object), then the option shown in the GUI will indicate that the user should select values for the necessary options. This allows Option model providers to indicate that some or all of the dependent option values are necessary for the current option before showing the input for the option.
 
-It is possible to have dependencies on more than one option, and any change to
-one of the dependencies will cause the option values to be reloaded from the
-remote URL.
+It is possible to have dependencies on more than one option, and any change to one of the dependencies will cause the option values to be reloaded from the remote URL.
 
 ::: tip
 It is also possible to declare a cycle of dependencies between option values, which will cause the automatic reloading to be disabled. In this case the user must manually click the reload button to reload the option values if a dependency has changed.
@@ -542,15 +519,11 @@ It is also possible to declare a cycle of dependencies between option values, wh
 
 ### Variable expansion in remote URLs
 
-The URL declared for the "valuesUrl" can embed variables which will be
-filled with certain _job_ context items when making the remote request. This
-helps make the URLs more generic and contextual to the _Job_.
+The URL declared for the "valuesUrl" can embed variables which will be filled with certain _job_ context items when making the remote request. This helps make the URLs more generic and contextual to the _Job_.
 
-Two types of expansions are available, _Job_ context, and Option
-context.
+Two types of expansions are available, _Job_ context, and Option context.
 
-To include _job_ information in the URL, specify a variable of the form
-`${job.property}`.
+To include _job_ information in the URL, specify a variable of the form `${job.property}`.
 
 Properties available for _Job_ context:
 
@@ -565,38 +538,39 @@ Properties available for _Job_ context:
 
 Additionally the `qwsoftware.*` properties can be specified without the `job.` prefix, e.g. `${qwsoftware.basedir}`.
 
-To include Option information in the URL, specify a variable of the
-form \${option.property}:
+To include Option information in the URL, specify a variable of the form \${option.property}:
 
 Properties available for Option context:
 
 - `name`: Name of the current option
 
-To include [Cascading remote option](/en/user-guide/job-options#cascading-remote-options) values information in the URL, specify a variable of the
-form \${option.name.value}:
+To include [Cascading remote option](/en/user-guide/job-options#cascading-remote-options) values information in the URL, specify a variable of the form \${option.name.value}:
 
 - `option.[name].value`: substitutes the selected value of another option by name. If the option is not set, then a blank string ("") will be substituted.
 
 ***Examples***
 
-    http://server.com/test?name=${option.name}
+```http
+http://server.com/test?name=${option.name}
+```
 
 Passes the option name as the "name" query parameter to the URL.
 
-    http://server.com/test?jobname=${job.name}&jobgroup=${_job_.group}
+```http
+http://server.com/test?jobname=${job.name}&jobgroup=${job.group}
+```
 
 Passes the _job_ name and group as query parameters.
 
-    http://server.com/branches?repository=${option.repository.value}
+```http
+http://server.com/branches?repository=${option.repository.value}
+```
 
-Passes the value of the selected "repository" option, or "" (blank) if it is not set. This option becomes
-a dependent of the "repository" option, and if the "repository" value changes, the remote option values
-for this option will be reloaded.
+Passes the value of the selected "repository" option, or "" (blank) if it is not set. This option becomes a dependent of the "repository" option, and if the "repository" value changes, the remote option values for this option will be reloaded.
 
 ### Remote request failures
 
-If the request for the remote option values fails, then the GUI form
-will display a warning message:
+If the request for the remote option values fails, then the GUI form will display a warning message:
 
 ![fig0901](/assets/img/fig0901.png)
 
@@ -608,18 +582,24 @@ You can create a URL to link to a specific _Job_, and pre-fill some of the optio
 
 Query Parameters format for options:
 
-- `opt.NAME` : provide a value for an option named `NAME`
+- `opt.NAME`: provide a value for an option named `NAME`
 
 For example, if the URL for the _Job_ is:
 
-    http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0
+```http
+http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0
+```
 
 Then you can pre-fill the values for `myopt1` and `myotheropt` by appending this to the URL:
 
-    ?opt.myopt1=some+value&opt.myotheropt=another+value
+```http
+?opt.myopt1=some+value&opt.myotheropt=another+value
+```
 
 The result would be:
 
-    http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0?opt.myopt1=some+value&opt.myotheropt=another+value
+```http
+http://qwcontrol:4440/project/MyProject/job/show/ab698597-9753-4e98-bdab-90ebf395b0d0?opt.myopt1=some+value&opt.myotheropt=another+value
+```
 
 Note: be sure to properly escape the strings for option values, and if necessary for the option names as well.
