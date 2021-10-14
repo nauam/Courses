@@ -30,7 +30,7 @@ module.exports = [{
                         '/user-guide/log-filters/multi-line-regex.md'
                     ]
                 },
-                '/user-guide/job-plugins',
+                // '/user-guide/job-plugins',
             ]
         },
         // {
