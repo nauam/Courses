@@ -14,28 +14,23 @@ module.exports = [{
                 '/en/user-guide/creating-jobs',
                 '/en/user-guide/job-workflows',
                 '/en/user-guide/job-options',
-                // '/en/user-guide/jobs/job-notifications',
-                // {
-                //     title: 'Log Filters',
-                //     collapsable: true,
-                //     path: '/en/user-guide/log-filters/',
-                //     sidebarDepth: 1,
-                //     children: [
-                //         '/en/user-guide/log-filters/key-value-data.md',
-                //         '/en/user-guide/log-filters/quiet-output.md',
-                //         '/en/user-guide/log-filters/progress-badge.md',
-                //         '/en/user-guide/log-filters/highlight-output.md',
-                //         '/en/user-guide/log-filters/render-formatted-data.md',
-                //         '/en/user-guide/log-filters/mask-passwords.md',
-                //         '/en/user-guide/log-filters/json-jq.md',
-                //         '/en/user-guide/log-filters/multi-line-regex.md'
-                //     ]
-                // },
-                // '/en/user-guide/job-plugins',
-                // '/en/user-guide/execution-lifecycle/job-resume.md',
-                // '/en/user-guide/execution-lifecycle/job-retry-failed-nodes.md',
-                // '/en/user-guide/execution-lifecycle/job-data.md',
-                // '/en/user-guide/jobs/job-queue.md',
+                '/en/user-guide/job-notifications',
+                {
+                    title: 'Log Filters',
+                    collapsable: true,
+                    path: '/en/user-guide/log-filters/',
+                    sidebarDepth: 1,
+                    children: [
+                        '/en/user-guide/log-filters/key-value-data.md',
+                        '/en/user-guide/log-filters/quiet-output.md',
+                        '/en/user-guide/log-filters/highlight-output.md',
+                        '/en/user-guide/log-filters/render-formatted-data.md',
+                        '/en/user-guide/log-filters/mask-passwords.md',
+                        '/en/user-guide/log-filters/json-jq.md',
+                        '/en/user-guide/log-filters/multi-line-regex.md'
+                    ]
+                },
+                '/en/user-guide/job-plugins',
             ]
         },
         // {

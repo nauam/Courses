@@ -14,28 +14,23 @@ module.exports = [{
                 '/user-guide/creating-jobs',
                 '/user-guide/job-workflows',
                 '/user-guide/job-options',
-                // '/user-guide/jobs/job-notifications',
-                // {
-                //     title: 'Log Filters',
-                //     collapsable: true,
-                //     path: '/user-guide/log-filters/',
-                //     sidebarDepth: 1,
-                //     children: [
-                //         '/user-guide/log-filters/key-value-data.md',
-                //         '/user-guide/log-filters/quiet-output.md',
-                //         '/user-guide/log-filters/progress-badge.md',
-                //         '/user-guide/log-filters/highlight-output.md',
-                //         '/user-guide/log-filters/render-formatted-data.md',
-                //         '/user-guide/log-filters/mask-passwords.md',
-                //         '/user-guide/log-filters/json-jq.md',
-                //         '/user-guide/log-filters/multi-line-regex.md'
-                //     ]
-                // },
-                // '/user-guide/job-plugins',
-                // '/user-guide/execution-lifecycle/job-resume.md',
-                // '/user-guide/execution-lifecycle/job-retry-failed-nodes.md',
-                // '/user-guide/execution-lifecycle/job-data.md',
-                // '/user-guide/jobs/job-queue.md',
+                '/user-guide/job-notifications',
+                {
+                    title: 'Log Filters',
+                    collapsable: true,
+                    path: '/user-guide/log-filters/',
+                    sidebarDepth: 1,
+                    children: [
+                        '/user-guide/log-filters/key-value-data.md',
+                        '/user-guide/log-filters/quiet-output.md',
+                        '/user-guide/log-filters/highlight-output.md',
+                        '/user-guide/log-filters/render-formatted-data.md',
+                        '/user-guide/log-filters/mask-passwords.md',
+                        '/user-guide/log-filters/json-jq.md',
+                        '/user-guide/log-filters/multi-line-regex.md'
+                    ]
+                },
+                '/user-guide/job-plugins',
             ]
         },
         // {
