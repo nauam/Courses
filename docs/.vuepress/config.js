@@ -10,7 +10,7 @@ const navbarUserGuide = require('./navbar-menus/user-guide')
 const navbarUserGuideEn = require('./navbar-menus/en/user-guide')
 
 module.exports = {
-    base: `/`,
+    base: `/docs/`,
     title: 'QW Control',
     locales: {
         '/': {
@@ -22,7 +22,7 @@ module.exports = {
             description: 'Automation and orchestration platform for services, IT and business processes.',
         },
     },
-    head: [['link', { rel: 'icon', href: '/images/qwcontrollogo-black-small.png' }]],
+    head: [['link', { rel: 'icon', href: '/images/qwcontrollogo-black.png' }]],
     themeConfig: {
         locales: {
             '/': {

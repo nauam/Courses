@@ -53,8 +53,47 @@ yarn run docs:build
 2. Navigate to the specific path of your file folder
 
 ```sh
-npm install http-server -g
-http-server
+npm install http-server -g && \
+
+#remover docs/.vuepress/docs
+rm -r docs/.vuepress/docs && \
+rm -r docs/.vuepress/assets && \
+
+#build
+#nvm install lts/erbium; nvm use lts/erbium && \
+yarn install && \
+yarn run docs:build && \
+
+#renomear dist para docs
+mv docs/.vuepress/dist docs/.vuepress/docs && \
+
+#copiar assets
+cp -r docs/.vuepress/docs/assets docs/.vuepress/ && \
+
+#Abrir na porta http://localhost:8080/docs  ###em config.js incluir  "base: `/docs/`" 
+http-server docs/.vuepress/ -o /docs
+
 ```
 
 3. Go to your browser and type localhost:8080. Your Application should run there.
+
+## Docker
+
+### build
+
+## Create files
+
+```sh
+touch Dockerfile \ .dockerignore
+```
+
+## Run
+
+```sh
+docker build -t nauamidvlab/docs .
+docker run --name qwcontrol_docs --restart=always -p 4441:4441 -d nauamidvlab/docs
+docker image ls
+docker tag  rundeck/rundeck:SNAPSHOT qwsoftware/vernet:$1
+docker login
+docker ps
+```
