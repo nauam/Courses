@@ -90,10 +90,33 @@ touch Dockerfile \ .dockerignore
 ## Run
 
 ```sh
-docker build -t nauamidvlab/docs .
-docker run --name qwcontrol_docs --restart=always -p 4441:4441 -d nauamidvlab/docs
+docker build -t nauam/docs .
 docker image ls
-docker tag  rundeck/rundeck:SNAPSHOT qwsoftware/vernet:$1
-docker login
+docker run --name qwcontrol_docs --restart=always -p 4441:4441 -d nauam/docs
 docker ps
 ```
+
+## Push Docker Hub
+
+```sh
+docker login -u "nauam" -p "TDT7q76Tta2Ea" docker.io
+docker tag nauam/docs:latest nauam/docs:latest
+docker push nauam/docs:latest
+```
+
+## Pull QWControl
+
+```sh
+docker pull qwsoftware/homolog:v1246
+docker pull qwsoftware/homolog:v1246
+docker run -d -e TZ=America/Sao_Paulo --name qwcontrol -p 4440:4440 --net host --privileged --restart=always --env-file=/etc/qwcontrol.conf -v data:/home/qwcontrol/server/data qwsoftware/vernet:V123
+```
+docker rm 9dc62b654735
+docker rm a804355c5eb8
+docker rm c114cc362851
+docker rm e741981c148f
+docker rm e1ed2915278c
+docker rm 9be8a8a3e2af
+docker rm 4aafd7f15e24
+docker rm 326ad2b08cde
+docker rm a6728b97e96e
