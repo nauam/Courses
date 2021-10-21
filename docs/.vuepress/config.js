@@ -10,7 +10,7 @@ const navbarUserGuide = require('./navbar-menus/user-guide')
 const navbarUserGuideEn = require('./navbar-menus/en/user-guide')
 
 module.exports = {
-    base: `/`,
+    base: `/docs/`,
     title: 'QW Control',
     locales: {
         '/': {
