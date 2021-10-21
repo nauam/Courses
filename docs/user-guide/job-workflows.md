@@ -29,7 +29,7 @@ Consulte [Ferramentas de linha de comando e acesso à API](/user-guide/job-workf
 
 A execução do fluxo de trabalho é controlada por duas configurações importantes: _Manuseio de um passo falhar_ e _Estratégia_.
 
-![Workflow controls](/assets/img/fig0401.png)
+![Workflow controls](../assets/img/fig0401.png)
 
 _Se um passo falhar_: gerencia o que fazer se um passo incorrer em um erro:
 
@@ -87,7 +87,7 @@ Ao criar uma nova definição de _Job_, o formulário de fluxo de trabalho será
 padrões e não têm passos de fluxo de trabalho definidos. O editor de fluxo de trabalho irá
 tenha um formulário aberto pedindo para escolher um tipo de passo para adicionar.
 
-![Add a passo](/assets/img/fig0402.png)
+![Add a passo](../assets/img/fig0402.png)
 
 Para adicionar um novo passos, basta clicar no link "Adicionar um passo" dentro do fluxo de trabalho
 forma de editor. Isso irá mostrar-lhe uma caixa de diálogo perguntando qual tipo de
@@ -96,7 +96,7 @@ Formato. Quando terminar de preencher o formulário, pressione "Salvar" para adi
 para a sequência. Pressionar "Cancelar" fechará o formulário e sairá do
 sequência inalterada.
 
-![Adicionar um _formulário de passo_](/assets/img/fig0403.png)
+![Adicionar um _formulário de passo_](../assets/img/fig0403.png)
 
 Novos passos são sempre adicionados ao final da sequência. Ver
 [Reordenando _etapas_](/# reordenando-passos)
@@ -120,12 +120,12 @@ A ordem dos passos do Fluxo de Trabalho pode ser modificada passando o mouse sob
 passo e, em seguida, clicando e arrastando o ícone de seta dupla para o
 posição desejada.
 
-![_Tarefa_ passo reordenar](/assets/img/fig0408.png)
+![_Tarefa_ passo reordenar](../assets/img/fig0408.png)
 
 Uma barra horizontal azul ajuda a destacar a posição
 onde o _Job_ vai pousar.
 
-![_Trabalho_ passo reordenar](/assets/img/fig0408a.png)
+![_Trabalho_ passo reordenar](../assets/img/fig0408a.png)
 
 Depois de liberar o _Job_ selecionado, ele pousará na posição desejada
 e o pedido passo será atualizado.
@@ -189,15 +189,15 @@ Os manipuladores de erros podem ser anexados a _Passos do nó_ ou _Passos do flu
 
 Para adicionar um manipulador de erros, pressione o botão "configurações" no passo que deseja manipular.
 
-![Adicionando um manipulador de erros](/assets/img/fig0410.png)
+![Adicionando um manipulador de erros](../assets/img/fig0410.png)
 
 O formulário apresentado inclui o conjunto normal de passos que você pode adicionar a um fluxo de trabalho.
 
-![Adicionando um manipulador de erros](/assets/img/fig0410a.png)
+![Adicionando um manipulador de erros](../assets/img/fig0410a.png)
 
 O exemplo abaixo mostra um manipulador de erros que chama um script por URL.
 
-![Exemplo de manipulador de erros](/assets/img/fig0411.png)
+![Exemplo de manipulador de erros](../assets/img/fig0411.png)
 
 ### Informação de contexto
 

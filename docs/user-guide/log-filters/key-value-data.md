@@ -30,15 +30,15 @@ Na seção Avançado, também há um Padrão de caractere inválido. Esta é uma
 
 ## Exemplos
 
-![logfilter-keyvalue-example1](/assets/img/logfilter-keyvalue-example1.png)
+![logfilter-keyvalue-example1](../../assets/img/logfilter-keyvalue-example1.png)
 
 O filtro de registro neste exemplo é totalmente padrão, com o campo Dados de registro marcado:
 
-![logfilter-keyvalue-example2](/assets/img/logfilter-keyvalue-example2.png)
+![logfilter-keyvalue-example2](../../assets/img/logfilter-keyvalue-example2.png)
 
 A saída quando o Job é executado é assim:
 
-![logfilter-keyvalue-example3](/assets/img/logfilter-keyvalue-example3.png)
+![logfilter-keyvalue-example3](../../assets/img/logfilter-keyvalue-example3.png)
 
 Em passos posteriores do Job, consulte `$data.EXIP` em comandos ou `@data.EXIP@`em scripts para o valor _10.1.1.2_.
 

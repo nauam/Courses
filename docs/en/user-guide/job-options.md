@@ -39,13 +39,13 @@ Input types:
 
 Options can be created for any stored _Job_. The _Job_ edit page contains an area displaying a summary to existing options and a link to add new ones or edit existing ones.
 
-![Add option link](/assets/img/fig0501.png)
+![Add option link](../assets/img/fig0501.png)
 
 The option summary shows each option and its default value if it defines them.
 
 Clicking the "edit" link opens the options editor.
 
-![Option editor](/assets/img/fig0503.png)
+![Option editor](../assets/img/fig0503.png)
 
 The options editor displays an expanded summary for each defined option. Each option is listed with its usage summary, description, values list and any restrictions. Pressing the "Add an option" link will open a form to define a new parameter. Pressing the "Close" link will collapse the options editor and return back to the summary view.
 
@@ -63,7 +63,7 @@ New options can be defined by pressing the "Add an option" link while existing o
 
 Choose "Text" from the Option Type:
 
-![Option edit form](/assets/img/fig0502.png)
+![Option edit form](../assets/img/fig0502.png)
 
 The option definition form is organized into several areas:
 
@@ -99,7 +99,7 @@ Indicates if the _Job_ can only run if a non-blank value is provided for that Op
 
 If a Default Value is set, then it will be used when no value is provided, unless a blank value is allowed and is explicitly specified.
 
-![Option Multivalued Form](/assets/img/fig-option-multival.png)
+![Option Multivalued Form](../assets/img/fig-option-multival.png)
 
 ### Multi-valued
 
@@ -117,7 +117,7 @@ Once satisfied with the option definition, press the "Save" button to add it to 
 
 Usage (see below)
 
-![Option Usage](/assets/img/fig-option-usage.png)
+![Option Usage](../assets/img/fig-option-usage.png)
 
 ### Option timestamp variable
 
@@ -133,7 +133,7 @@ You can use the string `${DATE:format}` as a _job_ option value (either as defau
 
 Choose "File" from the Option Type:
 
-![File Option Edit Form](/assets/img/fig-newoption-file.png)
+![File Option Edit Form](../assets/img/fig-newoption-file.png)
 
 The Option Name and Description can be entered.
 
@@ -163,7 +163,7 @@ A _Job_ named "hello" and has an option named "message".
 
 The "hello" _Job_ option signature would be: `-message <>`.
 
-![Option usage](/assets/img/fig0504.png)
+![Option usage](../assets/img/fig0504.png)
 
 The arguments passed to the script are defined as `${option.message}`.
 
@@ -180,7 +180,7 @@ echo message=@option.message@; # access message via replacement token syntax
 When the user runs the "hello" _job_ they will be prompted for the
 "message" value.
 
-![Option entered](/assets/img/fig0505.png)
+![Option entered](../assets/img/fig0505.png)
 
 Let's assume they chose the word "howdy" in response. The output of the _Job_ will be:
 
@@ -380,7 +380,7 @@ will be loaded as the option value when one is not supplied.
 
 The path must indicate a stored `password` entry in the storage facility.
 
-![Storage Path for Secure Option](/assets/img/jobs-options-secure-storage-path.png)
+![Storage Path for Secure Option](../assets/img/jobs-options-secure-storage-path.png)
 
 ## Remote option values
 
@@ -572,7 +572,7 @@ Passes the value of the selected "repository" option, or "" (blank) if it is not
 
 If the request for the remote option values fails, then the GUI form will display a warning message:
 
-![fig0901](/assets/img/fig0901.png)
+![fig0901](../assets/img/fig0901.png)
 
 In this case, the option will be allowed to use a textfield to set the value.
 

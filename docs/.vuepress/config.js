@@ -22,7 +22,7 @@ module.exports = {
             description: 'Automation and orchestration platform for services, IT and business processes.',
         },
     },
-    head: [['link', { rel: 'icon', href: '/images/qwcontrollogo-black.png' }]],
+    head: [['link', { rel: 'icon', href: '/assets/img/qwcontrollogo-black-small.png' }]],
     themeConfig: {
         locales: {
             '/': {

@@ -50,9 +50,9 @@ The log output will then capture all of the JSON data in a single log event, and
 
 ## Examples
 
-![logfilter-render-example1](/assets/img/logfilter-render-example1.png)
+![logfilter-render-example1](../../assets/img/logfilter-render-example1.png)
 
-![logfilter-render-example2](/assets/img/logfilter-render-example2.png)
+![logfilter-render-example2](../../assets/img/logfilter-render-example2.png)
 
 ### See Also
 

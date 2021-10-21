@@ -4,7 +4,7 @@
 
 Na página _Jobs_, pressione o menu "Novo _job_" para começar a criar um _Job_. O menu contém itens para criar uma definição de _job_ ou fazer upload de uma definição de um arquivo.
 
-![Create _Job_ menu](/assets/img/fig0301.png)
+![Create _Job_ menu](../assets/img/fig0301.png)
 
 Para o primeiro exemplo de _job_, crie um _job_ que chama o script de informações.
 
@@ -24,11 +24,11 @@ Salve o _Passo do Fluxo de Trabalho_.
 
 Pressione o botão "Criar" na parte inferior da página.
 
-![Simple saved _job_ form](/assets/img/fig0303.png)
+![Simple saved _job_ form](../assets/img/fig0303.png)
 
 Depois que o _job_ é criado, o navegador é direcionado para a página do _job_ que você acabou de criar. O _job_ pode ser executado clicando no botão Executar _job_ agora.
 
-![Simple _job_ form](/assets/img/fig0303-a.png)
+![Simple _job_ form](../assets/img/fig0303-a.png)
 
 Quando você vai para a _Jobs_ página, você verá ícones de pasta refletindo o grupo do _job_. Navegue até a pasta de administração/recursos. Observe que as informações extras são exibidas, o markdown agora é renderizado como HTML.
 
@@ -36,11 +36,11 @@ Observe o botão play antes do nome do _job_.
 
 Pressione o botão play para executar o _Job_.
 
-![Simple saved _job_](/assets/img/fig0304.png)
+![Simple saved _job_](../assets/img/fig0304.png)
 
 Pressione o botão "Executar _Job_ Agora" para iniciar a execução. O _job_ será enfileirado e executado. Você será levado à página de detalhes de execução do _Job_.
 
-![Simple saved _job_ output](/assets/img/fig0305.png)
+![Simple saved _job_ output](../assets/img/fig0305.png)
 
 ### Múltiplas execuções
 
@@ -50,13 +50,13 @@ No entanto, em alguns casos, é útil permitir que uma tarefa seja executada mai
 
 Você pode fazer um _job_ permitir "Execuções múltiplas" alternando o valor para "Sim" no campo do editor de _jobs_ mostrado abaixo:
 
-![Multiple executions](/assets/img/fig0324.png)
+![Multiple executions](../assets/img/fig0324.png)
 
 ### Tempo esgotado
 
 Você pode definir um tempo de execução máximo para um _job_. Se o tempo de execução exceder esse valor, o _job_ será interrompido (como se um usuário o tivesse eliminado.) (Observação: o tempo limite só afeta o _job_ se for chamado diretamente, não se for usado como uma referência de _job_ ).
 
-![_Job_ Timeout field](/assets/img/jobs-timeout-field.png)
+![_Job_ Timeout field](../assets/img/jobs-timeout-field.png)
 
 O valor do tempo limite pode ser:
 
@@ -68,7 +68,7 @@ O valor do tempo limite pode ser:
 
 Você pode definir um número máximo de tentativas para um _job_. Se uma tarefa falhar ou atingir o tempo limite, ela será executada novamente até o número especificado de vezes até ser bem-sucedida. (Observação: a nova tentativa só afeta o _job_ se for invocado diretamente, não se for usado como uma referência de _job_.)
 
-![_Job_ Retry field](/assets/img/jobs-retry-field.png)
+![_Job_ Retry field](../assets/img/jobs-retry-field.png)
 
 O valor da nova tentativa pode ser:
 
@@ -83,7 +83,7 @@ Opcionalmente, um atraso entre as novas tentativas pode ser estabelecido:
 - Uma string indicando números e unidades, como "1d 12h 30m 24s". Cada número deve ter uma letra de unidade ao lado dele. A duração total do tempo limite será a soma dos valores. As unidades disponíveis são "d" (dias) "h" (horas) "m" (minutos) e "s" (segundos, padrão se não especificado).
 - Uma referência de propriedade incorporada, como `${option.delay}`. Isso permite que uma opção de _job_ seja usada para alterar o intervalo entre as novas tentativas do _job_.
 
-![_Job_ Delay between retries field](/assets/img/jobs-retry-delay-field.png)
+![_Job_ Delay between retries field](../assets/img/jobs-retry-delay-field.png)
 
 ### Limite de log
 
@@ -95,7 +95,7 @@ O limite pode ser definido de três maneiras:
 - Tamanho máximo total do arquivo de log
 - Número máximo de linhas de log para um único _nó_
 
-![_Job_ Log limit](/assets/img/jobs-loglimit-field.png)
+![_Job_ Log limit](../assets/img/jobs-loglimit-field.png)
 
 Insira um valor no campo "Limite de saída de log". A sintaxe do valor que você insere determina o tipo de limite:
 
@@ -112,7 +112,7 @@ E uma das três ações pode ser realizada se o limite for excedido:
 - Truncar e continuar
   - o _job_ não será interrompido, mas nenhuma outra saída de log será produzida.
 
-![_Job_ Log limit action](/assets/img/jobs-loglimit-action.png)
+![_Job_ Log limit action](../assets/img/jobs-loglimit-action.png)
 
 ### Despachando e filtrando _Nó_
 
@@ -120,7 +120,7 @@ Ao criar um _job_, você pode escolher entre executar o _job_ apenas localmente 
 
 Na GUI, a caixa de seleção "Despacho para _nós_" permite que você habilite o despacho de _nó_. Quando você clica nesta caixa, é apresentada a interface de filtro do _Nó_:
 
-![_Nó_ Filtering interface](/assets/img/fig0305-b.png)
+![_Nó_ Filtering interface](../assets/img/fig0305-b.png)
 
 #### Filtros
 
@@ -180,7 +180,7 @@ Para saber como desenvolver seu próprio plugin do orquestrador, consulte o [Gui
 
 Os _jobs_ podem ser configurados para execução periódica. Se você deseja criar um _job_ agendado, selecione Sim em "Agendar para executar repetidamente?"
 
-![Scheduled _job_ simple form](/assets/img/fig0306.png)
+![Scheduled _job_ simple form](../assets/img/fig0306.png)
 
 A programação pode ser definida em um seletor gráfico simples ou formato Unix crontab.
 
@@ -188,7 +188,7 @@ Para usar o seletor simples, escolha uma hora e minuto. Você pode então escolh
 
 Se o formato de data e hora do crontab for preferido, insira uma expressão cron.
 
-![Scheduled _job_ crontab form](/assets/img/fig0307.png)
+![Scheduled _job_ crontab form](../assets/img/fig0307.png)
 
 Use a sintaxe do crontab referenciada aqui: [Quartz Scheduler crontrigger](http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html).
 
@@ -196,7 +196,7 @@ Um bom lugar para gerar, validar e testar crontabs de jobs é [aqui](https://www
 
 Depois que o _job_ foi atualizado para incluir uma programação, um ícone de relógio será exibido quando o _job_ for listado:
 
-![Scheduled _job_ icon](/assets/img/fig0308.png)
+![Scheduled _job_ icon](../assets/img/fig0308.png)
 
 ### Notificações de _Job_
 
@@ -206,7 +206,7 @@ Notificações de _job_ são mensagens acionadas por um evento de _job_. [Mais d
 
 Na página de visualização do _Job_, clique no botão Ação para um menu de ações e selecione "Excluir este _Job_..." para excluir o _Job_.
 
-![_Job_ delete button](/assets/img/fig0311.png)
+![_Job_ delete button](../assets/img/fig0311.png)
 
 Clique em "Excluir" quando disser "Deseja realmente excluir este _Job_?"
 
@@ -216,11 +216,11 @@ Se você tiver acesso, poderá optar por excluir todas as execuções do _job_ t
 
 Todos os dados definidos ao criar um _job_ podem ser modificados (exceto UUID). Para editar uma tarefa, você pode clicar no ícone "editar tarefa":
 
-![edit _job_ button](/assets/img/fig0312.png)
+![edit _job_ button](../assets/img/fig0312.png)
 
 Da mesma forma, para copiar uma definição de _job_ para um novo _job_, pressione o botão "duplicar para um novo _job_".
 
-![duplicate _job_ button](/assets/img/fig0313.png)
+![duplicate _job_ button](../assets/img/fig0313.png)
 
 ## Exportando definições do _Job_
 
@@ -230,7 +230,7 @@ Existem dois métodos para recuperar as definições de _Job_: por meio da inter
 
 Na guia Definição do _Job_, localize o botão de menu "Download da definição". Clicar no ícone permitirá que você escolha o formato XML ou YAML para baixar a definição.
 
-![_Job_ export button](/assets/img/fig0314.png)
+![_Job_ export button](../assets/img/fig0314.png)
 
 Clique no formato preferido para iniciar o download do arquivo para o seu navegador.
 
@@ -244,11 +244,11 @@ Clique no botão de menu "Criar _job_ " na lista de _jobs_.
 
 Clique no item que diz "Definição de upload...":
 
-![_Job_ import button](/assets/img/fig0315.png)
+![_Job_ import button](../assets/img/fig0315.png)
 
 Clique no botão Escolher arquivo e escolha o arquivo de definição de _job_ para fazer o upload.
 
-![_Job_ import form](/assets/img/fig0316.png)
+![_Job_ import form](../assets/img/fig0316.png)
 
 Escolha uma opção onde diz "Quando já existe um _job_ com o mesmo nome:":
 

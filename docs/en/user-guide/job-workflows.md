@@ -32,7 +32,7 @@ See [Command Line Tools and API Acccess][1].
 Workflow execution is controlled by two important settings: _Handling a
 step failure_ and _Strategy_.
 
-![Workflow controls](/assets/img/fig0401.png)
+![Workflow controls](../assets/img/fig0401.png)
 
 _If a step fails_: This manages what to do if a _step_ incurs an error:
 
@@ -92,7 +92,7 @@ When creating a new _Job_ definition, the Workflow form will be set with
 defaults and have no workflow _steps_ defined. The workflow editor will
 have a form open asking to choose a _step_ type to add.
 
-![Add a _step_](/assets/img/fig0402.png)
+![Add a _step_](../assets/img/fig0402.png)
 
 To add new _steps_ simply press the "Add a _step_" link inside the workflow
 editor form. This will prompt you with a dialog asking which kind of
@@ -101,7 +101,7 @@ form. When you are done filling out the form, press "Save" to add it
 to the sequence. Pressing "Cancel" will close the form and leave the
 sequence unchanged.
 
-![Add a _step_ form](/assets/img/fig0403.png)
+![Add a _step_ form](../assets/img/fig0403.png)
 
 New _steps_ are always added to the end of the sequence. See
 [Reordering _steps_](/en/#reordering-_steps_)
@@ -125,12 +125,12 @@ The order of the Workflow _steps_ can be modified by hovering over any
 _step_ and then clicking and dragging the double arrow icon to the
 desired position.
 
-![_Job_ _step_ reorder](/assets/img/fig0408.png)
+![_Job_ _step_ reorder](../assets/img/fig0408.png)
 
 A blue horizontal bar helps highlight the position
 where the _Job_ will land.
 
-![_Job_ _step_ reorder](/assets/img/fig0408a.png)
+![_Job_ _step_ reorder](../assets/img/fig0408a.png)
 
 After releasing the select _Job_, it will land in the desired position
 and the _step_ order will be updated.
@@ -195,15 +195,15 @@ Error-handlers can be attached to either _Node_ _Steps_ or Workflow _Steps_, and
 
 To add an error handler press the "settings" button on the _step_ you want to handle.
 
-![Adding an error handler](/assets/img/fig0410.png)
+![Adding an error handler](../assets/img/fig0410.png)
 
 The form presented includes the normal set of _steps_ you can add to a workflow.
 
-![Adding an error handler](/assets/img/fig0410a.png)
+![Adding an error handler](../assets/img/fig0410a.png)
 
 The example below shows an error handler that calls a script by URL.
 
-![Example error handler](/assets/img/fig0411.png)
+![Example error handler](../assets/img/fig0411.png)
 
 ### Context information
 

@@ -1,7 +1,7 @@
 ---
 home: true
 title: 'Documentação da QW Controle'
-heroImage: /images/qwcontrollogo-black-big.png
+heroImage: /assets/img/qwcontrollogo-black-big.png
 actionText: Começar →
 actionLink: /introduction/introduction.html
 features:

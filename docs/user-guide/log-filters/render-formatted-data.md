@@ -49,9 +49,9 @@ A saída do log irá capturar todos os dados JSON em um único evento de log e m
 
 ## Exemplos
 
-![logfilter-render-example1](/assets/img/logfilter-render-example1.png)
+![logfilter-render-example1](../../assets/img/logfilter-render-example1.png)
 
-![logfilter-render-example2](/assets/img/logfilter-render-example2.png)
+![logfilter-render-example2](../../assets/img/logfilter-render-example2.png)
 
 ### Veja também
 

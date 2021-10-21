@@ -19,8 +19,8 @@ O regex de texto selecionado tem várias opções. Uma regex sem um grupo de cap
 
 ## Exemplo
 
-![logfilter-highlight-example1](/assets/img/logfilter-highlight-example1.png)
+![logfilter-highlight-example1](../../assets/img/logfilter-highlight-example1.png)
 
 Esta configuração filtrará a saída do log procurando um "0" (zero) inicial na saída do log da passo do job anexada. Se corresponder, o resultado será assim:
 
-![logfilter-highlight-example2](/assets/img/logfilter-highlight-example2.png)
+![logfilter-highlight-example2](../../assets/img/logfilter-highlight-example2.png)

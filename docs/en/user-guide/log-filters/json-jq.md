@@ -15,24 +15,24 @@ The filter has 3 fields:
 
 The example below will filter the log results of a QW Control API query. Using the HTTP Request Node Step and a working API token for your QW Control user:
 
-![logfilter-jsonjq-example1](/assets/img/logfilter-jsonjq-example1.png)
+![logfilter-jsonjq-example1](../../assets/img/logfilter-jsonjq-example1.png)
 
 The API results in our demo QW Control instance look like this:
 
-![logfilter-jsonjq-example2](/assets/img/logfilter-jsonjq-example2.png)
+![logfilter-jsonjq-example2](../../assets/img/logfilter-jsonjq-example2.png)
 
 Apply the JSON jq key/value Mapper filter to the HTTP Request node step:
 
-![logfilter-jsonjq-example3](/assets/img/logfilter-jsonjq-example3.png)
+![logfilter-jsonjq-example3](../../assets/img/logfilter-jsonjq-example3.png)
 
 Now, when running the job, the log filter creates the following data variable:
 
-![logfilter-jsonjq-example4](/assets/img/logfilter-jsonjq-example4.png)
+![logfilter-jsonjq-example4](../../assets/img/logfilter-jsonjq-example4.png)
 
 So it can be used in later job steps:
 
-![logfilter-jsonjq-example5](/assets/img/logfilter-jsonjq-example5.png)
+![logfilter-jsonjq-example5](../../assets/img/logfilter-jsonjq-example5.png)
 
 With the results:
 
-![logfilter-jsonjq-example6](/assets/img/logfilter-jsonjq-example6.png)
+![logfilter-jsonjq-example6](../../assets/img/logfilter-jsonjq-example6.png)

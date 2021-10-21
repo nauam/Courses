@@ -40,13 +40,13 @@ Tipos de entrada:
 
 As opções podem ser criadas para qualquer _Job_ armazenado. A página de edição _Job_ contém uma área que exibe um resumo das opções existentes e um link para adicionar novas ou editar as existentes.
 
-![Adicionar link de opção](/assets/img/fig0501.png)
+![Adicionar link de opção](../assets/img/fig0501.png)
 
 O resumo de opções mostra cada opção e seu valor padrão, se os definir.
 
 Clicar no link "editar" abre o editor de opções.
 
-![Editor de opções](/assets/img/fig0503.png)
+![Editor de opções](../assets/img/fig0503.png)
 
 O editor de opções exibe um resumo expandido para cada opção definida. Cada opção é listada com seu resumo de uso, descrição, lista de valores e quaisquer restrições. Pressionar o link "Adicionar uma opção" abrirá um formulário para definir um novo parâmetro. Pressionar o link "Fechar" recolherá o editor de opções e retornará à visualização resumida.
 
@@ -64,7 +64,7 @@ Novas opções podem ser definidas pressionando o link "Adicionar uma opção", 
 
 Escolha "Texto" no Tipo de Opção:
 
-![Formulário de edição de opção](/assets/img/fig0502.png)
+![Formulário de edição de opção](../assets/img/fig0502.png)
 
 O formulário de definição de opções é organizado em várias áreas:
 
@@ -100,7 +100,7 @@ Indica se o _Job_ só pode ser executado se um valor valido for fornecido para e
 
 Se um valor padrão for definido, ele será usado quando nenhum valor for fornecido, a menos que um valor em branco seja permitido e seja explicitamente especificado.
 
-![Formulário de opção de valor múltiplo](/assets/img/fig-option-multival.png)
+![Formulário de opção de valor múltiplo](../assets/img/fig-option-multival.png)
 
 ### Multi-valor
 
@@ -118,7 +118,7 @@ Quando estiver satisfeito com a definição da opção, pressione o botão "Salv
 
 Uso (veja abaixo)
 
-![Uso da opção](/assets/img/fig-option-usage.png)
+![Uso da opção](../assets/img/fig-option-usage.png)
 
 ### Variável de carimbo de data/hora da opção
 
@@ -134,7 +134,7 @@ Você pode usar a string `${DATE:format}` como um valor de opção do _job_ (tan
 
 Escolha "Arquivo" no Tipo de Opção:
 
-![Formulário de edição de opção de arquivo](/assets/img/fig-newoption-file.png)
+![Formulário de edição de opção de arquivo](../assets/img/fig-newoption-file.png)
 
 O nome e a descrição da opção podem ser inseridos.
 
@@ -164,7 +164,7 @@ Um _Job_ chamado "hello", tem uma opção chamada "message".
 
 A assinatura da opção "hello" _Job_ seria: `-message <>`.
 
-![Uso da opção](/assets/img/fig0504.png)
+![Uso da opção](../assets/img/fig0504.png)
 
 Os argumentos passados ​​para o script são definidos como `${option.message}`.
 
@@ -180,7 +180,7 @@ echo message = @ option.message @; # mensagem de acesso via sintaxe de token de 
 Quando o usuário executa o _job_ "hello", será solicitado o
 valor da "mensagem".
 
-![Opção inserida](/assets/img/fig0505.png)
+![Opção inserida](../assets/img/fig0505.png)
 
 Vamos supor que eles escolheram a palavra "howdy" em resposta. A saída do _Job_ será:
 
@@ -385,7 +385,7 @@ As opções seguras podem especificar um caminho de armazenamento em vez de um v
 
 O caminho deve indicar uma entrada de `password` armazenada na instalação de armazenamento.
 
-![Caminho de armazenamento para opção segura](/assets/img/jobs-options-secure-storage-path.png)
+![Caminho de armazenamento para opção segura](../assets/img/jobs-options-secure-storage-path.png)
 
 ## Valores de opção remota
 
@@ -576,7 +576,7 @@ Passa o valor da opção "repositório" selecionada ou "" (em branco) se não es
 
 Se a solicitação dos valores da opção remota falhar, o formulário da GUI exibirá uma mensagem de aviso:
 
-![fig0901](/assets/img/fig0901.png)
+![fig0901](../assets/img/fig0901.png)
 
 Neste caso, será permitida a opção de usar um campo de texto para definir o valor.
 

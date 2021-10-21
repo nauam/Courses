@@ -22,7 +22,7 @@ Cada execução de _Job_ é armazenada e contém informações sobre os _Nós_ o
 As próximas seções descrevem como navegar e executar _Jobs_ existentes. Em seções posteriores, o tópico de criação de _Jobs_ será abordado, onde você aprenderá sobre os passos e opções de _Job_
 
 Se você quiser pular, vá direto para
-[Criação de _Jobs_](/manual/creating-jobs.md).
+[Criação de _Jobs_](/user-guide/creating-jobs.md).
 
 ## Grupos de _Job_
 
@@ -62,7 +62,7 @@ A página _Job_ permite pesquisar _Jobs_ usando a opção Filtro.
 
 Clique no link "Filtro" para mostrar as opções de filtro:
 
-![_Job_ filter form](/assets/img/fig0317.png)
+![_Job_ filter form](../assets/img/fig0317.png)
 
 Isso mostrará os campos de filtro. Insira um valor em qualquer um dos campos de filtro:
 
@@ -75,7 +75,7 @@ Você pode digitar uma substring ou uma expressão regular em qualquer um desses
 
 Após pressionar o botão "Filtrar", a lista de _Jobs_ será filtrada para incluir apenas os _Jobs_ correspondentes .
 
-![_Job_ filtered list](/assets/img/fig0318.png)
+![_Job_ filtered list](../assets/img/fig0318.png)
 
 Para refinar o filtro, clique na descrição do filtro em azul e altere os campos do filtro.
 
@@ -85,11 +85,11 @@ Para redefinir o filtro e voltar para a página de _Job_ completa, clique no bot
 
 Navegue até o _Job_ desejado na lista filtrada e pressione o ícone "Executar" para executar o _Job_ imediatamente. Se você não vir o ícone Executar, significa que seu login não possui privilégios de "execução" para esse trabalho.
 
-![_Job_ run button](/assets/img/fig0319.png)
+![_Job_ run button](../assets/img/fig0319.png)
 
 Se você navegou para a página de _Job_ separada, pressione o botão "Executar" lá.
 
-![_Job_ run button](/assets/img/fig0319-b.png)
+![_Job_ run button](../assets/img/fig0319-b.png)
 
 A caixa de diálogo Executar _Job_ permite que você insira opções de _Job_, se houver, nível de Log, seleção do _Nós_ e como você deseja acompanhar a execução.
 
@@ -107,7 +107,7 @@ Quando estiver pronto, pressione "Run Job Now". O _Job_ entrará na fila de exec
 
 Depois de iniciar a execução de um _Job_, você pode seguir a saída do _Job_ na página de execução.
 
-![_Job_ execution output](/assets/img/fig0319-c.png)
+![_Job_ execution output](../assets/img/fig0319-c.png)
 
 Na página da lista de _Jobs_, observe a guia "Em execução" na seção Atividade da página e clique na barra de progresso do ID de execução.
 
@@ -117,7 +117,7 @@ Se você pressionou o botão "executar" na página de detalhes do trabalho , ou 
 
 A definição de um _Job_ pode ser exibida clicando na guia Definição na página _Job_ ou na página Execução.
 
-![_Job_ definition](/assets/img/fig0320.png)
+![_Job_ definition](../assets/img/fig0320.png)
 
 As informações na visualização de detalhes do _Job_ incluem:
 
@@ -138,7 +138,7 @@ Você pode clicar em qualquer execução anterior na lista para ver a execução
 
 Você também pode navegar até a página Atividade na barra de navegação superior e usar o filtro de pesquisa para encontrar execuções digitando o nome do _Job_.
 
-![_Job_ executions matches](/assets/img/fig0310.png)
+![_Job_ executions matches](../assets/img/fig0310.png)
 
 A página _Jobs_ também contém todas as execuções para o grupo de _Job_ mostrado.
 
@@ -154,4 +154,4 @@ Quando solicitado "Quer realmente abortar este _Job_?" Clique no botão "Sim".
 
 O trabalho será encerrado com um status de conclusão "Abortado".
 
-![_Job_ definition](/assets/img/fig0319-d.png)
+![_Job_ definition](../assets/img/fig0319-d.png)

@@ -11,7 +11,7 @@ Você pode configurar notificações para ocorrerem com base em diferentes event
 - **On Retryable Failure**: Todas as notificações de "falha" que podem ser repetidas serão acionadas se o Job falhar.
 - **Average Duration Exceeded**: Envia uma notificação quando o limite de duração especificado é excedido. Se não for especificado, a duração média do Job será usada. (Veja as informações abaixo para opções de configuração)
 
-![Notification Events List](/assets/img/notifications-events.png)
+![Notification Events List](../assets/img/notifications-events.png)
 
 ### Configuring Average Duration Exceeded
 
@@ -32,4 +32,4 @@ Para obter uma lista completa de plug-ins de notificação, consulte [Plug-ins d
 - Escolha o evento para sua notificação e clique no botão `+ Add Notification`.
 - Escolha o **Tipo de Notificação** no menu suspenso e configure-o de acordo com os detalhes específicos do plugin.
 
-![Notification Events Types](/assets/img/notifications-addtype.png)
+![Notification Events Types](../assets/img/notifications-addtype.png)
