@@ -9,4 +9,4 @@ RUN npm install http-server -g
 
 EXPOSE  4441
 
-CMD ["http-server"]
+CMD ["http-server", "-p4441"]
