@@ -53,70 +53,50 @@ yarn run docs:build
 2. Navigate to the specific path of your file folder
 
 ```sh
-#remover docs/.vuepress/docs
-rm -r docs/.vuepress/docs && \
 #build
-nvm install lts/erbium; nvm use lts/erbium && \
-yarn install && \
-yarn run docs:build && \
+nvm install lts/erbium; nvm use lts/erbium
+yarn install
+yarn run docs:build
 
 #renomear dist para docs
-mv docs/.vuepress/dist docs/.vuepress/docs && \
+mv docs/.vuepress/dist docs/.vuepress/docs
 
-#Abrir na porta http://localhost:8080/docs  ###em config.js incluir  "base: `/docs/`" 
-npm install http-server -g && \
-http-server docs/.vuepress/ -o /docs
+#Abrir na porta http://localhost:8080/docs
+npm install http-server -g && http-server docs/.vuepress/ -o /docs
 ```
-
-3. Go to your browser and type localhost:8080. Your Application should run there.
 
 ## Docker
 
 ### build
 
-## Create files
-
 ```sh
-touch Dockerfile \ .dockerignore
+nvm install lts/erbium; nvm use lts/erbium
+yarn install
+yarn run docs:build
 ```
 
-## Run
+### Run
 
 ```sh
-rm -r docs/.vuepress/docs && \
-#build
-nvm install lts/erbium; nvm use lts/erbium && \
-yarn install && \
-yarn run docs:build && \
-cp -r docs/assets/ docs/.vuepress/dist/  && \
+cp -r docs/assets/ docs/.vuepress/dist/
 
-docker build -t nauam/docs . && \
-docker image ls && \
-docker run --name qwcontrol_docs --restart=always -p 4441:4441 -d nauam/docs && \
+docker build -t qwsoftware/docs .
+docker image ls
+docker run --name qwcontrol_docs --restart=always -p 4441:4441 -d qwsoftware/docs
 docker ps
 ```
 
 ## Push Docker Hub
 
 ```sh
-docker login -u "nauam" -p "TDT7q76Tta2Ea" docker.io
-docker tag nauam/docs:latest nauam/docs:latest
-docker push nauam/docs:latest
+docker login -u "user" -p "senha" docker.io
+docker tag qwsoftware/docs qwsoftware/docs:v1.2.4.9
+docker push qwsoftware/docs:v1.2.4.9
 ```
 
 ## Pull QWControl
 
 ```sh
-docker pull qwsoftware/homolog:v1246
-docker pull qwsoftware/homolog:v1246
-docker run -d -e TZ=America/Sao_Paulo --name qwcontrol -p 4440:4440 --net host --privileged --restart=always --env-file=/etc/qwcontrol.conf -v data:/home/qwcontrol/server/data qwsoftware/vernet:V123
+docker pull qwsoftware/docs:v1.2.4.9
+docker run -d -e TZ=America/Sao_Paulo --name qwcontrol_docs --net host --privileged --restart=always qwsoftware/docs:v1.2.4.9
 ```
-docker rm 9dc62b654735
-docker rm a804355c5eb8
-docker rm c114cc362851
-docker rm e741981c148f
-docker rm e1ed2915278c
-docker rm 9be8a8a3e2af
-docker rm 4aafd7f15e24
-docker rm 326ad2b08cde
-docker rm a6728b97e96e

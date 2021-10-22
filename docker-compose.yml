@@ -1,47 +1,38 @@
-version: '3.3'
+version: '3.7'
 
 services:
-  # qwcontrol:
-  #   environment:
-  #     - TZ=America/Sao_Paulo
-  #   container_name: qwcontrol
-  #   ports:
-  #     - '4440:4440'
-  #   network_mode: host
-  #   privileged: true
-  #   restart: always
-  #   # volumes:
-  #   #   - 'data:/home/qwcontrol/server/data'
-  #   image: 'qwsoftware/vernet:V1246'
-
-  # qwcontrol_docs:
-  #   container_name: qwcontrol_docs
-  #   restart: always
-  #   environment:
-  #     - TZ=America/Sao_Paulo
-  #   ports:
-  #     - '4441:4441'
-  #   image: 'nauam/docs:latest'
-
-  # qwcontrol_db:
-  #   container_name: qwcontrol_db
-  #   restart: always
-  #   environment:
-  #     TZ: "America/Sao_Paulo"
-  #     POSTGRES_USER: "qwcontrol"
-  #     POSTGRES_PASSWORD: "qws1023"
-  #   ports:
-  #     - 5432:5432
-  #   image: postgres:latest
-
-  jenkins:
-    container_name: jenkins
-    restart: always
+  nginx:
     environment:
-      TZ: "America/Sao_Paulo"
-    volumes:
-      - /home/nauam/jenkins:/var/jenkins_home
+      - TZ=America/Sao_Paulo
+    container_name: nginx
+    hostname: nginx
     ports:
-      - 8080:8080
-      - 50000:50000
-    image: jenkins/jenkins:lts-jdk11
+      - "80:80"
+      - "443:443"
+    privileged: true
+    restart: unless-stopped
+    image: 'nginx:latest'
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  qwcontrol_docs:
+    environment:
+      - TZ=America/Sao_Paulo
+    container_name: qwcontrol_docs
+    hostname: qwcontrol_docs
+    privileged: true
+    restart: unless-stopped
+    image: 'qwsoftware/docs:v1.2.4.9'
+
+  qwcontrol_db:
+    environment:
+      - TZ=America/Sao_Paulo
+      - POSTGRES_USER=qwcontrol
+      - POSTGRES_PASSWORD=pix2000
+    container_name: qwcontrol_db
+    hostname: qwcontrol_db
+    ports:
+      - 5432:5432
+    privileged: true
+    restart: unless-stopped
+    image: 'postgres:latest'
