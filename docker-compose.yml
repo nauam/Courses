@@ -1,11 +1,21 @@
 version: '3.7'
 
+networks: 
+  qwsoftware:
+    name: qwsoftware
+    ipam:
+      config: 
+        - subnet: 172.20.0.0/24
+    driver: bridge
+
 services:
   nginx:
     environment:
       - TZ=America/Sao_Paulo
     container_name: nginx
     hostname: nginx
+    networks: 
+      - qwsoftware
     ports:
       - "80:80"
       - "443:443"
@@ -20,19 +30,21 @@ services:
       - TZ=America/Sao_Paulo
     container_name: qwcontrol_docs
     hostname: qwcontrol_docs
+    networks: 
+      - qwsoftware
     privileged: true
     restart: unless-stopped
-    image: 'qwsoftware/docs:v1.2.4.9'
+    image: 'qwsoftware/docs:${TAG}'
 
-  qwcontrol_db:
+  qwcontrol:  
     environment:
       - TZ=America/Sao_Paulo
-      - POSTGRES_USER=qwcontrol
-      - POSTGRES_PASSWORD=pix2000
-    container_name: qwcontrol_db
-    hostname: qwcontrol_db
-    ports:
-      - 5432:5432
+    container_name: qwcontrol 
+    hostname: qwcontrol 
+    networks: 
+      - qwsoftware
     privileged: true
     restart: unless-stopped
-    image: 'postgres:latest'
+    env_file:
+      - /etc/qwcontrol.conf
+    image: 'qwsoftware/homolog:${TAG}'
