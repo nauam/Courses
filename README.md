@@ -12,12 +12,11 @@
 git clone https://github.com/qwsoftware/QWControl_Docs.git
 cd QWControl_Docs
 git checkout deploy_homolog
-mv 
-cp version /home/qw
-cd /home/qw
+mv qwcontrol.conf /etc/qwcontrol.conf
+mv docker-compose.yml jenkins.sh nginx.conf version /home/qw
+cd ..
 rm QWControl/ -rf
 
-mv -r qwcontrol.conf /etc/qwcontrol.conf
 export TAG=v1.2.4.8
 docker-compose up -d
 ```
