@@ -1,0 +1,50 @@
+version: '3.7'
+
+networks: 
+  qwsoftware:
+    name: qwsoftware
+    ipam:
+      config: 
+        - subnet: 172.20.0.0/24
+    driver: bridge
+
+services:
+  nginx:
+    environment:
+      - TZ=America/Sao_Paulo
+    container_name: nginx
+    hostname: nginx
+    networks: 
+      - qwsoftware
+    ports:
+      - "80:80"
+      - "443:443"
+    privileged: true
+    restart: unless-stopped
+    image: 'nginx:latest'
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  qwcontrol_docs:
+    environment:
+      - TZ=America/Sao_Paulo
+    container_name: qwcontrol_docs
+    hostname: qwcontrol_docs
+    networks: 
+      - qwsoftware
+    privileged: true
+    restart: unless-stopped
+    image: 'qwsoftware/docs:${TAG}'
+
+  qwcontrol:  
+    environment:
+      - TZ=America/Sao_Paulo
+    container_name: qwcontrol 
+    hostname: qwcontrol 
+    networks: 
+      - qwsoftware
+    privileged: true
+    restart: unless-stopped
+    env_file:
+      - /etc/qwcontrol.conf
+    image: 'qwsoftware/homolog:${TAG}'
