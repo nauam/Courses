@@ -37,6 +37,10 @@ module.exports = {
                     {
                         text: 'Guia do Usuário',
                         items: navbarUserGuide
+                    },
+                    {
+                        text: 'QWControl',
+                        link: '/../'
                     }
                 ],
                 sidebarDepth: 2,
@@ -57,6 +61,10 @@ module.exports = {
                     {
                         text: 'User Guide',
                         items: navbarUserGuideEn
+                    },
+                    {
+                        text: 'QWControl',
+                        link: '/../'
                     }
                 ],
                 sidebarDepth: 2,

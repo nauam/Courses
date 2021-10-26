@@ -89,3 +89,10 @@ docker pull qwsoftware/docs:v1.2.4.9
 ```sh
 docker run -d -e TZ=America/Sao_Paulo --name qwcontrol_docs --net host --privileged --restart=always qwsoftware/docs:v1.2.4.9
 ```
+
+## Servidor
+
+```sh
+export TAG=v1.2.4.8
+docker-compose up -d
+```

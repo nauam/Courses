@@ -17,8 +17,7 @@ services:
     networks: 
       - qwsoftware
     ports:
-      - "80:80"
-      - "443:443"
+      - "4440:80"
     privileged: true
     restart: unless-stopped
     image: 'nginx:latest'
