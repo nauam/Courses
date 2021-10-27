@@ -1,5 +1,6 @@
 #!/bin/sh
 docker login -u "idvlab" -p "VL84xFUAu5h2N" docker.io
+export TAG=$1
 
 while :
 do
@@ -21,8 +22,6 @@ do
         echo "The nginx container and image have been removed."
         ;;
 	*)
-        export TAG=$INPUT_STRING
-		echo "The version has been successfully inserted."
 		break
 		;;
   esac
