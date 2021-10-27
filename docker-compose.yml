@@ -17,7 +17,7 @@ services:
     networks: 
       - qwsoftware
     ports:
-      - "80:80"
+      - "4440:80"
       - "443:443"
     privileged: true
     restart: unless-stopped

@@ -19,7 +19,12 @@
   * Linux
     * user "qw"
   * Docker e Docker-compose
-  * file "[deploy.sh](/deploy.sh)"
+  * The file "[deploy.sh](/deploy.sh)" will download all the files needed for server configuration
+
+    ```sh
+        #/home/qw
+        ./deploy.sh
+    ```
 
 ### Jenkins
 
@@ -34,10 +39,10 @@
         ```
 
     * Command
-      * Baixar todos os arquivos de configuração incluindo o [jenkins.sh](/jenkins.sh)
+      * Baixar a versão do sistema.
 
       ```sh
-      ./deploy.sh
+      ./getversion.sh
       ```
 
       * Remover e instalar Dockers
