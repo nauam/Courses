@@ -13,12 +13,12 @@ do
     docs)
         docker container rm $(docker ps -f name=docs -q) --force
         docker image rm $(docker images qwsoftware/docs -q) --force
-        echo "The qwcontrol container and image have been removed."
+        echo "The docs container and image have been removed."
 		;;
     nginx)
         docker container rm $(docker ps -f name=nginx -q) --force
         docker image rm $(docker images nginx -q) --force
-        echo "The qwcontrol container and image have been removed."
+        echo "The nginx container and image have been removed."
         ;;
 	*)
         export TAG=$INPUT_STRING
