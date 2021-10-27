@@ -10,7 +10,7 @@
 
 * Jenkins
   * Tools
-    * NodeJS - Adcionar versão NodeJS 12.22.7
+    * NodeJS - Adicionar versão NodeJS 12.22.7
     * Docker build step
     * Docker plugin
     * CloudBees Docker Build and Publish plugin
@@ -19,32 +19,31 @@
   * Linux
     * user "qw"
   * Docker e Docker-compose
-  * file "deploy.sh"
+  * file "[deploy.sh](/deploy.sh)"
 
 ### Jenkins
 
 * New Jobs
-  * Name: Update_Servidor_Homolog(10.1.1.10)
+  * Name: Update_Servidor_Homolog(10.1.1.50)
   * Type: Build a freestyle software project
   * Build: Execute shell script on remote host using ssh
-    * Baixar todos os arquivos de configuração
+    * SSH site
 
-    ```sh
-    ./deploy.sh
-    ```
+        ```sh
+        qw@10.1.1.50:22
+        ```
 
-    * Remover e instalar Dockers
+    * Command
+      * Baixar todos os arquivos de configuração incluindo o [jenkins.sh](/jenkins.sh)
 
-    ```sh
-    ./jenkins.sh "$(cat version)"
-    ```
+      ```sh
+      ./deploy.sh
+      ```
 
-    * Docker que será nesessario remover o imagem (colocar apenas os que deseja desistalar)
+      * Remover e instalar Dockers
 
-    ```sh
-    qwsoftware
-    docs
-    nginx
-    .
-    ```
-    
+      ```sh
+      ./jenkins.sh "$(cat version)" qwsoftware docs nginx
+      ```
+
+      Obs. "$(cat version)" informará a versão do QWControl e para remover um docker é preciso escrever os nomes dos mesmo depois de inserir a versão.
