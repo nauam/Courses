@@ -1,8 +1,10 @@
 # QW Control Documentation
 
 <p align="center">
-  <img src="https://img.shields.io/static/v1?label=node&message=v12&color=green&style=for-the-badge&logo=node.js"/> <img src="https://img.shields.io/static/v1?label=vuepress&message=v1.8&color=green&style=for-the-badge&logo=vuepress"/>
-<img src="http://img.shields.io/static/v1?label=STATUS&message=Build&color=green&style=for-the-badge"/> <img src="http://img.shields.io/static/v1?label=OS&message=Debian&color=green&style=for-the-badge"/>
+    <img src="https://img.shields.io/static/v1?label=node&message=v12&color=green&style=for-the-badge&logo=node.js"/>
+    <img src="https://img.shields.io/static/v1?label=vuepress&message=v1.8&color=green&style=for-the-badge&logo=vuepress"/>
+    <img src="http://img.shields.io/static/v1?label=STATUS&message=Build&color=green&style=for-the-badge"/>
+    <img src="http://img.shields.io/static/v1?label=OS&message=Debian&color=green&style=for-the-badge"/>
 </p>
 
 ## Getting starting
@@ -56,7 +58,8 @@ cp -r docs/assets/ docs/.vuepress/dist/
 mkdir docs/.vuepress/app
 mv docs/.vuepress/dist docs/.vuepress/app/docs
 ```
-* Open http://localhost:8080/docs
+
+* Open [http://localhost:8080/docs]
 
 ```sh
 npm install http-server -g
@@ -82,6 +85,7 @@ docker push qwsoftware/docs:v1.2.4.9
 ```
 
 * Pull Docker Hub
+
 ```sh
 docker pull qwsoftware/docs:v1.2.4.9
 ```
