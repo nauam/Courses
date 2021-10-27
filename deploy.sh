@@ -6,4 +6,4 @@ git checkout deploy_homolog
 mv qwcontrol.conf /etc/qwcontrol.conf
 mv docker-compose.yml jenkins.sh nginx.conf version deploy.sh /home/qw
 cd ..
-rm QWControl/ -rf
+rm -r QWControl_Docs

@@ -25,11 +25,11 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
 
-  qwcontrol_docs:
+  docs:
     environment:
       - TZ=America/Sao_Paulo
-    container_name: qwcontrol_docs
-    hostname: qwcontrol_docs
+    container_name: docs
+    hostname: docs
     networks: 
       - qwsoftware
     privileged: true
