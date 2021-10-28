@@ -1,56 +1,21 @@
-# courses
+# Courses
 
-* Git Credentials
+## [University of Brasilia - Electronic Engineering](https://www.unb.br/)
 
-```sh
-echo "https://user:pass@github.com" > .git-credentials
-git config --global credential.helper store
-```
+* [Orientação a Objeto](/UnB/OO-Pomodoro/)
+* [Projeto Interdisciplinar](/UnB/PI2-SESC/)
+* [Sistemas Eletrônicos](/UnB/SE-ChuveiroControladoPorVoz/)
+* [Antena Lente de Lunebürg](UnB/TCC-AntenaLenteLuneburg/)
 
-* Create a new repository on the command line
+## [Digital Innovation One](https://digitalinnovation.one/)
 
-```sh
-echo "# a" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/nauam/a.git
-git push -u origin main
-```
+* [InterJavaDeveloper](DIO/InterJavaDeveloper/)
 
-* Push an existing repository from the command line
+## [Rockerseat](https://www.rocketseat.com.br/)
 
-```sh
-git remote add origin https://github.com/nauam/a.git
-git branch -M main
-git push -u origin main
-```
+* [NodeJS](Rocketseat/NodeJS/)
 
-## Repository to branch or folder
+## Others
 
-* Inserting the source repository (rep_src) into a branch in a destination repository (branch_dest).
-
-```sh
-git clone https://github.com/<user>/<rep_src>.git
-cd <rep_src>
-git remote rm origin
-git remote add origin https://github.com/<user>/<rep_dest>.git
-git pull
-git branch -M <new branch_dest>
-git checkout <new branch_dest>
-git add .
-git commit -m "rep_src"
-git push -u origin <new branch_dest>
-```
-
-* Forcing the merge between the main branches and the branch_dest branch.
-
-```sh
-git clone https://github.com/<user>/<rep_dest>.git
-cd <rep_dest>
-git merge origin/<new branch_dest> --allow-unrelated-histories
-git add .
-git commit -m "rep_src"
-git push -u origin main
-```
+* [Git & GitHub](Outros/Git%20e%20GitHub/)
+* [VuePress](Outros/VuePress/)
