@@ -27,26 +27,29 @@ git branch -M main
 git push -u origin main
 ```
 
-* Repository to branch or folder
+## Repository to branch or folder
+
+* Inserting the source repository (rep_src) into a branch in a destination repository (branch_dest).
 
 ```sh
-git clone 
+git clone https://github.com/<user>/<rep_src>.git
 git remote rm origin
-git remote add origin https://github.com/nauam/courses.git
+git remote add origin https://github.com/<user>/<rep_dest>.git
 git pull
-git branch -M UnB
-git checkout UnB
+git branch -M <new branch_dest>
+git checkout <new branch_dest>
 git add .
-git commit -m "UnB-OO_Pomodoro"
-git push -u origin UnB
+git commit -m "rep_src"
+git push -u origin <new branch_dest>
 ```
 
+* Forcing the merge between the main branches and the branch_dest branch.
+
 ```sh
-git clone https://github.com/nauam/courses.git
+git clone https://github.com/<user>/<rep_dest>.git
 cd courses
-git branch
-git merge origin/UnB --allow-unrelated-histories
+git merge origin/<new branch_dest> --allow-unrelated-histories
 git add .
-git commit -m "UnB-OO_Pomodoro"
+git commit -m "rep_src"
 git push -u origin main
 ```
