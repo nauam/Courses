@@ -33,6 +33,7 @@ git push -u origin main
 
 ```sh
 git clone https://github.com/<user>/<rep_src>.git
+cd <rep_src>
 git remote rm origin
 git remote add origin https://github.com/<user>/<rep_dest>.git
 git pull
@@ -47,7 +48,7 @@ git push -u origin <new branch_dest>
 
 ```sh
 git clone https://github.com/<user>/<rep_dest>.git
-cd courses
+cd <rep_dest>
 git merge origin/<new branch_dest> --allow-unrelated-histories
 git add .
 git commit -m "rep_src"
