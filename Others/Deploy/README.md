@@ -1,4 +1,4 @@
-# QW Control Deploy
+# Deploy
 
 <p align="center">
     <img src="http://img.shields.io/static/v1?label=STATUS&message=Deploy&color=green&style=for-the-badge"/> <img src="http://img.shields.io/static/v1?label=OS&message=Debian&color=green&style=for-the-badge"/>
@@ -17,12 +17,12 @@
 
 * Servidor
   * Linux
-    * user "qw"
+    * user "<user>"
   * Docker e Docker-compose
   * The file "[deploy.sh](/deploy.sh)" will download all the files needed for server configuration
 
     ```sh
-        #/home/qw
+        #/home/<user>
         ./deploy.sh
     ```
 
