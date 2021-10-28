@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # courses
 
 * Git Credentials
@@ -51,6 +50,3 @@ git add .
 git commit -m "UnB-OO_Pomodoro"
 git push -u origin main
 ```
-=======
-# UnB_MAR
->>>>>>> origin/UnB
