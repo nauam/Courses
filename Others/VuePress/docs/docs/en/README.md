@@ -1,6 +1,6 @@
 ---
 home: true
-title: 'QW Control Documentation'
+title: 'VuePress'
 heroImage: /assets/img/hero.png
 actionText: get started →
 actionLink: /en/introduction/introduction.html
