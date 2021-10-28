@@ -2,15 +2,9 @@
 
 while [ $# -gt 0 ]; do
     case "$1" in
-        qwcontrol) 
-            docker container rm $(docker ps -f name=qwcontrol -q) --force;
-            docker image rm $(docker images qwsoftware/homolog -q) --force;
-            echo "The qwcontrol container and image have been removed.";
-            ;;
-
         docs) 
             docker container rm $(docker ps -f name=docs -q) --force;
-            docker image rm $(docker images qwsoftware/docs -q) --force;
+            docker image rm $(docker images <user>/docs -q) --force;
             echo "The docs container and image have been removed.";
             ;;
 
@@ -27,5 +21,5 @@ while [ $# -gt 0 ]; do
     esac
     shift
 done   
-docker login -u "idvlab" -p "VL84xFUAu5h2N" docker.io
+docker login -u "user" -p "pass" docker.io
 docker-compose up -d

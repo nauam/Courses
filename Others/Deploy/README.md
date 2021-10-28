@@ -29,13 +29,13 @@
 ### Jenkins
 
 * New Jobs
-  * Name: Update_Servidor_Homolog(10.1.1.50)
+  * Name: Servidor
   * Type: Build a freestyle software project
   * Build: Execute shell script on remote host using ssh
     * SSH site
 
         ```sh
-        qw@10.1.1.50:22
+        <user>@10.1.1.1:22
         ```
 
     * Command
@@ -48,7 +48,7 @@
       * Remover e instalar Dockers
 
       ```sh
-      ./jenkins.sh "$(cat version)" qwsoftware docs nginx
+      ./jenkins.sh "$(cat version)" docs nginx
       ```
 
-      Obs. "$(cat version)" informará a versão do QWControl e para remover um docker é preciso escrever os nomes dos mesmo depois de inserir a versão.
+      Obs. "$(cat version)" informará a versão do Software e para remover um docker é preciso escrever os nomes dos mesmo depois de inserir a versão.
