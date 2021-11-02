@@ -1,0 +1,178 @@
+# Install Package Ubuntu
+
+## DEB
+
+* Google Chrome
+* VScode
+* Skype
+
+```sh
+sudo dpkg -i package_file.deb
+```
+
+## APT
+
+* owncloud-client
+* keepassx
+  * Conectar ao arquivo KeePassDataBase-João
+
+```sh
+sudo apt install package
+```
+
+## Intellij
+
+[Toolbox App](https://www.jetbrains.com/toolbox-app/)
+
+## Beekeeper Studio
+
+```sh
+wget --quiet -O - https://deb.beekeeperstudio.io/beekeeper.key | sudo apt-key add -
+echo "deb https://deb.beekeeperstudio.io stable main" | sudo tee /etc/apt/sources.list.d/beekeeper-studio-app.list
+sudo apt update
+sudo apt install beekeeper-studio
+```
+
+## SSH
+
+1. Open the terminal with ```Ctrl+Alt+T``` and install the ```openssh-server``` package:
+
+```sh
+sudo apt update
+sudo apt install openssh-server
+```
+
+2. Once the installation is complete, the SSH service will start automatically. You can verify that SSH is running by typing:
+
+```sh
+sudo systemctl status ssh
+```
+
+The output should tell you that the service is running and enabled to start on system boot:
+
+```sh
+● ssh.service - OpenBSD Secure Shell server
+    Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+    Active: active (running) since Mon 2020-06-01 12:34:00 CEST; 9h ago
+...
+```
+
+3. Ubuntu ships with a firewall configuration tool called UFW. If the [firewall is enabled](https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-ubuntu-20-04/) on your system, make sure to open the SSH port:
+
+```sh
+sudo ufw allow ssh
+```
+
+### Connecting to the SSH Server
+
+To connect to your Ubuntu machine over LAN invoke the [ssh command](https://linuxize.com/post/ssh-command-in-linux/) followed by the username and the IP address in the following format:
+
+```sh
+ssh username@ip_address
+```
+
+## Docker
+
+1. Primeiro, atualize sua lista atual de pacotes e instale alguns pacotes de pré-requisitos que permitem que o apt utilize pacotes via HTTPS:
+
+```sh
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+```
+
+2. Então adicione a chave GPG para o repositório oficial do Docker em seu sistema:
+
+```sh
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
+3. Adicione o repositório do Docker às fontes do APT:
+
+```sh
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+```
+
+4. A seguir, atualize o banco de dados de pacotes com os pacotes Docker do repositório recém adicionado:
+
+```sh
+sudo apt update
+```
+
+5. Certifique-se de que você irá instalar a partir do repositório do Docker em vez do repositório padrão do Ubuntu:
+
+```sh
+apt-cache policy docker-ce
+```
+
+Você verá uma saída como esta, embora o número da versão do Docker possa estar diferente:
+
+```sh
+docker-ce:
+  Installed: (none)
+  Candidate: 18.03.1~ce~3-0~ubuntu
+  Version table:
+     18.03.1~ce~3-0~ubuntu 500
+        500 https://download.docker.com/linux/ubuntu bionic/stable amd64 Packages
+```
+
+6. Finalmente, instale o Docker:
+
+```sh
+sudo apt install docker-ce
+```
+
+7. O Docker agora deve ser instalado, o daemon iniciado e o processo ativado para iniciar na inicialização. Verifique se ele está sendo executado:
+
+```sh
+sudo systemctl status docker
+```
+
+A saída deve ser semelhante à seguinte, mostrando que o serviço está ativo e executando:
+
+```sh
+● docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2018-07-05 15:08:39 UTC; 2min 55s ago
+     Docs: https://docs.docker.com
+ Main PID: 10096 (dockerd)
+    Tasks: 16
+   CGroup: /system.slice/docker.service
+           ├─10096 /usr/bin/dockerd -H fd://
+           └─10113 docker-containerd --config /var/run/docker/containerd/containerd.toml
+```
+
+A instalação do Docker agora oferece não apenas o serviço Docker (daemon), mas também o utilitário de linha de comando docker ou o cliente Docker. 
+
+8. Se você quiser evitar digitar sudo sempre que você executar o comando docker, adicione seu nome de usuário ao grupo docker:
+
+```sh
+sudo usermod -aG docker ${USER}
+```
+
+9. Para aplicar a nova associação ao grupo, efetue logout do servidor e faça logon novamente ou digite o seguinte:
+
+```sh
+su - ${USER}
+```
+
+10. Confirme que seu usuário está agora adicionado ao grupo docker digitando:
+
+```sh
+id -nG
+```
+
+## Docker compose
+
+Install Compose on Linux systems
+
+1. Run this command to download the current stable release of Docker Compose:
+
+```sh
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+2. Apply executable permissions to the binary:
+
+```sh
+sudo chmod +x /usr/local/bin/docker-compose
+```
