@@ -9,7 +9,9 @@
 
 ## [Digital Innovation One](https://digitalinnovation.one/)
 
-* [InterJavaDeveloper](DIO/InterJavaDeveloper/)
+* [Calculadora React](DIO/FormacaoReactDeveloper/FundamentosDoReact/desafio01-calculadora)
+* [Inter Java Developer](DIO/InterJavaDeveloper/)
+* [Formacao Java Developer](DIO/FormacaoJavaDeveloper)
 
 ## [Rockerseat](https://www.rocketseat.com.br/)
 
