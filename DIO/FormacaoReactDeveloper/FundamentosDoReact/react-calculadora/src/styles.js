@@ -12,8 +12,7 @@ export const Conteiner = styled.div`
 
 export const Content = styled.div`
     background-color: #3b3b3b;
-    width: 50%;    
-    min-width: fit-content;
+    width: fit-content;
     padding: 12px;
     border-radius: 8px;
 `

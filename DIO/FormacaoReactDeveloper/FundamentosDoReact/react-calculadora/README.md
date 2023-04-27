@@ -3,6 +3,8 @@ Calculadora em React
 
 Essa é uma calculadora simples feita em React com as operações básicas. A calculadora suporta adição, subtração, multiplicação, divisão, porcentagem e limpeza.
 
+![Git Find](screenshot.png)
+
 Quickstart
 ----------
 

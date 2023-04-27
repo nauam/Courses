@@ -3,6 +3,8 @@ Git Find em React
 
 Este projeto foi desenvolvido como parte do curso "Fundamentos do React" da Digital Innovation One e tem como objetivo buscar informações sobre usuários e repositórios do GitHub.
 
+![Git Find](screenshot.png)
+
 Quickstart
 ----------
 
