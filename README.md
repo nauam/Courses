@@ -9,7 +9,8 @@
 
 ## [Digital Innovation One](https://digitalinnovation.one/)
 
-* [Calculadora React](DIO/FormacaoReactDeveloper/FundamentosDoReact/desafio01-calculadora)
+* [Calculadora em React](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-calculadora)
+* [Git Find em React](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-git-find)
 * [Inter Java Developer](DIO/InterJavaDeveloper/)
 * [Formacao Java Developer](DIO/FormacaoJavaDeveloper)
 

@@ -41,6 +41,7 @@ Tecnologias utilizadas
 ----------------------
 
 *   React;
+*   JavaScript
 *   HTML;
 *   CSS.
 
