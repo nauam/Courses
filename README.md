@@ -12,8 +12,8 @@
 * [Calculadora em React](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-calculadora)
 * [Git Find em React](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-git-find)
 * [Wiki GitHub em React](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-wiki-github)
-* [Page DIO em React com Router](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-web-dio-router)
-* [Page DIO em React com Router em TypeScript](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-web-dio-router-ts)
+* [Page DIO em React com Router](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-web-dio-router-ts)
+* [Tela de Login em React](DIO/FormacaoReactDeveloper/FundamentosDoReact/react-login)
 * [Inter Java Developer](DIO/InterJavaDeveloper/)
 * [Formacao Java Developer](DIO/FormacaoJavaDeveloper)
 
